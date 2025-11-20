@@ -2,70 +2,82 @@ export const ComparisonTable = () => {
   const competitors = [
     {
       name: "Bonlife",
-      subtitle: "RBD Palín (99.9% puro)",
+      subtitle: "RBD Palma (99.9% puro)",
       volume: "25 L",
-      price: "5.428",
-      priceWithTax: "5.428",
-      duration: "↑ RD 97/h",
-      features: "98.9% descodovizado, sin aditives, vilea a-staple dura 5x",
-      savings: "≥ 62%",
-      savingsSubtitle: "más costo por hora",
+      price: "5,428",
+      priceWithTax: "5,428",
+      duration: "↑ RD$ 97/h",
+      durationHours: 56,
+      features: "99.9% refinado, sin aditivos, vida útil 5x más larga",
+      savings: "BASE",
+      savingsSubtitle: "costo estándar",
       isBonlife: true,
+      costPerHour: 97,
     },
     {
       name: "Capullo",
-      subtitle: "(soya + girasol)",
+      subtitle: "(soya refinada)",
       volume: "20 L",
-      price: "3.074",
-      priceWithTax: "3.074",
-      duration: "↑ RD 256/h",
-      features: "Alto costo por hora, prutaclan rapula",
-      savings: "≥ 68%",
-      savingsSubtitle: "más caidio por hora",
+      price: "3,074",
+      priceWithTax: "3,074",
+      duration: "↓ RD$ 256/h",
+      durationHours: 12,
+      features: "Alto costo operativo, requiere cambios frecuentes",
+      savings: "+ 164%",
+      savingsSubtitle: "más caro por hora",
+      costPerHour: 256,
     },
     {
       name: "Mazola",
       subtitle: "(maíz)",
       volume: "17 L",
-      price: "3.712",
-      priceWithTax: "3.712",
-      duration: "↑ RD 309/h",
-      features: "Alto costo por hora",
-      savings: "≥ 68%",
-      savingsSubtitle: "más caidio por hora",
+      price: "3,712",
+      priceWithTax: "3,712",
+      duration: "↓ RD$ 309/h",
+      durationHours: 12,
+      features: "Degradación rápida a altas temperaturas",
+      savings: "+ 218%",
+      savingsSubtitle: "más caro por hora",
+      costPerHour: 309,
     },
     {
       name: "Crisol",
       subtitle: "(soya)",
-      volume: "15,8 L",
-      price: "3.045",
-      priceWithTax: "3.045",
-      duration: "↑ RD 68 9/h",
-      features: "Fuerte sabor, baja estbilidad",
-      savings: "≥ 69%",
-      savingsSubtitle: "más caidio por hora",
+      volume: "15.8 L",
+      price: "3,045",
+      priceWithTax: "3,045",
+      duration: "↓ RD$ 232/h",
+      durationHours: 13,
+      features: "Baja estabilidad térmica, sabor residual fuerte",
+      savings: "+ 139%",
+      savingsSubtitle: "más caro por hora",
+      costPerHour: 232,
     },
     {
       name: "El Gallo",
       subtitle: "(soya)",
-      volume: "14,8 L",
-      price: "3.016",
-      priceWithTax: "3.016",
-      duration: "↑ RD 305/h",
-      features: "No dura un día completo",
-      savings: "≥ 67%",
-      savingsSubtitle: "más caidio por hora",
+      volume: "14.8 L",
+      price: "3,016",
+      priceWithTax: "3,016",
+      duration: "↓ RD$ 204/h",
+      durationHours: 15,
+      features: "Duración limitada en frituras continuas",
+      savings: "+ 110%",
+      savingsSubtitle: "más caro por hora",
+      costPerHour: 204,
     },
     {
-      name: "Aceite Especial",
-      subtitle: "(soya economico)",
-      volume: "13,6 L",
-      price: "2.367",
-      priceWithTax: "2.367",
-      duration: "↑ RD 275/h",
-      features: "Mucho cesiduo",
-      savings: "≥ 65%",
-      savingsSubtitle: "más caidio por hora",
+      name: "Aceite Económico",
+      subtitle: "(mezcla soya)",
+      volume: "13.6 L",
+      price: "2,367",
+      priceWithTax: "2,367",
+      duration: "↓ RD$ 176/h",
+      durationHours: 13,
+      features: "Alto contenido de residuos, espuma excesiva",
+      savings: "+ 81%",
+      savingsSubtitle: "más caro por hora",
+      costPerHour: 176,
     },
   ];
 
@@ -95,19 +107,19 @@ export const ComparisonTable = () => {
                     Marca / Tipo<br />de Aceite
                   </th>
                   <th className="py-4 px-3 text-center font-bold border-r border-premium-light">
-                    Precio<br />(RD$)
+                    Volumen<br />Real
                   </th>
                   <th className="py-4 px-3 text-center font-bold border-r border-premium-light">
-                    Precio<br />con ITBIS<br />con ITBIS
+                    Precio<br />con ITBIS
                   </th>
                   <th className="py-4 px-3 text-center font-bold border-r border-premium-light">
-                    Duración<br />promedio<br />de uso
+                    Costo Real<br />por Hora<br />de Fritura
                   </th>
                   <th className="py-4 px-4 text-left font-bold border-r border-premium-light">
-                    Característi-<br />cas principales
+                    Características<br />principales
                   </th>
                   <th className="py-4 px-3 text-center font-bold">
-                    Ahorro<br />estimado<br />vs Bonlife
+                    Diferencia<br />vs Bonlife
                   </th>
                 </tr>
               </thead>
@@ -146,8 +158,10 @@ export const ComparisonTable = () => {
                     <td className="py-4 px-3 text-center font-bold text-lg border-r border-border">
                       {item.priceWithTax}
                     </td>
-                    <td className="py-4 px-3 text-center font-bold text-primary border-r border-border">
-                      {item.duration}
+                    <td className="py-4 px-3 text-center font-bold border-r border-border">
+                      <span className={item.isBonlife ? "text-primary text-xl" : "text-destructive text-xl"}>
+                        {item.duration}
+                      </span>
                     </td>
                     <td className="py-4 px-4 text-sm border-r border-border">
                       {item.features}
@@ -172,25 +186,20 @@ export const ComparisonTable = () => {
                 COSTO POR HORA <span className="text-muted-foreground">(RD$)</span>
               </h4>
               <div className="space-y-3">
-                {[
-                  { name: "Bonlife", value: 97, color: "bg-premium", label: "354% puré" },
-                  { name: "Capille", value: 68, color: "bg-gold" },
-                  { name: "Wrssoll", value: 65, color: "bg-gold" },
-                  { name: "Chisil", value: 62, color: "bg-gold" },
-                  { name: "El callo", value: 59, color: "bg-gold" },
-                  { name: "Espcll", value: 56, color: "bg-gold" },
-                ].map((item, idx) => (
+                {competitors.map((item, idx) => (
                   <div key={idx} className="flex items-center gap-3">
                     <div className="w-24 text-sm font-semibold text-right">
                       {item.name}
-                      {item.label && <div className="text-xs text-muted-foreground">{item.label}</div>}
+                      {item.isBonlife && <div className="text-xs text-primary">99.9% puro</div>}
                     </div>
-                    <div className="flex-1 h-12 bg-secondary rounded-lg overflow-hidden">
+                    <div className="flex-1 bg-secondary rounded-lg overflow-hidden relative h-12">
                       <div
-                        className={`${item.color} h-full flex items-center justify-end px-3 text-white font-bold transition-all duration-500`}
-                        style={{ width: `${item.value}%` }}
+                        className={`${
+                          item.isBonlife ? "bg-premium" : "bg-destructive/70"
+                        } h-full flex items-center justify-end px-3 text-white font-bold transition-all duration-700`}
+                        style={{ width: `${(item.costPerHour / 309) * 100}%` }}
                       >
-                        {item.value}
+                        {item.costPerHour}
                       </div>
                     </div>
                   </div>
@@ -199,42 +208,39 @@ export const ComparisonTable = () => {
               <div className="flex justify-between mt-4 text-xs text-muted-foreground px-24">
                 <span>0</span>
                 <span>100</span>
+                <span>200</span>
+                <span>300</span>
               </div>
             </div>
 
             {/* Duration Chart */}
             <div>
               <h4 className="text-xl font-bold text-center mb-6">
-                DURACIÓN <span className="text-muted-foreground">(HORAS)</span>
+                DURACIÓN EN FREIDORA <span className="text-muted-foreground">(HORAS)</span>
               </h4>
               <div className="space-y-3">
-                {[
-                  { name: "Bonlife", value: 90 },
-                  { name: "Capille", value: 60 },
-                  { name: "Chisil", value: 48 },
-                  { name: "El Galle resaut", value: 38 },
-                  { name: "Aceite Especial (soyu/economico)", value: 30 },
-                ].map((item, idx) => (
+                {competitors.map((item, idx) => (
                   <div key={idx} className="flex items-center gap-3">
-                    <div className="w-32 text-sm font-semibold text-right truncate">
+                    <div className="w-24 text-sm font-semibold text-right truncate">
                       {item.name}
                     </div>
-                    <div className="flex-1 h-12 bg-secondary rounded-lg overflow-hidden">
+                    <div className="flex-1 bg-secondary rounded-lg overflow-hidden relative h-12">
                       <div
                         className={`${
-                          idx === 0 ? "bg-premium" : "bg-gold"
-                        } h-full flex items-center justify-end px-3 text-white font-bold transition-all duration-500`}
-                        style={{ width: `${item.value}%` }}
+                          item.isBonlife ? "bg-premium" : "bg-gold/60"
+                        } h-full flex items-center justify-end px-3 text-white font-bold transition-all duration-700`}
+                        style={{ width: `${(item.durationHours / 56) * 100}%` }}
                       >
-                        {item.value > 35 && item.value}
+                        {item.durationHours}h
                       </div>
                     </div>
                   </div>
                 ))}
               </div>
-              <div className="flex justify-between mt-4 text-xs text-muted-foreground px-32">
-                <span>0</span>
-                <span>45-h</span>
+              <div className="flex justify-between mt-4 text-xs text-muted-foreground px-24">
+                <span>0h</span>
+                <span>28h</span>
+                <span>56h</span>
               </div>
             </div>
           </div>
@@ -247,14 +253,14 @@ export const ComparisonTable = () => {
               </div>
               <div className="flex-1 text-white space-y-2">
                 <p className="text-lg md:text-xl">
-                  Bonlife cuesta más por bidón .. <span className="font-bold">pero rinde muchísimo más.</span>
+                  Bonlife cuesta más por bidón... <span className="font-bold">pero rinde muchísimo más.</span>
                 </p>
                 <div className="flex flex-col md:flex-row gap-4 text-base md:text-lg">
                   <div>
-                    Costo real por hora: <span className="font-bold text-gold">Bonlife: RD8 97/h</span>
+                    Costo real por hora: <span className="font-bold text-gold">Bonlife: RD$ 97/h</span>
                   </div>
                   <div>
-                    <span className="font-bold text-gold">Competencia: 60% –70%</span> por cada horar de freidora
+                    <span className="font-bold text-gold">Competencia: RD$ 176-309/h</span> (81-218% más caro)
                   </div>
                 </div>
               </div>
