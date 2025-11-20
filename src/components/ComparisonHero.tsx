@@ -1,0 +1,114 @@
+import comparisonImage from "@/assets/bonlife-comparison.jpg";
+
+export const ComparisonHero = () => {
+  return (
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-primary via-primary-light to-premium-light">
+      <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMCAwIDAgMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS1vcGFjaXR5PSIwLjA1IiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')] opacity-30"></div>
+      
+      <div className="container mx-auto px-6 py-20 relative z-10">
+        <div className="text-center mb-12 animate-fade-in">
+          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight">
+            Aceite <span className="text-gold">Bonlife</span>
+          </h1>
+          <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto">
+            La diferencia es clara: calidad superior, ahorro garantizado
+          </p>
+        </div>
+
+        <div className="max-w-6xl mx-auto">
+          <div className="bg-white rounded-3xl shadow-2xl overflow-hidden transform hover:scale-[1.02] transition-all duration-500">
+            <img 
+              src={comparisonImage} 
+              alt="Comparación profesional entre aceite Bonlife y competidores - mostrando la diferencia en calidad y pureza"
+              className="w-full h-auto"
+            />
+          </div>
+
+          <div className="mt-16 grid md:grid-cols-2 gap-8">
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 hover:bg-white/15 transition-all duration-300">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 bg-gold rounded-xl flex items-center justify-center flex-shrink-0">
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="text-2xl font-bold text-white mb-2">Bonlife Premium</h3>
+                  <ul className="space-y-2 text-white/90">
+                    <li className="flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 bg-gold rounded-full"></span>
+                      99.9% pureza certificada
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 bg-gold rounded-full"></span>
+                      20% ahorro garantizado
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 bg-gold rounded-full"></span>
+                      Omega-3 y antioxidantes
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 bg-gold rounded-full"></span>
+                      Entrega en 24 horas
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 bg-gold rounded-full"></span>
+                      Mayor estabilidad térmica
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <svg className="w-6 h-6 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="text-2xl font-bold text-white/70 mb-2">Competidores</h3>
+                  <ul className="space-y-2 text-white/60">
+                    <li className="flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 bg-white/40 rounded-full"></span>
+                      Menor pureza y calidad
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 bg-white/40 rounded-full"></span>
+                      Precios más altos
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 bg-white/40 rounded-full"></span>
+                      Aditivos adicionales
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 bg-white/40 rounded-full"></span>
+                      Tiempos de entrega lentos
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 bg-white/40 rounded-full"></span>
+                      Cambios frecuentes de aceite
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-12 text-center">
+            <a 
+              href="#contacto" 
+              className="inline-flex items-center gap-3 bg-gold hover:bg-gold-light text-white px-10 py-5 rounded-2xl font-bold text-lg shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
+            >
+              Solicitar Cotización
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
