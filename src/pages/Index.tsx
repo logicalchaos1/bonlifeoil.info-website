@@ -5,7 +5,7 @@ import { BenefitsSection } from "@/components/BenefitsSection";
 import { ContactSection } from "@/components/ContactSection";
 import ProductCatalog from "@/components/ProductCatalog";
 import { Button } from "@/components/ui/button";
-import { Printer, Download } from "lucide-react";
+import { Printer, Download, MessageCircle } from "lucide-react";
 import { generateCatalogPDF } from "@/utils/generateCatalogPDF";
 
 const Index = () => {
@@ -40,6 +40,20 @@ const Index = () => {
           <span className="sm:hidden">Imprimir</span>
         </Button>
       </div>
+
+      {/* WhatsApp Floating Button */}
+      <a
+        href="https://wa.me/18299876764?text=Hola,%20me%20interesa%20obtener%20información%20sobre%20los%20productos%20Bonlife"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="no-print fixed bottom-6 right-6 z-50 bg-[#25D366] hover:bg-[#20BA5A] text-white rounded-full p-4 shadow-lg transition-all hover:scale-110 flex items-center justify-center group"
+        aria-label="Contactar por WhatsApp"
+      >
+        <MessageCircle className="w-6 h-6" />
+        <span className="hidden group-hover:inline-block ml-2 font-medium whitespace-nowrap">
+          Contactar
+        </span>
+      </a>
 
       <ComparisonHero />
       <ComparisonTable />
