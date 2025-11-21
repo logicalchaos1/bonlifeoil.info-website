@@ -161,7 +161,7 @@ const ProductCatalog = () => {
     yPos += 8;
     
     doc.setFont("helvetica", "italic");
-    doc.text("Presentaciones: 20L, 25L, 50L  |  Vida util: 2 anos (cerrado)", margin, yPos);
+    doc.text("Presentaciones: 25L  |  Vida util: 2 anos (cerrado)", margin, yPos);
     yPos += 15;
 
     // Product 2: Aceite de Soya
@@ -203,8 +203,12 @@ const ProductCatalog = () => {
     doc.rect(margin - 2, yPos - 5, 40, 8, 'F');
     doc.setTextColor(255, 255, 255);
     doc.text("$4,000 DOP", margin, yPos);
-    yPos += 12;
+    yPos += 10;
     doc.setTextColor(0, 0, 0);
+    doc.setFont("helvetica", "italic");
+    doc.setFontSize(9);
+    doc.text("Presentaciones: 25L  |  Vida util: 2 anos (cerrado)", margin, yPos);
+    yPos += 12;
 
     // Product 3: Aceite de Girasol
     checkPageBreak(50);
@@ -245,8 +249,12 @@ const ProductCatalog = () => {
     doc.rect(margin - 2, yPos - 5, 40, 8, 'F');
     doc.setTextColor(255, 255, 255);
     doc.text("$4,000 DOP", margin, yPos);
-    yPos += 12;
+    yPos += 10;
     doc.setTextColor(0, 0, 0);
+    doc.setFont("helvetica", "italic");
+    doc.setFontSize(9);
+    doc.text("Presentaciones: 25L  |  Vida util: 2 anos (cerrado)", margin, yPos);
+    yPos += 12;
 
     // Product 4: Manteca Vegetal
     checkPageBreak(50);
@@ -290,8 +298,12 @@ const ProductCatalog = () => {
     doc.rect(margin - 2, yPos - 5, 40, 8, 'F');
     doc.setTextColor(255, 255, 255);
     doc.text("$3,570 DOP", margin, yPos);
-    yPos += 12;
+    yPos += 10;
     doc.setTextColor(0, 0, 0);
+    doc.setFont("helvetica", "italic");
+    doc.setFontSize(9);
+    doc.text("Presentaciones: 25L  |  Vida util: 2 anos (cerrado)", margin, yPos);
+    yPos += 12;
 
     // Product 5: Margarina
     checkPageBreak(50);
@@ -332,6 +344,12 @@ const ProductCatalog = () => {
     yPos += 5;
     doc.circle(margin + 2, yPos - 1.5, 1, 'F');
     doc.text("Ideal para untar, hornear y cocinar", margin + 5, yPos);
+    yPos += 10;
+    
+    doc.setFont("helvetica", "italic");
+    doc.setFontSize(9);
+    doc.setTextColor(0, 0, 0);
+    doc.text("Presentaciones: 15kg  |  Vida util: 2 anos (cerrado)", margin, yPos);
     yPos += 12;
 
     // New page for contact info
@@ -553,8 +571,8 @@ const ProductCatalog = () => {
 
                 <div className="bg-primary/10 rounded-lg p-4">
                   <p className="text-sm">
-                    <strong>Presentaciones:</strong> 20L, 25L, 50L | 
-                    <strong className="ml-3">Vida util:</strong> 12 meses (cerrado)
+                    <strong>Presentaciones:</strong> 25L | 
+                    <strong className="ml-3">Vida util:</strong> 2 anos (cerrado)
                   </p>
                 </div>
               </CardContent>
@@ -632,6 +650,13 @@ const ProductCatalog = () => {
                     </table>
                   </div>
                 </div>
+
+                <div className="bg-blue-500/10 rounded-lg p-4">
+                  <p className="text-sm">
+                    <strong>Presentaciones:</strong> 25L | 
+                    <strong className="ml-3">Vida util:</strong> 2 anos (cerrado)
+                  </p>
+                </div>
               </CardContent>
             </Card>
           </TabsContent>
@@ -706,6 +731,13 @@ const ProductCatalog = () => {
                       </tbody>
                     </table>
                   </div>
+                </div>
+
+                <div className="bg-orange-500/10 rounded-lg p-4">
+                  <p className="text-sm">
+                    <strong>Presentaciones:</strong> 25L | 
+                    <strong className="ml-3">Vida util:</strong> 2 anos (cerrado)
+                  </p>
                 </div>
               </CardContent>
             </Card>
@@ -793,6 +825,13 @@ const ProductCatalog = () => {
                     </table>
                   </div>
                 </div>
+
+                <div className="bg-amber-700/10 rounded-lg p-4">
+                  <p className="text-sm">
+                    <strong>Presentaciones:</strong> 25L | 
+                    <strong className="ml-3">Vida util:</strong> 2 anos (cerrado)
+                  </p>
+                </div>
               </CardContent>
             </Card>
           </TabsContent>
@@ -871,6 +910,13 @@ const ProductCatalog = () => {
                       </tbody>
                     </table>
                   </div>
+                </div>
+
+                <div className="bg-yellow-500/10 rounded-lg p-4">
+                  <p className="text-sm">
+                    <strong>Presentaciones:</strong> 15kg | 
+                    <strong className="ml-3">Vida util:</strong> 2 anos (cerrado)
+                  </p>
                 </div>
               </CardContent>
             </Card>
