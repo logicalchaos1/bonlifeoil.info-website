@@ -3,6 +3,7 @@ import { ComparisonTable } from "@/components/ComparisonTable";
 import { SavingsCalculator } from "@/components/SavingsCalculator";
 import { BenefitsSection } from "@/components/BenefitsSection";
 import { ContactSection } from "@/components/ContactSection";
+import ProductCatalog from "@/components/ProductCatalog";
 
 const Index = () => {
   return (
@@ -11,6 +12,7 @@ const Index = () => {
       <ComparisonTable />
       <SavingsCalculator />
       <BenefitsSection />
+      <ProductCatalog />
       <ContactSection />
     </div>
   );
