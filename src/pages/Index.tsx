@@ -19,23 +19,25 @@ const Index = () => {
 
   return (
     <div className="min-h-screen">
-      {/* Action Buttons - Fixed position */}
-      <div className="no-print fixed top-4 right-4 z-50 flex gap-3">
+      {/* Action Buttons - Fixed position - Responsive */}
+      <div className="no-print fixed top-4 right-4 z-50 flex flex-col sm:flex-row gap-2 sm:gap-3">
         <Button 
           onClick={handleDownloadCatalog}
           size="lg"
-          className="gap-2 shadow-lg bg-gold hover:bg-gold/90 text-white"
+          className="gap-2 shadow-lg bg-gold hover:bg-gold/90 text-white text-sm sm:text-base"
         >
-          <Download className="w-5 h-5" />
-          Descargar Catálogo
+          <Download className="w-4 h-4 sm:w-5 sm:h-5" />
+          <span className="hidden sm:inline">Descargar Catálogo</span>
+          <span className="sm:hidden">Catálogo</span>
         </Button>
         <Button 
           onClick={handlePrint}
           size="lg"
-          className="gap-2 shadow-lg bg-premium hover:bg-premium-dark text-white"
+          className="gap-2 shadow-lg bg-premium hover:bg-premium-dark text-white text-sm sm:text-base"
         >
-          <Printer className="w-5 h-5" />
-          Imprimir Página
+          <Printer className="w-4 h-4 sm:w-5 sm:h-5" />
+          <span className="hidden sm:inline">Imprimir Página</span>
+          <span className="sm:hidden">Imprimir</span>
         </Button>
       </div>
 
