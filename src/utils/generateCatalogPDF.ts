@@ -356,6 +356,90 @@ export const generateCatalogPDF = async () => {
   doc.text("Presentaciones: 15kg  |  Vida util: 2 años (cerrado)", margin, yPos);
   yPos += 12;
 
+  // New page for comparison table
+  doc.addPage();
+  yPos = 20;
+
+  // Comparison Table Header
+  doc.setFillColor(212, 175, 55);
+  doc.rect(0, yPos - 10, pageWidth, 15, 'F');
+  doc.setFontSize(16);
+  doc.setFont("helvetica", "bold");
+  doc.setTextColor(255, 255, 255);
+  doc.text("COMPARACION DE ACEITES", pageWidth / 2, yPos, { align: "center" });
+  yPos += 10;
+  doc.setFontSize(14);
+  doc.text("BONLIFE vs COMPETENCIA", pageWidth / 2, yPos, { align: "center" });
+  yPos += 8;
+  doc.setFontSize(11);
+  doc.text("(25 L equivalente)", pageWidth / 2, yPos, { align: "center" });
+  yPos += 15;
+
+  doc.setTextColor(0, 0, 0);
+  
+  // Table data
+  const tableData = [
+    { metric: "Costo Inicial", bonlife: "$4,600", competitor: "$3,200" },
+    { metric: "Litros Usados", bonlife: "25 L", competitor: "75 L" },
+    { metric: "Duracion Total", bonlife: "56 horas", competitor: "18 horas" },
+    { metric: "Costo Total Real", bonlife: "$4,600", competitor: "$9,600" },
+    { metric: "AHORRO TOTAL", bonlife: "$5,000", competitor: "-" }
+  ];
+
+  // Table styling
+  const colWidth = (pageWidth - 2 * margin) / 3;
+  const rowHeight = 12;
+  
+  // Header row
+  doc.setFillColor(70, 130, 180);
+  doc.rect(margin, yPos, colWidth, rowHeight, 'F');
+  doc.rect(margin + colWidth, yPos, colWidth, rowHeight, 'F');
+  doc.rect(margin + colWidth * 2, yPos, colWidth, rowHeight, 'F');
+  
+  doc.setTextColor(255, 255, 255);
+  doc.setFontSize(10);
+  doc.setFont("helvetica", "bold");
+  doc.text("Metrica", margin + colWidth / 2, yPos + 8, { align: "center" });
+  doc.text("Bonlife", margin + colWidth * 1.5, yPos + 8, { align: "center" });
+  doc.text("Competencia", margin + colWidth * 2.5, yPos + 8, { align: "center" });
+  yPos += rowHeight;
+
+  // Data rows
+  tableData.forEach((row, index) => {
+    const isLastRow = index === tableData.length - 1;
+    
+    if (isLastRow) {
+      doc.setFillColor(212, 175, 55);
+    } else {
+      doc.setFillColor(index % 2 === 0 ? 245 : 255, index % 2 === 0 ? 245 : 255, index % 2 === 0 ? 245 : 255);
+    }
+    
+    doc.rect(margin, yPos, colWidth, rowHeight, 'F');
+    doc.rect(margin + colWidth, yPos, colWidth, rowHeight, 'F');
+    doc.rect(margin + colWidth * 2, yPos, colWidth, rowHeight, 'F');
+    
+    if (isLastRow) {
+      doc.setTextColor(255, 255, 255);
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(11);
+    } else {
+      doc.setTextColor(0, 0, 0);
+      doc.setFont("helvetica", "normal");
+      doc.setFontSize(9);
+    }
+    
+    doc.text(row.metric, margin + colWidth / 2, yPos + 8, { align: "center" });
+    doc.text(row.bonlife, margin + colWidth * 1.5, yPos + 8, { align: "center" });
+    doc.text(row.competitor, margin + colWidth * 2.5, yPos + 8, { align: "center" });
+    yPos += rowHeight;
+  });
+
+  yPos += 10;
+  doc.setTextColor(34, 139, 34);
+  doc.setFontSize(14);
+  doc.setFont("helvetica", "bold");
+  doc.text("¡Bonlife le ahorra $5,000 cada 56 horas!", pageWidth / 2, yPos, { align: "center" });
+
   // New page for contact info
   doc.addPage();
   yPos = 20;
