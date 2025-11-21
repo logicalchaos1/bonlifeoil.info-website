@@ -1,16 +1,216 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Download } from "lucide-react";
+import jsPDF from "jspdf";
 
 const ProductCatalog = () => {
+  const generatePDF = () => {
+    const doc = new jsPDF();
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const margin = 20;
+    let yPos = 20;
+
+    // Header
+    doc.setFontSize(22);
+    doc.setFont("helvetica", "bold");
+    doc.text("Catálogo de Productos Bonlife", pageWidth / 2, yPos, { align: "center" });
+    
+    yPos += 10;
+    doc.setFontSize(12);
+    doc.setFont("helvetica", "normal");
+    doc.text("El verdadero aceite vegetal con el doble de duración", pageWidth / 2, yPos, { align: "center" });
+    
+    yPos += 15;
+    doc.setLineWidth(0.5);
+    doc.line(margin, yPos, pageWidth - margin, yPos);
+    yPos += 10;
+
+    // Product 1: Aceite Bonlife RBD Palm Olein
+    doc.setFontSize(16);
+    doc.setFont("helvetica", "bold");
+    doc.text("Aceite Bonlife RBD Palm Olein", margin, yPos);
+    yPos += 7;
+    
+    doc.setFontSize(10);
+    doc.setFont("helvetica", "bold");
+    doc.text("Precio: $4,600 DOP", margin, yPos);
+    yPos += 7;
+    
+    doc.setFont("helvetica", "italic");
+    doc.text("Aceite virgen de alto rendimiento para uso industrial y comercial", margin, yPos);
+    yPos += 7;
+
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(9);
+    const palmBenefits = [
+      "• Dura hasta 300% más que los aceites tradicionales",
+      "• No transfiere sabores ni olores entre frituras",
+      "• Menor absorción de grasa: productos más secos y dorados",
+      "• Libre de colesterol y grasas trans",
+      "• Punto de humo: 230°C | Duración: 45-56 horas"
+    ];
+    palmBenefits.forEach(benefit => {
+      doc.text(benefit, margin + 5, yPos);
+      yPos += 5;
+    });
+    
+    yPos += 5;
+    doc.text("Presentaciones: 20L, 25L, 50L | Vida útil: 12 meses", margin + 5, yPos);
+    yPos += 10;
+
+    // Product 2: Aceite de Soya
+    doc.setFontSize(14);
+    doc.setFont("helvetica", "bold");
+    doc.text("Aceite de Soya Bonlife", margin, yPos);
+    yPos += 7;
+    
+    doc.setFont("helvetica", "italic");
+    doc.setFontSize(9);
+    doc.text("Aceite vegetal refinado, estable y versátil", margin, yPos);
+    yPos += 6;
+    
+    doc.setFont("helvetica", "normal");
+    doc.text("• Rico en ácidos grasos esenciales | Punto de humo: 220°C", margin + 5, yPos);
+    yPos += 5;
+    doc.text("• Ideal para cocciones rápidas, salsas y aderezos", margin + 5, yPos);
+    yPos += 10;
+
+    // Product 3: Aceite de Girasol
+    doc.setFontSize(14);
+    doc.setFont("helvetica", "bold");
+    doc.text("Aceite de Girasol Bonlife", margin, yPos);
+    yPos += 7;
+    
+    doc.setFont("helvetica", "italic");
+    doc.setFontSize(9);
+    doc.text("100% natural, alto en ácido oleico", margin, yPos);
+    yPos += 6;
+    
+    doc.setFont("helvetica", "normal");
+    doc.text("• Fuente natural de Vitamina E | Punto de humo: 232°C", margin + 5, yPos);
+    yPos += 5;
+    doc.text("• Ideal para cocina saludable, repostería y ensaladas", margin + 5, yPos);
+    yPos += 10;
+
+    // Product 4: Manteca Vegetal
+    doc.setFontSize(14);
+    doc.setFont("helvetica", "bold");
+    doc.text("Manteca Vegetal Bonlife", margin, yPos);
+    yPos += 7;
+    
+    doc.setFont("helvetica", "italic");
+    doc.setFontSize(9);
+    doc.text("Premium para panificación y repostería", margin, yPos);
+    yPos += 6;
+    
+    doc.setFont("helvetica", "normal");
+    doc.text("• Textura suave y crujiente | Enriquecida con Vitamina E", margin + 5, yPos);
+    yPos += 5;
+    doc.text("• Ideal para pasteles, galletas, panes y productos horneados", margin + 5, yPos);
+    yPos += 10;
+
+    // Product 5: Margarina
+    doc.setFontSize(14);
+    doc.setFont("helvetica", "bold");
+    doc.text("Margarina Bonlife", margin, yPos);
+    yPos += 7;
+    
+    doc.setFontSize(10);
+    doc.setFont("helvetica", "bold");
+    doc.text("Precio: $3,570 DOP", margin, yPos);
+    yPos += 7;
+    
+    doc.setFont("helvetica", "italic");
+    doc.setFontSize(9);
+    doc.text("Alternativa saludable enriquecida con vitaminas", margin, yPos);
+    yPos += 6;
+    
+    doc.setFont("helvetica", "normal");
+    doc.text("• Bajo contenido de grasas trans | Cremosidad y sabor natural", margin + 5, yPos);
+    yPos += 5;
+    doc.text("• Ideal para untar, hornear y cocinar", margin + 5, yPos);
+    yPos += 10;
+
+    // Product 6: Mantequilla
+    doc.setFontSize(14);
+    doc.setFont("helvetica", "bold");
+    doc.text("Mantequilla Bonlife", margin, yPos);
+    yPos += 7;
+    
+    doc.setFont("helvetica", "italic");
+    doc.setFontSize(9);
+    doc.text("Producto vegetal de procesamiento mínimo", margin, yPos);
+    yPos += 6;
+    
+    doc.setFont("helvetica", "normal");
+    doc.text("• Textura cremosa y estable | Libre de colesterol", margin + 5, yPos);
+    yPos += 5;
+    doc.text("• Excelente para cocina, panadería y repostería industrial", margin + 5, yPos);
+    yPos += 15;
+
+    // New page for contact info
+    doc.addPage();
+    yPos = 20;
+
+    // Coverage and Contact
+    doc.setFontSize(16);
+    doc.setFont("helvetica", "bold");
+    doc.text("Sedes y Cobertura", margin, yPos);
+    yPos += 10;
+    
+    doc.setFontSize(10);
+    doc.setFont("helvetica", "normal");
+    doc.text("📍 Santo Domingo, RD", margin, yPos);
+    yPos += 6;
+    doc.text("📍 Punta Cana / Bávaro", margin, yPos);
+    yPos += 6;
+    doc.text("📍 Santiago", margin, yPos);
+    yPos += 10;
+    
+    doc.setFont("helvetica", "bold");
+    doc.text("Entregas en todo el país", margin, yPos);
+    yPos += 6;
+    doc.setFont("helvetica", "normal");
+    doc.text("Mínimo de envío nacional: 2 garrafones (50 L)", margin, yPos);
+    yPos += 15;
+
+    doc.setFontSize(16);
+    doc.setFont("helvetica", "bold");
+    doc.text("Contacto", margin, yPos);
+    yPos += 10;
+    
+    doc.setFontSize(10);
+    doc.setFont("helvetica", "normal");
+    doc.text("📞 +1 (829) 987-6764", margin, yPos);
+    yPos += 6;
+    doc.text("🌐 bonlifeoil.com", margin, yPos);
+    yPos += 6;
+    doc.text("📧 ventas@bonlifeoil.com", margin, yPos);
+
+    // Footer
+    yPos = doc.internal.pageSize.getHeight() - 20;
+    doc.setFontSize(12);
+    doc.setFont("helvetica", "bold");
+    doc.text("Bonlife: Más Rendimiento. Más Salud. Más Ahorro.", pageWidth / 2, yPos, { align: "center" });
+
+    // Save PDF
+    doc.save("Catalogo-Bonlife.pdf");
+  };
+
   return (
     <section className="py-20 px-4 bg-gradient-to-b from-background to-muted/20">
       <div className="container mx-auto max-w-7xl">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold mb-4">Catálogo de Productos Bonlife</h2>
-          <p className="text-xl text-muted-foreground">
+          <p className="text-xl text-muted-foreground mb-6">
             El verdadero aceite vegetal con el doble de duración
           </p>
+          <Button onClick={generatePDF} size="lg" className="gap-2">
+            <Download className="w-5 h-5" />
+            Descargar Catálogo PDF
+          </Button>
         </div>
 
         <Tabs defaultValue="palm" className="w-full">
