@@ -9,6 +9,7 @@ import sunflowerImage from "@/assets/sunflower-oil-product.jpg";
 import soyaImage from "@/assets/soya-oil-product.jpg";
 import mantecaImage from "@/assets/manteca-product.jpg";
 import margarineImage from "@/assets/margarine-product.jpg";
+import bonlifeLogo from "@/assets/bonlife-logo.png";
 
 const ProductCatalog = () => {
   const generatePDF = async () => {
@@ -49,22 +50,27 @@ const ProductCatalog = () => {
       return false;
     };
 
-    // Header
-    doc.setFillColor(212, 175, 55); // Gold color
-    doc.rect(0, 0, pageWidth, 35, 'F');
+    // Load Bonlife logo
+    const logoImg = await loadImage(bonlifeLogo);
     
-    doc.setFontSize(24);
-    doc.setTextColor(255, 255, 255);
-    doc.setFont("helvetica", "bold");
-    doc.text("Catalogo de Productos Bonlife", pageWidth / 2, 15, { align: "center" });
+    // Header with logo
+    doc.setFillColor(212, 175, 55); // Gold color
+    doc.rect(0, 0, pageWidth, 45, 'F');
+    
+    // Add logo to header
+    const logoBase64 = getBase64Image(logoImg);
+    const logoWidth = 60;
+    const logoHeight = 20;
+    const logoX = (pageWidth - logoWidth) / 2;
+    doc.addImage(logoBase64, 'PNG', logoX, 8, logoWidth, logoHeight);
     
     doc.setFontSize(11);
     doc.setFont("helvetica", "normal");
-    doc.text("El verdadero aceite vegetal con el doble de duracion", pageWidth / 2, 25, { align: "center" });
+    doc.setTextColor(255, 255, 255);
+    doc.text("El verdadero aceite vegetal con el doble de duracion", pageWidth / 2, 38, { align: "center" });
     
-    yPos = 50;
+    yPos = 55;
     doc.setTextColor(0, 0, 0);
-
 
     // Load product images
     const palmImg = await loadImage(palmImage);
