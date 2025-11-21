@@ -4,6 +4,11 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Download } from "lucide-react";
 import jsPDF from "jspdf";
+import palmImage from "@/assets/palm-oil-product.jpg";
+import sunflowerImage from "@/assets/sunflower-oil-product.jpg";
+import soyaImage from "@/assets/soya-oil-product.jpg";
+import mantecaImage from "@/assets/manteca-product.jpg";
+import margarineImage from "@/assets/margarine-product.jpg";
 
 const ProductCatalog = () => {
   const generatePDF = () => {
@@ -111,6 +116,14 @@ const ProductCatalog = () => {
     doc.setFont("helvetica", "bold");
     doc.setTextColor(255, 255, 255);
     doc.text("Aceite de Soya Bonlife", margin, yPos);
+    yPos += 12;
+    
+    doc.setFontSize(12);
+    doc.setFont("helvetica", "bold");
+    doc.setFillColor(34, 139, 34);
+    doc.rect(margin - 2, yPos - 5, 40, 8, 'F');
+    doc.setTextColor(255, 255, 255);
+    doc.text("$4,000 DOP", margin, yPos);
     yPos += 10;
     
     doc.setTextColor(0, 0, 0);
@@ -139,6 +152,14 @@ const ProductCatalog = () => {
     doc.setFont("helvetica", "bold");
     doc.setTextColor(255, 255, 255);
     doc.text("Aceite de Girasol Bonlife", margin, yPos);
+    yPos += 12;
+    
+    doc.setFontSize(12);
+    doc.setFont("helvetica", "bold");
+    doc.setFillColor(34, 139, 34);
+    doc.rect(margin - 2, yPos - 5, 40, 8, 'F');
+    doc.setTextColor(255, 255, 255);
+    doc.text("$4,000 DOP", margin, yPos);
     yPos += 10;
     
     doc.setTextColor(0, 0, 0);
@@ -167,6 +188,14 @@ const ProductCatalog = () => {
     doc.setFont("helvetica", "bold");
     doc.setTextColor(255, 255, 255);
     doc.text("Manteca Vegetal Bonlife", margin, yPos);
+    yPos += 12;
+    
+    doc.setFontSize(12);
+    doc.setFont("helvetica", "bold");
+    doc.setFillColor(34, 139, 34);
+    doc.rect(margin - 2, yPos - 5, 40, 8, 'F');
+    doc.setTextColor(255, 255, 255);
+    doc.text("$3,570 DOP", margin, yPos);
     yPos += 10;
     
     doc.setTextColor(0, 0, 0);
@@ -226,31 +255,6 @@ const ProductCatalog = () => {
     doc.text("Ideal para untar, hornear y cocinar", margin + 5, yPos);
     yPos += 12;
 
-    // Product 6: Mantequilla
-    checkPageBreak(40);
-    doc.setFillColor(210, 180, 140);
-    doc.rect(margin - 5, yPos - 5, pageWidth - 2 * margin + 10, 10, 'F');
-    doc.setFontSize(15);
-    doc.setFont("helvetica", "bold");
-    doc.setTextColor(255, 255, 255);
-    doc.text("Mantequilla Bonlife", margin, yPos);
-    yPos += 10;
-    
-    doc.setTextColor(0, 0, 0);
-    doc.setFont("helvetica", "italic");
-    doc.setFontSize(9);
-    doc.text("Producto vegetal de procesamiento minimo", margin, yPos);
-    yPos += 7;
-    
-    doc.setFont("helvetica", "normal");
-    doc.setFillColor(210, 180, 140);
-    doc.circle(margin + 2, yPos - 1.5, 1, 'F');
-    doc.text("Textura cremosa y estable  |  Libre de colesterol", margin + 5, yPos);
-    yPos += 5;
-    doc.circle(margin + 2, yPos - 1.5, 1, 'F');
-    doc.text("Excelente para cocina, panaderia y reposteria industrial", margin + 5, yPos);
-    yPos += 15;
-
     // New page for contact info
     doc.addPage();
     yPos = 20;
@@ -276,9 +280,6 @@ const ProductCatalog = () => {
     
     doc.setFont("helvetica", "bold");
     doc.text("Entregas en todo el pais", margin, yPos);
-    yPos += 7;
-    doc.setFont("helvetica", "normal");
-    doc.text("Minimo de envio nacional: 2 garrafones (50 L)", margin, yPos);
     yPos += 20;
 
     doc.setFillColor(70, 130, 180);
@@ -326,13 +327,12 @@ const ProductCatalog = () => {
         </div>
 
         <Tabs defaultValue="palm" className="w-full">
-          <TabsList className="grid w-full grid-cols-2 lg:grid-cols-6 mb-8">
+          <TabsList className="grid w-full grid-cols-2 lg:grid-cols-5 mb-8">
             <TabsTrigger value="palm">Aceite de Palma</TabsTrigger>
             <TabsTrigger value="soya">Soya</TabsTrigger>
             <TabsTrigger value="girasol">Girasol</TabsTrigger>
             <TabsTrigger value="manteca">Manteca</TabsTrigger>
             <TabsTrigger value="margarina">Margarina</TabsTrigger>
-            <TabsTrigger value="mantequilla">Mantequilla</TabsTrigger>
           </TabsList>
 
           {/* Aceite Bonlife RBD Palm Olein */}
@@ -350,6 +350,10 @@ const ProductCatalog = () => {
                 </div>
               </CardHeader>
               <CardContent className="space-y-6 pt-6">
+                <div className="mb-6">
+                  <img src={palmImage} alt="Palm Oil Product" className="w-full h-64 object-cover rounded-lg" />
+                </div>
+                
                 <div>
                   <h4 className="font-semibold text-lg mb-3">Descripcion</h4>
                   <p className="text-muted-foreground">
@@ -386,6 +390,9 @@ const ProductCatalog = () => {
                       <span>Apto para freidoras industriales y comerciales</span>
                     </li>
                   </ul>
+                  <div className="mt-4">
+                    <Badge variant="default" className="text-base px-4 py-2 bg-green-600 text-white">$4,600 DOP</Badge>
+                  </div>
                 </div>
 
                 <div>
@@ -485,6 +492,10 @@ const ProductCatalog = () => {
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-6 pt-6">
+                <div className="mb-6">
+                  <img src={soyaImage} alt="Soya Oil Product" className="w-full h-64 object-cover rounded-lg" />
+                </div>
+                
                 <div>
                   <h4 className="font-semibold text-lg mb-3">Descripcion</h4>
                   <p className="text-muted-foreground">
@@ -508,6 +519,9 @@ const ProductCatalog = () => {
                       <span>Ideal para cocciones rapidas, salsas y aderezos</span>
                     </li>
                   </ul>
+                  <div className="mt-4">
+                    <Badge variant="default" className="text-base px-4 py-2 bg-green-600 text-white">$4,000 DOP</Badge>
+                  </div>
                 </div>
 
                 <div>
@@ -553,6 +567,10 @@ const ProductCatalog = () => {
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-6 pt-6">
+                <div className="mb-6">
+                  <img src={sunflowerImage} alt="Sunflower Oil Product" className="w-full h-64 object-cover rounded-lg" />
+                </div>
+                
                 <div>
                   <h4 className="font-semibold text-lg mb-3">Descripcion</h4>
                   <p className="text-muted-foreground">
@@ -576,6 +594,9 @@ const ProductCatalog = () => {
                       <span>Bajo en grasas saturadas</span>
                     </li>
                   </ul>
+                  <div className="mt-4">
+                    <Badge variant="default" className="text-base px-4 py-2 bg-green-600 text-white">$4,000 DOP</Badge>
+                  </div>
                 </div>
 
                 <div>
@@ -621,6 +642,10 @@ const ProductCatalog = () => {
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-6 pt-6">
+                <div className="mb-6">
+                  <img src={mantecaImage} alt="Manteca Product" className="w-full h-64 object-cover rounded-lg" />
+                </div>
+                
                 <div>
                   <h4 className="font-semibold text-lg mb-3">Descripcion</h4>
                   <p className="text-muted-foreground">
@@ -644,6 +669,9 @@ const ProductCatalog = () => {
                       <span>Enriquecida con Vitamina E, libre de grasas trans y GMO</span>
                     </li>
                   </ul>
+                  <div className="mt-4">
+                    <Badge variant="default" className="text-base px-4 py-2 bg-green-600 text-white">$3,570 DOP</Badge>
+                  </div>
                 </div>
 
                 <div>
@@ -694,17 +722,16 @@ const ProductCatalog = () => {
           <TabsContent value="margarina">
             <Card className="border-yellow-500/20">
               <CardHeader className="bg-gradient-to-r from-yellow-500 to-yellow-600">
-                <div className="flex items-start justify-between">
-                  <div>
-                    <CardTitle className="text-3xl mb-2 text-white">Margarina Bonlife</CardTitle>
-                    <CardDescription className="text-lg text-white/90">
-                      Alternativa saludable enriquecida con vitaminas
-                    </CardDescription>
-                  </div>
-                  <Badge variant="default" className="text-lg px-4 py-2 bg-green-600 text-white">$3,570 DOP</Badge>
-                </div>
+                <CardTitle className="text-3xl mb-2 text-white">Margarina Bonlife</CardTitle>
+                <CardDescription className="text-lg text-white/90">
+                  Alternativa saludable enriquecida con vitaminas
+                </CardDescription>
               </CardHeader>
               <CardContent className="space-y-6 pt-6">
+                <div className="mb-6">
+                  <img src={margarineImage} alt="Margarine Product" className="w-full h-64 object-cover rounded-lg" />
+                </div>
+                
                 <div>
                   <h4 className="font-semibold text-lg mb-3">Descripcion</h4>
                   <p className="text-muted-foreground">
@@ -728,6 +755,9 @@ const ProductCatalog = () => {
                       <span>Ideal para untar, hornear y cocinar</span>
                     </li>
                   </ul>
+                  <div className="mt-4">
+                    <Badge variant="default" className="text-base px-4 py-2 bg-green-600 text-white">$3,570 DOP</Badge>
+                  </div>
                 </div>
 
                 <div>
@@ -766,51 +796,6 @@ const ProductCatalog = () => {
               </CardContent>
             </Card>
           </TabsContent>
-
-          {/* Mantequilla */}
-          <TabsContent value="mantequilla">
-            <Card className="border-amber-600/20">
-              <CardHeader className="bg-gradient-to-r from-amber-600 to-amber-700">
-                <CardTitle className="text-3xl mb-2 text-white">Mantequilla Bonlife</CardTitle>
-                <CardDescription className="text-lg text-white/90">
-                  Producto vegetal de procesamiento minimo
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-6 pt-6">
-                <div>
-                  <h4 className="font-semibold text-lg mb-3">Descripcion</h4>
-                  <p className="text-muted-foreground">
-                    Producto derivado del aceite vegetal virgen, procesado minimamente para conservar aroma y sabor naturales.
-                  </p>
-                </div>
-
-                <div>
-                  <h4 className="font-semibold text-lg mb-3">Beneficios</h4>
-                  <ul className="space-y-2">
-                    <li className="flex items-start gap-2">
-                      <span className="text-amber-600">✓</span>
-                      <span>Textura cremosa y estable</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-amber-600">✓</span>
-                      <span>Excelente para reposteria fina</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-amber-600">✓</span>
-                      <span>Libre de colesterol</span>
-                    </li>
-                  </ul>
-                </div>
-
-                <div>
-                  <h4 className="font-semibold text-lg mb-3">Aplicaciones</h4>
-                  <p className="text-muted-foreground">
-                    Ideal para cocina, panaderia y reposteria industrial.
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
         </Tabs>
 
         {/* Contact Info */}
@@ -824,7 +809,6 @@ const ProductCatalog = () => {
                 <li>Santiago</li>
               </ul>
               <p className="mt-4 font-semibold">Entregas en todo el pais</p>
-              <p className="text-sm text-muted-foreground">Minimo de envio nacional: 2 garrafones (50 L)</p>
             </div>
             <div>
               <h3 className="text-2xl font-bold mb-4">Contacto</h3>
