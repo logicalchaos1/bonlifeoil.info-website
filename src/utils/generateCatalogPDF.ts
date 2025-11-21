@@ -44,26 +44,20 @@ export const generateCatalogPDF = async () => {
     return false;
   };
 
-  // Load Bonlife logo
-  const logoImg = await loadImage(bonlifeLogo);
-  
-  // Header with logo
+  // Header
   doc.setFillColor(212, 175, 55); // Gold color
-  doc.rect(0, 0, pageWidth, 45, 'F');
+  doc.rect(0, 0, pageWidth, 35, 'F');
   
-  // Add logo to header
-  const logoBase64 = getBase64Image(logoImg);
-  const logoWidth = 60;
-  const logoHeight = 20;
-  const logoX = (pageWidth - logoWidth) / 2;
-  doc.addImage(logoBase64, 'PNG', logoX, 8, logoWidth, logoHeight);
+  doc.setFontSize(24);
+  doc.setTextColor(255, 255, 255);
+  doc.setFont("helvetica", "bold");
+  doc.text("Catalogo de Productos Bonlife", pageWidth / 2, 15, { align: "center" });
   
   doc.setFontSize(11);
   doc.setFont("helvetica", "normal");
-  doc.setTextColor(255, 255, 255);
-  doc.text("El verdadero aceite vegetal con el doble de duracion", pageWidth / 2, 38, { align: "center" });
+  doc.text("El verdadero aceite vegetal con el doble de duracion", pageWidth / 2, 25, { align: "center" });
   
-  yPos = 55;
+  yPos = 50;
   doc.setTextColor(0, 0, 0);
 
   // Load product images
