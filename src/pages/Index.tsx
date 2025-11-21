@@ -5,8 +5,9 @@ import { BenefitsSection } from "@/components/BenefitsSection";
 import { ContactSection } from "@/components/ContactSection";
 import ProductCatalog from "@/components/ProductCatalog";
 import { Button } from "@/components/ui/button";
-import { Printer, Download, MessageCircle } from "lucide-react";
+import { Printer, Download, MessageCircle, BookOpen } from "lucide-react";
 import { generateCatalogPDF } from "@/utils/generateCatalogPDF";
+import { generateBookletPDF } from "@/utils/generateBookletPDF";
 
 const Index = () => {
   const handlePrint = () => {
@@ -17,10 +18,23 @@ const Index = () => {
     await generateCatalogPDF();
   };
 
+  const handleDownloadBooklet = async () => {
+    await generateBookletPDF();
+  };
+
   return (
     <div className="min-h-screen">
       {/* Action Buttons - Fixed position - Responsive */}
       <div className="no-print fixed top-4 right-4 z-50 flex flex-col sm:flex-row gap-2 sm:gap-3">
+        <Button 
+          onClick={handleDownloadBooklet}
+          size="lg"
+          className="gap-2 shadow-lg bg-premium hover:bg-premium-dark text-white text-sm sm:text-base"
+        >
+          <BookOpen className="w-4 h-4 sm:w-5 sm:h-5" />
+          <span className="hidden sm:inline">Folleto Imprimible</span>
+          <span className="sm:hidden">Folleto</span>
+        </Button>
         <Button 
           onClick={handleDownloadCatalog}
           size="lg"
