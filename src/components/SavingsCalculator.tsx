@@ -12,10 +12,10 @@ export const SavingsCalculator = () => {
   const [monthlyHours, setMonthlyHours] = useState<string>("480");
 
   // Bonlife specs (25L container)
-  const bonlifePrice = 5428;
+  const bonlifePrice = 4600; // Price without ITBIS
   const bonlifeVolume = 25;
   const bonlifeDurationHours = 56;
-  const bonlifeCostPerHour = bonlifePrice / bonlifeDurationHours; // 97
+  const bonlifeCostPerHour = bonlifePrice / bonlifeDurationHours; // 82
 
   // Competitor data
   const competitorSpecs: Record<string, { duration: number; name: string }> = {
