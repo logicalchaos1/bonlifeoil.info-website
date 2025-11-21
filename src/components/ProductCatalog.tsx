@@ -11,12 +11,33 @@ import mantecaImage from "@/assets/manteca-product.jpg";
 import margarineImage from "@/assets/margarine-product.jpg";
 
 const ProductCatalog = () => {
-  const generatePDF = () => {
+  const generatePDF = async () => {
     const doc = new jsPDF();
     const pageWidth = doc.internal.pageSize.getWidth();
     const pageHeight = doc.internal.pageSize.getHeight();
     const margin = 20;
     let yPos = 20;
+
+    // Helper function to convert image to base64
+    const getBase64Image = (img: HTMLImageElement): string => {
+      const canvas = document.createElement('canvas');
+      canvas.width = img.width;
+      canvas.height = img.height;
+      const ctx = canvas.getContext('2d');
+      ctx?.drawImage(img, 0, 0);
+      return canvas.toDataURL('image/jpeg');
+    };
+
+    // Load images
+    const loadImage = (src: string): Promise<HTMLImageElement> => {
+      return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.crossOrigin = 'anonymous';
+        img.onload = () => resolve(img);
+        img.onerror = reject;
+        img.src = src;
+      });
+    };
 
     // Helper function to add new page if needed
     const checkPageBreak = (requiredSpace: number) => {
@@ -44,9 +65,23 @@ const ProductCatalog = () => {
     yPos = 50;
     doc.setTextColor(0, 0, 0);
 
+
+    // Load product images
+    const palmImg = await loadImage(palmImage);
+    const soyaImg = await loadImage(soyaImage);
+    const sunflowerImg = await loadImage(sunflowerImage);
+    const mantecaImg = await loadImage(mantecaImage);
+    const margarineImg = await loadImage(margarineImage);
+
     // Product 1: Aceite Bonlife RBD Palm Olein
+    checkPageBreak(90);
+    
+    // Add product image
+    const palmBase64 = getBase64Image(palmImg);
+    doc.addImage(palmBase64, 'JPEG', pageWidth - margin - 40, yPos, 40, 40);
+    
     doc.setFillColor(212, 175, 55);
-    doc.rect(margin - 5, yPos - 5, pageWidth - 2 * margin + 10, 10, 'F');
+    doc.rect(margin - 5, yPos - 5, pageWidth - 2 * margin - 45, 10, 'F');
     doc.setFontSize(16);
     doc.setFont("helvetica", "bold");
     doc.setTextColor(255, 255, 255);
@@ -130,9 +165,14 @@ const ProductCatalog = () => {
     yPos += 15;
 
     // Product 2: Aceite de Soya
-    checkPageBreak(40);
+    checkPageBreak(50);
+    
+    // Add product image
+    const soyaBase64 = getBase64Image(soyaImg);
+    doc.addImage(soyaBase64, 'JPEG', pageWidth - margin - 40, yPos, 40, 40);
+    
     doc.setFillColor(70, 130, 180);
-    doc.rect(margin - 5, yPos - 5, pageWidth - 2 * margin + 10, 10, 'F');
+    doc.rect(margin - 5, yPos - 5, pageWidth - 2 * margin - 45, 10, 'F');
     doc.setFontSize(15);
     doc.setFont("helvetica", "bold");
     doc.setTextColor(255, 255, 255);
@@ -167,9 +207,14 @@ const ProductCatalog = () => {
     doc.setTextColor(0, 0, 0);
 
     // Product 3: Aceite de Girasol
-    checkPageBreak(40);
+    checkPageBreak(50);
+    
+    // Add product image
+    const sunflowerBase64 = getBase64Image(sunflowerImg);
+    doc.addImage(sunflowerBase64, 'JPEG', pageWidth - margin - 40, yPos, 40, 40);
+    
     doc.setFillColor(255, 165, 0);
-    doc.rect(margin - 5, yPos - 5, pageWidth - 2 * margin + 10, 10, 'F');
+    doc.rect(margin - 5, yPos - 5, pageWidth - 2 * margin - 45, 10, 'F');
     doc.setFontSize(15);
     doc.setFont("helvetica", "bold");
     doc.setTextColor(255, 255, 255);
@@ -204,9 +249,14 @@ const ProductCatalog = () => {
     doc.setTextColor(0, 0, 0);
 
     // Product 4: Manteca Vegetal
-    checkPageBreak(40);
+    checkPageBreak(50);
+    
+    // Add product image
+    const mantecaBase64 = getBase64Image(mantecaImg);
+    doc.addImage(mantecaBase64, 'JPEG', pageWidth - margin - 40, yPos, 40, 40);
+    
     doc.setFillColor(139, 69, 19);
-    doc.rect(margin - 5, yPos - 5, pageWidth - 2 * margin + 10, 10, 'F');
+    doc.rect(margin - 5, yPos - 5, pageWidth - 2 * margin - 45, 10, 'F');
     doc.setFontSize(15);
     doc.setFont("helvetica", "bold");
     doc.setTextColor(255, 255, 255);
@@ -244,9 +294,14 @@ const ProductCatalog = () => {
     doc.setTextColor(0, 0, 0);
 
     // Product 5: Margarina
-    checkPageBreak(45);
+    checkPageBreak(50);
+    
+    // Add product image
+    const margarineBase64 = getBase64Image(margarineImg);
+    doc.addImage(margarineBase64, 'JPEG', pageWidth - margin - 40, yPos, 40, 40);
+    
     doc.setFillColor(255, 215, 0);
-    doc.rect(margin - 5, yPos - 5, pageWidth - 2 * margin + 10, 10, 'F');
+    doc.rect(margin - 5, yPos - 5, pageWidth - 2 * margin - 45, 10, 'F');
     doc.setFontSize(15);
     doc.setFont("helvetica", "bold");
     doc.setTextColor(0, 0, 0);
