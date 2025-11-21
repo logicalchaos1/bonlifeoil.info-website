@@ -97,6 +97,26 @@ const ProductCatalog = () => {
     doc.setTextColor(0, 0, 0);
     yPos += 3;
     doc.setFont("helvetica", "bold");
+    doc.text("Guia de Uso:", margin, yPos);
+    yPos += 6;
+    doc.setFont("helvetica", "normal");
+    const usageGuide = [
+      "Vida util de 56 horas continuas de fritura",
+      "Puede freir pescado y pollo en la misma freidora sin transferencia de sabores",
+      "Al filtrar el aceite de material polar (restos de pescado/pollo), complete el aceite viejo con nuevo",
+      "Solo 2% de aditivos necesarios para separacion molecular de estearina y oleina",
+      "Saludable para el sistema cardiovascular, superior a aceites de soya procesados"
+    ];
+    usageGuide.forEach(item => {
+      doc.setFillColor(212, 175, 55);
+      doc.circle(margin + 2, yPos - 1.5, 1, 'F');
+      const splitText = doc.splitTextToSize(item, pageWidth - 2 * margin - 10);
+      doc.text(splitText, margin + 5, yPos);
+      yPos += splitText.length * 5;
+    });
+    yPos += 5;
+    
+    doc.setFont("helvetica", "bold");
     doc.text("Especificaciones Tecnicas:", margin, yPos);
     yPos += 6;
     doc.setFont("helvetica", "normal");
