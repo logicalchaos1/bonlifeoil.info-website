@@ -88,7 +88,7 @@ export const ComparisonTable = () => {
           {/* Header */}
           <div className="bg-gradient-to-r from-premium to-premium-dark rounded-t-3xl py-6 sm:py-8 px-4 sm:px-6 text-center">
             <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-2">
-              <span className="text-gold">COMPARACIÓN DE ACEITES—</span>
+              <span className="text-gold">COMPARACIÓN DE ACEITES</span>
             </h2>
             <h3 className="text-xl sm:text-2xl md:text-4xl font-bold text-white mb-2">
               BONLIFE <span className="text-white/80">vs</span> COMPETENCIA
