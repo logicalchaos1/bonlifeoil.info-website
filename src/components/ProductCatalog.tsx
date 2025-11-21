@@ -161,7 +161,7 @@ const ProductCatalog = () => {
     yPos += 8;
     
     doc.setFont("helvetica", "italic");
-    doc.text("Presentaciones: 20L, 25L, 50L  |  Vida util: 12 meses (cerrado)", margin, yPos);
+    doc.text("Presentaciones: 20L, 25L, 50L  |  Vida util: 2 anos (cerrado)", margin, yPos);
     yPos += 15;
 
     // Product 2: Aceite de Soya
