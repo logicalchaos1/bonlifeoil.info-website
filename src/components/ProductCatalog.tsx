@@ -74,19 +74,23 @@ const ProductCatalog = () => {
     const margarineImg = await loadImage(margarineImage);
 
     // Product 1: Aceite Bonlife RBD Palm Olein
-    checkPageBreak(90);
-    
-    // Add product image
-    const palmBase64 = getBase64Image(palmImg);
-    doc.addImage(palmBase64, 'JPEG', pageWidth - margin - 40, yPos, 40, 40);
+    checkPageBreak(100);
     
     doc.setFillColor(212, 175, 55);
-    doc.rect(margin - 5, yPos - 5, pageWidth - 2 * margin - 45, 10, 'F');
+    doc.rect(margin - 5, yPos - 5, pageWidth - 2 * margin + 10, 10, 'F');
     doc.setFontSize(16);
     doc.setFont("helvetica", "bold");
     doc.setTextColor(255, 255, 255);
     doc.text("Aceite Bonlife RBD Palm Olein", margin, yPos);
-    yPos += 10;
+    yPos += 15;
+    
+    // Add product image centered
+    const palmBase64 = getBase64Image(palmImg);
+    const imgWidth = 35;
+    const imgHeight = 35;
+    const imgX = (pageWidth - imgWidth) / 2;
+    doc.addImage(palmBase64, 'JPEG', imgX, yPos, imgWidth, imgHeight);
+    yPos += imgHeight + 8;
     
     doc.setTextColor(0, 0, 0);
     doc.setFont("helvetica", "italic");
@@ -165,19 +169,20 @@ const ProductCatalog = () => {
     yPos += 15;
 
     // Product 2: Aceite de Soya
-    checkPageBreak(50);
-    
-    // Add product image
-    const soyaBase64 = getBase64Image(soyaImg);
-    doc.addImage(soyaBase64, 'JPEG', pageWidth - margin - 40, yPos, 40, 40);
+    checkPageBreak(60);
     
     doc.setFillColor(70, 130, 180);
-    doc.rect(margin - 5, yPos - 5, pageWidth - 2 * margin - 45, 10, 'F');
+    doc.rect(margin - 5, yPos - 5, pageWidth - 2 * margin + 10, 10, 'F');
     doc.setFontSize(15);
     doc.setFont("helvetica", "bold");
     doc.setTextColor(255, 255, 255);
     doc.text("Aceite de Soya Bonlife", margin, yPos);
-    yPos += 10;
+    yPos += 15;
+    
+    // Add product image centered
+    const soyaBase64 = getBase64Image(soyaImg);
+    doc.addImage(soyaBase64, 'JPEG', imgX, yPos, imgWidth, imgHeight);
+    yPos += imgHeight + 8;
     
     doc.setTextColor(0, 0, 0);
     doc.setFont("helvetica", "italic");
@@ -211,19 +216,20 @@ const ProductCatalog = () => {
     yPos += 12;
 
     // Product 3: Aceite de Girasol
-    checkPageBreak(50);
-    
-    // Add product image
-    const sunflowerBase64 = getBase64Image(sunflowerImg);
-    doc.addImage(sunflowerBase64, 'JPEG', pageWidth - margin - 40, yPos, 40, 40);
+    checkPageBreak(60);
     
     doc.setFillColor(255, 165, 0);
-    doc.rect(margin - 5, yPos - 5, pageWidth - 2 * margin - 45, 10, 'F');
+    doc.rect(margin - 5, yPos - 5, pageWidth - 2 * margin + 10, 10, 'F');
     doc.setFontSize(15);
     doc.setFont("helvetica", "bold");
     doc.setTextColor(255, 255, 255);
     doc.text("Aceite de Girasol Bonlife", margin, yPos);
-    yPos += 10;
+    yPos += 15;
+    
+    // Add product image centered
+    const sunflowerBase64 = getBase64Image(sunflowerImg);
+    doc.addImage(sunflowerBase64, 'JPEG', imgX, yPos, imgWidth, imgHeight);
+    yPos += imgHeight + 8;
     
     doc.setTextColor(0, 0, 0);
     doc.setFont("helvetica", "italic");
@@ -257,19 +263,20 @@ const ProductCatalog = () => {
     yPos += 12;
 
     // Product 4: Manteca Vegetal
-    checkPageBreak(50);
-    
-    // Add product image
-    const mantecaBase64 = getBase64Image(mantecaImg);
-    doc.addImage(mantecaBase64, 'JPEG', pageWidth - margin - 40, yPos, 40, 40);
+    checkPageBreak(60);
     
     doc.setFillColor(139, 69, 19);
-    doc.rect(margin - 5, yPos - 5, pageWidth - 2 * margin - 45, 10, 'F');
+    doc.rect(margin - 5, yPos - 5, pageWidth - 2 * margin + 10, 10, 'F');
     doc.setFontSize(15);
     doc.setFont("helvetica", "bold");
     doc.setTextColor(255, 255, 255);
     doc.text("Manteca Vegetal Bonlife", margin, yPos);
-    yPos += 10;
+    yPos += 15;
+    
+    // Add product image centered
+    const mantecaBase64 = getBase64Image(mantecaImg);
+    doc.addImage(mantecaBase64, 'JPEG', imgX, yPos, imgWidth, imgHeight);
+    yPos += imgHeight + 8;
     
     doc.setTextColor(0, 0, 0);
     doc.setFont("helvetica", "italic");
@@ -306,19 +313,20 @@ const ProductCatalog = () => {
     yPos += 12;
 
     // Product 5: Margarina
-    checkPageBreak(50);
-    
-    // Add product image
-    const margarineBase64 = getBase64Image(margarineImg);
-    doc.addImage(margarineBase64, 'JPEG', pageWidth - margin - 40, yPos, 40, 40);
+    checkPageBreak(60);
     
     doc.setFillColor(255, 215, 0);
-    doc.rect(margin - 5, yPos - 5, pageWidth - 2 * margin - 45, 10, 'F');
+    doc.rect(margin - 5, yPos - 5, pageWidth - 2 * margin + 10, 10, 'F');
     doc.setFontSize(15);
     doc.setFont("helvetica", "bold");
     doc.setTextColor(0, 0, 0);
     doc.text("Margarina Bonlife", margin, yPos);
-    yPos += 12;
+    yPos += 15;
+    
+    // Add product image centered
+    const margarineBase64 = getBase64Image(margarineImg);
+    doc.addImage(margarineBase64, 'JPEG', imgX, yPos, imgWidth, imgHeight);
+    yPos += imgHeight + 8;
     
     doc.setFontSize(12);
     doc.setFont("helvetica", "bold");
