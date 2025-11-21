@@ -9,191 +9,303 @@ const ProductCatalog = () => {
   const generatePDF = () => {
     const doc = new jsPDF();
     const pageWidth = doc.internal.pageSize.getWidth();
+    const pageHeight = doc.internal.pageSize.getHeight();
     const margin = 20;
     let yPos = 20;
 
+    // Helper function to add new page if needed
+    const checkPageBreak = (requiredSpace: number) => {
+      if (yPos + requiredSpace > pageHeight - margin) {
+        doc.addPage();
+        yPos = 20;
+        return true;
+      }
+      return false;
+    };
+
     // Header
-    doc.setFontSize(22);
+    doc.setFillColor(212, 175, 55); // Gold color
+    doc.rect(0, 0, pageWidth, 35, 'F');
+    
+    doc.setFontSize(24);
+    doc.setTextColor(255, 255, 255);
     doc.setFont("helvetica", "bold");
-    doc.text("Catálogo de Productos Bonlife", pageWidth / 2, yPos, { align: "center" });
+    doc.text("Catalogo de Productos Bonlife", pageWidth / 2, 15, { align: "center" });
     
-    yPos += 10;
-    doc.setFontSize(12);
+    doc.setFontSize(11);
     doc.setFont("helvetica", "normal");
-    doc.text("El verdadero aceite vegetal con el doble de duración", pageWidth / 2, yPos, { align: "center" });
+    doc.text("El verdadero aceite vegetal con el doble de duracion", pageWidth / 2, 25, { align: "center" });
     
-    yPos += 15;
-    doc.setLineWidth(0.5);
-    doc.line(margin, yPos, pageWidth - margin, yPos);
-    yPos += 10;
+    yPos = 50;
+    doc.setTextColor(0, 0, 0);
 
     // Product 1: Aceite Bonlife RBD Palm Olein
+    doc.setFillColor(212, 175, 55);
+    doc.rect(margin - 5, yPos - 5, pageWidth - 2 * margin + 10, 10, 'F');
     doc.setFontSize(16);
     doc.setFont("helvetica", "bold");
+    doc.setTextColor(255, 255, 255);
     doc.text("Aceite Bonlife RBD Palm Olein", margin, yPos);
-    yPos += 7;
+    yPos += 12;
     
-    doc.setFontSize(10);
+    doc.setTextColor(0, 0, 0);
+    doc.setFontSize(12);
     doc.setFont("helvetica", "bold");
-    doc.text("Precio: $4,600 DOP", margin, yPos);
-    yPos += 7;
+    doc.setFillColor(34, 139, 34);
+    doc.rect(margin - 2, yPos - 5, 40, 8, 'F');
+    doc.setTextColor(255, 255, 255);
+    doc.text("$4,600 DOP", margin, yPos);
+    yPos += 10;
     
+    doc.setTextColor(0, 0, 0);
     doc.setFont("helvetica", "italic");
+    doc.setFontSize(10);
     doc.text("Aceite virgen de alto rendimiento para uso industrial y comercial", margin, yPos);
-    yPos += 7;
+    yPos += 8;
 
     doc.setFont("helvetica", "normal");
     doc.setFontSize(9);
+    const palmDesc = doc.splitTextToSize("Aceite 100% vegetal virgen, elaborado con RBD Palm Olein. Refinado, blanqueado y desodorizado con minimo de aditivos (solo 2%), garantizando pureza y estabilidad termica superior.", pageWidth - 2 * margin);
+    doc.text(palmDesc, margin, yPos);
+    yPos += palmDesc.length * 5 + 3;
+
+    doc.setFont("helvetica", "bold");
+    doc.text("Beneficios Principales:", margin, yPos);
+    yPos += 6;
+    
+    doc.setFont("helvetica", "normal");
     const palmBenefits = [
-      "• Dura hasta 300% más que los aceites tradicionales",
-      "• No transfiere sabores ni olores entre frituras",
-      "• Menor absorción de grasa: productos más secos y dorados",
-      "• Libre de colesterol y grasas trans",
-      "• Punto de humo: 230°C | Duración: 45-56 horas"
+      "Dura hasta 300% mas que los aceites tradicionales",
+      "No transfiere sabores ni olores entre frituras",
+      "Menor absorcion de grasa: productos mas secos y dorados",
+      "Libre de colesterol y grasas trans",
+      "Color dorado estable, incluso tras multiples usos",
+      "Apto para freidoras industriales y comerciales"
     ];
     palmBenefits.forEach(benefit => {
+      doc.setFillColor(212, 175, 55);
+      doc.circle(margin + 2, yPos - 1.5, 1, 'F');
       doc.text(benefit, margin + 5, yPos);
       yPos += 5;
     });
     
+    yPos += 3;
+    doc.setFont("helvetica", "bold");
+    doc.text("Especificaciones Tecnicas:", margin, yPos);
+    yPos += 6;
+    doc.setFont("helvetica", "normal");
+    doc.text("Acidez: 0.045% max  |  Punto de Humo: 230C  |  Duracion: 45-56 horas", margin + 5, yPos);
     yPos += 5;
-    doc.text("Presentaciones: 20L, 25L, 50L | Vida útil: 12 meses", margin + 5, yPos);
-    yPos += 10;
+    doc.text("Punto de Fusion: 24-39C  |  Indice de Peroxido: 1.70 meq/kg", margin + 5, yPos);
+    yPos += 8;
+    
+    doc.setFont("helvetica", "italic");
+    doc.text("Presentaciones: 20L, 25L, 50L  |  Vida util: 12 meses (cerrado)", margin, yPos);
+    yPos += 15;
 
     // Product 2: Aceite de Soya
-    doc.setFontSize(14);
+    checkPageBreak(40);
+    doc.setFillColor(70, 130, 180);
+    doc.rect(margin - 5, yPos - 5, pageWidth - 2 * margin + 10, 10, 'F');
+    doc.setFontSize(15);
     doc.setFont("helvetica", "bold");
+    doc.setTextColor(255, 255, 255);
     doc.text("Aceite de Soya Bonlife", margin, yPos);
-    yPos += 7;
+    yPos += 10;
     
+    doc.setTextColor(0, 0, 0);
     doc.setFont("helvetica", "italic");
     doc.setFontSize(9);
-    doc.text("Aceite vegetal refinado, estable y versátil", margin, yPos);
-    yPos += 6;
+    doc.text("Aceite vegetal refinado, estable y versatil", margin, yPos);
+    yPos += 7;
     
     doc.setFont("helvetica", "normal");
-    doc.text("• Rico en ácidos grasos esenciales | Punto de humo: 220°C", margin + 5, yPos);
+    doc.setFillColor(70, 130, 180);
+    doc.circle(margin + 2, yPos - 1.5, 1, 'F');
+    doc.text("Rico en acidos grasos esenciales  |  Punto de humo: 220C", margin + 5, yPos);
     yPos += 5;
-    doc.text("• Ideal para cocciones rápidas, salsas y aderezos", margin + 5, yPos);
-    yPos += 10;
+    doc.circle(margin + 2, yPos - 1.5, 1, 'F');
+    doc.text("Ideal para cocciones rapidas, salsas y aderezos", margin + 5, yPos);
+    yPos += 5;
+    doc.circle(margin + 2, yPos - 1.5, 1, 'F');
+    doc.text("Bajo en grasas saturadas  |  Alta presencia de Vitamina E", margin + 5, yPos);
+    yPos += 12;
 
     // Product 3: Aceite de Girasol
-    doc.setFontSize(14);
+    checkPageBreak(40);
+    doc.setFillColor(255, 165, 0);
+    doc.rect(margin - 5, yPos - 5, pageWidth - 2 * margin + 10, 10, 'F');
+    doc.setFontSize(15);
     doc.setFont("helvetica", "bold");
+    doc.setTextColor(255, 255, 255);
     doc.text("Aceite de Girasol Bonlife", margin, yPos);
-    yPos += 7;
+    yPos += 10;
     
+    doc.setTextColor(0, 0, 0);
     doc.setFont("helvetica", "italic");
     doc.setFontSize(9);
-    doc.text("100% natural, alto en ácido oleico", margin, yPos);
-    yPos += 6;
+    doc.text("100% natural, alto en acido oleico", margin, yPos);
+    yPos += 7;
     
     doc.setFont("helvetica", "normal");
-    doc.text("• Fuente natural de Vitamina E | Punto de humo: 232°C", margin + 5, yPos);
+    doc.setFillColor(255, 165, 0);
+    doc.circle(margin + 2, yPos - 1.5, 1, 'F');
+    doc.text("Fuente natural de Vitamina E y antioxidantes", margin + 5, yPos);
     yPos += 5;
-    doc.text("• Ideal para cocina saludable, repostería y ensaladas", margin + 5, yPos);
-    yPos += 10;
+    doc.circle(margin + 2, yPos - 1.5, 1, 'F');
+    doc.text("Ideal para cocina saludable, reposteria y ensaladas", margin + 5, yPos);
+    yPos += 5;
+    doc.circle(margin + 2, yPos - 1.5, 1, 'F');
+    doc.text("Punto de humo: 232C  |  Tipo: Alto Oleico / Refinado", margin + 5, yPos);
+    yPos += 12;
 
     // Product 4: Manteca Vegetal
-    doc.setFontSize(14);
+    checkPageBreak(40);
+    doc.setFillColor(139, 69, 19);
+    doc.rect(margin - 5, yPos - 5, pageWidth - 2 * margin + 10, 10, 'F');
+    doc.setFontSize(15);
     doc.setFont("helvetica", "bold");
+    doc.setTextColor(255, 255, 255);
     doc.text("Manteca Vegetal Bonlife", margin, yPos);
-    yPos += 7;
+    yPos += 10;
     
+    doc.setTextColor(0, 0, 0);
     doc.setFont("helvetica", "italic");
     doc.setFontSize(9);
-    doc.text("Premium para panificación y repostería", margin, yPos);
-    yPos += 6;
+    doc.text("Premium para panificacion y reposteria", margin, yPos);
+    yPos += 7;
     
     doc.setFont("helvetica", "normal");
-    doc.text("• Textura suave y crujiente | Enriquecida con Vitamina E", margin + 5, yPos);
+    doc.setFillColor(139, 69, 19);
+    doc.circle(margin + 2, yPos - 1.5, 1, 'F');
+    doc.text("Proporciona textura suave y crujiente a masas", margin + 5, yPos);
     yPos += 5;
-    doc.text("• Ideal para pasteles, galletas, panes y productos horneados", margin + 5, yPos);
-    yPos += 10;
+    doc.circle(margin + 2, yPos - 1.5, 1, 'F');
+    doc.text("Mejora el volumen y apariencia de productos horneados", margin + 5, yPos);
+    yPos += 5;
+    doc.circle(margin + 2, yPos - 1.5, 1, 'F');
+    doc.text("Enriquecida con Vitamina E, libre de grasas trans y GMO", margin + 5, yPos);
+    yPos += 5;
+    doc.setFont("helvetica", "italic");
+    doc.text("Aplicaciones: Pasteles, galletas, panes, wafers y productos automatizados", margin + 5, yPos);
+    yPos += 12;
 
     // Product 5: Margarina
-    doc.setFontSize(14);
+    checkPageBreak(45);
+    doc.setFillColor(255, 215, 0);
+    doc.rect(margin - 5, yPos - 5, pageWidth - 2 * margin + 10, 10, 'F');
+    doc.setFontSize(15);
     doc.setFont("helvetica", "bold");
+    doc.setTextColor(0, 0, 0);
     doc.text("Margarina Bonlife", margin, yPos);
-    yPos += 7;
+    yPos += 12;
     
-    doc.setFontSize(10);
+    doc.setFontSize(12);
     doc.setFont("helvetica", "bold");
-    doc.text("Precio: $3,570 DOP", margin, yPos);
-    yPos += 7;
+    doc.setFillColor(34, 139, 34);
+    doc.rect(margin - 2, yPos - 5, 40, 8, 'F');
+    doc.setTextColor(255, 255, 255);
+    doc.text("$3,570 DOP", margin, yPos);
+    yPos += 10;
     
+    doc.setTextColor(0, 0, 0);
     doc.setFont("helvetica", "italic");
     doc.setFontSize(9);
     doc.text("Alternativa saludable enriquecida con vitaminas", margin, yPos);
-    yPos += 6;
-    
-    doc.setFont("helvetica", "normal");
-    doc.text("• Bajo contenido de grasas trans | Cremosidad y sabor natural", margin + 5, yPos);
-    yPos += 5;
-    doc.text("• Ideal para untar, hornear y cocinar", margin + 5, yPos);
-    yPos += 10;
-
-    // Product 6: Mantequilla
-    doc.setFontSize(14);
-    doc.setFont("helvetica", "bold");
-    doc.text("Mantequilla Bonlife", margin, yPos);
     yPos += 7;
     
+    doc.setFont("helvetica", "normal");
+    doc.setFillColor(255, 215, 0);
+    doc.circle(margin + 2, yPos - 1.5, 1, 'F');
+    doc.text("Bajo contenido de grasas trans", margin + 5, yPos);
+    yPos += 5;
+    doc.circle(margin + 2, yPos - 1.5, 1, 'F');
+    doc.text("Aporta cremosidad y sabor natural", margin + 5, yPos);
+    yPos += 5;
+    doc.circle(margin + 2, yPos - 1.5, 1, 'F');
+    doc.text("Ideal para untar, hornear y cocinar", margin + 5, yPos);
+    yPos += 12;
+
+    // Product 6: Mantequilla
+    checkPageBreak(40);
+    doc.setFillColor(210, 180, 140);
+    doc.rect(margin - 5, yPos - 5, pageWidth - 2 * margin + 10, 10, 'F');
+    doc.setFontSize(15);
+    doc.setFont("helvetica", "bold");
+    doc.setTextColor(255, 255, 255);
+    doc.text("Mantequilla Bonlife", margin, yPos);
+    yPos += 10;
+    
+    doc.setTextColor(0, 0, 0);
     doc.setFont("helvetica", "italic");
     doc.setFontSize(9);
-    doc.text("Producto vegetal de procesamiento mínimo", margin, yPos);
-    yPos += 6;
+    doc.text("Producto vegetal de procesamiento minimo", margin, yPos);
+    yPos += 7;
     
     doc.setFont("helvetica", "normal");
-    doc.text("• Textura cremosa y estable | Libre de colesterol", margin + 5, yPos);
+    doc.setFillColor(210, 180, 140);
+    doc.circle(margin + 2, yPos - 1.5, 1, 'F');
+    doc.text("Textura cremosa y estable  |  Libre de colesterol", margin + 5, yPos);
     yPos += 5;
-    doc.text("• Excelente para cocina, panadería y repostería industrial", margin + 5, yPos);
+    doc.circle(margin + 2, yPos - 1.5, 1, 'F');
+    doc.text("Excelente para cocina, panaderia y reposteria industrial", margin + 5, yPos);
     yPos += 15;
 
     // New page for contact info
     doc.addPage();
     yPos = 20;
 
-    // Coverage and Contact
-    doc.setFontSize(16);
+    // Coverage and Contact with branded colors
+    doc.setFillColor(212, 175, 55);
+    doc.rect(0, yPos - 10, pageWidth, 15, 'F');
+    doc.setFontSize(18);
     doc.setFont("helvetica", "bold");
-    doc.text("Sedes y Cobertura", margin, yPos);
-    yPos += 10;
-    
-    doc.setFontSize(10);
-    doc.setFont("helvetica", "normal");
-    doc.text("📍 Santo Domingo, RD", margin, yPos);
-    yPos += 6;
-    doc.text("📍 Punta Cana / Bávaro", margin, yPos);
-    yPos += 6;
-    doc.text("📍 Santiago", margin, yPos);
-    yPos += 10;
-    
-    doc.setFont("helvetica", "bold");
-    doc.text("Entregas en todo el país", margin, yPos);
-    yPos += 6;
-    doc.setFont("helvetica", "normal");
-    doc.text("Mínimo de envío nacional: 2 garrafones (50 L)", margin, yPos);
+    doc.setTextColor(255, 255, 255);
+    doc.text("Sedes y Cobertura", pageWidth / 2, yPos, { align: "center" });
     yPos += 15;
-
-    doc.setFontSize(16);
-    doc.setFont("helvetica", "bold");
-    doc.text("Contacto", margin, yPos);
+    
+    doc.setFontSize(11);
+    doc.setTextColor(0, 0, 0);
+    doc.setFont("helvetica", "normal");
+    doc.text("Santo Domingo, RD", margin, yPos);
+    yPos += 7;
+    doc.text("Punta Cana / Bavaro", margin, yPos);
+    yPos += 7;
+    doc.text("Santiago", margin, yPos);
     yPos += 10;
     
-    doc.setFontSize(10);
-    doc.setFont("helvetica", "normal");
-    doc.text("📞 +1 (829) 987-6764", margin, yPos);
-    yPos += 6;
-    doc.text("🌐 bonlifeoil.com", margin, yPos);
-    yPos += 6;
-    doc.text("📧 ventas@bonlifeoil.com", margin, yPos);
-
-    // Footer
-    yPos = doc.internal.pageSize.getHeight() - 20;
-    doc.setFontSize(12);
     doc.setFont("helvetica", "bold");
-    doc.text("Bonlife: Más Rendimiento. Más Salud. Más Ahorro.", pageWidth / 2, yPos, { align: "center" });
+    doc.text("Entregas en todo el pais", margin, yPos);
+    yPos += 7;
+    doc.setFont("helvetica", "normal");
+    doc.text("Minimo de envio nacional: 2 garrafones (50 L)", margin, yPos);
+    yPos += 20;
+
+    doc.setFillColor(70, 130, 180);
+    doc.rect(0, yPos - 10, pageWidth, 15, 'F');
+    doc.setFontSize(18);
+    doc.setFont("helvetica", "bold");
+    doc.setTextColor(255, 255, 255);
+    doc.text("Contacto", pageWidth / 2, yPos, { align: "center" });
+    yPos += 15;
+    
+    doc.setFontSize(11);
+    doc.setTextColor(0, 0, 0);
+    doc.setFont("helvetica", "normal");
+    doc.text("Telefono: +1 (829) 987-6764", margin, yPos);
+    yPos += 7;
+    doc.text("Sitio web: bonlifeoil.com", margin, yPos);
+    yPos += 7;
+    doc.text("Email: ventas@bonlifeoil.com", margin, yPos);
+
+    // Footer with brand colors
+    yPos = pageHeight - 25;
+    doc.setFillColor(212, 175, 55);
+    doc.rect(0, yPos - 5, pageWidth, 20, 'F');
+    doc.setFontSize(14);
+    doc.setFont("helvetica", "bold");
+    doc.setTextColor(255, 255, 255);
+    doc.text("Bonlife: Mas Rendimiento. Mas Salud. Mas Ahorro.", pageWidth / 2, yPos + 5, { align: "center" });
 
     // Save PDF
     doc.save("Catalogo-Bonlife.pdf");
@@ -203,13 +315,13 @@ const ProductCatalog = () => {
     <section className="py-20 px-4 bg-gradient-to-b from-background to-muted/20">
       <div className="container mx-auto max-w-7xl">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold mb-4">Catálogo de Productos Bonlife</h2>
+          <h2 className="text-4xl font-bold mb-4">Catalogo de Productos Bonlife</h2>
           <p className="text-xl text-muted-foreground mb-6">
-            El verdadero aceite vegetal con el doble de duración
+            El verdadero aceite vegetal con el doble de duracion
           </p>
           <Button onClick={generatePDF} size="lg" className="gap-2">
             <Download className="w-5 h-5" />
-            Descargar Catálogo PDF
+            Descargar Catalogo PDF
           </Button>
         </div>
 
@@ -225,24 +337,24 @@ const ProductCatalog = () => {
 
           {/* Aceite Bonlife RBD Palm Olein */}
           <TabsContent value="palm">
-            <Card>
-              <CardHeader>
+            <Card className="border-primary/20">
+              <CardHeader className="bg-gradient-to-r from-primary to-primary/80">
                 <div className="flex items-start justify-between">
                   <div>
-                    <CardTitle className="text-3xl mb-2">Aceite Bonlife RBD Palm Olein</CardTitle>
-                    <CardDescription className="text-lg">
+                    <CardTitle className="text-3xl mb-2 text-primary-foreground">Aceite Bonlife RBD Palm Olein</CardTitle>
+                    <CardDescription className="text-lg text-primary-foreground/90">
                       Aceite virgen de alto rendimiento para uso industrial y comercial
                     </CardDescription>
                   </div>
-                  <Badge variant="default" className="text-lg px-4 py-2">Premium</Badge>
+                  <Badge variant="default" className="text-lg px-4 py-2 bg-gold text-white">$4,600 DOP</Badge>
                 </div>
               </CardHeader>
-              <CardContent className="space-y-6">
+              <CardContent className="space-y-6 pt-6">
                 <div>
-                  <h4 className="font-semibold text-lg mb-3">Descripción</h4>
+                  <h4 className="font-semibold text-lg mb-3">Descripcion</h4>
                   <p className="text-muted-foreground">
-                    Aceite 100% vegetal virgen, de alto rendimiento, elaborado con RBD Palm Olein (fracción líquida del aceite de palma). 
-                    Refinado, blanqueado y desodorizado con el mínimo de aditivos (solo 2%), garantizando pureza y estabilidad térmica superior.
+                    Aceite 100% vegetal virgen, de alto rendimiento, elaborado con RBD Palm Olein (fraccion liquida del aceite de palma). 
+                    Refinado, blanqueado y desodorizado con el minimo de aditivos (solo 2%), garantizando pureza y estabilidad termica superior.
                   </p>
                 </div>
 
@@ -251,7 +363,7 @@ const ProductCatalog = () => {
                   <ul className="grid md:grid-cols-2 gap-3">
                     <li className="flex items-start gap-2">
                       <span className="text-primary">✓</span>
-                      <span>Dura hasta 300% más que los aceites tradicionales</span>
+                      <span>Dura hasta 300% mas que los aceites tradicionales</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="text-primary">✓</span>
@@ -259,7 +371,7 @@ const ProductCatalog = () => {
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="text-primary">✓</span>
-                      <span>Menor absorción de grasa: productos más secos y dorados</span>
+                      <span>Menor absorcion de grasa: productos mas secos y dorados</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="text-primary">✓</span>
@@ -267,7 +379,7 @@ const ProductCatalog = () => {
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="text-primary">✓</span>
-                      <span>Color dorado estable, incluso tras múltiples usos</span>
+                      <span>Color dorado estable, incluso tras multiples usos</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="text-primary">✓</span>
@@ -287,24 +399,24 @@ const ProductCatalog = () => {
 
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
-                    <h4 className="font-semibold text-lg mb-3">Especificaciones Técnicas Generales</h4>
+                    <h4 className="font-semibold text-lg mb-3">Especificaciones Tecnicas Generales</h4>
                     <div className="overflow-x-auto">
                       <table className="w-full text-sm">
                         <tbody className="divide-y">
                           <tr>
                             <td className="py-2 font-medium">Acidez (FFA)</td>
-                            <td className="py-2 text-muted-foreground">0.045% máx.</td>
+                            <td className="py-2 text-muted-foreground">0.045% max.</td>
                           </tr>
                           <tr>
                             <td className="py-2 font-medium">Color (Lovibond)</td>
-                            <td className="py-2 text-muted-foreground">3R máx.</td>
+                            <td className="py-2 text-muted-foreground">3R max.</td>
                           </tr>
                           <tr>
-                            <td className="py-2 font-medium">Índice de Peróxido</td>
+                            <td className="py-2 font-medium">Indice de Peroxido</td>
                             <td className="py-2 text-muted-foreground">1.70 meq/kg</td>
                           </tr>
                           <tr>
-                            <td className="py-2 font-medium">Punto de Fusión</td>
+                            <td className="py-2 font-medium">Punto de Fusion</td>
                             <td className="py-2 text-muted-foreground">24–39 °C</td>
                           </tr>
                           <tr>
@@ -312,7 +424,7 @@ const ProductCatalog = () => {
                             <td className="py-2 text-muted-foreground">230 °C</td>
                           </tr>
                           <tr>
-                            <td className="py-2 font-medium">Duración estimada</td>
+                            <td className="py-2 font-medium">Duracion estimada</td>
                             <td className="py-2 text-muted-foreground">45–56 horas</td>
                           </tr>
                         </tbody>
@@ -340,12 +452,12 @@ const ProductCatalog = () => {
                           <tr>
                             <td className="py-2 font-medium">RBD Palm Olein CP8</td>
                             <td className="py-2 text-muted-foreground">56 min</td>
-                            <td className="py-2 text-muted-foreground">24 máx</td>
+                            <td className="py-2 text-muted-foreground">24 max</td>
                           </tr>
                           <tr>
                             <td className="py-2 font-medium">RBD Palm Olein CP6</td>
                             <td className="py-2 text-muted-foreground">60 min</td>
-                            <td className="py-2 text-muted-foreground">20 máx</td>
+                            <td className="py-2 text-muted-foreground">20 max</td>
                           </tr>
                         </tbody>
                       </table>
@@ -356,7 +468,7 @@ const ProductCatalog = () => {
                 <div className="bg-primary/10 rounded-lg p-4">
                   <p className="text-sm">
                     <strong>Presentaciones:</strong> 20L, 25L, 50L | 
-                    <strong className="ml-3">Vida útil:</strong> 12 meses (cerrado)
+                    <strong className="ml-3">Vida util:</strong> 12 meses (cerrado)
                   </p>
                 </div>
               </CardContent>
@@ -365,18 +477,18 @@ const ProductCatalog = () => {
 
           {/* Aceite de Soya */}
           <TabsContent value="soya">
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-3xl mb-2">Aceite de Soya Bonlife</CardTitle>
-                <CardDescription className="text-lg">
-                  Aceite vegetal refinado, estable y versátil
+            <Card className="border-blue-500/20">
+              <CardHeader className="bg-gradient-to-r from-blue-500 to-blue-600">
+                <CardTitle className="text-3xl mb-2 text-white">Aceite de Soya Bonlife</CardTitle>
+                <CardDescription className="text-lg text-white/90">
+                  Aceite vegetal refinado, estable y versatil
                 </CardDescription>
               </CardHeader>
-              <CardContent className="space-y-6">
+              <CardContent className="space-y-6 pt-6">
                 <div>
-                  <h4 className="font-semibold text-lg mb-3">Descripción</h4>
+                  <h4 className="font-semibold text-lg mb-3">Descripcion</h4>
                   <p className="text-muted-foreground">
-                    Aceite vegetal de soya refinado, estable y versátil, ideal para cocina general y salteados.
+                    Aceite vegetal de soya refinado, estable y versatil, ideal para cocina general y salteados.
                   </p>
                 </div>
 
@@ -384,31 +496,31 @@ const ProductCatalog = () => {
                   <h4 className="font-semibold text-lg mb-3">Beneficios</h4>
                   <ul className="space-y-2">
                     <li className="flex items-start gap-2">
-                      <span className="text-primary">✓</span>
-                      <span>Rico en ácidos grasos esenciales</span>
+                      <span className="text-blue-500">✓</span>
+                      <span>Rico en acidos grasos esenciales</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <span className="text-primary">✓</span>
+                      <span className="text-blue-500">✓</span>
                       <span>Bajo en grasas saturadas</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <span className="text-primary">✓</span>
-                      <span>Ideal para cocciones rápidas, salsas y aderezos</span>
+                      <span className="text-blue-500">✓</span>
+                      <span>Ideal para cocciones rapidas, salsas y aderezos</span>
                     </li>
                   </ul>
                 </div>
 
                 <div>
-                  <h4 className="font-semibold text-lg mb-3">Especificaciones Técnicas</h4>
+                  <h4 className="font-semibold text-lg mb-3">Especificaciones Tecnicas</h4>
                   <div className="overflow-x-auto">
                     <table className="w-full text-sm">
                       <tbody className="divide-y">
                         <tr>
                           <td className="py-2 font-medium">Acidez</td>
-                          <td className="py-2 text-muted-foreground">0.1% máx.</td>
+                          <td className="py-2 text-muted-foreground">0.1% max.</td>
                         </tr>
                         <tr>
-                          <td className="py-2 font-medium">Índice de Yodo</td>
+                          <td className="py-2 font-medium">Indice de Yodo</td>
                           <td className="py-2 text-muted-foreground">120–140</td>
                         </tr>
                         <tr>
@@ -433,18 +545,18 @@ const ProductCatalog = () => {
 
           {/* Aceite de Girasol */}
           <TabsContent value="girasol">
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-3xl mb-2">Aceite de Girasol Bonlife</CardTitle>
-                <CardDescription className="text-lg">
-                  100% natural, alto en ácido oleico
+            <Card className="border-orange-500/20">
+              <CardHeader className="bg-gradient-to-r from-orange-500 to-orange-600">
+                <CardTitle className="text-3xl mb-2 text-white">Aceite de Girasol Bonlife</CardTitle>
+                <CardDescription className="text-lg text-white/90">
+                  100% natural, alto en acido oleico
                 </CardDescription>
               </CardHeader>
-              <CardContent className="space-y-6">
+              <CardContent className="space-y-6 pt-6">
                 <div>
-                  <h4 className="font-semibold text-lg mb-3">Descripción</h4>
+                  <h4 className="font-semibold text-lg mb-3">Descripcion</h4>
                   <p className="text-muted-foreground">
-                    Aceite puro de semillas de girasol, 100% natural, alto en ácido oleico, perfecto para frituras suaves y uso doméstico o gourmet.
+                    Aceite puro de semillas de girasol, 100% natural, alto en acido oleico, perfecto para frituras suaves y uso domestico o gourmet.
                   </p>
                 </div>
 
@@ -452,40 +564,40 @@ const ProductCatalog = () => {
                   <h4 className="font-semibold text-lg mb-3">Beneficios</h4>
                   <ul className="space-y-2">
                     <li className="flex items-start gap-2">
-                      <span className="text-primary">✓</span>
+                      <span className="text-orange-500">✓</span>
                       <span>Fuente natural de Vitamina E y antioxidantes</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <span className="text-primary">✓</span>
-                      <span>Ideal para cocina saludable, repostería y ensaladas</span>
+                      <span className="text-orange-500">✓</span>
+                      <span>Ideal para cocina saludable, reposteria y ensaladas</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <span className="text-primary">✓</span>
+                      <span className="text-orange-500">✓</span>
                       <span>Bajo en grasas saturadas</span>
                     </li>
                   </ul>
                 </div>
 
                 <div>
-                  <h4 className="font-semibold text-lg mb-3">Especificaciones Técnicas</h4>
+                  <h4 className="font-semibold text-lg mb-3">Especificaciones Tecnicas</h4>
                   <div className="overflow-x-auto">
                     <table className="w-full text-sm">
                       <tbody className="divide-y">
                         <tr>
                           <td className="py-2 font-medium">Acidez</td>
-                          <td className="py-2 text-muted-foreground">0.1% máx.</td>
+                          <td className="py-2 text-muted-foreground">0.1% max.</td>
                         </tr>
                         <tr>
                           <td className="py-2 font-medium">Punto de Humo</td>
                           <td className="py-2 text-muted-foreground">232 °C</td>
                         </tr>
                         <tr>
-                          <td className="py-2 font-medium">Índice de Yodo</td>
+                          <td className="py-2 font-medium">Indice de Yodo</td>
                           <td className="py-2 text-muted-foreground">90–130</td>
                         </tr>
                         <tr>
                           <td className="py-2 font-medium">Color</td>
-                          <td className="py-2 text-muted-foreground">2 R máx.</td>
+                          <td className="py-2 text-muted-foreground">2 R max.</td>
                         </tr>
                         <tr>
                           <td className="py-2 font-medium">Tipo</td>
@@ -501,18 +613,18 @@ const ProductCatalog = () => {
 
           {/* Manteca Vegetal */}
           <TabsContent value="manteca">
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-3xl mb-2">Manteca Vegetal Bonlife</CardTitle>
-                <CardDescription className="text-lg">
-                  Premium para panificación y repostería
+            <Card className="border-amber-700/20">
+              <CardHeader className="bg-gradient-to-r from-amber-700 to-amber-800">
+                <CardTitle className="text-3xl mb-2 text-white">Manteca Vegetal Bonlife</CardTitle>
+                <CardDescription className="text-lg text-white/90">
+                  Premium para panificacion y reposteria
                 </CardDescription>
               </CardHeader>
-              <CardContent className="space-y-6">
+              <CardContent className="space-y-6 pt-6">
                 <div>
-                  <h4 className="font-semibold text-lg mb-3">Descripción</h4>
+                  <h4 className="font-semibold text-lg mb-3">Descripcion</h4>
                   <p className="text-muted-foreground">
-                    Manteca premium elaborada con aceites fraccionados, blanqueados y desodorizados, especialmente formulada para panificación y repostería.
+                    Manteca premium elaborada con aceites fraccionados, blanqueados y desodorizados, especialmente formulada para panificacion y reposteria.
                   </p>
                 </div>
 
@@ -520,15 +632,15 @@ const ProductCatalog = () => {
                   <h4 className="font-semibold text-lg mb-3">Beneficios</h4>
                   <ul className="space-y-2">
                     <li className="flex items-start gap-2">
-                      <span className="text-primary">✓</span>
+                      <span className="text-amber-700">✓</span>
                       <span>Proporciona textura suave y crujiente a masas</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <span className="text-primary">✓</span>
+                      <span className="text-amber-700">✓</span>
                       <span>Mejora el volumen y apariencia de productos horneados</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <span className="text-primary">✓</span>
+                      <span className="text-amber-700">✓</span>
                       <span>Enriquecida con Vitamina E, libre de grasas trans y GMO</span>
                     </li>
                   </ul>
@@ -542,16 +654,16 @@ const ProductCatalog = () => {
                 </div>
 
                 <div>
-                  <h4 className="font-semibold text-lg mb-3">Especificaciones Técnicas</h4>
+                  <h4 className="font-semibold text-lg mb-3">Especificaciones Tecnicas</h4>
                   <div className="overflow-x-auto">
                     <table className="w-full text-sm">
                       <tbody className="divide-y">
                         <tr>
-                          <td className="py-2 font-medium">FFA (máx %)</td>
+                          <td className="py-2 font-medium">FFA (max %)</td>
                           <td className="py-2 text-muted-foreground">0.1%</td>
                         </tr>
                         <tr>
-                          <td className="py-2 font-medium">M&I (máx %)</td>
+                          <td className="py-2 font-medium">M&I (max %)</td>
                           <td className="py-2 text-muted-foreground">0.1%</td>
                         </tr>
                         <tr>
@@ -568,7 +680,7 @@ const ProductCatalog = () => {
                         </tr>
                         <tr>
                           <td className="py-2 font-medium">Antioxidante</td>
-                          <td className="py-2 text-muted-foreground">200 PPM máx</td>
+                          <td className="py-2 text-muted-foreground">200 PPM max</td>
                         </tr>
                       </tbody>
                     </table>
@@ -580,16 +692,21 @@ const ProductCatalog = () => {
 
           {/* Margarina */}
           <TabsContent value="margarina">
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-3xl mb-2">Margarina Bonlife</CardTitle>
-                <CardDescription className="text-lg">
-                  Alternativa saludable enriquecida con vitaminas
-                </CardDescription>
+            <Card className="border-yellow-500/20">
+              <CardHeader className="bg-gradient-to-r from-yellow-500 to-yellow-600">
+                <div className="flex items-start justify-between">
+                  <div>
+                    <CardTitle className="text-3xl mb-2 text-white">Margarina Bonlife</CardTitle>
+                    <CardDescription className="text-lg text-white/90">
+                      Alternativa saludable enriquecida con vitaminas
+                    </CardDescription>
+                  </div>
+                  <Badge variant="default" className="text-lg px-4 py-2 bg-green-600 text-white">$3,570 DOP</Badge>
+                </div>
               </CardHeader>
-              <CardContent className="space-y-6">
+              <CardContent className="space-y-6 pt-6">
                 <div>
-                  <h4 className="font-semibold text-lg mb-3">Descripción</h4>
+                  <h4 className="font-semibold text-lg mb-3">Descripcion</h4>
                   <p className="text-muted-foreground">
                     Margarina de base vegetal enriquecida con vitaminas, alternativa saludable a la mantequilla tradicional.
                   </p>
@@ -599,31 +716,31 @@ const ProductCatalog = () => {
                   <h4 className="font-semibold text-lg mb-3">Beneficios</h4>
                   <ul className="space-y-2">
                     <li className="flex items-start gap-2">
-                      <span className="text-primary">✓</span>
+                      <span className="text-yellow-600">✓</span>
                       <span>Bajo contenido de grasas trans</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <span className="text-primary">✓</span>
+                      <span className="text-yellow-600">✓</span>
                       <span>Aporta cremosidad y sabor natural</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <span className="text-primary">✓</span>
+                      <span className="text-yellow-600">✓</span>
                       <span>Ideal para untar, hornear y cocinar</span>
                     </li>
                   </ul>
                 </div>
 
                 <div>
-                  <h4 className="font-semibold text-lg mb-3">Especificaciones Técnicas</h4>
+                  <h4 className="font-semibold text-lg mb-3">Especificaciones Tecnicas</h4>
                   <div className="overflow-x-auto">
                     <table className="w-full text-sm">
                       <tbody className="divide-y">
                         <tr>
-                          <td className="py-2 font-medium">FFA (máx %)</td>
+                          <td className="py-2 font-medium">FFA (max %)</td>
                           <td className="py-2 text-muted-foreground">0.2%</td>
                         </tr>
                         <tr>
-                          <td className="py-2 font-medium">M&I (máx %)</td>
+                          <td className="py-2 font-medium">M&I (max %)</td>
                           <td className="py-2 text-muted-foreground">0.16%</td>
                         </tr>
                         <tr>
@@ -639,7 +756,7 @@ const ProductCatalog = () => {
                           <td className="py-2 text-muted-foreground">8 R</td>
                         </tr>
                         <tr>
-                          <td className="py-2 font-medium">Mezcla grasa mínima</td>
+                          <td className="py-2 font-medium">Mezcla grasa minima</td>
                           <td className="py-2 text-muted-foreground">80%</td>
                         </tr>
                       </tbody>
@@ -652,18 +769,18 @@ const ProductCatalog = () => {
 
           {/* Mantequilla */}
           <TabsContent value="mantequilla">
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-3xl mb-2">Mantequilla Bonlife</CardTitle>
-                <CardDescription className="text-lg">
-                  Producto vegetal de procesamiento mínimo
+            <Card className="border-amber-600/20">
+              <CardHeader className="bg-gradient-to-r from-amber-600 to-amber-700">
+                <CardTitle className="text-3xl mb-2 text-white">Mantequilla Bonlife</CardTitle>
+                <CardDescription className="text-lg text-white/90">
+                  Producto vegetal de procesamiento minimo
                 </CardDescription>
               </CardHeader>
-              <CardContent className="space-y-6">
+              <CardContent className="space-y-6 pt-6">
                 <div>
-                  <h4 className="font-semibold text-lg mb-3">Descripción</h4>
+                  <h4 className="font-semibold text-lg mb-3">Descripcion</h4>
                   <p className="text-muted-foreground">
-                    Producto derivado del aceite vegetal virgen, procesado mínimamente para conservar aroma y sabor naturales.
+                    Producto derivado del aceite vegetal virgen, procesado minimamente para conservar aroma y sabor naturales.
                   </p>
                 </div>
 
@@ -671,15 +788,15 @@ const ProductCatalog = () => {
                   <h4 className="font-semibold text-lg mb-3">Beneficios</h4>
                   <ul className="space-y-2">
                     <li className="flex items-start gap-2">
-                      <span className="text-primary">✓</span>
+                      <span className="text-amber-600">✓</span>
                       <span>Textura cremosa y estable</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <span className="text-primary">✓</span>
-                      <span>Excelente para repostería fina</span>
+                      <span className="text-amber-600">✓</span>
+                      <span>Excelente para reposteria fina</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <span className="text-primary">✓</span>
+                      <span className="text-amber-600">✓</span>
                       <span>Libre de colesterol</span>
                     </li>
                   </ul>
@@ -688,7 +805,7 @@ const ProductCatalog = () => {
                 <div>
                   <h4 className="font-semibold text-lg mb-3">Aplicaciones</h4>
                   <p className="text-muted-foreground">
-                    Ideal para cocina, panadería y repostería industrial.
+                    Ideal para cocina, panaderia y reposteria industrial.
                   </p>
                 </div>
               </CardContent>
@@ -702,19 +819,19 @@ const ProductCatalog = () => {
             <div>
               <h3 className="text-2xl font-bold mb-4">Sedes y Cobertura</h3>
               <ul className="space-y-2 text-muted-foreground">
-                <li>📍 Santo Domingo, RD</li>
-                <li>📍 Punta Cana / Bávaro</li>
-                <li>📍 Santiago</li>
+                <li>Santo Domingo, RD</li>
+                <li>Punta Cana / Bavaro</li>
+                <li>Santiago</li>
               </ul>
-              <p className="mt-4 font-semibold">Entregas en todo el país</p>
-              <p className="text-sm text-muted-foreground">Mínimo de envío nacional: 2 garrafones (50 L)</p>
+              <p className="mt-4 font-semibold">Entregas en todo el pais</p>
+              <p className="text-sm text-muted-foreground">Minimo de envio nacional: 2 garrafones (50 L)</p>
             </div>
             <div>
               <h3 className="text-2xl font-bold mb-4">Contacto</h3>
               <ul className="space-y-2">
-                <li>📞 <a href="tel:+18299876764" className="hover:text-primary">+1 (829) 987-6764</a></li>
-                <li>🌐 <a href="https://bonlifeoil.com" className="hover:text-primary">bonlifeoil.com</a></li>
-                <li>📧 <a href="mailto:ventas@bonlifeoil.com" className="hover:text-primary">ventas@bonlifeoil.com</a></li>
+                <li><a href="tel:+18299876764" className="hover:text-primary">+1 (829) 987-6764</a></li>
+                <li><a href="https://bonlifeoil.com" className="hover:text-primary">bonlifeoil.com</a></li>
+                <li><a href="mailto:ventas@bonlifeoil.com" className="hover:text-primary">ventas@bonlifeoil.com</a></li>
               </ul>
             </div>
           </div>

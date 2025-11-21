@@ -1,5 +1,3 @@
-import comparisonImage from "@/assets/bonlife-comparison.jpg";
-
 export const ComparisonHero = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-primary via-primary-light to-premium-light">
@@ -16,14 +14,6 @@ export const ComparisonHero = () => {
         </div>
 
         <div className="max-w-6xl mx-auto">
-          <div className="bg-white rounded-3xl shadow-2xl overflow-hidden transform hover:scale-[1.02] transition-all duration-500">
-            <img 
-              src={comparisonImage} 
-              alt="Comparación profesional entre aceite Bonlife y competidores - mostrando la diferencia en calidad y pureza"
-              className="w-full h-auto"
-            />
-          </div>
-
           <div className="mt-16 grid md:grid-cols-2 gap-8">
             <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 hover:bg-white/15 transition-all duration-300">
               <div className="flex items-start gap-4">
@@ -94,18 +84,6 @@ export const ComparisonHero = () => {
                 </div>
               </div>
             </div>
-          </div>
-
-          <div className="mt-12 text-center">
-            <a 
-              href="#contacto" 
-              className="inline-flex items-center gap-3 bg-gold hover:bg-gold-light text-white px-10 py-5 rounded-2xl font-bold text-lg shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
-            >
-              Solicitar Cotización
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-              </svg>
-            </a>
           </div>
         </div>
       </div>

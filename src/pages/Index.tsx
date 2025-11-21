@@ -13,7 +13,6 @@ const Index = () => {
       <SavingsCalculator />
       <BenefitsSection />
       <ProductCatalog />
-      <ContactSection />
     </div>
   );
 };
