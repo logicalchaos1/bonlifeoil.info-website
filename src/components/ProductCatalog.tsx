@@ -51,15 +51,6 @@ const ProductCatalog = () => {
     doc.setFont("helvetica", "bold");
     doc.setTextColor(255, 255, 255);
     doc.text("Aceite Bonlife RBD Palm Olein", margin, yPos);
-    yPos += 12;
-    
-    doc.setTextColor(0, 0, 0);
-    doc.setFontSize(12);
-    doc.setFont("helvetica", "bold");
-    doc.setFillColor(34, 139, 34);
-    doc.rect(margin - 2, yPos - 5, 40, 8, 'F');
-    doc.setTextColor(255, 255, 255);
-    doc.text("$4,600 DOP", margin, yPos);
     yPos += 10;
     
     doc.setTextColor(0, 0, 0);
@@ -94,6 +85,16 @@ const ProductCatalog = () => {
       yPos += 5;
     });
     
+    yPos += 5;
+    doc.setFontSize(12);
+    doc.setFont("helvetica", "bold");
+    doc.setFillColor(34, 139, 34);
+    doc.rect(margin - 2, yPos - 5, 40, 8, 'F');
+    doc.setTextColor(255, 255, 255);
+    doc.text("$4,600 DOP", margin, yPos);
+    yPos += 10;
+    
+    doc.setTextColor(0, 0, 0);
     yPos += 3;
     doc.setFont("helvetica", "bold");
     doc.text("Especificaciones Tecnicas:", margin, yPos);
@@ -116,14 +117,6 @@ const ProductCatalog = () => {
     doc.setFont("helvetica", "bold");
     doc.setTextColor(255, 255, 255);
     doc.text("Aceite de Soya Bonlife", margin, yPos);
-    yPos += 12;
-    
-    doc.setFontSize(12);
-    doc.setFont("helvetica", "bold");
-    doc.setFillColor(34, 139, 34);
-    doc.rect(margin - 2, yPos - 5, 40, 8, 'F');
-    doc.setTextColor(255, 255, 255);
-    doc.text("$4,000 DOP", margin, yPos);
     yPos += 10;
     
     doc.setTextColor(0, 0, 0);
@@ -142,7 +135,16 @@ const ProductCatalog = () => {
     yPos += 5;
     doc.circle(margin + 2, yPos - 1.5, 1, 'F');
     doc.text("Bajo en grasas saturadas  |  Alta presencia de Vitamina E", margin + 5, yPos);
+    yPos += 7;
+    
+    doc.setFontSize(12);
+    doc.setFont("helvetica", "bold");
+    doc.setFillColor(34, 139, 34);
+    doc.rect(margin - 2, yPos - 5, 40, 8, 'F');
+    doc.setTextColor(255, 255, 255);
+    doc.text("$4,000 DOP", margin, yPos);
     yPos += 12;
+    doc.setTextColor(0, 0, 0);
 
     // Product 3: Aceite de Girasol
     checkPageBreak(40);
@@ -152,14 +154,6 @@ const ProductCatalog = () => {
     doc.setFont("helvetica", "bold");
     doc.setTextColor(255, 255, 255);
     doc.text("Aceite de Girasol Bonlife", margin, yPos);
-    yPos += 12;
-    
-    doc.setFontSize(12);
-    doc.setFont("helvetica", "bold");
-    doc.setFillColor(34, 139, 34);
-    doc.rect(margin - 2, yPos - 5, 40, 8, 'F');
-    doc.setTextColor(255, 255, 255);
-    doc.text("$4,000 DOP", margin, yPos);
     yPos += 10;
     
     doc.setTextColor(0, 0, 0);
@@ -178,7 +172,16 @@ const ProductCatalog = () => {
     yPos += 5;
     doc.circle(margin + 2, yPos - 1.5, 1, 'F');
     doc.text("Punto de humo: 232C  |  Tipo: Alto Oleico / Refinado", margin + 5, yPos);
+    yPos += 7;
+    
+    doc.setFontSize(12);
+    doc.setFont("helvetica", "bold");
+    doc.setFillColor(34, 139, 34);
+    doc.rect(margin - 2, yPos - 5, 40, 8, 'F');
+    doc.setTextColor(255, 255, 255);
+    doc.text("$4,000 DOP", margin, yPos);
     yPos += 12;
+    doc.setTextColor(0, 0, 0);
 
     // Product 4: Manteca Vegetal
     checkPageBreak(40);
@@ -188,14 +191,6 @@ const ProductCatalog = () => {
     doc.setFont("helvetica", "bold");
     doc.setTextColor(255, 255, 255);
     doc.text("Manteca Vegetal Bonlife", margin, yPos);
-    yPos += 12;
-    
-    doc.setFontSize(12);
-    doc.setFont("helvetica", "bold");
-    doc.setFillColor(34, 139, 34);
-    doc.rect(margin - 2, yPos - 5, 40, 8, 'F');
-    doc.setTextColor(255, 255, 255);
-    doc.text("$3,570 DOP", margin, yPos);
     yPos += 10;
     
     doc.setTextColor(0, 0, 0);
@@ -217,7 +212,16 @@ const ProductCatalog = () => {
     yPos += 5;
     doc.setFont("helvetica", "italic");
     doc.text("Aplicaciones: Pasteles, galletas, panes, wafers y productos automatizados", margin + 5, yPos);
+    yPos += 7;
+    
+    doc.setFontSize(12);
+    doc.setFont("helvetica", "bold");
+    doc.setFillColor(34, 139, 34);
+    doc.rect(margin - 2, yPos - 5, 40, 8, 'F');
+    doc.setTextColor(255, 255, 255);
+    doc.text("$3,570 DOP", margin, yPos);
     yPos += 12;
+    doc.setTextColor(0, 0, 0);
 
     // Product 5: Margarina
     checkPageBreak(45);
