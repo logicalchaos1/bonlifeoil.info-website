@@ -4,80 +4,80 @@ export const ComparisonTable = () => {
       name: "Bonlife",
       subtitle: "RBD Palma (99.9% puro)",
       volume: "25 L",
-      price: "5,428",
+      price: "4,600", // 5,428 / 1.18
       priceWithTax: "5,428",
-      duration: "↑ RD$ 97/h",
+      duration: "↑ RD$ 82/h", // 4,600 / 56
       durationHours: 56,
       features: "99.9% refinado, sin aditivos, vida útil 5x más larga",
       savings: "BASE",
       savingsSubtitle: "costo estándar",
       isBonlife: true,
-      costPerHour: 97,
+      costPerHour: 82, // 4,600 / 56
     },
     {
       name: "Capullo",
       subtitle: "(soya refinada)",
       volume: "20 L",
-      price: "3,074",
+      price: "2,605", // 3,074 / 1.18
       priceWithTax: "3,074",
-      duration: "↓ RD$ 256/h",
+      duration: "↓ RD$ 217/h", // 2,605 / 12
       durationHours: 12,
       features: "Alto costo operativo, requiere cambios frecuentes",
-      savings: "+ 164%",
+      savings: "+ 165%",
       savingsSubtitle: "más caro por hora",
-      costPerHour: 256,
+      costPerHour: 217,
     },
     {
       name: "Mazola",
       subtitle: "(maíz)",
       volume: "17 L",
-      price: "3,712",
+      price: "3,146", // 3,712 / 1.18
       priceWithTax: "3,712",
-      duration: "↓ RD$ 309/h",
+      duration: "↓ RD$ 262/h", // 3,146 / 12
       durationHours: 12,
       features: "Degradación rápida a altas temperaturas",
-      savings: "+ 218%",
+      savings: "+ 220%",
       savingsSubtitle: "más caro por hora",
-      costPerHour: 309,
+      costPerHour: 262,
     },
     {
       name: "Crisol",
       subtitle: "(soya)",
       volume: "15.8 L",
-      price: "3,045",
+      price: "2,581", // 3,045 / 1.18
       priceWithTax: "3,045",
-      duration: "↓ RD$ 232/h",
+      duration: "↓ RD$ 199/h", // 2,581 / 13
       durationHours: 13,
       features: "Baja estabilidad térmica, sabor residual fuerte",
-      savings: "+ 139%",
+      savings: "+ 143%",
       savingsSubtitle: "más caro por hora",
-      costPerHour: 232,
+      costPerHour: 199,
     },
     {
       name: "El Gallo",
       subtitle: "(soya)",
       volume: "14.8 L",
-      price: "3,016",
+      price: "2,556", // 3,016 / 1.18
       priceWithTax: "3,016",
-      duration: "↓ RD$ 204/h",
+      duration: "↓ RD$ 170/h", // 2,556 / 15
       durationHours: 15,
       features: "Duración limitada en frituras continuas",
-      savings: "+ 110%",
+      savings: "+ 107%",
       savingsSubtitle: "más caro por hora",
-      costPerHour: 204,
+      costPerHour: 170,
     },
     {
       name: "Aceite Económico",
       subtitle: "(mezcla soya)",
       volume: "13.6 L",
-      price: "2,367",
+      price: "2,006", // 2,367 / 1.18
       priceWithTax: "2,367",
-      duration: "↓ RD$ 176/h",
+      duration: "↓ RD$ 154/h", // 2,006 / 13
       durationHours: 13,
       features: "Alto contenido de residuos, espuma excesiva",
-      savings: "+ 81%",
+      savings: "+ 88%",
       savingsSubtitle: "más caro por hora",
-      costPerHour: 176,
+      costPerHour: 154,
     },
   ];
 
@@ -110,7 +110,7 @@ export const ComparisonTable = () => {
                     Volumen<br />Real
                   </th>
                   <th className="py-4 px-3 text-center font-bold border-r border-premium-light">
-                    Precio<br />con ITBIS
+                    Precio<br />sin ITBIS
                   </th>
                   <th className="py-4 px-3 text-center font-bold border-r border-premium-light">
                     Costo Real<br />por Hora<br />de Fritura
@@ -156,7 +156,7 @@ export const ComparisonTable = () => {
                       {item.volume}
                     </td>
                     <td className="py-4 px-3 text-center font-bold text-lg border-r border-border">
-                      {item.priceWithTax}
+                      {item.price}
                     </td>
                     <td className="py-4 px-3 text-center font-bold border-r border-border">
                       <span className={item.isBonlife ? "text-primary text-xl" : "text-destructive text-xl"}>
@@ -197,7 +197,7 @@ export const ComparisonTable = () => {
                         className={`${
                           item.isBonlife ? "bg-premium" : "bg-destructive/70"
                         } h-full flex items-center justify-end px-3 text-white font-bold transition-all duration-700`}
-                        style={{ width: `${(item.costPerHour / 309) * 100}%` }}
+                        style={{ width: `${(item.costPerHour / 262) * 100}%` }}
                       >
                         {item.costPerHour}
                       </div>
@@ -251,19 +251,19 @@ export const ComparisonTable = () => {
               <div className="text-3xl md:text-5xl font-bold text-gold">
                 RESUMEN
               </div>
-              <div className="flex-1 text-white space-y-2">
-                <p className="text-lg md:text-xl">
-                  Bonlife cuesta más por bidón... <span className="font-bold">pero rinde muchísimo más.</span>
-                </p>
-                <div className="flex flex-col md:flex-row gap-4 text-base md:text-lg">
-                  <div>
-                    Costo real por hora: <span className="font-bold text-gold">Bonlife: RD$ 97/h</span>
-                  </div>
-                  <div>
-                    <span className="font-bold text-gold">Competencia: RD$ 176-309/h</span> (81-218% más caro)
+                <div className="flex-1 text-white space-y-2">
+                  <p className="text-lg md:text-xl">
+                    Bonlife cuesta más por bidón... <span className="font-bold">pero rinde muchísimo más.</span>
+                  </p>
+                  <div className="flex flex-col md:flex-row gap-4 text-base md:text-lg">
+                    <div>
+                      Costo real por hora: <span className="font-bold text-gold">Bonlife: RD$ 82/h</span>
+                    </div>
+                    <div>
+                      <span className="font-bold text-gold">Competencia: RD$ 154-262/h</span> (88-220% más caro)
+                    </div>
                   </div>
                 </div>
-              </div>
             </div>
           </div>
         </div>
