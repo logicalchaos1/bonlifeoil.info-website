@@ -1,3 +1,5 @@
+import bonlifeLogo from "@/assets/bonlife-logo.png";
+
 export const ComparisonHero = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-primary via-primary-light to-premium-light">
@@ -5,9 +7,9 @@ export const ComparisonHero = () => {
       
       <div className="container mx-auto px-6 py-20 relative z-10">
         <div className="text-center mb-12 animate-fade-in">
-          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight">
-            Aceite <span className="text-gold">Bonlife</span>
-          </h1>
+          <div className="flex justify-center mb-6">
+            <img src={bonlifeLogo} alt="Bonlife Logo" className="h-32 md:h-40 w-auto drop-shadow-2xl" />
+          </div>
           <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto">
             La diferencia es clara: calidad superior, ahorro garantizado
           </p>
