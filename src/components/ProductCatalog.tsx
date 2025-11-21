@@ -161,7 +161,7 @@ const ProductCatalog = () => {
     yPos += 8;
     
     doc.setFont("helvetica", "italic");
-    doc.text("Presentaciones: 25L  |  Vida util: 2 anos (cerrado)", margin, yPos);
+    doc.text("Presentaciones: 25L  |  Vida util: 2 años (cerrado)", margin, yPos);
     yPos += 15;
 
     // Product 2: Aceite de Soya
@@ -207,7 +207,7 @@ const ProductCatalog = () => {
     doc.setTextColor(0, 0, 0);
     doc.setFont("helvetica", "italic");
     doc.setFontSize(9);
-    doc.text("Presentaciones: 25L  |  Vida util: 2 anos (cerrado)", margin, yPos);
+    doc.text("Presentaciones: 25L  |  Vida util: 2 años (cerrado)", margin, yPos);
     yPos += 12;
 
     // Product 3: Aceite de Girasol
@@ -253,7 +253,7 @@ const ProductCatalog = () => {
     doc.setTextColor(0, 0, 0);
     doc.setFont("helvetica", "italic");
     doc.setFontSize(9);
-    doc.text("Presentaciones: 25L  |  Vida util: 2 anos (cerrado)", margin, yPos);
+    doc.text("Presentaciones: 25L  |  Vida util: 2 años (cerrado)", margin, yPos);
     yPos += 12;
 
     // Product 4: Manteca Vegetal
@@ -302,7 +302,7 @@ const ProductCatalog = () => {
     doc.setTextColor(0, 0, 0);
     doc.setFont("helvetica", "italic");
     doc.setFontSize(9);
-    doc.text("Presentaciones: 25L  |  Vida util: 2 anos (cerrado)", margin, yPos);
+    doc.text("Presentaciones: 25L  |  Vida util: 2 años (cerrado)", margin, yPos);
     yPos += 12;
 
     // Product 5: Margarina
@@ -349,7 +349,7 @@ const ProductCatalog = () => {
     doc.setFont("helvetica", "italic");
     doc.setFontSize(9);
     doc.setTextColor(0, 0, 0);
-    doc.text("Presentaciones: 15kg  |  Vida util: 2 anos (cerrado)", margin, yPos);
+    doc.text("Presentaciones: 15kg  |  Vida util: 2 años (cerrado)", margin, yPos);
     yPos += 12;
 
     // New page for contact info
@@ -572,7 +572,7 @@ const ProductCatalog = () => {
                 <div className="bg-primary/10 rounded-lg p-4">
                   <p className="text-sm">
                     <strong>Presentaciones:</strong> 25L | 
-                    <strong className="ml-3">Vida util:</strong> 2 anos (cerrado)
+                    <strong className="ml-3">Vida util:</strong> 2 años (cerrado)
                   </p>
                 </div>
               </CardContent>
@@ -654,7 +654,7 @@ const ProductCatalog = () => {
                 <div className="bg-blue-500/10 rounded-lg p-4">
                   <p className="text-sm">
                     <strong>Presentaciones:</strong> 25L | 
-                    <strong className="ml-3">Vida util:</strong> 2 anos (cerrado)
+                    <strong className="ml-3">Vida util:</strong> 2 años (cerrado)
                   </p>
                 </div>
               </CardContent>
@@ -736,7 +736,7 @@ const ProductCatalog = () => {
                 <div className="bg-orange-500/10 rounded-lg p-4">
                   <p className="text-sm">
                     <strong>Presentaciones:</strong> 25L | 
-                    <strong className="ml-3">Vida util:</strong> 2 anos (cerrado)
+                    <strong className="ml-3">Vida util:</strong> 2 años (cerrado)
                   </p>
                 </div>
               </CardContent>
@@ -829,7 +829,7 @@ const ProductCatalog = () => {
                 <div className="bg-amber-700/10 rounded-lg p-4">
                   <p className="text-sm">
                     <strong>Presentaciones:</strong> 25L | 
-                    <strong className="ml-3">Vida util:</strong> 2 anos (cerrado)
+                    <strong className="ml-3">Vida util:</strong> 2 años (cerrado)
                   </p>
                 </div>
               </CardContent>
@@ -915,7 +915,7 @@ const ProductCatalog = () => {
                 <div className="bg-yellow-500/10 rounded-lg p-4">
                   <p className="text-sm">
                     <strong>Presentaciones:</strong> 15kg | 
-                    <strong className="ml-3">Vida util:</strong> 2 anos (cerrado)
+                    <strong className="ml-3">Vida util:</strong> 2 años (cerrado)
                   </p>
                 </div>
               </CardContent>
