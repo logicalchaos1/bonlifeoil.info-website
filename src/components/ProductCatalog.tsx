@@ -9,6 +9,8 @@ import sunflowerImage from "@/assets/sunflower-oil-product.jpg";
 import soyaImage from "@/assets/soya-oil-product.jpg";
 import mantecaImage from "@/assets/manteca-product.jpg";
 import margarineImage from "@/assets/margarine-product.jpg";
+import frenchFriesImage from "@/assets/french-fries-product.jpg";
+import potatoChipsImage from "@/assets/potato-chips-product.jpg";
 import bonlifeLogo from "@/assets/bonlife-logo.png";
 
 const ProductCatalog = () => {
@@ -78,6 +80,8 @@ const ProductCatalog = () => {
     const sunflowerImg = await loadImage(sunflowerImage);
     const mantecaImg = await loadImage(mantecaImage);
     const margarineImg = await loadImage(margarineImage);
+    const frenchFriesImg = await loadImage(frenchFriesImage);
+    const potatoChipsImg = await loadImage(potatoChipsImage);
 
     // Product 1: Aceite Bonlife RBD Palm Olein
     checkPageBreak(100);
@@ -366,6 +370,100 @@ const ProductCatalog = () => {
     doc.text("Presentaciones: 15kg  |  Vida util: 2 años (cerrado)", margin, yPos);
     yPos += 12;
 
+    // Product 6: Papas Fritas Premium
+    checkPageBreak(60);
+    
+    doc.setFillColor(220, 38, 38);
+    doc.rect(margin - 5, yPos - 5, pageWidth - 2 * margin + 10, 10, 'F');
+    doc.setFontSize(15);
+    doc.setFont("helvetica", "bold");
+    doc.setTextColor(255, 255, 255);
+    doc.text("Papas Fritas Premium Altura Foods", margin, yPos);
+    yPos += 15;
+    
+    // Add product image centered
+    const frenchFriesBase64 = getBase64Image(frenchFriesImg);
+    doc.addImage(frenchFriesBase64, 'JPEG', imgX, yPos, imgWidth, imgHeight);
+    yPos += imgHeight + 8;
+    
+    doc.setTextColor(0, 0, 0);
+    doc.setFont("helvetica", "italic");
+    doc.setFontSize(9);
+    doc.text("Papas cortadas de calidad superior para uso comercial", margin, yPos);
+    yPos += 7;
+    
+    doc.setFont("helvetica", "normal");
+    doc.setFillColor(220, 38, 38);
+    doc.circle(margin + 2, yPos - 1.5, 1, 'F');
+    doc.text("Corte uniforme para coccion pareja", margin + 5, yPos);
+    yPos += 5;
+    doc.circle(margin + 2, yPos - 1.5, 1, 'F');
+    doc.text("Ideal para freidoras industriales y comerciales", margin + 5, yPos);
+    yPos += 5;
+    doc.circle(margin + 2, yPos - 1.5, 1, 'F');
+    doc.text("Papas frescas seleccionadas de primera calidad", margin + 5, yPos);
+    yPos += 7;
+    
+    doc.setFontSize(12);
+    doc.setFont("helvetica", "bold");
+    doc.setFillColor(34, 139, 34);
+    doc.rect(margin - 2, yPos - 5, 40, 8, 'F');
+    doc.setTextColor(255, 255, 255);
+    doc.text("$95 DOP/lb", margin, yPos);
+    yPos += 10;
+    doc.setTextColor(0, 0, 0);
+    doc.setFont("helvetica", "italic");
+    doc.setFontSize(9);
+    doc.text("Producto congelado  |  Mantener refrigerado", margin, yPos);
+    yPos += 12;
+
+    // Product 7: Chips Premium
+    checkPageBreak(60);
+    
+    doc.setFillColor(255, 140, 0);
+    doc.rect(margin - 5, yPos - 5, pageWidth - 2 * margin + 10, 10, 'F');
+    doc.setFontSize(15);
+    doc.setFont("helvetica", "bold");
+    doc.setTextColor(255, 255, 255);
+    doc.text("Chips/Papitas Premium Altura Foods", margin, yPos);
+    yPos += 15;
+    
+    // Add product image centered
+    const potatoChipsBase64 = getBase64Image(potatoChipsImg);
+    doc.addImage(potatoChipsBase64, 'JPEG', imgX, yPos, imgWidth, imgHeight);
+    yPos += imgHeight + 8;
+    
+    doc.setTextColor(0, 0, 0);
+    doc.setFont("helvetica", "italic");
+    doc.setFontSize(9);
+    doc.text("Papitas crujientes de calidad superior", margin, yPos);
+    yPos += 7;
+    
+    doc.setFont("helvetica", "normal");
+    doc.setFillColor(255, 140, 0);
+    doc.circle(margin + 2, yPos - 1.5, 1, 'F');
+    doc.text("Textura crujiente perfecta", margin + 5, yPos);
+    yPos += 5;
+    doc.circle(margin + 2, yPos - 1.5, 1, 'F');
+    doc.text("Sabor premium para uso comercial y retail", margin + 5, yPos);
+    yPos += 5;
+    doc.circle(margin + 2, yPos - 1.5, 1, 'F');
+    doc.text("Corte fino y uniforme para maxima calidad", margin + 5, yPos);
+    yPos += 7;
+    
+    doc.setFontSize(12);
+    doc.setFont("helvetica", "bold");
+    doc.setFillColor(34, 139, 34);
+    doc.rect(margin - 2, yPos - 5, 40, 8, 'F');
+    doc.setTextColor(255, 255, 255);
+    doc.text("$110 DOP/lb", margin, yPos);
+    yPos += 10;
+    doc.setTextColor(0, 0, 0);
+    doc.setFont("helvetica", "italic");
+    doc.setFontSize(9);
+    doc.text("Producto congelado  |  Mantener refrigerado", margin, yPos);
+    yPos += 12;
+
     // New page for contact info
     doc.addPage();
     yPos = 20;
@@ -438,12 +536,14 @@ const ProductCatalog = () => {
         </div>
 
         <Tabs defaultValue="palm" className="w-full">
-          <TabsList className="grid w-full grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 mb-6 sm:mb-8 h-auto">
+          <TabsList className="grid w-full grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 mb-6 sm:mb-8 h-auto gap-2">
             <TabsTrigger value="palm">Aceite de Palma</TabsTrigger>
             <TabsTrigger value="soya">Soya</TabsTrigger>
             <TabsTrigger value="girasol">Girasol</TabsTrigger>
             <TabsTrigger value="manteca">Manteca</TabsTrigger>
             <TabsTrigger value="margarina">Margarina</TabsTrigger>
+            <TabsTrigger value="fries">Papas Fritas</TabsTrigger>
+            <TabsTrigger value="chips">Chips</TabsTrigger>
           </TabsList>
 
           {/* Aceite Bonlife RBD Palm Olein */}
@@ -930,6 +1030,118 @@ const ProductCatalog = () => {
                   <p className="text-sm">
                     <strong>Presentaciones:</strong> 15kg | 
                     <strong className="ml-3">Vida util:</strong> 2 años (cerrado)
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          {/* Papas Fritas Premium */}
+          <TabsContent value="fries">
+            <Card className="border-red-600/20">
+              <CardHeader className="bg-gradient-to-r from-red-600 to-red-700">
+                <CardTitle className="text-3xl mb-2 text-white">Papas Fritas Premium Altura Foods</CardTitle>
+                <CardDescription className="text-lg text-white/90">
+                  Papas cortadas de calidad superior para uso comercial
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-6 pt-6">
+                <div className="mb-6">
+                  <img src={frenchFriesImage} alt="French Fries Product" className="w-full h-64 object-cover rounded-lg" />
+                </div>
+                
+                <div>
+                  <h4 className="font-semibold text-lg mb-3">Descripcion</h4>
+                  <p className="text-muted-foreground">
+                    Papas fritas premium cortadas uniformemente para uso comercial y restaurantes. Producto congelado de la mas alta calidad.
+                  </p>
+                </div>
+
+                <div>
+                  <h4 className="font-semibold text-lg mb-3">Beneficios</h4>
+                  <ul className="space-y-2">
+                    <li className="flex items-start gap-2">
+                      <span className="text-red-600">✓</span>
+                      <span>Corte uniforme para coccion pareja</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-red-600">✓</span>
+                      <span>Ideal para freidoras industriales y comerciales</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-red-600">✓</span>
+                      <span>Papas frescas seleccionadas de primera calidad</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-red-600">✓</span>
+                      <span>Textura crujiente por fuera, suave por dentro</span>
+                    </li>
+                  </ul>
+                  <div className="mt-4">
+                    <Badge variant="default" className="text-base px-4 py-2 bg-green-600 text-white">$95 DOP/lb</Badge>
+                  </div>
+                </div>
+
+                <div className="bg-red-600/10 rounded-lg p-4">
+                  <p className="text-sm">
+                    <strong>Presentacion:</strong> Producto congelado | 
+                    <strong className="ml-3">Almacenamiento:</strong> Mantener refrigerado a -18°C
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          {/* Chips/Papitas Premium */}
+          <TabsContent value="chips">
+            <Card className="border-orange-600/20">
+              <CardHeader className="bg-gradient-to-r from-orange-600 to-orange-700">
+                <CardTitle className="text-3xl mb-2 text-white">Chips/Papitas Premium Altura Foods</CardTitle>
+                <CardDescription className="text-lg text-white/90">
+                  Papitas crujientes de calidad superior
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-6 pt-6">
+                <div className="mb-6">
+                  <img src={potatoChipsImage} alt="Potato Chips Product" className="w-full h-64 object-cover rounded-lg" />
+                </div>
+                
+                <div>
+                  <h4 className="font-semibold text-lg mb-3">Descripcion</h4>
+                  <p className="text-muted-foreground">
+                    Chips de papa premium con textura crujiente perfecta. Corte fino y uniforme para maxima calidad en cada porcion.
+                  </p>
+                </div>
+
+                <div>
+                  <h4 className="font-semibold text-lg mb-3">Beneficios</h4>
+                  <ul className="space-y-2">
+                    <li className="flex items-start gap-2">
+                      <span className="text-orange-600">✓</span>
+                      <span>Textura crujiente perfecta</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-orange-600">✓</span>
+                      <span>Sabor premium para uso comercial y retail</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-orange-600">✓</span>
+                      <span>Corte fino y uniforme para maxima calidad</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-orange-600">✓</span>
+                      <span>Ideal para snacks, acompañamientos y combos</span>
+                    </li>
+                  </ul>
+                  <div className="mt-4">
+                    <Badge variant="default" className="text-base px-4 py-2 bg-green-600 text-white">$110 DOP/lb</Badge>
+                  </div>
+                </div>
+
+                <div className="bg-orange-600/10 rounded-lg p-4">
+                  <p className="text-sm">
+                    <strong>Presentacion:</strong> Producto congelado | 
+                    <strong className="ml-3">Almacenamiento:</strong> Mantener refrigerado a -18°C
                   </p>
                 </div>
               </CardContent>
