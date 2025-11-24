@@ -57,30 +57,30 @@ export const BenefitsSection = () => {
   ];
 
   return (
-    <section className="py-24 bg-secondary">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+    <section className="py-12 sm:py-16 md:py-24 bg-secondary">
+      <div className="container mx-auto px-4 sm:px-6">
+        <div className="text-center mb-8 sm:mb-12 md:mb-16">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-3 sm:mb-4 px-4">
             Por Qué Elegir Bonlife
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto px-4">
             Calidad superior, ahorro real y servicio confiable para su operación
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {benefits.map((benefit, index) => (
             <div
               key={index}
-              className="bg-card rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-border hover:border-primary group"
+              className="bg-card rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-border hover:border-primary group"
             >
               <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-6 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300">
                 {benefit.icon}
               </div>
-              <h3 className="text-2xl font-bold text-card-foreground mb-3">
+              <h3 className="text-xl sm:text-2xl font-bold text-card-foreground mb-3">
                 {benefit.title}
               </h3>
-              <p className="text-muted-foreground leading-relaxed">
+              <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
                 {benefit.description}
               </p>
             </div>

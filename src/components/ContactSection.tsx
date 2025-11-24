@@ -1,22 +1,22 @@
 export const ContactSection = () => {
   return (
-    <section id="contacto" className="py-24 bg-gradient-to-br from-primary to-premium-dark">
-      <div className="container mx-auto px-6">
+    <section id="contacto" className="py-12 sm:py-16 md:py-24 bg-gradient-to-br from-primary to-premium-dark">
+      <div className="container mx-auto px-4 sm:px-6">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+          <div className="text-center mb-8 sm:mb-12">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3 sm:mb-4 px-4">
               Solicite Su Cotización
             </h2>
-            <p className="text-xl text-white/90">
+            <p className="text-base sm:text-lg md:text-xl text-white/90 px-4">
               Respuesta garantizada en menos de 24 horas
             </p>
           </div>
 
           <div className="bg-white rounded-3xl shadow-2xl overflow-hidden">
             <div className="grid md:grid-cols-2">
-              <div className="bg-gradient-to-br from-premium to-premium-dark p-8 md:p-12 text-white">
-                <h3 className="text-2xl font-bold mb-6">Información de Contacto</h3>
-                <div className="space-y-6">
+              <div className="bg-gradient-to-br from-premium to-premium-dark p-6 sm:p-8 md:p-12 text-white">
+                <h3 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">Información de Contacto</h3>
+                <div className="space-y-4 sm:space-y-6">
                   <div className="flex items-start gap-4">
                     <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0">
                       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -68,8 +68,8 @@ export const ContactSection = () => {
                 </div>
               </div>
 
-              <div className="p-8 md:p-12">
-                <form className="space-y-6">
+              <div className="p-6 sm:p-8 md:p-12">
+                <form className="space-y-4 sm:space-y-6">
                   <div>
                     <label className="block text-sm font-semibold text-foreground mb-2">
                       Nombre Completo

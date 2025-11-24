@@ -50,30 +50,30 @@ export const SavingsCalculator = () => {
   const changesSaved = currentOilChangesPerMonth - bonlifeOilChangesPerMonth;
 
   return (
-    <section className="py-24 bg-gradient-to-br from-secondary to-background">
-      <div className="container mx-auto px-6">
+    <section className="py-12 sm:py-16 md:py-24 bg-gradient-to-br from-secondary to-background">
+      <div className="container mx-auto px-4 sm:px-6">
         <div className="max-w-6xl mx-auto">
           {/* Header */}
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-3 bg-premium text-white px-6 py-3 rounded-full mb-4">
-              <Calculator className="w-6 h-6" />
-              <span className="font-bold text-lg">CALCULADORA DE AHORRO</span>
+          <div className="text-center mb-8 sm:mb-12">
+            <div className="inline-flex items-center gap-2 sm:gap-3 bg-premium text-white px-4 sm:px-6 py-2 sm:py-3 rounded-full mb-4 text-sm sm:text-base">
+              <Calculator className="w-4 h-4 sm:w-6 sm:h-6" />
+              <span className="font-bold">CALCULADORA DE AHORRO</span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 px-4">
               ¿Cuánto Puede <span className="text-premium">Ahorrar Su Restaurante</span>?
             </h2>
-            <p className="text-xl text-muted-foreground">
+            <p className="text-base sm:text-lg md:text-xl text-muted-foreground px-4">
               Compare su aceite actual con Bonlife - vea el ahorro real en todos los aspectos
             </p>
           </div>
 
           {/* Calculator Card */}
-          <Card className="p-8 md:p-12 bg-white shadow-2xl border-2 border-gold/20">
+          <Card className="p-4 sm:p-6 md:p-8 lg:p-12 bg-white shadow-2xl border-2 border-gold/20">
             {/* Input Section */}
-            <div className="grid md:grid-cols-2 gap-8 mb-10">
+            <div className="grid md:grid-cols-2 gap-6 sm:gap-8 mb-8 sm:mb-10">
               {/* Current Oil Inputs */}
-              <div className="space-y-6">
-                <h3 className="text-2xl font-bold text-center mb-6 text-destructive">Su Aceite Actual</h3>
+              <div className="space-y-4 sm:space-y-6">
+                <h3 className="text-xl sm:text-2xl font-bold text-center mb-4 sm:mb-6 text-destructive">Su Aceite Actual</h3>
                 
                 <div>
                   <Label htmlFor="currentBrand" className="text-base font-semibold mb-2 block">
@@ -129,8 +129,8 @@ export const SavingsCalculator = () => {
               </div>
 
               {/* Monthly Usage */}
-              <div className="space-y-6">
-                <h3 className="text-2xl font-bold text-center mb-6 text-premium">Bonlife RBD Palma</h3>
+              <div className="space-y-4 sm:space-y-6">
+                <h3 className="text-xl sm:text-2xl font-bold text-center mb-4 sm:mb-6 text-premium">Bonlife RBD Palma</h3>
                 
                 <div>
                   <Label htmlFor="monthlyHours" className="text-base font-semibold mb-2 block">
@@ -164,11 +164,11 @@ export const SavingsCalculator = () => {
             </div>
 
             {/* Comparison Results */}
-            <div className="grid md:grid-cols-2 gap-6 mb-10">
+            <div className="grid md:grid-cols-2 gap-4 sm:gap-6 mb-8 sm:mb-10">
               {/* Current Oil Cost */}
-              <div className="bg-gradient-to-br from-destructive/90 to-destructive rounded-2xl p-6 text-white">
-                <h4 className="text-lg font-bold mb-4 opacity-90">Costo Mensual Actual</h4>
-                <div className="text-5xl font-bold mb-2">
+              <div className="bg-gradient-to-br from-destructive/90 to-destructive rounded-2xl p-4 sm:p-6 text-white">
+                <h4 className="text-base sm:text-lg font-bold mb-3 sm:mb-4 opacity-90">Costo Mensual Actual</h4>
+                <div className="text-3xl sm:text-4xl md:text-5xl font-bold mb-2">
                   RD$ {currentMonthlyCost.toLocaleString('es-DO', { maximumFractionDigits: 0 })}
                 </div>
                 <div className="text-sm opacity-90">
@@ -177,14 +177,14 @@ export const SavingsCalculator = () => {
               </div>
 
               {/* Bonlife Cost */}
-              <div className="bg-gradient-to-br from-premium to-premium-dark rounded-2xl p-6 text-white">
-                <h4 className="text-lg font-bold mb-4 flex items-center gap-2">
+              <div className="bg-gradient-to-br from-premium to-premium-dark rounded-2xl p-4 sm:p-6 text-white">
+                <h4 className="text-base sm:text-lg font-bold mb-3 sm:mb-4 flex items-center gap-2">
                   <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 text-gold">
                     <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
                   </svg>
                   Costo Mensual con Bonlife
                 </h4>
-                <div className="text-5xl font-bold text-gold mb-2">
+                <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-gold mb-2">
                   RD$ {bonlifeMonthlyCost.toLocaleString('es-DO', { maximumFractionDigits: 0 })}
                 </div>
                 <div className="text-sm opacity-90">
@@ -194,16 +194,16 @@ export const SavingsCalculator = () => {
             </div>
 
             {/* Savings Highlight */}
-            <div className="bg-gradient-to-r from-gold/20 to-gold/10 rounded-2xl p-8 mb-10 border-2 border-gold">
+            <div className="bg-gradient-to-r from-gold/20 to-gold/10 rounded-2xl p-4 sm:p-6 md:p-8 mb-8 sm:mb-10 border-2 border-gold">
               <div className="text-center">
-                <div className="text-lg font-semibold text-foreground mb-2">SU AHORRO TOTAL</div>
-                <div className="text-6xl md:text-7xl font-bold text-premium mb-3">
+                <div className="text-base sm:text-lg font-semibold text-foreground mb-2">SU AHORRO TOTAL</div>
+                <div className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-premium mb-3">
                   RD$ {monthlySavings.toLocaleString('es-DO', { maximumFractionDigits: 0 })}
                 </div>
-                <div className="text-2xl font-bold text-destructive mb-6">
+                <div className="text-lg sm:text-xl md:text-2xl font-bold text-destructive mb-4 sm:mb-6">
                   Ahorra {savingsPercent}% cada mes
                 </div>
-                <div className="grid md:grid-cols-2 gap-6 pt-6 border-t-2 border-gold/30">
+                <div className="grid md:grid-cols-2 gap-4 sm:gap-6 pt-4 sm:pt-6 border-t-2 border-gold/30">
                   <div>
                     <div className="text-sm font-semibold text-muted-foreground mb-1">Ahorro Mensual</div>
                     <div className="text-3xl font-bold text-premium">
@@ -221,9 +221,9 @@ export const SavingsCalculator = () => {
             </div>
 
             {/* Detailed Savings Breakdown */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
               {/* Cost per Hour Savings */}
-              <Card className="p-6 bg-gradient-to-br from-primary/5 to-primary/10 border-primary/20">
+              <Card className="p-4 sm:p-6 bg-gradient-to-br from-primary/5 to-primary/10 border-primary/20">
                 <div className="flex items-start gap-3">
                   <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
                     <DollarSign className="w-5 h-5 text-primary-foreground" />
@@ -241,7 +241,7 @@ export const SavingsCalculator = () => {
               </Card>
 
               {/* Oil Changes Savings */}
-              <Card className="p-6 bg-gradient-to-br from-premium/5 to-premium/10 border-premium/20">
+              <Card className="p-4 sm:p-6 bg-gradient-to-br from-premium/5 to-premium/10 border-premium/20">
                 <div className="flex items-start gap-3">
                   <div className="w-10 h-10 bg-premium rounded-full flex items-center justify-center flex-shrink-0">
                     <TrendingDown className="w-5 h-5 text-white" />
@@ -259,7 +259,7 @@ export const SavingsCalculator = () => {
               </Card>
 
               {/* Container Savings */}
-              <Card className="p-6 bg-gradient-to-br from-gold/5 to-gold/10 border-gold/20">
+              <Card className="p-4 sm:p-6 bg-gradient-to-br from-gold/5 to-gold/10 border-gold/20">
                 <div className="flex items-start gap-3">
                   <div className="w-10 h-10 bg-gold rounded-full flex items-center justify-center flex-shrink-0">
                     <Droplet className="w-5 h-5 text-white" />
@@ -277,7 +277,7 @@ export const SavingsCalculator = () => {
               </Card>
 
               {/* Time Savings */}
-              <Card className="p-6 bg-gradient-to-br from-secondary to-secondary/50 border-border">
+              <Card className="p-4 sm:p-6 bg-gradient-to-br from-secondary to-secondary/50 border-border">
                 <div className="flex items-start gap-3">
                   <div className="w-10 h-10 bg-foreground rounded-full flex items-center justify-center flex-shrink-0">
                     <Clock className="w-5 h-5 text-background" />
@@ -297,8 +297,8 @@ export const SavingsCalculator = () => {
           </Card>
 
           {/* Bottom CTA */}
-          <div className="text-center mt-12">
-            <p className="text-xl text-muted-foreground mb-4">
+          <div className="text-center mt-8 sm:mt-12 px-4">
+            <p className="text-base sm:text-lg md:text-xl text-muted-foreground mb-3 sm:mb-4">
               Cálculos basados en datos reales del mercado y pruebas de estabilidad térmica
             </p>
             <p className="text-lg font-semibold text-premium">
