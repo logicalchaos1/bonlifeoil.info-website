@@ -424,11 +424,11 @@ const ProductCatalog = () => {
   };
 
   return (
-    <section className="py-20 px-4 bg-gradient-to-b from-background to-muted/20">
+    <section className="py-12 sm:py-16 md:py-20 px-4 bg-gradient-to-b from-background to-muted/20">
       <div className="container mx-auto max-w-7xl">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold mb-4">Catalogo de Productos Bonlife</h2>
-          <p className="text-xl text-muted-foreground mb-6">
+        <div className="text-center mb-8 sm:mb-12">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4">Catalogo de Productos Bonlife</h2>
+          <p className="text-base sm:text-lg md:text-xl text-muted-foreground mb-4 sm:mb-6">
             El verdadero aceite vegetal con el doble de duracion
           </p>
           <Button onClick={generatePDF} size="lg" className="gap-2">
@@ -438,7 +438,7 @@ const ProductCatalog = () => {
         </div>
 
         <Tabs defaultValue="palm" className="w-full">
-          <TabsList className="grid w-full grid-cols-2 lg:grid-cols-5 mb-8">
+          <TabsList className="grid w-full grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 mb-6 sm:mb-8 h-auto">
             <TabsTrigger value="palm">Aceite de Palma</TabsTrigger>
             <TabsTrigger value="soya">Soya</TabsTrigger>
             <TabsTrigger value="girasol">Girasol</TabsTrigger>
