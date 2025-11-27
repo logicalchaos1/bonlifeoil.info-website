@@ -5,11 +5,13 @@ import { BenefitsSection } from "@/components/BenefitsSection";
 import { ContactSection } from "@/components/ContactSection";
 import ProductCatalog from "@/components/ProductCatalog";
 import { Button } from "@/components/ui/button";
-import { Printer, Download, MessageCircle, BookOpen } from "lucide-react";
+import { Printer, Download, MessageCircle, BookOpen, FileText } from "lucide-react";
 import { generateCatalogPDF } from "@/utils/generateCatalogPDF";
 import { generateBookletPDF } from "@/utils/generateBookletPDF";
+import { useNavigate } from "react-router-dom";
 
 const Index = () => {
+  const navigate = useNavigate();
   const handlePrint = () => {
     window.print();
   };
@@ -26,6 +28,15 @@ const Index = () => {
     <div className="min-h-screen">
       {/* Action Buttons - Fixed position - Mobile optimized */}
       <div className="no-print fixed top-2 right-2 sm:top-4 sm:right-4 z-50 flex flex-col gap-2">
+        <Button 
+          onClick={() => navigate("/formulario-comprador")}
+          size="sm"
+          className="gap-1 shadow-lg bg-primary hover:bg-primary/90 text-primary-foreground text-xs sm:text-sm sm:gap-2 h-8 sm:h-10 px-2 sm:px-4"
+        >
+          <FileText className="w-3 h-3 sm:w-4 sm:h-4" />
+          <span className="hidden sm:inline">Formulario Comprador</span>
+          <span className="sm:hidden">Formulario</span>
+        </Button>
         <Button 
           onClick={handleDownloadBooklet}
           size="sm"
