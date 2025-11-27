@@ -26,6 +26,7 @@ import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import bonlifeLogo from "@/assets/bonlife-logo.png";
 
 const formSchema = z.object({
   rnc: z.string().min(9, "RNC debe tener al menos 9 dígitos").max(11, "RNC debe tener máximo 11 dígitos"),
@@ -99,6 +100,11 @@ const BuyersForm = () => {
         <div className="max-w-4xl mx-auto">
           <div className="bg-card rounded-lg shadow-lg p-6 md:p-8 mb-8">
             <div className="text-center mb-8">
+              <img 
+                src={bonlifeLogo} 
+                alt="Bonlife Logo" 
+                className="h-16 md:h-20 mx-auto mb-4"
+              />
               <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-2">
                 Formulario de Nuevo Cliente
               </h1>
