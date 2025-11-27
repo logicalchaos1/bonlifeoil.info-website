@@ -39,6 +39,8 @@ const formSchema = z.object({
   quantity: z.string().min(1, "Cantidad es requerida"),
   deliveryAddress: z.string().max(300).optional(),
   notes: z.string().max(500).optional(),
+  signedBy: z.string().min(2, "Nombre del firmante es requerido").max(100),
+  signedTitle: z.string().min(2, "Cargo del firmante es requerido").max(100),
 });
 
 type FormValues = z.infer<typeof formSchema>;
@@ -61,6 +63,8 @@ const BuyersForm = () => {
       quantity: "",
       deliveryAddress: "",
       notes: "",
+      signedBy: "",
+      signedTitle: "",
     },
   });
 
@@ -335,6 +339,75 @@ const BuyersForm = () => {
                     </FormItem>
                   )}
                 />
+
+                <div className="border-t border-border pt-6 mt-6">
+                  <h3 className="font-semibold text-lg mb-4">Firma y Sello</h3>
+                  <div className="bg-accent/10 border border-border rounded-lg p-4 mb-6">
+                    <p className="text-sm text-muted-foreground mb-2">
+                      <strong className="text-foreground">Importante:</strong> Este formulario debe ser firmado y sellado con el sello oficial de la empresa.
+                    </p>
+                    <p className="text-sm text-muted-foreground">
+                      Al imprimir este formulario, asegúrese de colocar el sello de la empresa en el espacio designado abajo.
+                    </p>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <FormField
+                      control={form.control}
+                      name="signedBy"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Firmado por (Nombre Completo) *</FormLabel>
+                          <FormControl>
+                            <Input placeholder="Nombre del representante legal" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={form.control}
+                      name="signedTitle"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Cargo *</FormLabel>
+                          <FormControl>
+                            <Input placeholder="Gerente General, Director, etc." {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+
+                  <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="border-2 border-dashed border-border rounded-lg p-6 bg-accent/5">
+                      <div className="text-center mb-3">
+                        <p className="text-sm font-medium text-muted-foreground mb-2">ESPACIO PARA FIRMA</p>
+                        <div className="border-b-2 border-foreground/20 w-full h-16 mb-2"></div>
+                        <p className="text-xs text-muted-foreground">Firma del Representante Legal</p>
+                      </div>
+                    </div>
+
+                    <div className="border-2 border-dashed border-border rounded-lg p-6 bg-accent/5">
+                      <div className="text-center mb-3">
+                        <p className="text-sm font-medium text-muted-foreground mb-2">ESPACIO PARA SELLO</p>
+                        <div className="border-2 border-foreground/20 rounded-full w-24 h-24 mx-auto mb-2 flex items-center justify-center">
+                          <p className="text-xs text-muted-foreground text-center">Coloque aquí<br/>el sello<br/>de la empresa</p>
+                        </div>
+                        <p className="text-xs text-muted-foreground">Sello Oficial de la Empresa</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="mt-4 p-4 bg-primary/5 border border-primary/20 rounded-lg">
+                    <p className="text-xs text-muted-foreground">
+                      <strong className="text-foreground">Nota:</strong> Este documento tiene validez legal cuando está debidamente firmado y sellado. 
+                      Se recomienda imprimir dos copias: una para Apidra Group P&E SRL y otra para sus registros.
+                    </p>
+                  </div>
+                </div>
 
                 <div className="flex flex-col sm:flex-row gap-4 pt-6">
                   <Button type="submit" size="lg" className="flex-1">
