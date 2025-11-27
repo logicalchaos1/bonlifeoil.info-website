@@ -28,6 +28,38 @@ import { ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import bonlifeLogo from "@/assets/bonlife-logo.png";
 
+const printStyles = `
+  @media print {
+    @page {
+      margin: 1cm;
+    }
+    
+    .print-hide {
+      display: none !important;
+    }
+    
+    .form-section {
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+    
+    .field-group {
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+    
+    h1, h2, h3 {
+      page-break-after: avoid;
+      break-after: avoid;
+    }
+    
+    .form-field {
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+  }
+`;
+
 const formSchema = z.object({
   rnc: z.string().min(9, "RNC debe tener al menos 9 dígitos").max(11, "RNC debe tener máximo 11 dígitos"),
   companyName: z.string().min(2, "Nombre de la empresa es requerido").max(200),
@@ -87,11 +119,12 @@ const BuyersForm = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-accent/5">
+      <style>{printStyles}</style>
       <div className="container mx-auto px-4 py-8 md:py-12">
         <Button
           variant="ghost"
           onClick={() => navigate("/")}
-          className="mb-6"
+          className="mb-6 print-hide"
         >
           <ArrowLeft className="mr-2 h-4 w-4" />
           Volver al Inicio
@@ -174,7 +207,7 @@ const BuyersForm = () => {
                   )}
                 />
 
-                <div className="border-t border-border pt-6">
+                <div className="border-t border-border pt-6 form-section">
                   <h3 className="font-semibold text-lg mb-4">Datos del Contacto</h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <FormField
@@ -221,59 +254,33 @@ const BuyersForm = () => {
                   />
                 </div>
 
-                <div className="border-t border-border pt-6">
+                <div className="border-t border-border pt-6 form-section">
                   <h3 className="font-semibold text-lg mb-4">Información del Negocio</h3>
                   
                   <FormField
                     control={form.control}
                     name="businessType"
                     render={({ field }) => (
-                      <FormItem className="mb-6">
+                      <FormItem className="mb-6 field-group">
                         <FormLabel>Tipo de Negocio *</FormLabel>
-                        <Select onValueChange={field.onChange} defaultValue={field.value}>
-                          <FormControl>
-                            <SelectTrigger>
-                              <SelectValue placeholder="Seleccione tipo de negocio" />
-                            </SelectTrigger>
-                          </FormControl>
-                          <SelectContent>
-                            <SelectItem value="restaurant">Restaurante</SelectItem>
-                            <SelectItem value="hotel">Hotel</SelectItem>
-                            <SelectItem value="bakery">Panadería</SelectItem>
-                            <SelectItem value="supermarket">Supermercado</SelectItem>
-                            <SelectItem value="distributor">Distribuidor</SelectItem>
-                            <SelectItem value="catering">Catering</SelectItem>
-                            <SelectItem value="other">Otro</SelectItem>
-                          </SelectContent>
-                        </Select>
+                        <FormControl>
+                          <Input placeholder="Ej: Restaurante, Hotel, Panadería, Supermercado, Distribuidor, Catering" {...field} />
+                        </FormControl>
                         <FormMessage />
                       </FormItem>
                     )}
                   />
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 field-group">
                     <FormField
                       control={form.control}
                       name="product"
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel>Producto *</FormLabel>
-                          <Select onValueChange={field.onChange} defaultValue={field.value}>
-                            <FormControl>
-                              <SelectTrigger>
-                                <SelectValue placeholder="Seleccione producto" />
-                              </SelectTrigger>
-                            </FormControl>
-                            <SelectContent>
-                              <SelectItem value="aceite-girasol">Aceite de Girasol</SelectItem>
-                              <SelectItem value="aceite-soya">Aceite de Soya</SelectItem>
-                              <SelectItem value="manteca">Manteca</SelectItem>
-                              <SelectItem value="margarina">Margarina</SelectItem>
-                              <SelectItem value="aceite-palma">Aceite de Palma</SelectItem>
-                              <SelectItem value="papas-fritas">Papas Fritas</SelectItem>
-                              <SelectItem value="chips">Chips/Papitas</SelectItem>
-                            </SelectContent>
-                          </Select>
+                          <FormControl>
+                            <Input placeholder="Ej: Aceite de Girasol, Aceite de Soya, Manteca, Margarina" {...field} />
+                          </FormControl>
                           <FormMessage />
                         </FormItem>
                       )}
@@ -346,7 +353,7 @@ const BuyersForm = () => {
                   )}
                 />
 
-                <div className="border-t border-border pt-6 mt-6">
+                <div className="border-t border-border pt-6 mt-6 form-section">
                   <h3 className="font-semibold text-lg mb-4">Firma y Sello</h3>
                   <div className="bg-accent/10 border border-border rounded-lg p-4 mb-6">
                     <p className="text-sm text-muted-foreground mb-2">
@@ -415,7 +422,7 @@ const BuyersForm = () => {
                   </div>
                 </div>
 
-                <div className="flex flex-col sm:flex-row gap-4 pt-6">
+                <div className="flex flex-col sm:flex-row gap-4 pt-6 print-hide">
                   <Button type="submit" size="lg" className="flex-1">
                     Enviar Solicitud
                   </Button>
