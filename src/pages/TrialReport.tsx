@@ -87,11 +87,11 @@ const TrialReport = () => {
   const testimonials = [
     {
       role: "Chef Ejecutivo",
-      quote: "Los alimentos fritos están saliendo con mejor calidad. El aceite se comporta mejor y dura mucho más tiempo que el que usábamos antes.",
+      quote: "El aceite dura más, se nota la diferencia.",
     },
     {
       role: "Personal de Cocina",
-      quote: "Notamos que el aceite Bonlife no hace tanta espuma y los productos fritos tienen mejor textura y color dorado.",
+      quote: "El aceite no hizo espuma, el producto salía con mejor textura, y el aceite se comportaba mejor.",
     },
   ];
 
@@ -241,7 +241,7 @@ const TrialReport = () => {
         </div>
 
         {/* Cost Comparison */}
-        <Card className="print-avoid-break print-break-before border-2 border-gold/30">
+        <Card className="print-break-before border-2 border-gold/30">
           <CardHeader className="bg-gradient-to-r from-gold/20 to-gold/10">
             <CardTitle className="text-2xl text-premium flex items-center gap-2">
               <DollarSign className="w-6 h-6" />
@@ -336,7 +336,7 @@ const TrialReport = () => {
         </Card>
 
         {/* Timeline */}
-        <Card className="print-break-before">
+        <Card className="print-avoid-break">
           <CardHeader className="bg-secondary/50">
             <CardTitle className="text-2xl text-premium flex items-center gap-2">
               <Clock className="w-6 h-6" />
