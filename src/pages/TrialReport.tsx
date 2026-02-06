@@ -25,7 +25,7 @@ const TrialReport = () => {
     endDate: "5 de Febrero, 2025",
     duration: 15,
     garrafonesUsed: 10,
-    previousOil: "La Hoya (Aceite de Soya)",
+    previousOil: "La Joya (Aceite de Soya)",
     filteringSchedule: "2 veces por semana",
     efficiencyGain: "30%",
   };
@@ -36,7 +36,7 @@ const TrialReport = () => {
       title: "Inicio del Programa Piloto",
       description: "Instalación inicial de aceite Bonlife RBD Palma 99.9% puro en freidoras principales.",
       photos: [trialPhoto1, trialPhoto2, trialPhoto3],
-      observations: "Reemplazo completo del aceite La Hoya por Bonlife. Capacitación inicial al personal de cocina."
+      observations: "Reemplazo completo del aceite La Joya por Bonlife. Capacitación inicial al personal de cocina."
     },
     {
       date: "25 de Enero, 2025",
@@ -78,7 +78,7 @@ const TrialReport = () => {
       itbis: 864,
     },
     competitor: {
-      name: "La Hoya (Soya)",
+      name: "La Joya (Soya)",
       pricePerUnit: 2000,
       unitsNeeded: 4,
       totalCost: 8000,
@@ -253,7 +253,7 @@ const TrialReport = () => {
                 <div className="flex items-center gap-3 mb-4">
                   <AlertTriangle className="w-8 h-8 text-destructive" />
                   <div>
-                    <h3 className="text-xl font-bold text-destructive">La Hoya (Soya)</h3>
+                    <h3 className="text-xl font-bold text-destructive">La Joya (Soya)</h3>
                     <p className="text-sm text-muted-foreground">Aceite Anterior - No Recomendado</p>
                   </div>
                 </div>
@@ -289,6 +289,11 @@ const TrialReport = () => {
               <p className="text-4xl font-bold text-gold mb-2">RD$ 3,776 por ciclo</p>
               <p className="text-lg opacity-90">Equivalente a un <span className="font-bold text-gold">40% de ahorro</span> en costos de aceite</p>
             </div>
+            
+            {/* Price Disclaimer */}
+            <p className="text-xs text-muted-foreground text-center mt-4 italic">
+              * Los precios mostrados son estimados de referencia y pueden variar según proveedor y fecha de compra.
+            </p>
           </CardContent>
         </Card>
 
@@ -346,7 +351,7 @@ const TrialReport = () => {
               <div>
                 <h4 className="font-bold text-lg text-destructive mb-3 flex items-center gap-2">
                   <AlertTriangle className="w-5 h-5" />
-                  Riesgos del Aceite de Soya (La Hoya)
+                  Riesgos del Aceite de Soya (La Joya)
                 </h4>
                 <ul className="space-y-2 text-muted-foreground">
                   <li className="flex items-start gap-2">
