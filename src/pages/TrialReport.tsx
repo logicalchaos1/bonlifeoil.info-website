@@ -49,7 +49,7 @@ const TrialReport = () => {
       date: "29 de Enero, 2025",
       title: "Evaluación de Medio Término",
       description: "Inspección del estado del aceite y rendimiento de freidoras.",
-      photos: [trialPhoto4],
+      photos: [],
       observations: "Coloración natural del aceite de palma visible. Personal informado sobre diferencias visuales vs. aceite quemado."
     },
     {
@@ -60,11 +60,38 @@ const TrialReport = () => {
       observations: "Aceite en excelentes condiciones. Sin necesidad de cambio."
     },
     {
+      date: "2 de Febrero, 2025",
+      title: "Período de Interrupción",
+      description: "Agotamiento temporal del inventario de aceite Bonlife.",
+      photos: [],
+      observations: "El hotel utilizó su propio aceite (La Joya) temporalmente mientras se reabastecía el inventario de Bonlife. Este período sirvió como comparación directa del rendimiento.",
+      isWarning: true
+    },
+    {
+      date: "3 de Febrero, 2025",
+      title: "Reabastecimiento y Nuevas Muestras",
+      description: "Reanudación del programa con nuevos garrafones Bonlife y toma de muestras fotográficas.",
+      photos: [trialPhoto4, trialPhoto5],
+      observations: "Se documentó el estado de las freidoras y el inventario de garrafones. El aceite nuevo continúa en uso activo al cierre de este informe."
+    },
+    {
       date: "5 de Febrero, 2025",
-      title: "Finalización del Programa Piloto",
-      description: "Evaluación final y documentación de resultados.",
-      photos: [trialPhoto5],
-      observations: "Prueba exitosa completada. 10 garrafones utilizados con 30% más de rendimiento gracias al filtrado."
+      title: "Cierre del Programa Piloto",
+      description: "Evaluación final y documentación de resultados. Aceite Bonlife aún en uso.",
+      photos: [],
+      observations: "Prueba exitosa completada. 10 garrafones utilizados con 30% más de rendimiento gracias al filtrado. Nota: El aceite instalado el 3 de febrero continúa en operación.",
+      isSuccess: true
+    },
+  ];
+
+  const testimonials = [
+    {
+      role: "Chef Ejecutivo",
+      quote: "Los alimentos fritos están saliendo con mejor calidad. El aceite se comporta mejor y dura mucho más tiempo que el que usábamos antes.",
+    },
+    {
+      role: "Personal de Cocina",
+      quote: "Notamos que el aceite Bonlife no hace tanta espuma y los productos fritos tienen mejor textura y color dorado.",
     },
   ];
 
@@ -308,19 +335,37 @@ const TrialReport = () => {
           <CardContent className="p-6">
             <div className="space-y-8">
               {timeline.map((event, index) => (
-                <div key={index} className="print-avoid-break relative pl-8 border-l-2 border-premium/30 pb-8 last:pb-0">
-                  <div className="absolute left-[-9px] top-0 w-4 h-4 rounded-full bg-premium border-2 border-white" />
-                  <div className="mb-2">
-                    <span className="inline-block bg-gold/20 text-gold px-3 py-1 rounded-full text-sm font-semibold">
+                <div key={index} className={`print-avoid-break relative pl-8 border-l-2 pb-8 last:pb-0 ${
+                  event.isWarning ? "border-destructive/50" : event.isSuccess ? "border-primary/50" : "border-premium/30"
+                }`}>
+                  <div className={`absolute left-[-9px] top-0 w-4 h-4 rounded-full border-2 border-white ${
+                    event.isWarning ? "bg-destructive" : event.isSuccess ? "bg-primary" : "bg-premium"
+                  }`} />
+                  <div className="mb-2 flex flex-wrap items-center gap-2">
+                    <span className={`inline-block px-3 py-1 rounded-full text-sm font-semibold ${
+                      event.isWarning ? "bg-destructive/20 text-destructive" : "bg-gold/20 text-gold"
+                    }`}>
                       {event.date}
                     </span>
+                    {event.isWarning && (
+                      <span className="inline-block bg-destructive/10 text-destructive px-2 py-0.5 rounded text-xs font-medium">
+                        Período de Interrupción
+                      </span>
+                    )}
+                    {event.isSuccess && (
+                      <span className="inline-block bg-primary/10 text-primary px-2 py-0.5 rounded text-xs font-medium">
+                        Aceite Aún en Uso
+                      </span>
+                    )}
                   </div>
                   <h3 className="text-xl font-bold text-foreground mb-2">{event.title}</h3>
                   <p className="text-muted-foreground mb-3">{event.description}</p>
-                  <div className="bg-secondary/50 rounded-lg p-3 mb-4">
+                  <div className={`rounded-lg p-3 mb-4 ${
+                    event.isWarning ? "bg-destructive/10" : "bg-secondary/50"
+                  }`}>
                     <p className="text-sm"><strong>Observaciones:</strong> {event.observations}</p>
                   </div>
-                  {event.photos.length > 0 && (
+                  {event.photos && event.photos.length > 0 && (
                     <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                       {event.photos.map((photo, photoIndex) => (
                         <img
@@ -396,6 +441,39 @@ const TrialReport = () => {
                   </li>
                 </ul>
               </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Testimonials */}
+        <Card className="print-avoid-break border-2 border-gold/30">
+          <CardHeader className="bg-gradient-to-r from-gold/20 to-gold/10">
+            <CardTitle className="text-2xl text-premium flex items-center gap-2">
+              <Users className="w-6 h-6" />
+              Comentarios del Personal
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="p-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {testimonials.map((testimonial, index) => (
+                <div key={index} className="bg-secondary/30 rounded-xl p-6 border border-border">
+                  <div className="flex items-start gap-3">
+                    <div className="w-10 h-10 rounded-full bg-premium/20 flex items-center justify-center flex-shrink-0">
+                      <Users className="w-5 h-5 text-premium" />
+                    </div>
+                    <div>
+                      <p className="font-bold text-foreground mb-2">{testimonial.role}</p>
+                      <p className="text-muted-foreground italic">"{testimonial.quote}"</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="mt-6 p-4 bg-primary/10 rounded-lg border border-primary/20">
+              <p className="text-sm text-foreground">
+                <strong>Observación General:</strong> El personal de cocina notó mejoras significativas en la calidad de los alimentos fritos, 
+                menor formación de espuma, y una duración notablemente mayor del aceite en comparación con La Joya.
+              </p>
             </div>
           </CardContent>
         </Card>
