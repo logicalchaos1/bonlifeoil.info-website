@@ -69,17 +69,17 @@ const TrialReport = () => {
     },
     {
       date: "3 de Febrero, 2025",
-      title: "Continuación del Programa",
-      description: "Reabastecimiento de aceite Bonlife y toma de muestras fotográficas.",
+      title: "Reabastecimiento el Mismo Día",
+      description: "Entrega inmediata de nuevos garrafones Bonlife tras recibir notificación.",
       photos: [trialPhoto4, trialPhoto5],
-      observations: "Nuevos garrafones entregados y puestos en operación. El aceite continúa en uso activo al cierre de este informe."
+      observations: "Tan pronto como Bonlife fue notificado del agotamiento, se realizó la entrega de nuevos garrafones el mismo día. Se documentó el inventario y el estado de las freidoras."
     },
     {
       date: "5 de Febrero, 2025",
       title: "Cierre del Programa Piloto",
-      description: "Evaluación final y documentación de resultados. Aceite Bonlife aún en uso.",
+      description: "Evaluación final y documentación de resultados.",
       photos: [],
-      observations: "Prueba exitosa completada. 10 garrafones utilizados con 30% más de rendimiento gracias al filtrado. Nota: El aceite instalado el 3 de febrero continúa en operación.",
+      observations: "Prueba exitosa completada. De los 10 garrafones suministrados durante el piloto, aproximadamente 4 permanecen en inventario para uso continuo. El aceite instalado el 3 de febrero sigue en operación con excelente rendimiento.",
       isSuccess: true
     },
   ];
