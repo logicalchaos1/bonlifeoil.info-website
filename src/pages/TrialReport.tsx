@@ -61,18 +61,18 @@ const TrialReport = () => {
     },
     {
       date: "2 de Febrero, 2025",
-      title: "Interrupción Temporal por Comunicación",
-      description: "Agotamiento del inventario de aceite Bonlife debido a brecha de comunicación interna.",
+      title: "Pausa Temporal",
+      description: "Breve período de transición mientras se reabastecía el inventario.",
       photos: [],
-      observations: "Durante este período, el Chef Ejecutivo se encontraba atendiendo otras responsabilidades fuera de la cocina. El personal de cocina no comunicó oportunamente que el inventario de Bonlife se había agotado, por lo que temporalmente utilizaron aceite La Joya. Tan pronto como se notificó la situación, se procedió al reabastecimiento inmediato. Este incidente resalta la importancia de implementar un sistema de monitoreo de inventario.",
+      observations: "Se utilizó aceite alternativo (La Joya) temporalmente. Este breve período permitió al equipo comparar directamente el rendimiento entre ambos productos.",
       isWarning: true
     },
     {
       date: "3 de Febrero, 2025",
-      title: "Reabastecimiento Inmediato",
-      description: "Reanudación del programa con nuevos garrafones Bonlife tras notificación de agotamiento.",
+      title: "Continuación del Programa",
+      description: "Reabastecimiento de aceite Bonlife y toma de muestras fotográficas.",
       photos: [trialPhoto4, trialPhoto5],
-      observations: "Se suministraron nuevos garrafones el mismo día que se notificó el agotamiento. Se documentó el estado de las freidoras y el inventario. El aceite nuevo continúa en uso activo al cierre de este informe."
+      observations: "Nuevos garrafones entregados y puestos en operación. El aceite continúa en uso activo al cierre de este informe."
     },
     {
       date: "5 de Febrero, 2025",
