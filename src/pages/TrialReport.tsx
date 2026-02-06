@@ -120,9 +120,18 @@ const TrialReport = () => {
       <style>{`
         @media print {
           .no-print { display: none !important; }
-          .print-break-before { page-break-before: always; }
-          .print-break-after { page-break-after: always; }
-          .print-avoid-break { page-break-inside: avoid; }
+          .print-break-before { page-break-before: always; break-before: page; }
+          .print-break-after { page-break-after: always; break-after: page; }
+          .print-avoid-break { 
+            page-break-inside: avoid !important; 
+            break-inside: avoid !important;
+          }
+          .print-keep-together {
+            page-break-inside: avoid !important;
+            break-inside: avoid !important;
+            page-break-before: auto;
+            break-before: auto;
+          }
           body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
           .bg-premium { background-color: #1a365d !important; }
           .bg-gold { background-color: #d69e2e !important; }
@@ -310,17 +319,19 @@ const TrialReport = () => {
               </div>
             </div>
 
-            {/* Savings Summary */}
-            <div className="mt-6 bg-gradient-to-r from-premium to-premium-dark rounded-xl p-6 text-white text-center">
-              <p className="text-lg mb-2">AHORRO CON BONLIFE</p>
-              <p className="text-4xl font-bold text-gold mb-2">RD$ 3,776 por ciclo</p>
-              <p className="text-lg opacity-90">Equivalente a un <span className="font-bold text-gold">40% de ahorro</span> en costos de aceite</p>
+            {/* Savings Summary - Keep together with disclaimer */}
+            <div className="print-keep-together">
+              <div className="mt-6 bg-gradient-to-r from-premium to-premium-dark rounded-xl p-6 text-white text-center">
+                <p className="text-lg mb-2">AHORRO CON BONLIFE</p>
+                <p className="text-4xl font-bold text-gold mb-2">RD$ 3,776 por ciclo</p>
+                <p className="text-lg opacity-90">Equivalente a un <span className="font-bold text-gold">40% de ahorro</span> en costos de aceite</p>
+              </div>
+              
+              {/* Price Disclaimer */}
+              <p className="text-xs text-muted-foreground text-center mt-4 italic">
+                * Los precios mostrados son estimados de referencia y pueden variar según proveedor y fecha de compra.
+              </p>
             </div>
-            
-            {/* Price Disclaimer */}
-            <p className="text-xs text-muted-foreground text-center mt-4 italic">
-              * Los precios mostrados son estimados de referencia y pueden variar según proveedor y fecha de compra.
-            </p>
           </CardContent>
         </Card>
 
