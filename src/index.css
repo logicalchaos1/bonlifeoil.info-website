@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
-
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -36,69 +32,36 @@ All colors MUST be HSL.
     --input: 142 30% 88%;
     --ring: 142 76% 36%;
 
-    --radius: 0.75rem;
+    --radius: 1rem;
     
-    --gradient-primary: linear-gradient(135deg, hsl(142 76% 36%), hsl(142 76% 46%));
-    --gradient-hero: linear-gradient(180deg, hsl(142 76% 36% / 0.95), hsl(142 60% 25% / 0.9));
-    --shadow-premium: 0 10px 40px -10px hsl(142 76% 36% / 0.25);
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --gradient-premium: linear-gradient(135deg, hsl(142 76% 36%), hsl(142 60% 25%));
+    --gradient-gold: linear-gradient(135deg, hsl(45 93% 47%), hsl(35 90% 40%));
+    --shadow-premium: 0 20px 50px -12px rgba(0, 0, 0, 0.1);
+    --glass-bg: rgba(255, 255, 255, 0.8);
+    --glass-border: rgba(255, 255, 255, 0.2);
   }
 
   .dark {
     --background: 142 71% 8%;
     --foreground: 142 30% 96%;
-
     --card: 142 60% 12%;
     --card-foreground: 142 30% 96%;
-
     --popover: 142 60% 12%;
     --popover-foreground: 142 30% 96%;
-
     --primary: 142 76% 46%;
     --primary-foreground: 142 71% 8%;
-
     --secondary: 142 40% 18%;
     --secondary-foreground: 142 30% 96%;
-
     --muted: 142 40% 18%;
     --muted-foreground: 142 20% 60%;
-
     --accent: 45 93% 57%;
     --accent-foreground: 142 71% 8%;
-
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 142 30% 96%;
-
     --border: 142 40% 18%;
     --input: 142 40% 18%;
     --ring: 142 76% 46%;
-    
-    --gradient-primary: linear-gradient(135deg, hsl(142 76% 46%), hsl(142 76% 56%));
-    --gradient-hero: linear-gradient(180deg, hsl(142 60% 15% / 0.95), hsl(142 50% 10% / 0.9));
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --glass-bg: rgba(10, 20, 15, 0.8);
   }
 }
 
@@ -106,107 +69,20 @@ All colors MUST be HSL.
   * {
     @apply border-border;
   }
-
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased selection:bg-primary/20;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
 }
 
-/* Animation Delays */
-.animation-delay-200 {
-  animation-delay: 200ms;
+.glass-panel {
+  @apply bg-white/80 backdrop-blur-xl border border-white/20 shadow-premium;
 }
 
-.animation-delay-400 {
-  animation-delay: 400ms;
+.text-gradient {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary-dark;
 }
 
-.delay-500 {
-  animation-delay: 500ms;
-}
-
-.delay-1000 {
-  animation-delay: 1000ms;
-}
-
-/* Print Styles */
-@media print {
-  /* Hide elements that shouldn't be printed */
-  .no-print,
-  button:not(.keep-for-print),
-  nav,
-  .print-button,
-  header button,
-  .fixed,
-  .sticky {
-    display: none !important;
-  }
-
-  /* Reset page margins and backgrounds */
-  @page {
-    margin: 1.5cm;
-    size: A4;
-  }
-
-  body {
-    print-color-adjust: exact;
-    -webkit-print-color-adjust: exact;
-  }
-
-  /* Ensure content flows properly */
-  section {
-    page-break-inside: avoid;
-    break-inside: avoid;
-  }
-
-  /* Optimize tables for print */
-  table {
-    page-break-inside: avoid;
-  }
-
-  /* Ensure images print well */
-  img {
-    max-width: 100% !important;
-    page-break-inside: avoid;
-  }
-
-  /* Remove box shadows */
-  * {
-    box-shadow: none !important;
-    text-shadow: none !important;
-  }
-
-  /* Ensure colors print correctly */
-  .bg-gradient-to-r,
-  .bg-gradient-to-br,
-  .bg-gradient-to-b {
-    print-color-adjust: exact;
-    -webkit-print-color-adjust: exact;
-  }
-
-  /* Optimize card borders */
-  .border {
-    border: 1px solid #e5e7eb !important;
-  }
-
-  /* Ensure charts and graphs print */
-  canvas {
-    max-width: 100% !important;
-  }
-
-  /* Page breaks */
-  h1, h2, h3 {
-    page-break-after: avoid;
-  }
-
-  /* Links */
-  a[href]:after {
-    content: none;
-  }
-  
-  /* Optimize input fields for print */
-  input, select {
-    border: 1px solid #e5e7eb !important;
-    background: white !important;
-  }
+.hover-lift {
+  @apply transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl;
 }
