@@ -3,6 +3,7 @@
 import React from 'react';
 import { Check, X, Star, Info } from 'lucide-react';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { cn } from "@/lib/utils";
 
 export const ComparisonTable = () => {
   const competitors = [
