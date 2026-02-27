@@ -8,6 +8,7 @@ import { SavingsCalculator } from "@/components/SavingsCalculator";
 import { BenefitsSection } from "@/components/BenefitsSection";
 import { ContactSection } from "@/components/ContactSection";
 import ProductCatalog from "@/components/ProductCatalog";
+import DownloadsSection from "@/components/DownloadsSection";
 import { MessageCircle } from "lucide-react";
 
 const Index = () => {
@@ -30,6 +31,7 @@ const Index = () => {
             <SavingsCalculator />
             <BenefitsSection />
             <ProductCatalog />
+            <DownloadsSection />
             <ContactSection />
           </div>
         </div>
