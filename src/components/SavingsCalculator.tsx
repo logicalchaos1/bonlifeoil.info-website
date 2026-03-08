@@ -11,6 +11,8 @@ export const SavingsCalculator = () => {
   const [currentPrice, setCurrentPrice] = useState<string>("3074");
   const [currentVolume, setCurrentVolume] = useState<string>("20");
   const [monthlyHours, setMonthlyHours] = useState<string>("480");
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { once: true, margin: '-80px' });
 
   // Bonlife specs (25L container)
   const bonlifePrice = 4600; // Price without ITBIS
