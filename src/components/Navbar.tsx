@@ -25,6 +25,7 @@ const Navbar = () => {
     { name: 'Calculadora', href: '#calculadora' },
     { name: 'Productos', href: '#productos' },
     { name: 'Descargas', href: '#descargas' },
+    { name: 'Chef Partners', href: '/chef-partners' },
     { name: 'Contacto', href: '#contacto' },
   ];
 
@@ -46,18 +47,31 @@ const Navbar = () => {
 
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              className={cn(
-                "text-sm font-medium transition-colors hover:text-primary",
-                isScrolled ? "text-foreground" : "text-white"
-              )}
-            >
-              {link.name}
-            </a>
-          ))}
+          {navLinks.map((link) =>
+            link.href.startsWith('/') ? (
+              <Link
+                key={link.name}
+                to={link.href}
+                className={cn(
+                  "text-sm font-medium transition-colors hover:text-primary",
+                  isScrolled ? "text-foreground" : "text-white"
+                )}
+              >
+                {link.name}
+              </Link>
+            ) : (
+              <a
+                key={link.name}
+                href={link.href}
+                className={cn(
+                  "text-sm font-medium transition-colors hover:text-primary",
+                  isScrolled ? "text-foreground" : "text-white"
+                )}
+              >
+                {link.name}
+              </a>
+            )
+          )}
         </div>
 
         <div className="hidden md:flex items-center gap-4">
@@ -97,16 +111,27 @@ const Navbar = () => {
         )}
       >
         <div className="flex flex-col items-center justify-center h-full gap-8 p-8">
-          {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              className="text-2xl font-bold text-foreground hover:text-primary"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              {link.name}
-            </a>
-          ))}
+          {navLinks.map((link) =>
+            link.href.startsWith('/') ? (
+              <Link
+                key={link.name}
+                to={link.href}
+                className="text-2xl font-bold text-foreground hover:text-primary"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {link.name}
+              </Link>
+            ) : (
+              <a
+                key={link.name}
+                href={link.href}
+                className="text-2xl font-bold text-foreground hover:text-primary"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {link.name}
+              </a>
+            )
+          )}
           <Button 
             className="w-full bg-primary text-white py-6 text-lg rounded-xl"
             onClick={() => {
