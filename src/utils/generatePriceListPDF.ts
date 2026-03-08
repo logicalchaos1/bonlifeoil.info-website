@@ -55,7 +55,7 @@ export const generatePriceListPDF = async () => {
   pdf.text('Lista de Precios — Marzo 2026', pageWidth / 2, 38, { align: 'center' });
 
   // Table header
-  let y = 60;
+  let y = 65;
   const col1 = margin;
   const col2 = margin + 95;
   const col3 = margin + 135;

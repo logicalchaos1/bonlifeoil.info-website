@@ -70,7 +70,7 @@ export const generateBookletPDF = async () => {
   pdf.text('Aceites Premium', pageWidth / 2, 110, { align: 'center' });
   
   pdf.setFontSize(16);
-  pdf.text('Catálogo de Productos', pageWidth / 2, 120, { align: 'center' });
+  pdf.text('Catálogo de Productos', pageWidth / 2, 130, { align: 'center' });
   
   pdf.setFontSize(11);
   pdf.setFont('helvetica', 'italic');
