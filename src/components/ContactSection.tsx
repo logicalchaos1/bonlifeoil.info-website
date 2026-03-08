@@ -94,14 +94,14 @@ export const ContactSection = () => {
                     />
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-sm font-semibold text-foreground mb-2">
                         Email
                       </label>
                       <input
                         type="email"
-                        className="w-full px-4 py-3 border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary transition-all"
+                        className="w-full px-4 py-3 border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary transition-all text-sm sm:text-base"
                         placeholder="correo@empresa.com"
                         required
                       />
@@ -112,7 +112,7 @@ export const ContactSection = () => {
                       </label>
                       <input
                         type="tel"
-                        className="w-full px-4 py-3 border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary transition-all"
+                        className="w-full px-4 py-3 border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary transition-all text-sm sm:text-base"
                         placeholder="+1 809..."
                         required
                       />

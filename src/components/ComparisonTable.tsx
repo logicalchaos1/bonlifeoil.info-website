@@ -70,15 +70,15 @@ export const ComparisonTable = () => {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="max-w-6xl mx-auto overflow-hidden rounded-3xl border border-border shadow-2xl"
         >
-          <div className="overflow-x-auto">
-            <table className="w-full text-left border-collapse">
+          <div className="overflow-x-auto -mx-4 sm:mx-0">
+            <table className="w-full text-left border-collapse min-w-[600px]">
               <thead>
                 <tr className="bg-secondary/50">
-                  <th className="p-6 font-bold text-sm uppercase tracking-wider text-muted-foreground">Marca / Tipo</th>
-                  <th className="p-6 font-bold text-sm uppercase tracking-wider text-muted-foreground text-center">Volumen</th>
-                  <th className="p-6 font-bold text-sm uppercase tracking-wider text-muted-foreground text-center">Duración (h)</th>
-                  <th className="p-6 font-bold text-sm uppercase tracking-wider text-muted-foreground text-center">Costo / Hora</th>
-                  <th className="p-6 font-bold text-sm uppercase tracking-wider text-muted-foreground">Diferencia</th>
+                  <th className="p-3 sm:p-6 font-bold text-xs sm:text-sm uppercase tracking-wider text-muted-foreground">Marca / Tipo</th>
+                  <th className="p-3 sm:p-6 font-bold text-xs sm:text-sm uppercase tracking-wider text-muted-foreground text-center">Volumen</th>
+                  <th className="p-3 sm:p-6 font-bold text-xs sm:text-sm uppercase tracking-wider text-muted-foreground text-center">Duración (h)</th>
+                  <th className="p-3 sm:p-6 font-bold text-xs sm:text-sm uppercase tracking-wider text-muted-foreground text-center">Costo / Hora</th>
+                  <th className="p-3 sm:p-6 font-bold text-xs sm:text-sm uppercase tracking-wider text-muted-foreground">Diferencia</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-border">
