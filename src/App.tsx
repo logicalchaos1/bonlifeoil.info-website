@@ -7,6 +7,9 @@ import Index from "./pages/Index";
 import BuyersForm from "./pages/BuyersForm";
 import TrialReport from "./pages/TrialReport";
 import ChefPartners from "./pages/ChefPartners";
+import Blog from "./pages/Blog";
+import BlogPost from "./pages/BlogPost";
+import SeoDashboard from "./pages/SeoDashboard";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
