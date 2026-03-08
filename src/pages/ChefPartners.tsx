@@ -242,20 +242,20 @@ const ChefPartners = () => {
       </section>
 
       {/* Pricing Tiers */}
-      <section id="planes" className="py-16 md:py-24 px-4">
+      <section id="planes" className="py-12 sm:py-16 md:py-24 px-4">
         <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-14">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Planes Chef Partners</h2>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+          <div className="text-center mb-8 sm:mb-14">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4">Planes Chef Partners</h2>
+            <p className="text-muted-foreground text-base sm:text-lg max-w-2xl mx-auto px-2">
               Sin costo adicional — los beneficios se activan automáticamente según tu volumen de compra mensual.
             </p>
           </div>
-          <div className="grid lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {tiers.map((tier) => (
               <div
                 key={tier.name}
-                className={`relative bg-card rounded-2xl border-2 p-8 flex flex-col ${
-                  tier.popular ? 'border-primary shadow-xl scale-[1.02]' : 'border-border/50'
+                className={`relative bg-card rounded-2xl border-2 p-5 sm:p-8 flex flex-col ${
+                  tier.popular ? 'border-primary shadow-xl md:scale-[1.02]' : 'border-border/50'
                 }`}
               >
                 {tier.popular && (
