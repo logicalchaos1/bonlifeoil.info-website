@@ -131,7 +131,7 @@ export const ComparisonTable = () => {
               </tbody>
             </table>
           </div>
-        </div>
+        </motion.div>
 
         <div className="mt-12 grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
           {[
