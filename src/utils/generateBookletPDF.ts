@@ -4,6 +4,7 @@ import soyaOilProduct from '@/assets/soya-oil-product.jpg';
 import sunflowerOilProduct from '@/assets/sunflower-oil-product.jpg';
 import mantecaProduct from '@/assets/manteca-product.jpg';
 import margarineProduct from '@/assets/margarine-product.jpg';
+import bonlifeLogo from '@/assets/bonlife-logo.png';
 
 export const generateBookletPDF = async () => {
   const pdf = new jsPDF({
