@@ -96,6 +96,8 @@ const Index = () => {
           ¿Necesitas ayuda?
         </span>
       </a>
+
+      <ExitIntentPopup />
     </div>
   );
 };
