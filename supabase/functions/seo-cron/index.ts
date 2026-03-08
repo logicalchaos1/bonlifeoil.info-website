@@ -17,26 +17,27 @@ serve(async (req) => {
 
     const body = req.method === "POST" ? await req.json().catch(() => ({})) : {};
     const action = body.action || "generate_and_index";
+    const batch_size = body.batch_size || 2; // Generate 2 per cycle (5 cycles/day = ~10 attempts, 3-5 successes)
 
     const results: any = { action, timestamp: new Date().toISOString() };
 
-    // Step 1: Generate new blog post
+    // Step 1: Generate batch of blog posts
     if (action === "generate_and_index" || action === "generate") {
-      console.log("Step 1: Generating new blog post...");
+      console.log(`Step 1: Generating ${batch_size} blog posts...`);
       const genResponse = await fetch(`${supabaseUrl}/functions/v1/generate-blog`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${supabaseKey}`,
         },
-        body: JSON.stringify({}),
+        body: JSON.stringify({ batch_count: batch_size }),
       });
       const genResult = await genResponse.json();
       results.blog_generation = genResult;
-      console.log("Blog generation result:", genResult.success ? "success" : "failed");
+      console.log("Blog generation result:", JSON.stringify(genResult.generated?.map((r: any) => r.success ? r.title : r.error)));
     }
 
-    // Step 2: Request indexing for unindexed posts
+    // Step 2: Request indexing for all unindexed posts
     if (action === "generate_and_index" || action === "index") {
       console.log("Step 2: Requesting indexing...");
       const indexResponse = await fetch(`${supabaseUrl}/functions/v1/request-indexing`, {
@@ -48,84 +49,84 @@ serve(async (req) => {
       });
       const indexResult = await indexResponse.json();
       results.indexing = indexResult;
-      console.log("Indexing result:", indexResult);
     }
 
-    // Step 3: Generate new keywords using AI
-    if (action === "generate_and_index" || action === "keywords") {
-      if (LOVABLE_API_KEY) {
-        console.log("Step 3: Generating new keywords...");
+    // Step 3: Auto-generate new keywords when running low
+    if ((action === "generate_and_index" || action === "keywords") && LOVABLE_API_KEY) {
+      const { count } = await supabase.from("seo_keywords").select("*", { count: "exact", head: true }).eq("is_used", false);
+      
+      if ((count || 0) < 15) {
+        console.log("Step 3: Generating new Spanish keywords...");
+        const { data: towns } = await supabase.from("dr_towns").select("id, name, slug").order("hotel_count", { ascending: false }).limit(8);
         
-        // Check how many unused keywords remain
-        const { count } = await supabase.from("seo_keywords").select("*", { count: "exact", head: true }).eq("is_used", false);
-        
-        if ((count || 0) < 10) {
-          // Get towns that need more keywords
-          const { data: towns } = await supabase.from("dr_towns").select("id, name, slug").limit(5);
-          
-          const aiResponse = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
-            method: "POST",
-            headers: {
-              Authorization: `Bearer ${LOVABLE_API_KEY}`,
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              model: "google/gemini-3-flash-preview",
-              messages: [
-                {
-                  role: "system",
-                  content: "Genera keywords SEO en español para aceite de cocina/vegetal para hoteles en República Dominicana. Devuelve SOLO un JSON array.",
-                },
-                {
-                  role: "user",
-                  content: `Genera 10 nuevos long-tail keywords SEO sobre aceite vegetal/cocina para hoteles en estas ciudades: ${towns?.map((t: any) => t.name).join(", ")}. 
-                  
-Formato JSON (sin markdown): [{"keyword": "...", "town_slug": "...", "search_volume": 50}]`,
-                },
-              ],
-            }),
-          });
+        const aiResponse = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${LOVABLE_API_KEY}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            model: "google/gemini-3-flash-preview",
+            messages: [
+              {
+                role: "system",
+                content: "Eres un experto en SEO para la industria hotelera dominicana. Genera keywords long-tail en ESPAÑOL sobre aceite de cocina/vegetal para hoteles. TODAS las keywords deben estar en español.",
+              },
+              {
+                role: "user",
+                content: `Genera 15 keywords SEO long-tail NUEVAS en ESPAÑOL sobre aceite vegetal/cocina para hoteles y restaurantes en estas ciudades dominicanas: ${towns?.map((t: any) => t.name).join(", ")}.
 
-          if (aiResponse.ok) {
-            const aiData = await aiResponse.json();
-            let raw = aiData.choices?.[0]?.message?.content || "[]";
-            raw = raw.replace(/```json\n?/g, "").replace(/```\n?/g, "").trim();
-            
-            try {
-              const newKeywords = JSON.parse(raw);
-              for (const kw of newKeywords) {
-                const town = towns?.find((t: any) => t.slug === kw.town_slug);
-                if (town) {
-                  await supabase.from("seo_keywords").insert({
-                    keyword: kw.keyword,
-                    town_id: town.id,
-                    search_volume: kw.search_volume || 30,
-                  });
-                }
+Incluye variaciones como:
+- proveedor aceite vegetal [ciudad]
+- aceite para freír hoteles [ciudad]  
+- distribuidor aceite cocina [ciudad]
+- mejor aceite para buffet [ciudad]
+- aceite económico restaurantes [ciudad]
+- aceite alta pureza hoteles [ciudad]
+
+Formato JSON (sin markdown): [{"keyword": "keyword en español", "town_slug": "slug-ciudad", "search_volume": 50}]`,
+              },
+            ],
+          }),
+        });
+
+        if (aiResponse.ok) {
+          const aiData = await aiResponse.json();
+          let raw = aiData.choices?.[0]?.message?.content || "[]";
+          raw = raw.replace(/```json\n?/g, "").replace(/```\n?/g, "").trim();
+          
+          try {
+            const newKeywords = JSON.parse(raw);
+            let added = 0;
+            for (const kw of newKeywords) {
+              const town = towns?.find((t: any) => t.slug === kw.town_slug);
+              if (town) {
+                const { error } = await supabase.from("seo_keywords").insert({
+                  keyword: kw.keyword,
+                  town_id: town.id,
+                  search_volume: kw.search_volume || 30,
+                });
+                if (!error) added++;
               }
-              results.new_keywords = newKeywords.length;
-            } catch (e) {
-              console.error("Failed to parse new keywords:", e);
-              results.new_keywords_error = "parse_failed";
             }
+            results.new_keywords = added;
+            console.log(`Added ${added} new Spanish keywords`);
+          } catch (e) {
+            console.error("Failed to parse keywords:", e);
+            results.new_keywords_error = "parse_failed";
           }
-        } else {
-          results.new_keywords = "sufficient_stock";
         }
+      } else {
+        results.new_keywords = "sufficient_stock";
       }
     }
 
-    // Step 4: Stats summary
+    // Stats
     const { count: totalPosts } = await supabase.from("blog_posts").select("*", { count: "exact", head: true }).eq("status", "published");
     const { count: indexedPosts } = await supabase.from("blog_posts").select("*", { count: "exact", head: true }).eq("is_indexed", true);
     const { count: unusedKeywords } = await supabase.from("seo_keywords").select("*", { count: "exact", head: true }).eq("is_used", false);
 
-    results.stats = {
-      total_published: totalPosts,
-      total_indexed: indexedPosts,
-      unused_keywords: unusedKeywords,
-    };
-
+    results.stats = { total_published: totalPosts, total_indexed: indexedPosts, unused_keywords: unusedKeywords };
     console.log("SEO cron completed:", results.stats);
 
     return new Response(JSON.stringify({ success: true, ...results }), {
