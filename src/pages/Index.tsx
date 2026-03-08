@@ -53,12 +53,13 @@ const Index = () => {
             <div>
               <h4 className="font-bold mb-4 sm:mb-6 uppercase tracking-wider text-xs sm:text-sm text-white/40">Navegación</h4>
               <ul className="space-y-3 sm:space-y-4 text-white/80 text-sm">
-                <li><a href="#" className="hover:text-gold transition-colors">Inicio</a></li>
-                <li><a href="#comparacion" className="hover:text-gold transition-colors">Comparativa</a></li>
-                <li><a href="#calculadora" className="hover:text-gold transition-colors">Calculadora</a></li>
-                <li><a href="#productos" className="hover:text-gold transition-colors">Productos</a></li>
-                <li><a href="#descargas" className="hover:text-gold transition-colors">Descargas</a></li>
+                <li><a href="/" className="hover:text-gold transition-colors">Inicio</a></li>
+                <li><a href="/calculadora-ahorro" className="hover:text-gold transition-colors">Calculadora de Ahorro</a></li>
+                <li><a href="/blog" className="hover:text-gold transition-colors">Blog</a></li>
+                <li><a href="/referidos" className="hover:text-gold transition-colors">Programa de Referidos</a></li>
+                <li><a href="/chef-partners" className="hover:text-gold transition-colors">Chef Partners</a></li>
                 <li><a href="/reporte-piloto" className="hover:text-gold transition-colors">Reporte Piloto</a></li>
+                <li><a href="/formulario-comprador" className="hover:text-gold transition-colors">Formulario de Compra</a></li>
               </ul>
             </div>
             <div>

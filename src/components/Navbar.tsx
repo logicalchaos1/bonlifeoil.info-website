@@ -27,11 +27,10 @@ const Navbar = () => {
 
   const navLinks = [
     { name: 'Inicio', href: '/' },
-    { name: 'Comparación', href: '#comparacion' },
-    { name: 'Calculadora', href: '#calculadora' },
     { name: 'Productos', href: '#productos' },
-    { name: 'Descargas', href: '#descargas' },
+    { name: 'Calculadora de Ahorro', href: '/calculadora-ahorro' },
     { name: 'Blog', href: '/blog' },
+    { name: 'Referidos', href: '/referidos' },
     { name: 'Chef Partners', href: '/chef-partners' },
     { name: 'Contacto', href: '#contacto' },
   ];
