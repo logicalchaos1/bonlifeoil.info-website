@@ -32,6 +32,7 @@ const Index = () => {
             <SavingsCalculator />
             <BenefitsSection />
             <ProductCatalog />
+            <TestimonialsSection />
             <DownloadsSection />
             <ContactSection />
           </div>
