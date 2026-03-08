@@ -54,15 +54,16 @@ const SeoDashboard = () => {
     },
   });
 
-  const generateBlog = async () => {
+  const generateBlog = async (count = 1) => {
     setGenerating(true);
     try {
       const { data, error } = await supabase.functions.invoke("generate-blog", {
-        body: {},
+        body: { batch_count: count },
       });
       if (error) throw error;
       if (data?.success) {
-        toast.success(`Blog creado: ${data.post?.title}`);
+        const successes = data.generated?.filter((r: any) => r.success)?.length || 0;
+        toast.success(`${successes} blog(s) creados en español`);
         queryClient.invalidateQueries({ queryKey: ["admin-posts"] });
         queryClient.invalidateQueries({ queryKey: ["admin-keywords"] });
       } else {
