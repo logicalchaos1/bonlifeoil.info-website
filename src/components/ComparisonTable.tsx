@@ -1,6 +1,7 @@
 "use client";
 
-import React from 'react';
+import React, { useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 import { Check, X, Star, Info } from 'lucide-react';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
@@ -45,17 +46,30 @@ export const ComparisonTable = () => {
     },
   ];
 
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: '-80px' });
+
   return (
-    <section id="comparacion" className="py-24 bg-white">
+    <section ref={ref} id="comparacion" className="py-24 bg-white">
       <div className="container mx-auto px-4">
-        <div className="max-w-4xl mx-auto text-center mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="max-w-4xl mx-auto text-center mb-16"
+        >
           <h2 className="text-3xl md:text-5xl font-bold mb-6">La Ciencia del <span className="text-primary">Rendimiento</span></h2>
           <p className="text-lg text-muted-foreground">
             No todos los aceites son iguales. Bonlife está diseñado para soportar las condiciones más exigentes de la cocina profesional.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="max-w-6xl mx-auto overflow-hidden rounded-3xl border border-border shadow-2xl">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="max-w-6xl mx-auto overflow-hidden rounded-3xl border border-border shadow-2xl"
+        >
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse">
               <thead>
@@ -117,7 +131,7 @@ export const ComparisonTable = () => {
               </tbody>
             </table>
           </div>
-        </div>
+        </motion.div>
 
         <div className="mt-12 grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
           {[

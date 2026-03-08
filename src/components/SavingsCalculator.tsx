@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import { Calculator, TrendingDown, Clock, Droplet, DollarSign } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -10,6 +11,8 @@ export const SavingsCalculator = () => {
   const [currentPrice, setCurrentPrice] = useState<string>("3074");
   const [currentVolume, setCurrentVolume] = useState<string>("20");
   const [monthlyHours, setMonthlyHours] = useState<string>("480");
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { once: true, margin: '-80px' });
 
   // Bonlife specs (25L container)
   const bonlifePrice = 4600; // Price without ITBIS
@@ -52,9 +55,14 @@ export const SavingsCalculator = () => {
   return (
     <section className="py-12 sm:py-16 md:py-24 bg-gradient-to-br from-secondary to-background">
       <div className="container mx-auto px-4 sm:px-6">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-6xl mx-auto" ref={sectionRef}>
           {/* Header */}
-          <div className="text-center mb-8 sm:mb-12">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-8 sm:mb-12"
+          >
             <div className="inline-flex items-center gap-2 sm:gap-3 bg-premium text-white px-4 sm:px-6 py-2 sm:py-3 rounded-full mb-4 text-sm sm:text-base">
               <Calculator className="w-4 h-4 sm:w-6 sm:h-6" />
               <span className="font-bold">CALCULADORA DE AHORRO</span>
@@ -65,7 +73,7 @@ export const SavingsCalculator = () => {
             <p className="text-base sm:text-lg md:text-xl text-muted-foreground px-4">
               Compare su aceite actual con Bonlife - vea el ahorro real en todos los aspectos
             </p>
-          </div>
+          </motion.div>
 
           {/* Calculator Card */}
           <Card className="p-4 sm:p-6 md:p-8 lg:p-12 bg-white shadow-2xl border-2 border-gold/20">
