@@ -14,7 +14,259 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      blog_posts: {
+        Row: {
+          content: string
+          created_at: string
+          excerpt: string | null
+          featured_image: string | null
+          id: string
+          indexed_at: string | null
+          is_indexed: boolean | null
+          meta_description: string | null
+          primary_keyword: string | null
+          published_at: string | null
+          schema_markup: Json | null
+          secondary_keywords: string[] | null
+          slug: string
+          status: string
+          title: string
+          town_id: string | null
+          updated_at: string
+          word_count: number | null
+        }
+        Insert: {
+          content: string
+          created_at?: string
+          excerpt?: string | null
+          featured_image?: string | null
+          id?: string
+          indexed_at?: string | null
+          is_indexed?: boolean | null
+          meta_description?: string | null
+          primary_keyword?: string | null
+          published_at?: string | null
+          schema_markup?: Json | null
+          secondary_keywords?: string[] | null
+          slug: string
+          status?: string
+          title: string
+          town_id?: string | null
+          updated_at?: string
+          word_count?: number | null
+        }
+        Update: {
+          content?: string
+          created_at?: string
+          excerpt?: string | null
+          featured_image?: string | null
+          id?: string
+          indexed_at?: string | null
+          is_indexed?: boolean | null
+          meta_description?: string | null
+          primary_keyword?: string | null
+          published_at?: string | null
+          schema_markup?: Json | null
+          secondary_keywords?: string[] | null
+          slug?: string
+          status?: string
+          title?: string
+          town_id?: string | null
+          updated_at?: string
+          word_count?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "blog_posts_town_id_fkey"
+            columns: ["town_id"]
+            isOneToOne: false
+            referencedRelation: "dr_towns"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      citations: {
+        Row: {
+          blog_post_id: string | null
+          citation_type: string | null
+          created_at: string
+          id: string
+          source_name: string
+          source_url: string | null
+          status: string | null
+        }
+        Insert: {
+          blog_post_id?: string | null
+          citation_type?: string | null
+          created_at?: string
+          id?: string
+          source_name: string
+          source_url?: string | null
+          status?: string | null
+        }
+        Update: {
+          blog_post_id?: string | null
+          citation_type?: string | null
+          created_at?: string
+          id?: string
+          source_name?: string
+          source_url?: string | null
+          status?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "citations_blog_post_id_fkey"
+            columns: ["blog_post_id"]
+            isOneToOne: false
+            referencedRelation: "blog_posts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      dr_towns: {
+        Row: {
+          created_at: string
+          hotel_count: number | null
+          id: string
+          is_tourist_zone: boolean | null
+          name: string
+          province: string
+          slug: string
+        }
+        Insert: {
+          created_at?: string
+          hotel_count?: number | null
+          id?: string
+          is_tourist_zone?: boolean | null
+          name: string
+          province: string
+          slug: string
+        }
+        Update: {
+          created_at?: string
+          hotel_count?: number | null
+          id?: string
+          is_tourist_zone?: boolean | null
+          name?: string
+          province?: string
+          slug?: string
+        }
+        Relationships: []
+      }
+      indexing_log: {
+        Row: {
+          blog_post_id: string | null
+          created_at: string
+          id: string
+          response_data: Json | null
+          status: string
+          url: string
+        }
+        Insert: {
+          blog_post_id?: string | null
+          created_at?: string
+          id?: string
+          response_data?: Json | null
+          status?: string
+          url: string
+        }
+        Update: {
+          blog_post_id?: string | null
+          created_at?: string
+          id?: string
+          response_data?: Json | null
+          status?: string
+          url?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "indexing_log_blog_post_id_fkey"
+            columns: ["blog_post_id"]
+            isOneToOne: false
+            referencedRelation: "blog_posts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      seo_keywords: {
+        Row: {
+          created_at: string
+          difficulty: number | null
+          id: string
+          is_used: boolean | null
+          keyword: string
+          search_volume: number | null
+          town_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          difficulty?: number | null
+          id?: string
+          is_used?: boolean | null
+          keyword: string
+          search_volume?: number | null
+          town_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          difficulty?: number | null
+          id?: string
+          is_used?: boolean | null
+          keyword?: string
+          search_volume?: number | null
+          town_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "seo_keywords_town_id_fkey"
+            columns: ["town_id"]
+            isOneToOne: false
+            referencedRelation: "dr_towns"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      seo_metrics: {
+        Row: {
+          avg_position: number | null
+          blog_post_id: string | null
+          clicks: number | null
+          created_at: string
+          ctr: number | null
+          id: string
+          impressions: number | null
+          recorded_date: string
+        }
+        Insert: {
+          avg_position?: number | null
+          blog_post_id?: string | null
+          clicks?: number | null
+          created_at?: string
+          ctr?: number | null
+          id?: string
+          impressions?: number | null
+          recorded_date?: string
+        }
+        Update: {
+          avg_position?: number | null
+          blog_post_id?: string | null
+          clicks?: number | null
+          created_at?: string
+          ctr?: number | null
+          id?: string
+          impressions?: number | null
+          recorded_date?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "seo_metrics_blog_post_id_fkey"
+            columns: ["blog_post_id"]
+            isOneToOne: false
+            referencedRelation: "blog_posts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
