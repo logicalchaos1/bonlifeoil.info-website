@@ -27,26 +27,27 @@ const Navbar = () => {
 
   const navLinks = [
     { name: 'Inicio', href: '/' },
-    { name: 'Comparación', href: '#comparacion' },
-    { name: 'Calculadora', href: '#calculadora' },
     { name: 'Productos', href: '#productos' },
-    { name: 'Descargas', href: '#descargas' },
+    { name: 'Calculadora de Ahorro', href: '/calculadora-ahorro' },
     { name: 'Blog', href: '/blog' },
+    { name: 'Referidos', href: '/referidos' },
     { name: 'Chef Partners', href: '/chef-partners' },
     { name: 'Contacto', href: '#contacto' },
   ];
 
   const NavItem = ({ link }: { link: typeof navLinks[0] }) => {
     const isRoute = link.href.startsWith('/');
+    const isHash = link.href.startsWith('#');
     const className_ = cn(
       "text-sm font-medium transition-colors hover:text-primary",
       isScrolled ? "text-foreground" : "text-white"
     );
-    return isRoute ? (
-      <Link to={link.href} className={className_}>{link.name}</Link>
-    ) : (
-      <a href={link.href} className={className_}>{link.name}</a>
-    );
+    if (isRoute) {
+      return <Link to={link.href} className={className_}>{link.name}</Link>;
+    }
+    // For hash links, navigate to homepage + hash if not already there
+    const hashHref = window.location.pathname === '/' ? link.href : `/${link.href}`;
+    return <a href={hashHref} className={className_}>{link.name}</a>;
   };
 
   const MobileNavItem = ({ link }: { link: typeof navLinks[0] }) => {
@@ -55,11 +56,11 @@ const Navbar = () => {
       className: "text-xl font-bold text-foreground hover:text-primary transition-colors py-2",
       onClick: () => setIsMobileMenuOpen(false),
     };
-    return isRoute ? (
-      <Link to={link.href} {...props}>{link.name}</Link>
-    ) : (
-      <a href={link.href} {...props}>{link.name}</a>
-    );
+    if (isRoute) {
+      return <Link to={link.href} {...props}>{link.name}</Link>;
+    }
+    const hashHref = window.location.pathname === '/' ? link.href : `/${link.href}`;
+    return <a href={hashHref} {...props}>{link.name}</a>;
   };
 
   return (
