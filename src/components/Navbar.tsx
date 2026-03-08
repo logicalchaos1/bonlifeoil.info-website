@@ -41,7 +41,10 @@ const Navbar = () => {
           <img 
             src={bonlifeLogo} 
             alt="Bonlife Logo" 
-            className={cn("transition-all duration-500", isScrolled ? "h-10" : "h-12")} 
+            className={cn(
+              "transition-all duration-500 mix-blend-multiply",
+              isScrolled ? "h-10" : "h-12 brightness-0 invert"
+            )} 
           />
         </Link>
 
