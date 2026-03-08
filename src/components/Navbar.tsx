@@ -111,16 +111,27 @@ const Navbar = () => {
         )}
       >
         <div className="flex flex-col items-center justify-center h-full gap-8 p-8">
-          {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              className="text-2xl font-bold text-foreground hover:text-primary"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              {link.name}
-            </a>
-          ))}
+          {navLinks.map((link) =>
+            link.href.startsWith('/') ? (
+              <Link
+                key={link.name}
+                to={link.href}
+                className="text-2xl font-bold text-foreground hover:text-primary"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {link.name}
+              </Link>
+            ) : (
+              <a
+                key={link.name}
+                href={link.href}
+                className="text-2xl font-bold text-foreground hover:text-primary"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {link.name}
+              </a>
+            )
+          )}
           <Button 
             className="w-full bg-primary text-white py-6 text-lg rounded-xl"
             onClick={() => {
