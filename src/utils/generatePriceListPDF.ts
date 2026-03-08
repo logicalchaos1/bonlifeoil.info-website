@@ -37,14 +37,22 @@ export const generatePriceListPDF = async () => {
 
   // Header
   pdf.setFillColor(gold[0], gold[1], gold[2]);
-  pdf.rect(0, 0, pageWidth, 45, 'F');
+  pdf.rect(0, 0, pageWidth, 50, 'F');
+
+  try {
+    const logoData = await loadImage(bonlifeLogo);
+    pdf.addImage(logoData, 'PNG', margin, 5, 30, 15);
+  } catch (e) {
+    console.error('Error loading logo:', e);
+  }
+
   pdf.setTextColor(255, 255, 255);
   pdf.setFontSize(32);
   pdf.setFont('helvetica', 'bold');
-  pdf.text('BONLIFE', pageWidth / 2, 22, { align: 'center' });
+  pdf.text('BONLIFE', pageWidth / 2, 25, { align: 'center' });
   pdf.setFontSize(14);
   pdf.setFont('helvetica', 'normal');
-  pdf.text('Lista de Precios — Febrero 2026', pageWidth / 2, 35, { align: 'center' });
+  pdf.text('Lista de Precios — Marzo 2026', pageWidth / 2, 38, { align: 'center' });
 
   // Table header
   let y = 60;
