@@ -125,7 +125,7 @@ export const ExitIntentPopup = () => {
                       Prueba Gratuita Incluye:
                     </h3>
                     <ul className="text-sm text-muted-foreground space-y-1.5">
-                      <li>✅ 5 galones de aceite Bonlife 99.9% pureza</li>
+                      <li>✅ Muestra gratuita de aceite Bonlife 99.9% pureza</li>
                       <li>✅ Asesoría técnica personalizada</li>
                       <li>✅ Reporte de ahorro comparativo</li>
                       <li>✅ Sin compromiso de compra</li>
