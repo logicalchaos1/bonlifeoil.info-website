@@ -9,6 +9,7 @@ import { BenefitsSection } from "@/components/BenefitsSection";
 import { ContactSection } from "@/components/ContactSection";
 import ProductCatalog from "@/components/ProductCatalog";
 import DownloadsSection from "@/components/DownloadsSection";
+import TestimonialsSection from "@/components/TestimonialsSection";
 import { MessageCircle } from "lucide-react";
 
 const Index = () => {
