@@ -356,10 +356,10 @@ const ChefPartners = () => {
       </section>
 
       {/* Footer */}
-      <footer className="bg-foreground text-primary-foreground py-8 border-t border-primary-foreground/10">
+      <footer className="bg-foreground text-primary-foreground py-6 sm:py-8 border-t border-primary-foreground/10">
         <div className="container mx-auto px-4 text-center">
-          <img src={bonlifeLogo} alt="Bonlife" className="h-8 mx-auto mb-4" />
-          <p className="text-primary-foreground/50 text-sm">
+          <BonlifeLogo variant="light" className="text-2xl mx-auto mb-3" />
+          <p className="text-primary-foreground/50 text-xs sm:text-sm">
             © {new Date().getFullYear()} Bonlife Oil — Programa Chef Partners. Todos los derechos reservados.
           </p>
         </div>
