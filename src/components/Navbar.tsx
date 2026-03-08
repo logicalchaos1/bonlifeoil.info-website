@@ -56,11 +56,11 @@ const Navbar = () => {
       className: "text-xl font-bold text-foreground hover:text-primary transition-colors py-2",
       onClick: () => setIsMobileMenuOpen(false),
     };
-    return isRoute ? (
-      <Link to={link.href} {...props}>{link.name}</Link>
-    ) : (
-      <a href={link.href} {...props}>{link.name}</a>
-    );
+    if (isRoute) {
+      return <Link to={link.href} {...props}>{link.name}</Link>;
+    }
+    const hashHref = window.location.pathname === '/' ? link.href : `/${link.href}`;
+    return <a href={hashHref} {...props}>{link.name}</a>;
   };
 
   return (
