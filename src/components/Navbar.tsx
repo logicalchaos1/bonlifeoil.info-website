@@ -31,6 +31,7 @@ const Navbar = () => {
     { name: 'Calculadora', href: '#calculadora' },
     { name: 'Productos', href: '#productos' },
     { name: 'Descargas', href: '#descargas' },
+    { name: 'Blog', href: '/blog' },
     { name: 'Chef Partners', href: '/chef-partners' },
     { name: 'Contacto', href: '#contacto' },
   ];
