@@ -38,20 +38,31 @@ export const BenefitsSection = () => {
     },
   ];
 
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: '-80px' });
+
   return (
-    <section className="py-24 bg-secondary/30">
+    <section ref={ref} className="py-24 bg-secondary/30">
       <div className="container mx-auto px-4">
-        <div className="text-center max-w-3xl mx-auto mb-20">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="text-center max-w-3xl mx-auto mb-20"
+        >
           <h2 className="text-3xl md:text-5xl font-bold mb-6">Por Qué Elegir <span className="text-primary">Bonlife</span></h2>
           <p className="text-lg text-muted-foreground">
             Combinamos tecnología de refinamiento avanzada con un servicio logístico impecable para potenciar su negocio.
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {benefits.map((benefit, index) => (
-            <div
+            <motion.div
               key={index}
+              initial={{ opacity: 0, y: 40 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: 0.1 * index, ease: [0.22, 1, 0.36, 1] }}
               className="bg-white rounded-3xl p-8 shadow-sm border border-border hover:border-primary/30 hover:shadow-xl transition-all duration-500 group"
             >
               <div className="w-16 h-16 bg-primary/5 rounded-2xl flex items-center justify-center mb-6 text-primary group-hover:bg-primary group-hover:text-white transition-all duration-500">
@@ -63,7 +74,7 @@ export const BenefitsSection = () => {
               <p className="text-muted-foreground leading-relaxed">
                 {benefit.description}
               </p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
