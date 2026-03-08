@@ -1,6 +1,7 @@
 "use client";
 
 import React from 'react';
+import { motion } from 'framer-motion';
 import bonlifeLogo from "@/assets/bonlife-logo.png";
 import { TrendingUp, Shield, Sparkles, Award, ChevronDown } from "lucide-react";
 import { Button } from '@/components/ui/button';
