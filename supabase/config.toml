@@ -1,1 +1,10 @@
 project_id = "wwhszmcsdrwifvyhpnjw"
+
+[functions.generate-blog]
+verify_jwt = false
+
+[functions.request-indexing]
+verify_jwt = false
+
+[functions.seo-cron]
+verify_jwt = false
