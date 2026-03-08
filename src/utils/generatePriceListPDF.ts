@@ -1,6 +1,26 @@
 import jsPDF from 'jspdf';
+import bonlifeLogo from '@/assets/bonlife-logo.png';
 
-export const generatePriceListPDF = () => {
+const loadImage = (src: string): Promise<string> => {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.crossOrigin = 'anonymous';
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      canvas.width = img.width;
+      canvas.height = img.height;
+      const ctx = canvas.getContext('2d');
+      if (ctx) {
+        ctx.drawImage(img, 0, 0);
+        resolve(canvas.toDataURL('image/png', 1));
+      } else reject(new Error('No canvas context'));
+    };
+    img.onerror = reject;
+    img.src = src;
+  });
+};
+
+export const generatePriceListPDF = async () => {
   const pdf = new jsPDF({
     orientation: 'portrait',
     unit: 'mm',
@@ -17,17 +37,25 @@ export const generatePriceListPDF = () => {
 
   // Header
   pdf.setFillColor(gold[0], gold[1], gold[2]);
-  pdf.rect(0, 0, pageWidth, 45, 'F');
+  pdf.rect(0, 0, pageWidth, 50, 'F');
+
+  try {
+    const logoData = await loadImage(bonlifeLogo);
+    pdf.addImage(logoData, 'PNG', margin, 5, 30, 15);
+  } catch (e) {
+    console.error('Error loading logo:', e);
+  }
+
   pdf.setTextColor(255, 255, 255);
   pdf.setFontSize(32);
   pdf.setFont('helvetica', 'bold');
-  pdf.text('BONLIFE', pageWidth / 2, 22, { align: 'center' });
+  pdf.text('BONLIFE', pageWidth / 2, 25, { align: 'center' });
   pdf.setFontSize(14);
   pdf.setFont('helvetica', 'normal');
-  pdf.text('Lista de Precios — Febrero 2026', pageWidth / 2, 35, { align: 'center' });
+  pdf.text('Lista de Precios — Marzo 2026', pageWidth / 2, 38, { align: 'center' });
 
   // Table header
-  let y = 60;
+  let y = 65;
   const col1 = margin;
   const col2 = margin + 95;
   const col3 = margin + 135;

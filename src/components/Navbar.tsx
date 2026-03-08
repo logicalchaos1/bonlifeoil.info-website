@@ -24,6 +24,7 @@ const Navbar = () => {
     { name: 'Comparación', href: '#comparacion' },
     { name: 'Calculadora', href: '#calculadora' },
     { name: 'Productos', href: '#productos' },
+    { name: 'Descargas', href: '#descargas' },
     { name: 'Contacto', href: '#contacto' },
   ];
 
