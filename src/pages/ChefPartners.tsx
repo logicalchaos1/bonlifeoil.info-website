@@ -8,7 +8,7 @@ import {
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import bonlifeLogo from '@/assets/bonlife-logo.png';
+import BonlifeLogo from '@/components/BonlifeLogo';
 
 const ChefPartners = () => {
   const painPoints = [
@@ -132,14 +132,14 @@ const ChefPartners = () => {
     <div className="min-h-screen bg-background">
       {/* Header */}
       <header className="bg-foreground text-primary-foreground">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+        <div className="container mx-auto px-4 py-3 sm:py-4 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-3">
-            <img src={bonlifeLogo} alt="Bonlife" className="h-10" />
+            <BonlifeLogo variant="light" className="text-2xl sm:text-3xl" />
           </Link>
           <Link to="/">
-            <Button variant="outline" size="sm" className="border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/10">
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Volver al Inicio
+            <Button variant="outline" size="sm" className="border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/10 text-xs sm:text-sm">
+              <ArrowLeft className="w-4 h-4 mr-1 sm:mr-2" />
+              <span className="hidden sm:inline">Volver al </span>Inicio
             </Button>
           </Link>
         </div>
@@ -151,16 +151,16 @@ const ChefPartners = () => {
           <div className="absolute top-[20%] left-[10%] w-[30%] h-[60%] bg-accent rounded-full blur-[100px]" />
           <div className="absolute bottom-[10%] right-[10%] w-[25%] h-[50%] bg-primary rounded-full blur-[100px]" />
         </div>
-        <div className="container mx-auto px-4 py-20 md:py-28 relative z-10">
+        <div className="container mx-auto px-4 py-12 sm:py-20 md:py-28 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 bg-accent/20 text-accent px-4 py-2 rounded-full text-sm font-semibold mb-6">
-              <ChefHat className="w-4 h-4" />
+            <div className="inline-flex items-center gap-2 bg-accent/20 text-accent px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold mb-4 sm:mb-6">
+              <ChefHat className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               Programa Exclusivo para Profesionales
             </div>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-4 sm:mb-6 leading-tight">
               Bonlife <span className="text-accent">Chef Partners</span>
             </h1>
-            <p className="text-lg md:text-xl text-primary-foreground/70 mb-8 leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-primary-foreground/70 mb-6 sm:mb-8 leading-relaxed px-2">
               Más que un proveedor de aceite — somos tu socio estratégico en la cocina. 
               Precios exclusivos, soporte técnico, cumplimiento sanitario y capacitación 
               para que tu operación funcione sin preocupaciones.
@@ -242,20 +242,20 @@ const ChefPartners = () => {
       </section>
 
       {/* Pricing Tiers */}
-      <section id="planes" className="py-16 md:py-24 px-4">
+      <section id="planes" className="py-12 sm:py-16 md:py-24 px-4">
         <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-14">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Planes Chef Partners</h2>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+          <div className="text-center mb-8 sm:mb-14">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4">Planes Chef Partners</h2>
+            <p className="text-muted-foreground text-base sm:text-lg max-w-2xl mx-auto px-2">
               Sin costo adicional — los beneficios se activan automáticamente según tu volumen de compra mensual.
             </p>
           </div>
-          <div className="grid lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {tiers.map((tier) => (
               <div
                 key={tier.name}
-                className={`relative bg-card rounded-2xl border-2 p-8 flex flex-col ${
-                  tier.popular ? 'border-primary shadow-xl scale-[1.02]' : 'border-border/50'
+                className={`relative bg-card rounded-2xl border-2 p-5 sm:p-8 flex flex-col ${
+                  tier.popular ? 'border-primary shadow-xl md:scale-[1.02]' : 'border-border/50'
                 }`}
               >
                 {tier.popular && (
@@ -356,10 +356,10 @@ const ChefPartners = () => {
       </section>
 
       {/* Footer */}
-      <footer className="bg-foreground text-primary-foreground py-8 border-t border-primary-foreground/10">
+      <footer className="bg-foreground text-primary-foreground py-6 sm:py-8 border-t border-primary-foreground/10">
         <div className="container mx-auto px-4 text-center">
-          <img src={bonlifeLogo} alt="Bonlife" className="h-8 mx-auto mb-4" />
-          <p className="text-primary-foreground/50 text-sm">
+          <BonlifeLogo variant="light" className="text-2xl mx-auto mb-3" />
+          <p className="text-primary-foreground/50 text-xs sm:text-sm">
             © {new Date().getFullYear()} Bonlife Oil — Programa Chef Partners. Todos los derechos reservados.
           </p>
         </div>
