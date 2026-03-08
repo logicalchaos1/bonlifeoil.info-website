@@ -68,7 +68,7 @@ export const SavingsCalculator = () => {
               <span className="font-bold">CALCULADORA DE AHORRO</span>
             </div>
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 px-4">
-              ¿Cuánto Puede <span className="text-premium">Ahorrar Su Restaurante</span>?
+              ¿Cuánto Puede <span className="text-premium">Ahorrar Su Cocina</span>?
             </h2>
             <p className="text-base sm:text-lg md:text-xl text-muted-foreground px-4">
               Compare su aceite actual con Bonlife - vea el ahorro real en todos los aspectos
