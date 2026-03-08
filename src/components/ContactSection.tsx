@@ -1,4 +1,41 @@
+import { useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
+
 export const ContactSection = () => {
+  const [loading, setLoading] = useState(false);
+  const [name, setName] = useState("");
+  const [company, setCompany] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [consumption, setConsumption] = useState("");
+  const [message, setMessage] = useState("");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!name.trim() || !email.trim()) return;
+
+    setLoading(true);
+    const { error } = await supabase.from("leads").insert({
+      name: name.trim().slice(0, 100),
+      company: company.trim().slice(0, 200) || null,
+      email: email.trim().slice(0, 255),
+      phone: phone.trim().slice(0, 20) || null,
+      monthly_consumption: consumption || null,
+      message: message.trim().slice(0, 1000) || null,
+      source: "contact_form",
+    });
+
+    setLoading(false);
+    if (error) {
+      toast.error("Error al enviar. Intente de nuevo.");
+      return;
+    }
+
+    toast.success("¡Cotización enviada! Le responderemos en menos de 24 horas.");
+    setName(""); setCompany(""); setEmail(""); setPhone(""); setConsumption(""); setMessage("");
+  };
+
   return (
     <section id="contacto" className="py-12 sm:py-16 md:py-24 bg-gradient-to-br from-primary to-premium-dark">
       <div className="container mx-auto px-4 sm:px-6">
@@ -25,7 +62,7 @@ export const ContactSection = () => {
                     </div>
                     <div>
                       <p className="font-semibold mb-1">Teléfono</p>
-                      <p className="text-white/80">+1 (809) 000-0000</p>
+                      <p className="text-white/80">+1 (829) 987-6764</p>
                     </div>
                   </div>
 
@@ -57,7 +94,9 @@ export const ContactSection = () => {
 
                 <div className="mt-8 pt-8 border-t border-white/20">
                   <a
-                    href="https://wa.me/18090000000?text=Hola%20Bonlife%2C%20necesito%20cotización%20para%20aceite%20a%20granel"
+                    href={`https://wa.me/18299876764?text=${encodeURIComponent("Hola Bonlife, necesito cotización para aceite a granel")}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="flex items-center justify-center gap-3 bg-gold hover:bg-gold-light text-white font-bold py-4 px-6 rounded-2xl transition-all duration-300 transform hover:scale-105"
                   >
                     <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -69,61 +108,28 @@ export const ContactSection = () => {
               </div>
 
               <div className="p-6 sm:p-8 md:p-12">
-                <form className="space-y-4 sm:space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
                   <div>
-                    <label className="block text-sm font-semibold text-foreground mb-2">
-                      Nombre Completo
-                    </label>
-                    <input
-                      type="text"
-                      className="w-full px-4 py-3 border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary transition-all"
-                      placeholder="Juan Pérez"
-                      required
-                    />
+                    <label className="block text-sm font-semibold text-foreground mb-2">Nombre Completo *</label>
+                    <input type="text" value={name} onChange={(e) => setName(e.target.value)} className="w-full px-4 py-3 border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary transition-all" placeholder="Juan Pérez" required maxLength={100} />
                   </div>
-
                   <div>
-                    <label className="block text-sm font-semibold text-foreground mb-2">
-                      Empresa
-                    </label>
-                    <input
-                      type="text"
-                      className="w-full px-4 py-3 border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary transition-all"
-                      placeholder="Hotel / Restaurante"
-                      required
-                    />
+                    <label className="block text-sm font-semibold text-foreground mb-2">Empresa</label>
+                    <input type="text" value={company} onChange={(e) => setCompany(e.target.value)} className="w-full px-4 py-3 border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary transition-all" placeholder="Hotel / Restaurante" maxLength={200} />
                   </div>
-
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-sm font-semibold text-foreground mb-2">
-                        Email
-                      </label>
-                      <input
-                        type="email"
-                        className="w-full px-4 py-3 border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary transition-all text-sm sm:text-base"
-                        placeholder="correo@empresa.com"
-                        required
-                      />
+                      <label className="block text-sm font-semibold text-foreground mb-2">Email *</label>
+                      <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full px-4 py-3 border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary transition-all text-sm sm:text-base" placeholder="correo@empresa.com" required maxLength={255} />
                     </div>
                     <div>
-                      <label className="block text-sm font-semibold text-foreground mb-2">
-                        Teléfono
-                      </label>
-                      <input
-                        type="tel"
-                        className="w-full px-4 py-3 border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary transition-all text-sm sm:text-base"
-                        placeholder="+1 809..."
-                        required
-                      />
+                      <label className="block text-sm font-semibold text-foreground mb-2">Teléfono</label>
+                      <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} className="w-full px-4 py-3 border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary transition-all text-sm sm:text-base" placeholder="+1 829..." maxLength={20} />
                     </div>
                   </div>
-
                   <div>
-                    <label className="block text-sm font-semibold text-foreground mb-2">
-                      Consumo Mensual Estimado
-                    </label>
-                    <select className="w-full px-4 py-3 border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary transition-all">
+                    <label className="block text-sm font-semibold text-foreground mb-2">Consumo Mensual Estimado</label>
+                    <select value={consumption} onChange={(e) => setConsumption(e.target.value)} className="w-full px-4 py-3 border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary transition-all">
                       <option value="">Seleccionar</option>
                       <option>Hasta 500 L</option>
                       <option>500 – 2,000 L</option>
@@ -131,23 +137,12 @@ export const ContactSection = () => {
                       <option>10,000 L o más</option>
                     </select>
                   </div>
-
                   <div>
-                    <label className="block text-sm font-semibold text-foreground mb-2">
-                      Mensaje
-                    </label>
-                    <textarea
-                      rows={4}
-                      className="w-full px-4 py-3 border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary transition-all resize-none"
-                      placeholder="Cuéntenos sobre su operación..."
-                    ></textarea>
+                    <label className="block text-sm font-semibold text-foreground mb-2">Mensaje</label>
+                    <textarea rows={4} value={message} onChange={(e) => setMessage(e.target.value)} className="w-full px-4 py-3 border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary transition-all resize-none" placeholder="Cuéntenos sobre su operación..." maxLength={1000}></textarea>
                   </div>
-
-                  <button
-                    type="submit"
-                    className="w-full bg-primary hover:bg-premium-dark text-primary-foreground font-bold py-4 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
-                  >
-                    Enviar Cotización
+                  <button type="submit" disabled={loading} className="w-full bg-primary hover:bg-premium-dark text-primary-foreground font-bold py-4 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl disabled:opacity-50">
+                    {loading ? "Enviando..." : "Enviar Cotización"}
                   </button>
                 </form>
               </div>

@@ -188,6 +188,81 @@ export type Database = {
           },
         ]
       }
+      leads: {
+        Row: {
+          business_type: string | null
+          company: string | null
+          created_at: string
+          email: string | null
+          id: string
+          message: string | null
+          monthly_consumption: string | null
+          name: string
+          phone: string | null
+          referral_code: string | null
+          source: string
+        }
+        Insert: {
+          business_type?: string | null
+          company?: string | null
+          created_at?: string
+          email?: string | null
+          id?: string
+          message?: string | null
+          monthly_consumption?: string | null
+          name: string
+          phone?: string | null
+          referral_code?: string | null
+          source?: string
+        }
+        Update: {
+          business_type?: string | null
+          company?: string | null
+          created_at?: string
+          email?: string | null
+          id?: string
+          message?: string | null
+          monthly_consumption?: string | null
+          name?: string
+          phone?: string | null
+          referral_code?: string | null
+          source?: string
+        }
+        Relationships: []
+      }
+      referrals: {
+        Row: {
+          created_at: string
+          id: string
+          referral_code: string
+          referral_count: number | null
+          referrer_company: string
+          referrer_email: string
+          referrer_name: string
+          referrer_phone: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          referral_code: string
+          referral_count?: number | null
+          referrer_company: string
+          referrer_email: string
+          referrer_name: string
+          referrer_phone?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          referral_code?: string
+          referral_count?: number | null
+          referrer_company?: string
+          referrer_email?: string
+          referrer_name?: string
+          referrer_phone?: string | null
+        }
+        Relationships: []
+      }
       seo_keywords: {
         Row: {
           created_at: string

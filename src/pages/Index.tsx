@@ -10,6 +10,7 @@ import { ContactSection } from "@/components/ContactSection";
 import ProductCatalog from "@/components/ProductCatalog";
 import DownloadsSection from "@/components/DownloadsSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
+import { ExitIntentPopup } from "@/components/ExitIntentPopup";
 import { MessageCircle } from "lucide-react";
 
 const Index = () => {
@@ -95,6 +96,8 @@ const Index = () => {
           ¿Necesitas ayuda?
         </span>
       </a>
+
+      <ExitIntentPopup />
     </div>
   );
 };
