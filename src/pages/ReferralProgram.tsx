@@ -77,8 +77,15 @@ const ReferralProgram = () => {
       referral_code: refCode,
     });
 
+    // Increment referral count (best effort)
     if (!error && refCode) {
-      await supabase.rpc("increment_referral_count" as any, { code: refCode }).catch(() => {});
+      try {
+        await supabase.from("referrals").select("referral_count").eq("referral_code", refCode).single().then(async (res) => {
+          if (res.data) {
+            await supabase.from("referrals").update({ referral_count: (res.data.referral_count || 0) + 1 } as any).eq("referral_code", refCode);
+          }
+        });
+      } catch {}
     }
 
     setLoading(false);
