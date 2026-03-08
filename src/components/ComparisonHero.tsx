@@ -100,6 +100,7 @@ export const ComparisonHero = () => {
             ))}
           </div>
         </div>
+      </div>
 
       {/* Scroll Indicator */}
       <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce text-white/40">
