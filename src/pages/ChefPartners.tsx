@@ -137,7 +137,7 @@ const ChefPartners = () => {
             <BonlifeLogo variant="light" className="text-2xl sm:text-3xl" />
           </Link>
           <Link to="/">
-            <Button variant="outline" size="sm" className="border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/10 text-xs sm:text-sm">
+            <Button variant="ghost" size="sm" className="text-primary-foreground hover:bg-primary-foreground/10 text-xs sm:text-sm">
               <ArrowLeft className="w-4 h-4 mr-1 sm:mr-2" />
               <span className="hidden sm:inline">Volver al </span>Inicio
             </Button>
