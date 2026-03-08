@@ -1,6 +1,26 @@
 import jsPDF from 'jspdf';
+import bonlifeLogo from '@/assets/bonlife-logo.png';
 
-export const generatePriceListPDF = () => {
+const loadImage = (src: string): Promise<string> => {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.crossOrigin = 'anonymous';
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      canvas.width = img.width;
+      canvas.height = img.height;
+      const ctx = canvas.getContext('2d');
+      if (ctx) {
+        ctx.drawImage(img, 0, 0);
+        resolve(canvas.toDataURL('image/png', 1));
+      } else reject(new Error('No canvas context'));
+    };
+    img.onerror = reject;
+    img.src = src;
+  });
+};
+
+export const generatePriceListPDF = async () => {
   const pdf = new jsPDF({
     orientation: 'portrait',
     unit: 'mm',
