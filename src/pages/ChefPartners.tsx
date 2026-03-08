@@ -160,7 +160,7 @@ const ChefPartners = () => {
             <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-4 sm:mb-6 leading-tight">
               Bonlife <span className="text-accent">Chef Partners</span>
             </h1>
-            <p className="text-lg md:text-xl text-primary-foreground/70 mb-8 leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-primary-foreground/70 mb-6 sm:mb-8 leading-relaxed px-2">
               Más que un proveedor de aceite — somos tu socio estratégico en la cocina. 
               Precios exclusivos, soporte técnico, cumplimiento sanitario y capacitación 
               para que tu operación funcione sin preocupaciones.
