@@ -132,14 +132,14 @@ const ChefPartners = () => {
     <div className="min-h-screen bg-background">
       {/* Header */}
       <header className="bg-foreground text-primary-foreground">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+        <div className="container mx-auto px-4 py-3 sm:py-4 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-3">
-            <img src={bonlifeLogo} alt="Bonlife" className="h-10" />
+            <BonlifeLogo variant="light" className="text-2xl sm:text-3xl" />
           </Link>
           <Link to="/">
-            <Button variant="outline" size="sm" className="border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/10">
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Volver al Inicio
+            <Button variant="outline" size="sm" className="border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/10 text-xs sm:text-sm">
+              <ArrowLeft className="w-4 h-4 mr-1 sm:mr-2" />
+              <span className="hidden sm:inline">Volver al </span>Inicio
             </Button>
           </Link>
         </div>
