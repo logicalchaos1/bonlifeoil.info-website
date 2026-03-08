@@ -151,13 +151,13 @@ const ChefPartners = () => {
           <div className="absolute top-[20%] left-[10%] w-[30%] h-[60%] bg-accent rounded-full blur-[100px]" />
           <div className="absolute bottom-[10%] right-[10%] w-[25%] h-[50%] bg-primary rounded-full blur-[100px]" />
         </div>
-        <div className="container mx-auto px-4 py-20 md:py-28 relative z-10">
+        <div className="container mx-auto px-4 py-12 sm:py-20 md:py-28 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 bg-accent/20 text-accent px-4 py-2 rounded-full text-sm font-semibold mb-6">
-              <ChefHat className="w-4 h-4" />
+            <div className="inline-flex items-center gap-2 bg-accent/20 text-accent px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold mb-4 sm:mb-6">
+              <ChefHat className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               Programa Exclusivo para Profesionales
             </div>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-4 sm:mb-6 leading-tight">
               Bonlife <span className="text-accent">Chef Partners</span>
             </h1>
             <p className="text-lg md:text-xl text-primary-foreground/70 mb-8 leading-relaxed">
