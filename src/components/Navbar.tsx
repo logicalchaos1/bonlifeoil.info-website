@@ -37,15 +37,17 @@ const Navbar = () => {
 
   const NavItem = ({ link }: { link: typeof navLinks[0] }) => {
     const isRoute = link.href.startsWith('/');
+    const isHash = link.href.startsWith('#');
     const className_ = cn(
       "text-sm font-medium transition-colors hover:text-primary",
       isScrolled ? "text-foreground" : "text-white"
     );
-    return isRoute ? (
-      <Link to={link.href} className={className_}>{link.name}</Link>
-    ) : (
-      <a href={link.href} className={className_}>{link.name}</a>
-    );
+    if (isRoute) {
+      return <Link to={link.href} className={className_}>{link.name}</Link>;
+    }
+    // For hash links, navigate to homepage + hash if not already there
+    const hashHref = window.location.pathname === '/' ? link.href : `/${link.href}`;
+    return <a href={hashHref} className={className_}>{link.name}</a>;
   };
 
   const MobileNavItem = ({ link }: { link: typeof navLinks[0] }) => {
