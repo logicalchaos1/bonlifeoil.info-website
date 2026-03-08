@@ -56,10 +56,10 @@ export const ComparisonTable = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="max-w-4xl mx-auto text-center mb-16"
+          className="max-w-4xl mx-auto text-center mb-10 md:mb-16 px-2"
         >
-          <h2 className="text-3xl md:text-5xl font-bold mb-6">La Ciencia del <span className="text-primary">Rendimiento</span></h2>
-          <p className="text-lg text-muted-foreground">
+          <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-4 md:mb-6">La Ciencia del <span className="text-primary">Rendimiento</span></h2>
+          <p className="text-base md:text-lg text-muted-foreground">
             No todos los aceites son iguales. Bonlife está diseñado para soportar las condiciones más exigentes de la cocina profesional.
           </p>
         </motion.div>
