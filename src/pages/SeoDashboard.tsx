@@ -54,15 +54,16 @@ const SeoDashboard = () => {
     },
   });
 
-  const generateBlog = async () => {
+  const generateBlog = async (count = 1) => {
     setGenerating(true);
     try {
       const { data, error } = await supabase.functions.invoke("generate-blog", {
-        body: {},
+        body: { batch_count: count },
       });
       if (error) throw error;
       if (data?.success) {
-        toast.success(`Blog creado: ${data.post?.title}`);
+        const successes = data.generated?.filter((r: any) => r.success)?.length || 0;
+        toast.success(`${successes} blog(s) creados en español`);
         queryClient.invalidateQueries({ queryKey: ["admin-posts"] });
         queryClient.invalidateQueries({ queryKey: ["admin-keywords"] });
       } else {
@@ -117,9 +118,13 @@ const SeoDashboard = () => {
             SEO Dashboard
           </h1>
           <div className="flex flex-wrap gap-2">
-            <Button onClick={generateBlog} disabled={generating} size="sm">
+            <Button onClick={() => generateBlog(1)} disabled={generating} size="sm">
               {generating ? <Loader2 className="w-4 h-4 mr-1 animate-spin" /> : <FileText className="w-4 h-4 mr-1" />}
-              Generar Blog
+              Generar 1
+            </Button>
+            <Button onClick={() => generateBlog(5)} disabled={generating} size="sm" variant="default">
+              {generating ? <Loader2 className="w-4 h-4 mr-1 animate-spin" /> : <FileText className="w-4 h-4 mr-1" />}
+              Generar 5
             </Button>
             <Button onClick={requestIndexing} variant="outline" size="sm">
               <Globe className="w-4 h-4 mr-1" />
