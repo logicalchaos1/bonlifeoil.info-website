@@ -6,8 +6,6 @@ import mantecaImage from "@/assets/manteca-product.jpg";
 import margarineImage from "@/assets/margarine-product.jpg";
 import frenchFriesImage from "@/assets/french-fries-product.jpg";
 import potatoChipsImage from "@/assets/potato-chips-product.jpg";
-import bonlifeLogo from "@/assets/bonlife-logo.png";
-
 export const generateCatalogPDF = async () => {
   const doc = new jsPDF();
   const pageWidth = doc.internal.pageSize.getWidth();
@@ -46,14 +44,14 @@ export const generateCatalogPDF = async () => {
     return false;
   };
 
-  // Header
-  doc.setFillColor(212, 175, 55); // Gold color
+  // Header - text only, no logo
+  doc.setFillColor(212, 175, 55);
   doc.rect(0, 0, pageWidth, 35, 'F');
   
   doc.setFontSize(24);
   doc.setTextColor(255, 255, 255);
   doc.setFont("helvetica", "bold");
-  doc.text("Catalogo de Productos Bonlife", pageWidth / 2, 15, { align: "center" });
+  doc.text("BONLIFE — Catalogo de Productos", pageWidth / 2, 15, { align: "center" });
   
   doc.setFontSize(11);
   doc.setFont("helvetica", "normal");
