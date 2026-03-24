@@ -1040,7 +1040,7 @@ const ProductCatalog = () => {
           <TabsContent value="fries">
             <Card className="border-red-600/20">
               <CardHeader className="bg-gradient-to-r from-red-600 to-red-700">
-                <CardTitle className="text-3xl mb-2 text-white">Papas Fritas Premium Altura Foods</CardTitle>
+                <CardTitle className="text-3xl mb-2 text-white">Papas Fritas Premium Bonlife</CardTitle>
                 <CardDescription className="text-lg text-white/90">
                   Papas cortadas de calidad superior para uso comercial
                 </CardDescription>
