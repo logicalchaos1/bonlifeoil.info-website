@@ -1096,7 +1096,7 @@ const ProductCatalog = () => {
           <TabsContent value="chips">
             <Card className="border-orange-600/20">
               <CardHeader className="bg-gradient-to-r from-orange-600 to-orange-700">
-                <CardTitle className="text-3xl mb-2 text-white">Chips/Papitas Premium Altura Foods</CardTitle>
+                <CardTitle className="text-3xl mb-2 text-white">Chips/Papitas Premium Bonlife</CardTitle>
                 <CardDescription className="text-lg text-white/90">
                   Papitas crujientes de calidad superior
                 </CardDescription>
