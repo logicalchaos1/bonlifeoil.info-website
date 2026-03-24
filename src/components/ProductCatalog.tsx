@@ -425,7 +425,7 @@ const ProductCatalog = () => {
     doc.setFontSize(15);
     doc.setFont("helvetica", "bold");
     doc.setTextColor(255, 255, 255);
-    doc.text("Chips/Papitas Premium Altura Foods", margin, yPos);
+    doc.text("Chips/Papitas Premium Bonlife", margin, yPos);
     yPos += 15;
     
     // Add product image centered
