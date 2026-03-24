@@ -51,25 +51,17 @@ export const generateBookletPDF = async () => {
   pdf.setFillColor(goldColor[0], goldColor[1], goldColor[2]);
   pdf.rect(0, 0, pageWidth, pageHeight, 'F');
 
-  // Add logo to cover
-  try {
-    const logoData = await loadImage(bonlifeLogo);
-    pdf.addImage(logoData, 'PNG', pageWidth / 2 - 25, 45, 50, 25);
-  } catch (e) {
-    console.error('Error loading logo:', e);
-  }
-  
   pdf.setTextColor(255, 255, 255);
   pdf.setFontSize(48);
   pdf.setFont('helvetica', 'bold');
-  pdf.text('BONLIFE', pageWidth / 2, 90, { align: 'center' });
+  pdf.text('BONLIFE', pageWidth / 2, 80, { align: 'center' });
   
   pdf.setFontSize(24);
   pdf.setFont('helvetica', 'normal');
-  pdf.text('Aceites Premium', pageWidth / 2, 110, { align: 'center' });
+  pdf.text('Aceites Premium', pageWidth / 2, 105, { align: 'center' });
   
   pdf.setFontSize(16);
-  pdf.text('Catálogo de Productos', pageWidth / 2, 130, { align: 'center' });
+  pdf.text('Catálogo de Productos', pageWidth / 2, 125, { align: 'center' });
   
   pdf.setFontSize(11);
   pdf.setFont('helvetica', 'italic');

@@ -1134,7 +1134,7 @@ const ProductCatalog = () => {
                     </li>
                   </ul>
                   <div className="mt-4">
-                    <Badge variant="default" className="text-base px-4 py-2 bg-green-600 text-white">$110 DOP/lb</Badge>
+                    <Badge variant="default" className="text-base px-4 py-2 bg-green-600 text-white">$1,800 DOP/10kg</Badge>
                   </div>
                 </div>
 
