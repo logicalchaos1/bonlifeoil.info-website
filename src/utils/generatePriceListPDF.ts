@@ -1,24 +1,4 @@
 import jsPDF from 'jspdf';
-import bonlifeLogo from '@/assets/bonlife-logo.png';
-
-const loadImage = (src: string): Promise<string> => {
-  return new Promise((resolve, reject) => {
-    const img = new Image();
-    img.crossOrigin = 'anonymous';
-    img.onload = () => {
-      const canvas = document.createElement('canvas');
-      canvas.width = img.width;
-      canvas.height = img.height;
-      const ctx = canvas.getContext('2d');
-      if (ctx) {
-        ctx.drawImage(img, 0, 0);
-        resolve(canvas.toDataURL('image/png', 1));
-      } else reject(new Error('No canvas context'));
-    };
-    img.onerror = reject;
-    img.src = src;
-  });
-};
 
 export const generatePriceListPDF = async () => {
   const pdf = new jsPDF({
@@ -35,16 +15,9 @@ export const generatePriceListPDF = async () => {
   const gold = [212, 175, 55];
   const dark = [26, 26, 26];
 
-  // Header
+  // Header - text only
   pdf.setFillColor(gold[0], gold[1], gold[2]);
   pdf.rect(0, 0, pageWidth, 50, 'F');
-
-  try {
-    const logoData = await loadImage(bonlifeLogo);
-    pdf.addImage(logoData, 'PNG', margin, 5, 30, 15);
-  } catch (e) {
-    console.error('Error loading logo:', e);
-  }
 
   pdf.setTextColor(255, 255, 255);
   pdf.setFontSize(32);
@@ -78,8 +51,8 @@ export const generatePriceListPDF = async () => {
     { name: 'Aceite de Girasol Bonlife', presentation: '25 Litros', price: '$4,000' },
     { name: 'Manteca Vegetal Bonlife', presentation: '25 Litros', price: '$3,570' },
     { name: 'Margarina Bonlife', presentation: '15 Kg', price: '$3,570' },
-    { name: 'Papas Fritas Pre-Fritas Bonlife', presentation: '10 Kg', price: '$2,100' },
-    { name: 'Potato Chips Bonlife', presentation: '10 Kg', price: '$2,100' },
+    { name: 'Papas Fritas Pre-Fritas Bonlife', presentation: '10 Kg', price: '$1,800' },
+    { name: 'Potato Chips Bonlife', presentation: '10 Kg', price: '$1,800' },
   ];
 
   pdf.setFontSize(9);

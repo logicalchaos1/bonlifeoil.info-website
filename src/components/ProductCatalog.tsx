@@ -11,7 +11,7 @@ import mantecaImage from "@/assets/manteca-product.jpg";
 import margarineImage from "@/assets/margarine-product.jpg";
 import frenchFriesImage from "@/assets/french-fries-product.jpg";
 import potatoChipsImage from "@/assets/potato-chips-product.jpg";
-import bonlifeLogo from "@/assets/bonlife-logo.png";
+
 
 const ProductCatalog = () => {
   const generatePDF = async () => {
@@ -52,26 +52,20 @@ const ProductCatalog = () => {
       return false;
     };
 
-    // Load Bonlife logo
-    const logoImg = await loadImage(bonlifeLogo);
+    // Header - text only
+    doc.setFillColor(212, 175, 55);
+    doc.rect(0, 0, pageWidth, 35, 'F');
     
-    // Header with logo
-    doc.setFillColor(212, 175, 55); // Gold color
-    doc.rect(0, 0, pageWidth, 45, 'F');
-    
-    // Add logo to header
-    const logoBase64 = getBase64Image(logoImg);
-    const logoWidth = 60;
-    const logoHeight = 20;
-    const logoX = (pageWidth - logoWidth) / 2;
-    doc.addImage(logoBase64, 'PNG', logoX, 8, logoWidth, logoHeight);
+    doc.setFontSize(24);
+    doc.setTextColor(255, 255, 255);
+    doc.setFont("helvetica", "bold");
+    doc.text("BONLIFE — Catalogo de Productos", pageWidth / 2, 15, { align: "center" });
     
     doc.setFontSize(11);
     doc.setFont("helvetica", "normal");
-    doc.setTextColor(255, 255, 255);
-    doc.text("El verdadero aceite vegetal con el doble de duracion", pageWidth / 2, 38, { align: "center" });
+    doc.text("El verdadero aceite vegetal con el doble de duracion", pageWidth / 2, 25, { align: "center" });
     
-    yPos = 55;
+    yPos = 45;
     doc.setTextColor(0, 0, 0);
 
     // Load product images
@@ -378,7 +372,7 @@ const ProductCatalog = () => {
     doc.setFontSize(15);
     doc.setFont("helvetica", "bold");
     doc.setTextColor(255, 255, 255);
-    doc.text("Papas Fritas Premium Altura Foods", margin, yPos);
+    doc.text("Papas Fritas Premium Bonlife", margin, yPos);
     yPos += 15;
     
     // Add product image centered
@@ -409,7 +403,7 @@ const ProductCatalog = () => {
     doc.setFillColor(34, 139, 34);
     doc.rect(margin - 2, yPos - 5, 40, 8, 'F');
     doc.setTextColor(255, 255, 255);
-    doc.text("$95 DOP/lb", margin, yPos);
+    doc.text("$1,800 DOP/10kg", margin, yPos);
     yPos += 10;
     doc.setTextColor(0, 0, 0);
     doc.setFont("helvetica", "italic");
@@ -425,7 +419,7 @@ const ProductCatalog = () => {
     doc.setFontSize(15);
     doc.setFont("helvetica", "bold");
     doc.setTextColor(255, 255, 255);
-    doc.text("Chips/Papitas Premium Altura Foods", margin, yPos);
+    doc.text("Chips/Papitas Premium Bonlife", margin, yPos);
     yPos += 15;
     
     // Add product image centered
@@ -456,7 +450,7 @@ const ProductCatalog = () => {
     doc.setFillColor(34, 139, 34);
     doc.rect(margin - 2, yPos - 5, 40, 8, 'F');
     doc.setTextColor(255, 255, 255);
-    doc.text("$110 DOP/lb", margin, yPos);
+    doc.text("$1,800 DOP/10kg", margin, yPos);
     yPos += 10;
     doc.setTextColor(0, 0, 0);
     doc.setFont("helvetica", "italic");
@@ -1040,7 +1034,7 @@ const ProductCatalog = () => {
           <TabsContent value="fries">
             <Card className="border-red-600/20">
               <CardHeader className="bg-gradient-to-r from-red-600 to-red-700">
-                <CardTitle className="text-3xl mb-2 text-white">Papas Fritas Premium Altura Foods</CardTitle>
+                <CardTitle className="text-3xl mb-2 text-white">Papas Fritas Premium Bonlife</CardTitle>
                 <CardDescription className="text-lg text-white/90">
                   Papas cortadas de calidad superior para uso comercial
                 </CardDescription>
@@ -1078,7 +1072,7 @@ const ProductCatalog = () => {
                     </li>
                   </ul>
                   <div className="mt-4">
-                    <Badge variant="default" className="text-base px-4 py-2 bg-green-600 text-white">$95 DOP/lb</Badge>
+                    <Badge variant="default" className="text-base px-4 py-2 bg-green-600 text-white">$1,800 DOP/10kg</Badge>
                   </div>
                 </div>
 
@@ -1096,7 +1090,7 @@ const ProductCatalog = () => {
           <TabsContent value="chips">
             <Card className="border-orange-600/20">
               <CardHeader className="bg-gradient-to-r from-orange-600 to-orange-700">
-                <CardTitle className="text-3xl mb-2 text-white">Chips/Papitas Premium Altura Foods</CardTitle>
+                <CardTitle className="text-3xl mb-2 text-white">Chips/Papitas Premium Bonlife</CardTitle>
                 <CardDescription className="text-lg text-white/90">
                   Papitas crujientes de calidad superior
                 </CardDescription>
@@ -1134,7 +1128,7 @@ const ProductCatalog = () => {
                     </li>
                   </ul>
                   <div className="mt-4">
-                    <Badge variant="default" className="text-base px-4 py-2 bg-green-600 text-white">$110 DOP/lb</Badge>
+                    <Badge variant="default" className="text-base px-4 py-2 bg-green-600 text-white">$1,800 DOP/10kg</Badge>
                   </div>
                 </div>
 

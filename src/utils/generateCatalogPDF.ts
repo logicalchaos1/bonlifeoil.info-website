@@ -6,8 +6,6 @@ import mantecaImage from "@/assets/manteca-product.jpg";
 import margarineImage from "@/assets/margarine-product.jpg";
 import frenchFriesImage from "@/assets/french-fries-product.jpg";
 import potatoChipsImage from "@/assets/potato-chips-product.jpg";
-import bonlifeLogo from "@/assets/bonlife-logo.png";
-
 export const generateCatalogPDF = async () => {
   const doc = new jsPDF();
   const pageWidth = doc.internal.pageSize.getWidth();
@@ -46,14 +44,14 @@ export const generateCatalogPDF = async () => {
     return false;
   };
 
-  // Header
-  doc.setFillColor(212, 175, 55); // Gold color
+  // Header - text only, no logo
+  doc.setFillColor(212, 175, 55);
   doc.rect(0, 0, pageWidth, 35, 'F');
   
   doc.setFontSize(24);
   doc.setTextColor(255, 255, 255);
   doc.setFont("helvetica", "bold");
-  doc.text("Catalogo de Productos Bonlife", pageWidth / 2, 15, { align: "center" });
+  doc.text("BONLIFE — Catalogo de Productos", pageWidth / 2, 15, { align: "center" });
   
   doc.setFontSize(11);
   doc.setFont("helvetica", "normal");
@@ -368,7 +366,7 @@ export const generateCatalogPDF = async () => {
   doc.setFontSize(15);
   doc.setFont("helvetica", "bold");
   doc.setTextColor(255, 255, 255);
-  doc.text("Papas Fritas Premium Altura Foods", margin, yPos);
+  doc.text("Papas Fritas Premium Bonlife", margin, yPos);
   yPos += 15;
   
   // Add product image centered
@@ -399,7 +397,7 @@ export const generateCatalogPDF = async () => {
   doc.setFillColor(34, 139, 34);
   doc.rect(margin - 2, yPos - 5, 40, 8, 'F');
   doc.setTextColor(255, 255, 255);
-  doc.text("$95 DOP/lb", margin, yPos);
+  doc.text("$2,100 DOP/10kg", margin, yPos);
   yPos += 10;
   doc.setTextColor(0, 0, 0);
   doc.setFont("helvetica", "italic");
@@ -415,7 +413,7 @@ export const generateCatalogPDF = async () => {
   doc.setFontSize(15);
   doc.setFont("helvetica", "bold");
   doc.setTextColor(255, 255, 255);
-  doc.text("Chips/Papitas Premium Altura Foods", margin, yPos);
+  doc.text("Chips/Papitas Premium Bonlife", margin, yPos);
   yPos += 15;
   
   // Add product image centered
@@ -446,7 +444,7 @@ export const generateCatalogPDF = async () => {
   doc.setFillColor(34, 139, 34);
   doc.rect(margin - 2, yPos - 5, 40, 8, 'F');
   doc.setTextColor(255, 255, 255);
-  doc.text("$110 DOP/lb", margin, yPos);
+  doc.text("$2,100 DOP/10kg", margin, yPos);
   yPos += 10;
   doc.setTextColor(0, 0, 0);
   doc.setFont("helvetica", "italic");
