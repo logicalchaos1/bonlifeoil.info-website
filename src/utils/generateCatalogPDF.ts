@@ -366,7 +366,7 @@ export const generateCatalogPDF = async () => {
   doc.setFontSize(15);
   doc.setFont("helvetica", "bold");
   doc.setTextColor(255, 255, 255);
-  doc.text("Papas Fritas Premium Altura Foods", margin, yPos);
+  doc.text("Papas Fritas Premium Bonlife", margin, yPos);
   yPos += 15;
   
   // Add product image centered
