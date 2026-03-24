@@ -11,7 +11,7 @@ import mantecaImage from "@/assets/manteca-product.jpg";
 import margarineImage from "@/assets/margarine-product.jpg";
 import frenchFriesImage from "@/assets/french-fries-product.jpg";
 import potatoChipsImage from "@/assets/potato-chips-product.jpg";
-import bonlifeLogo from "@/assets/bonlife-logo.png";
+
 
 const ProductCatalog = () => {
   const generatePDF = async () => {
