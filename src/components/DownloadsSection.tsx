@@ -1,59 +1,77 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Download, FileText, BookOpen, DollarSign } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { generateCatalogPDF } from '@/utils/generateCatalogPDF';
-import { generateBookletPDF } from '@/utils/generateBookletPDF';
-import { generatePriceListPDF } from '@/utils/generatePriceListPDF';
 
 const downloads = [
   {
     title: 'Catálogo Completo',
     description: 'Ficha técnica de todos los productos con especificaciones, beneficios e imágenes.',
     icon: FileText,
-    action: generateCatalogPDF,
-    filename: 'Catalogo-Bonlife.pdf',
+    action: async () => {
+      const { generateCatalogPDF } = await import('@/utils/generateCatalogPDF');
+      await generateCatalogPDF();
+    },
   },
   {
     title: 'Booklet Comercial',
     description: 'Presentación compacta ideal para compartir con clientes y socios.',
     icon: BookOpen,
-    action: generateBookletPDF,
-    filename: 'Booklet-Bonlife.pdf',
+    action: async () => {
+      const { generateBookletPDF } = await import('@/utils/generateBookletPDF');
+      await generateBookletPDF();
+    },
   },
   {
     title: 'Lista de Precios',
     description: 'Tabla de precios actualizada de todos los productos Bonlife.',
     icon: DollarSign,
-    action: generatePriceListPDF,
-    filename: 'Lista-de-Precios-Bonlife.pdf',
+    action: async () => {
+      const { generatePriceListPDF } = await import('@/utils/generatePriceListPDF');
+      await generatePriceListPDF();
+    },
   },
 ];
 
 const DownloadsSection = () => {
+  const [loadingTitle, setLoadingTitle] = useState<string | null>(null);
+
+  const handleDownload = async (title: string, action: () => Promise<void>) => {
+    try {
+      setLoadingTitle(title);
+      await action();
+    } finally {
+      setLoadingTitle(null);
+    }
+  };
+
   return (
-    <section id="descargas" className="py-16 md:py-20 px-4 bg-muted/30">
+    <section id="descargas" className="bg-muted/30 px-4 py-16 md:py-20">
       <div className="container mx-auto max-w-5xl">
-        <div className="text-center mb-10">
-          <h2 className="text-3xl md:text-4xl font-bold mb-3">Documentos para Descargar</h2>
-          <p className="text-muted-foreground text-lg">
+        <div className="mb-10 text-center">
+          <h2 className="mb-3 text-3xl font-bold md:text-4xl">Documentos para Descargar</h2>
+          <p className="text-lg text-muted-foreground">
             Descargue nuestros materiales en PDF para compartir con su equipo
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {downloads.map((item) => (
             <div
               key={item.title}
-              className="bg-card border border-border rounded-2xl p-6 flex flex-col items-center text-center shadow-sm hover:shadow-md transition-shadow"
+              className="flex flex-col items-center rounded-2xl border border-border bg-card p-6 text-center shadow-sm transition-shadow hover:shadow-md"
             >
-              <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
-                <item.icon className="w-7 h-7 text-primary" />
+              <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10">
+                <item.icon className="h-7 w-7 text-primary" />
               </div>
-              <h3 className="text-lg font-bold mb-2">{item.title}</h3>
-              <p className="text-muted-foreground text-sm mb-5 flex-1">{item.description}</p>
-              <Button onClick={item.action} className="gap-2 w-full">
-                <Download className="w-4 h-4" />
-                Descargar PDF
+              <h3 className="mb-2 text-lg font-bold">{item.title}</h3>
+              <p className="mb-5 flex-1 text-sm text-muted-foreground">{item.description}</p>
+              <Button
+                onClick={() => handleDownload(item.title, item.action)}
+                className="w-full gap-2"
+                disabled={loadingTitle === item.title}
+              >
+                <Download className="h-4 w-4" />
+                {loadingTitle === item.title ? 'Generando PDF...' : 'Descargar PDF'}
               </Button>
             </div>
           ))}
