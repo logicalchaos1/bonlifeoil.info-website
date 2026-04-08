@@ -1,6 +1,15 @@
 import { useState } from "react";
-import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
+
+const getBackendClient = async () => {
+  try {
+    const { supabase } = await import("@/integrations/supabase/client");
+    return supabase;
+  } catch (error) {
+    console.error("Failed to load backend client for contact form", error);
+    return null;
+  }
+};
 
 export const ContactSection = () => {
   const [loading, setLoading] = useState(false);
@@ -16,7 +25,15 @@ export const ContactSection = () => {
     if (!name.trim() || !email.trim()) return;
 
     setLoading(true);
-    const { error } = await supabase.from("leads").insert({
+    const client = await getBackendClient();
+
+    if (!client) {
+      setLoading(false);
+      toast.error("El formulario no está disponible en este momento. Intente de nuevo en unos minutos.");
+      return;
+    }
+
+    const { error } = await client.from("leads").insert({
       name: name.trim().slice(0, 100),
       company: company.trim().slice(0, 200) || null,
       email: email.trim().slice(0, 255),
