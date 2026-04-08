@@ -2,9 +2,18 @@ import { useState, useEffect } from "react";
 import { X, Gift, ChefHat } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { motion, AnimatePresence } from "framer-motion";
+
+const getBackendClient = async () => {
+  try {
+    const { supabase } = await import("@/integrations/supabase/client");
+    return supabase;
+  } catch (error) {
+    console.error("Failed to load backend client for exit popup", error);
+    return null;
+  }
+};
 
 export const ExitIntentPopup = () => {
   const [show, setShow] = useState(false);
@@ -49,7 +58,15 @@ export const ExitIntentPopup = () => {
     if (!name.trim() || !phone.trim()) return;
 
     setLoading(true);
-    const { error } = await supabase.from("leads").insert({
+    const client = await getBackendClient();
+
+    if (!client) {
+      setLoading(false);
+      toast.error("La solicitud no está disponible en este momento. Intente de nuevo en unos minutos.");
+      return;
+    }
+
+    const { error } = await client.from("leads").insert({
       name: name.trim().slice(0, 100),
       email: email.trim().slice(0, 255) || null,
       phone: phone.trim().slice(0, 20),
