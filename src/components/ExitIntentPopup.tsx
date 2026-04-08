@@ -5,6 +5,24 @@ import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 import { motion, AnimatePresence } from "framer-motion";
 
+const safeSessionStorage = {
+  getItem(key: string) {
+    try {
+      return window.sessionStorage.getItem(key);
+    } catch (error) {
+      console.warn("Session storage unavailable", error);
+      return null;
+    }
+  },
+  setItem(key: string, value: string) {
+    try {
+      window.sessionStorage.setItem(key, value);
+    } catch (error) {
+      console.warn("Session storage unavailable", error);
+    }
+  },
+};
+
 const getBackendClient = async () => {
   try {
     const { supabase } = await import("@/integrations/supabase/client");
@@ -25,7 +43,7 @@ export const ExitIntentPopup = () => {
   const [company, setCompany] = useState("");
 
   useEffect(() => {
-    const dismissed = sessionStorage.getItem("exit-popup-dismissed");
+    const dismissed = safeSessionStorage.getItem("exit-popup-dismissed");
     if (dismissed) return;
 
     const handleMouseLeave = (e: MouseEvent) => {
@@ -36,7 +54,7 @@ export const ExitIntentPopup = () => {
 
     // Also show after 45 seconds on page
     const timer = setTimeout(() => {
-      if (!sessionStorage.getItem("exit-popup-dismissed")) {
+      if (!safeSessionStorage.getItem("exit-popup-dismissed")) {
         setShow(true);
       }
     }, 45000);
@@ -50,7 +68,7 @@ export const ExitIntentPopup = () => {
 
   const handleDismiss = () => {
     setShow(false);
-    sessionStorage.setItem("exit-popup-dismissed", "true");
+    safeSessionStorage.setItem("exit-popup-dismissed", "true");
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -81,7 +99,7 @@ export const ExitIntentPopup = () => {
     }
 
     setSubmitted(true);
-    sessionStorage.setItem("exit-popup-dismissed", "true");
+    safeSessionStorage.setItem("exit-popup-dismissed", "true");
     toast.success("¡Solicitud enviada! Le contactaremos pronto.");
   };
 

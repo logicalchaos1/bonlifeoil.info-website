@@ -38,6 +38,7 @@ const App = () => (
           <Suspense fallback={<RouteLoader />}>
             <Routes>
               <Route path="/" element={<Index />} />
+              <Route path="/index" element={<Index />} />
               <Route path="/formulario-comprador" element={<BuyersForm />} />
               <Route path="/reporte-piloto" element={<TrialReport />} />
               <Route path="/chef-partners" element={<ChefPartners />} />
