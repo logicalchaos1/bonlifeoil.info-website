@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <path d="M50 8 C50 8 18 46 18 64 C18 82 32 92 50 92 C68 92 82 82 82 64 C82 46 50 8 50 8 Z" fill="#F59E0B"/>
+  <path d="M50 22 C50 22 30 50 30 64 C30 76 38 84 50 84 C62 84 70 76 70 64 C70 50 50 22 50 22 Z" fill="#FCD34D" opacity="0.5"/>
+  <text x="50" y="72" text-anchor="middle" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="30" fill="white">B</text>
+</svg>

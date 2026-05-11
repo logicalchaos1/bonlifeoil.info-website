@@ -10,8 +10,8 @@ serve(async (req) => {
   if (req.method === "OPTIONS") return new Response(null, { headers: corsHeaders });
 
   try {
-    const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
-    if (!LOVABLE_API_KEY) throw new Error("LOVABLE_API_KEY not configured");
+    const GEMINI_API_KEY = Deno.env.get("GEMINI_API_KEY");
+    if (!GEMINI_API_KEY) throw new Error("GEMINI_API_KEY not configured");
 
     const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
     const supabaseKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
@@ -25,7 +25,7 @@ serve(async (req) => {
 
     for (let i = 0; i < batch_count; i++) {
       try {
-        const post = await generateSingleBlog(supabase, LOVABLE_API_KEY, town_id, keyword_id);
+        const post = await generateSingleBlog(supabase, GEMINI_API_KEY, town_id, keyword_id);
         results.push({ success: true, title: post.title, slug: post.slug });
         // Small delay between generations to avoid rate limits
         if (i < batch_count - 1) await new Promise(r => setTimeout(r, 3000));
@@ -147,14 +147,14 @@ Devuelve EXACTAMENTE este formato JSON:
 
   console.log(`Generating Spanish blog for ${town.name} | keyword: ${primaryKeyword}`);
 
-  const aiResponse = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
+  const aiResponse = await fetch("https://generativelanguage.googleapis.com/v1beta/openai/chat/completions", {
     method: "POST",
     headers: {
       Authorization: `Bearer ${apiKey}`,
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      model: "google/gemini-3-flash-preview",
+      model: "gemini-2.0-flash",
       messages: [
         { role: "system", content: systemPrompt },
         { role: "user", content: userPrompt },
