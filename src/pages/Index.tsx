@@ -1,17 +1,22 @@
 "use client";
 
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import Navbar from "@/components/Navbar";
 import { ComparisonHero } from "@/components/ComparisonHero";
 import { ComparisonTable } from "@/components/ComparisonTable";
 import { SavingsCalculator } from "@/components/SavingsCalculator";
 import { BenefitsSection } from "@/components/BenefitsSection";
-import { ContactSection } from "@/components/ContactSection";
-import ProductCatalog from "@/components/ProductCatalog";
-import DownloadsSection from "@/components/DownloadsSection";
-import TestimonialsSection from "@/components/TestimonialsSection";
-import { ExitIntentPopup } from "@/components/ExitIntentPopup";
 import { MessageCircle } from "lucide-react";
+
+const ContactSection = lazy(() =>
+  import("@/components/ContactSection").then((m) => ({ default: m.ContactSection }))
+);
+const ProductCatalog = lazy(() => import("@/components/ProductCatalog"));
+const DownloadsSection = lazy(() => import("@/components/DownloadsSection"));
+const TestimonialsSection = lazy(() => import("@/components/TestimonialsSection"));
+const ExitIntentPopup = lazy(() =>
+  import("@/components/ExitIntentPopup").then((m) => ({ default: m.ExitIntentPopup }))
+);
 
 const Index = () => {
   return (
@@ -32,10 +37,12 @@ const Index = () => {
             <ComparisonTable />
             <SavingsCalculator />
             <BenefitsSection />
-            <ProductCatalog />
-            <TestimonialsSection />
-            <DownloadsSection />
-            <ContactSection />
+            <Suspense fallback={null}>
+              <ProductCatalog />
+              <TestimonialsSection />
+              <DownloadsSection />
+              <ContactSection />
+            </Suspense>
           </div>
         </div>
       </main>
@@ -98,7 +105,9 @@ const Index = () => {
         </span>
       </a>
 
-      <ExitIntentPopup />
+      <Suspense fallback={null}>
+        <ExitIntentPopup />
+      </Suspense>
     </div>
   );
 };
