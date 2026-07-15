@@ -9,8 +9,6 @@ import sunflowerImage from "@/assets/sunflower-oil-product.jpg";
 import soyaImage from "@/assets/soya-oil-product.jpg";
 import mantecaImage from "@/assets/manteca-product.jpg";
 import margarineImage from "@/assets/margarine-product.jpg";
-import frenchFriesImage from "@/assets/french-fries-product.jpg";
-import potatoChipsImage from "@/assets/potato-chips-product.jpg";
 
 type ProductSpec = {
   label: string;
@@ -170,46 +168,6 @@ const products: Product[] = [
     notes: [
       { label: "Presentaciones", value: "15kg" },
       { label: "Vida útil", value: "2 años (cerrado)" },
-    ],
-  },
-  {
-    id: "fries",
-    tabLabel: "Papas Fritas",
-    name: "Papas Fritas Premium Bonlife",
-    tagline: "Papas cortadas de calidad superior para uso comercial",
-    description:
-      "Papas fritas premium con corte uniforme, ideales para restaurantes, hoteles y operaciones de alto volumen que buscan consistencia y buen costo por porción.",
-    image: frenchFriesImage,
-    price: "$1,800 DOP/10kg",
-    benefits: [
-      "Corte uniforme para cocción pareja",
-      "Ideal para freidoras industriales y comerciales",
-      "Papas seleccionadas de primera calidad",
-      "Textura crujiente por fuera y suave por dentro",
-    ],
-    notes: [
-      { label: "Presentación", value: "Producto congelado" },
-      { label: "Almacenamiento", value: "Mantener a -18 °C" },
-    ],
-  },
-  {
-    id: "chips",
-    tabLabel: "Chips",
-    name: "Chips/Papitas Premium Bonlife",
-    tagline: "Papitas crujientes de calidad superior",
-    description:
-      "Chips de papa premium con corte fino y uniforme, diseñadas para snacks, acompañamientos y propuestas retail con perfil más competitivo.",
-    image: potatoChipsImage,
-    price: "$1,800 DOP/10kg",
-    benefits: [
-      "Textura crujiente consistente",
-      "Sabor premium para uso comercial y retail",
-      "Corte fino y uniforme para máxima calidad",
-      "Ideal para snacks, acompañamientos y combos",
-    ],
-    notes: [
-      { label: "Presentación", value: "Producto congelado" },
-      { label: "Almacenamiento", value: "Mantener a -18 °C" },
     ],
   },
 ];

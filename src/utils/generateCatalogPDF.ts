@@ -4,8 +4,6 @@ import sunflowerImage from "@/assets/sunflower-oil-product.jpg";
 import soyaImage from "@/assets/soya-oil-product.jpg";
 import mantecaImage from "@/assets/manteca-product.jpg";
 import margarineImage from "@/assets/margarine-product.jpg";
-import frenchFriesImage from "@/assets/french-fries-product.jpg";
-import potatoChipsImage from "@/assets/potato-chips-product.jpg";
 export const generateCatalogPDF = async () => {
   const doc = new jsPDF();
   const pageWidth = doc.internal.pageSize.getWidth();
@@ -66,8 +64,6 @@ export const generateCatalogPDF = async () => {
   const sunflowerImg = await loadImage(sunflowerImage);
   const mantecaImg = await loadImage(mantecaImage);
   const margarineImg = await loadImage(margarineImage);
-  const frenchFriesImg = await loadImage(frenchFriesImage);
-  const potatoChipsImg = await loadImage(potatoChipsImage);
 
   // Image dimensions for products
   const imgWidth = 35;
@@ -356,100 +352,6 @@ export const generateCatalogPDF = async () => {
   doc.setFontSize(9);
   doc.setTextColor(0, 0, 0);
   doc.text("Presentaciones: 15kg  |  Vida util: 2 años (cerrado)", margin, yPos);
-  yPos += 12;
-
-  // Product 6: Papas Fritas Premium
-  checkPageBreak(60);
-  
-  doc.setFillColor(220, 38, 38);
-  doc.rect(margin - 5, yPos - 5, pageWidth - 2 * margin + 10, 10, 'F');
-  doc.setFontSize(15);
-  doc.setFont("helvetica", "bold");
-  doc.setTextColor(255, 255, 255);
-  doc.text("Papas Fritas Premium Bonlife", margin, yPos);
-  yPos += 15;
-  
-  // Add product image centered
-  const frenchFriesBase64 = getBase64Image(frenchFriesImg);
-  doc.addImage(frenchFriesBase64, 'JPEG', imgX, yPos, imgWidth, imgHeight);
-  yPos += imgHeight + 8;
-  
-  doc.setTextColor(0, 0, 0);
-  doc.setFont("helvetica", "italic");
-  doc.setFontSize(9);
-  doc.text("Papas cortadas de calidad superior para uso comercial", margin, yPos);
-  yPos += 7;
-  
-  doc.setFont("helvetica", "normal");
-  doc.setFillColor(220, 38, 38);
-  doc.circle(margin + 2, yPos - 1.5, 1, 'F');
-  doc.text("Corte uniforme para coccion pareja", margin + 5, yPos);
-  yPos += 5;
-  doc.circle(margin + 2, yPos - 1.5, 1, 'F');
-  doc.text("Ideal para freidoras industriales y comerciales", margin + 5, yPos);
-  yPos += 5;
-  doc.circle(margin + 2, yPos - 1.5, 1, 'F');
-  doc.text("Papas frescas seleccionadas de primera calidad", margin + 5, yPos);
-  yPos += 7;
-  
-  doc.setFontSize(12);
-  doc.setFont("helvetica", "bold");
-  doc.setFillColor(34, 139, 34);
-  doc.rect(margin - 2, yPos - 5, 40, 8, 'F');
-  doc.setTextColor(255, 255, 255);
-  doc.text("$2,100 DOP/10kg", margin, yPos);
-  yPos += 10;
-  doc.setTextColor(0, 0, 0);
-  doc.setFont("helvetica", "italic");
-  doc.setFontSize(9);
-  doc.text("Producto congelado  |  Mantener refrigerado", margin, yPos);
-  yPos += 12;
-
-  // Product 7: Chips Premium
-  checkPageBreak(60);
-  
-  doc.setFillColor(255, 140, 0);
-  doc.rect(margin - 5, yPos - 5, pageWidth - 2 * margin + 10, 10, 'F');
-  doc.setFontSize(15);
-  doc.setFont("helvetica", "bold");
-  doc.setTextColor(255, 255, 255);
-  doc.text("Chips/Papitas Premium Bonlife", margin, yPos);
-  yPos += 15;
-  
-  // Add product image centered
-  const potatoChipsBase64 = getBase64Image(potatoChipsImg);
-  doc.addImage(potatoChipsBase64, 'JPEG', imgX, yPos, imgWidth, imgHeight);
-  yPos += imgHeight + 8;
-  
-  doc.setTextColor(0, 0, 0);
-  doc.setFont("helvetica", "italic");
-  doc.setFontSize(9);
-  doc.text("Papitas crujientes de calidad superior", margin, yPos);
-  yPos += 7;
-  
-  doc.setFont("helvetica", "normal");
-  doc.setFillColor(255, 140, 0);
-  doc.circle(margin + 2, yPos - 1.5, 1, 'F');
-  doc.text("Textura crujiente perfecta", margin + 5, yPos);
-  yPos += 5;
-  doc.circle(margin + 2, yPos - 1.5, 1, 'F');
-  doc.text("Sabor premium para uso comercial y retail", margin + 5, yPos);
-  yPos += 5;
-  doc.circle(margin + 2, yPos - 1.5, 1, 'F');
-  doc.text("Corte fino y uniforme para maxima calidad", margin + 5, yPos);
-  yPos += 7;
-  
-  doc.setFontSize(12);
-  doc.setFont("helvetica", "bold");
-  doc.setFillColor(34, 139, 34);
-  doc.rect(margin - 2, yPos - 5, 40, 8, 'F');
-  doc.setTextColor(255, 255, 255);
-  doc.text("$2,100 DOP/10kg", margin, yPos);
-  yPos += 10;
-  doc.setTextColor(0, 0, 0);
-  doc.setFont("helvetica", "italic");
-  doc.setFontSize(9);
-  doc.text("Producto congelado  |  Mantener refrigerado", margin, yPos);
   yPos += 12;
 
   // New page for comparison table
