@@ -195,6 +195,64 @@ const products: Product[] = [
       { label: "Vida útil", value: "2 años (cerrado)" },
     ],
   },
+  {
+    id: "margarina-pro",
+    tabLabel: "Margarina Profesional",
+    name: "Margarina Bonlife Profesional para Panificación",
+    tagline: "Formulación especializada para pastelería, repostería y producción industrial",
+    description:
+      "Margarina de uso profesional formulada para panificación y repostería a gran escala, con excelente retención de aire, esponjosidad y vida de anaquel prolongada. Pensada para plantas de producción y panaderías de alto volumen, distinta de la margarina de mesa por su perfil funcional.",
+    image: margarineImage,
+    price: "Consultar cotización",
+    benefits: [
+      "Optimizada para volumen y esponjosidad en masas horneadas",
+      "Mayor vida de anaquel para producción industrial",
+      "Consistencia plástica de fácil incorporación y mezclado",
+    ],
+    notes: [
+      { label: "Presentación", value: "25kg" },
+      { label: "Vida útil", value: "2 años (cerrado)" },
+    ],
+  },
+  {
+    id: "estearina",
+    tabLabel: "Estearina a Granel",
+    name: "Estearina de Palma Bonlife (Ingrediente Industrial)",
+    tagline: "Grasa vegetal sólida a granel para fabricantes de margarinas, shortenings y panificación",
+    description:
+      "Fracción sólida del aceite de palma, refinada, blanqueada y desodorizada, libre de ácidos grasos trans. Ingrediente base a granel para fabricantes que producen su propia margarina, shortening o productos de panadería a gran escala — no es un aceite de cocina terminado.",
+    image: palmImage,
+    price: "Consultar cotización",
+    benefits: [
+      "Libre de ácidos grasos trans",
+      "Consistencia sólida estable a temperatura ambiente",
+      "Ingrediente base para margarinas, shortenings y grasas de panadería",
+      "Suministro a granel en cisterna, por volumen/tonelada",
+    ],
+    notes: [
+      { label: "Presentación", value: "A granel (cisterna, por tonelada)" },
+      { label: "Pedido mínimo", value: "Sujeto a acuerdo comercial" },
+    ],
+  },
+  {
+    id: "polvo-hornear",
+    tabLabel: "Polvo de Hornear",
+    name: "Polvo de Hornear Bonlife",
+    tagline: "Complemento ideal para masas de harina en su proceso de horneado",
+    description:
+      "Leudante de acción confiable formulado para panadería y repostería industrial, con consistencia uniforme para producción de alto volumen. Complementa la línea de grasas e insumos Bonlife para clientes de panadería.",
+    image: mantecaImage,
+    price: "Consultar cotización",
+    benefits: [
+      "Acción leudante confiable y consistente",
+      "Formulado para producción de alto volumen",
+      "Complemento a la línea de grasas e insumos Bonlife para panaderías",
+    ],
+    notes: [
+      { label: "Presentación", value: "Saco industrial" },
+      { label: "Vida útil", value: "18 meses (cerrado)" },
+    ],
+  },
 ];
 
 const ProductCatalog = () => {

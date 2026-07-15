@@ -423,6 +423,181 @@ export const generateBookletPDF = async () => {
   pdf.setFontSize(8);
   pdf.text('Presentaciones: 15kg  |  Vida útil: 2 años (cerrado)', margin, yPos);
 
+  // Product 5b: Margarina Profesional para Panificación
+  pdf.addPage();
+  pdf.setFillColor(255, 255, 255);
+  pdf.rect(0, 0, pageWidth, pageHeight, 'F');
+
+  pdf.setFillColor(184, 134, 11);
+  pdf.rect(0, 0, pageWidth, 35, 'F');
+  pdf.setTextColor(255, 255, 255);
+  pdf.setFontSize(16);
+  pdf.setFont('helvetica', 'bold');
+  pdf.text('Margarina Bonlife Profesional para Panificación', pageWidth / 2, 22, { align: 'center' });
+
+  try {
+    const imageData = await loadImage(margarineProduct);
+    pdf.addImage(imageData, 'JPEG', margin + 30, 45, contentWidth - 60, 60);
+  } catch (error) {
+    console.error('Error loading product image:', error);
+  }
+
+  pdf.setTextColor(darkColor[0], darkColor[1], darkColor[2]);
+  pdf.setFontSize(10);
+  pdf.setFont('helvetica', 'italic');
+  pdf.text('Formulación especializada para pastelería, repostería y producción industrial', margin, 115);
+
+  pdf.setFontSize(14);
+  pdf.setFont('helvetica', 'bold');
+  pdf.setFillColor(100, 100, 100);
+  pdf.rect(margin, 125, 55, 12, 'F');
+  pdf.setTextColor(255, 255, 255);
+  pdf.text('Consultar cotización', margin + 5, 133);
+
+  pdf.setTextColor(darkColor[0], darkColor[1], darkColor[2]);
+  pdf.setFontSize(11);
+  pdf.setFont('helvetica', 'bold');
+  pdf.text('Características:', margin, 150);
+
+  pdf.setFontSize(9);
+  pdf.setFont('helvetica', 'normal');
+  yPos = 158;
+  const margarineProBenefits = [
+    'Optimizada para volumen y esponjosidad en masas horneadas',
+    'Mayor vida de anaquel para producción industrial',
+    'Consistencia plástica de fácil incorporación y mezclado'
+  ];
+  margarineProBenefits.forEach(benefit => {
+    pdf.setFillColor(184, 134, 11);
+    pdf.circle(margin + 2, yPos - 1.5, 1, 'F');
+    const lines = pdf.splitTextToSize(benefit, contentWidth - 8);
+    pdf.text(lines, margin + 5, yPos);
+    yPos += lines.length * 5;
+  });
+
+  yPos += 5;
+  pdf.setFont('helvetica', 'italic');
+  pdf.setFontSize(8);
+  pdf.text('Presentación: 25kg  |  Vida útil: 2 años (cerrado)', margin, yPos);
+
+  // Product 5c: Estearina de Palma (Ingrediente Industrial)
+  pdf.addPage();
+  pdf.setFillColor(255, 255, 255);
+  pdf.rect(0, 0, pageWidth, pageHeight, 'F');
+
+  pdf.setFillColor(160, 82, 45);
+  pdf.rect(0, 0, pageWidth, 35, 'F');
+  pdf.setTextColor(255, 255, 255);
+  pdf.setFontSize(15);
+  pdf.setFont('helvetica', 'bold');
+  pdf.text('Estearina de Palma Bonlife (Ingrediente Industrial)', pageWidth / 2, 22, { align: 'center' });
+
+  try {
+    const imageData = await loadImage(palmOilProduct);
+    pdf.addImage(imageData, 'JPEG', margin + 30, 45, contentWidth - 60, 60);
+  } catch (error) {
+    console.error('Error loading product image:', error);
+  }
+
+  pdf.setTextColor(darkColor[0], darkColor[1], darkColor[2]);
+  pdf.setFontSize(10);
+  pdf.setFont('helvetica', 'italic');
+  const estearinaTagline = pdf.splitTextToSize(
+    'Grasa vegetal sólida a granel para fabricantes de margarinas, shortenings y panificación',
+    contentWidth
+  );
+  pdf.text(estearinaTagline, margin, 115);
+
+  pdf.setFontSize(14);
+  pdf.setFont('helvetica', 'bold');
+  pdf.setFillColor(100, 100, 100);
+  pdf.rect(margin, 125, 55, 12, 'F');
+  pdf.setTextColor(255, 255, 255);
+  pdf.text('Consultar cotización', margin + 5, 133);
+
+  pdf.setTextColor(darkColor[0], darkColor[1], darkColor[2]);
+  pdf.setFontSize(11);
+  pdf.setFont('helvetica', 'bold');
+  pdf.text('Características:', margin, 150);
+
+  pdf.setFontSize(9);
+  pdf.setFont('helvetica', 'normal');
+  yPos = 158;
+  const estearinaBenefits = [
+    'Libre de ácidos grasos trans',
+    'Consistencia sólida estable a temperatura ambiente',
+    'Ingrediente base para margarinas, shortenings y grasas de panadería (no es un aceite de cocina terminado)'
+  ];
+  estearinaBenefits.forEach(benefit => {
+    pdf.setFillColor(160, 82, 45);
+    pdf.circle(margin + 2, yPos - 1.5, 1, 'F');
+    const lines = pdf.splitTextToSize(benefit, contentWidth - 8);
+    pdf.text(lines, margin + 5, yPos);
+    yPos += lines.length * 5;
+  });
+
+  yPos += 5;
+  pdf.setFont('helvetica', 'italic');
+  pdf.setFontSize(8);
+  pdf.text('Presentación: a granel (cisterna, por tonelada)', margin, yPos);
+
+  // Product 5d: Polvo de Hornear Bonlife
+  pdf.addPage();
+  pdf.setFillColor(255, 255, 255);
+  pdf.rect(0, 0, pageWidth, pageHeight, 'F');
+
+  pdf.setFillColor(220, 20, 60);
+  pdf.rect(0, 0, pageWidth, 35, 'F');
+  pdf.setTextColor(255, 255, 255);
+  pdf.setFontSize(18);
+  pdf.setFont('helvetica', 'bold');
+  pdf.text('Polvo de Hornear Bonlife', pageWidth / 2, 22, { align: 'center' });
+
+  try {
+    const imageData = await loadImage(mantecaProduct);
+    pdf.addImage(imageData, 'JPEG', margin + 30, 45, contentWidth - 60, 60);
+  } catch (error) {
+    console.error('Error loading product image:', error);
+  }
+
+  pdf.setTextColor(darkColor[0], darkColor[1], darkColor[2]);
+  pdf.setFontSize(10);
+  pdf.setFont('helvetica', 'italic');
+  pdf.text('Complemento ideal para masas de harina en su proceso de horneado', margin, 115);
+
+  pdf.setFontSize(14);
+  pdf.setFont('helvetica', 'bold');
+  pdf.setFillColor(100, 100, 100);
+  pdf.rect(margin, 125, 55, 12, 'F');
+  pdf.setTextColor(255, 255, 255);
+  pdf.text('Consultar cotización', margin + 5, 133);
+
+  pdf.setTextColor(darkColor[0], darkColor[1], darkColor[2]);
+  pdf.setFontSize(11);
+  pdf.setFont('helvetica', 'bold');
+  pdf.text('Características:', margin, 150);
+
+  pdf.setFontSize(9);
+  pdf.setFont('helvetica', 'normal');
+  yPos = 158;
+  const polvoBenefits = [
+    'Leudante de acción confiable para panadería y repostería industrial',
+    'Formulado para consistencia uniforme en producción de alto volumen',
+    'Complemento a la línea de grasas e insumos Bonlife para panaderías'
+  ];
+  polvoBenefits.forEach(benefit => {
+    pdf.setFillColor(220, 20, 60);
+    pdf.circle(margin + 2, yPos - 1.5, 1, 'F');
+    const lines = pdf.splitTextToSize(benefit, contentWidth - 8);
+    pdf.text(lines, margin + 5, yPos);
+    yPos += lines.length * 5;
+  });
+
+  yPos += 5;
+  pdf.setFont('helvetica', 'italic');
+  pdf.setFontSize(8);
+  pdf.text('Presentación: saco industrial  |  Vida útil: 18 meses (cerrado)', margin, yPos);
+
   // Final Page: Contact & Coverage
   pdf.addPage();
   pdf.setFillColor(darkColor[0], darkColor[1], darkColor[2]);

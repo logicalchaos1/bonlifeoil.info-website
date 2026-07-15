@@ -401,6 +401,152 @@ export const generateCatalogPDF = async () => {
   doc.text("Presentaciones: 15kg  |  Vida util: 2 años (cerrado)", margin, yPos);
   yPos += 12;
 
+  // Product 5b: Margarina Profesional para Panificacion
+  checkPageBreak(60);
+
+  doc.setFillColor(184, 134, 11);
+  doc.rect(margin - 5, yPos - 5, pageWidth - 2 * margin + 10, 10, 'F');
+  doc.setFontSize(14);
+  doc.setFont("helvetica", "bold");
+  doc.setTextColor(255, 255, 255);
+  doc.text("Margarina Bonlife Profesional para Panificacion", margin, yPos);
+  yPos += 15;
+
+  const margarineProBase64 = getBase64Image(margarineImg);
+  doc.addImage(margarineProBase64, 'JPEG', imgX, yPos, imgWidth, imgHeight);
+  yPos += imgHeight + 8;
+
+  doc.setTextColor(0, 0, 0);
+  doc.setFont("helvetica", "italic");
+  doc.setFontSize(9);
+  doc.text("Formulacion especializada para pasteleria, reposteria y produccion industrial", margin, yPos);
+  yPos += 7;
+
+  doc.setFont("helvetica", "normal");
+  doc.setFillColor(184, 134, 11);
+  doc.circle(margin + 2, yPos - 1.5, 1, 'F');
+  doc.text("Optimizada para volumen y esponjosidad en masas horneadas", margin + 5, yPos);
+  yPos += 5;
+  doc.circle(margin + 2, yPos - 1.5, 1, 'F');
+  doc.text("Mayor vida de anaquel para produccion industrial", margin + 5, yPos);
+  yPos += 5;
+  doc.circle(margin + 2, yPos - 1.5, 1, 'F');
+  doc.text("Consistencia plastica de facil incorporacion y mezclado", margin + 5, yPos);
+  yPos += 7;
+
+  doc.setFontSize(11);
+  doc.setFont("helvetica", "bold");
+  doc.setFillColor(100, 100, 100);
+  doc.rect(margin - 2, yPos - 5, 50, 8, 'F');
+  doc.setTextColor(255, 255, 255);
+  doc.text("Consultar cotizacion", margin, yPos);
+  yPos += 10;
+  doc.setTextColor(0, 0, 0);
+  doc.setFont("helvetica", "italic");
+  doc.setFontSize(9);
+  doc.text("Presentacion: 25kg  |  Vida util: 2 años (cerrado)", margin, yPos);
+  yPos += 12;
+
+  // Product 5c: Estearina de Palma a Granel (ingrediente industrial)
+  checkPageBreak(60);
+
+  doc.setFillColor(160, 82, 45);
+  doc.rect(margin - 5, yPos - 5, pageWidth - 2 * margin + 10, 10, 'F');
+  doc.setFontSize(14);
+  doc.setFont("helvetica", "bold");
+  doc.setTextColor(255, 255, 255);
+  doc.text("Estearina de Palma Bonlife (Ingrediente Industrial)", margin, yPos);
+  yPos += 15;
+
+  const estearinaBase64 = getBase64Image(palmImg);
+  doc.addImage(estearinaBase64, 'JPEG', imgX, yPos, imgWidth, imgHeight);
+  yPos += imgHeight + 8;
+
+  doc.setTextColor(0, 0, 0);
+  doc.setFont("helvetica", "italic");
+  doc.setFontSize(9);
+  const estearinaTagline = doc.splitTextToSize(
+    "Grasa vegetal solida a granel para fabricantes de margarinas, shortenings y panificacion",
+    pageWidth - 2 * margin
+  );
+  doc.text(estearinaTagline, margin, yPos);
+  yPos += estearinaTagline.length * 5 + 2;
+
+  doc.setFont("helvetica", "normal");
+  doc.setFillColor(160, 82, 45);
+  doc.circle(margin + 2, yPos - 1.5, 1, 'F');
+  doc.text("Libre de acidos grasos trans", margin + 5, yPos);
+  yPos += 5;
+  doc.circle(margin + 2, yPos - 1.5, 1, 'F');
+  doc.text("Consistencia solida estable a temperatura ambiente", margin + 5, yPos);
+  yPos += 5;
+  doc.circle(margin + 2, yPos - 1.5, 1, 'F');
+  const estearinaBenefit = doc.splitTextToSize(
+    "Ingrediente base para margarinas, shortenings y grasas de panaderia (no es un aceite de cocina terminado)",
+    pageWidth - 2 * margin - 10
+  );
+  doc.text(estearinaBenefit, margin + 5, yPos);
+  yPos += estearinaBenefit.length * 5 + 2;
+
+  doc.setFontSize(11);
+  doc.setFont("helvetica", "bold");
+  doc.setFillColor(100, 100, 100);
+  doc.rect(margin - 2, yPos - 5, 50, 8, 'F');
+  doc.setTextColor(255, 255, 255);
+  doc.text("Consultar cotizacion", margin, yPos);
+  yPos += 10;
+  doc.setTextColor(0, 0, 0);
+  doc.setFont("helvetica", "italic");
+  doc.setFontSize(9);
+  doc.text("Presentacion: a granel (cisterna, por tonelada)", margin, yPos);
+  yPos += 12;
+
+  // Product 5d: Polvo de Hornear
+  checkPageBreak(60);
+
+  doc.setFillColor(220, 20, 60);
+  doc.rect(margin - 5, yPos - 5, pageWidth - 2 * margin + 10, 10, 'F');
+  doc.setFontSize(15);
+  doc.setFont("helvetica", "bold");
+  doc.setTextColor(255, 255, 255);
+  doc.text("Polvo de Hornear Bonlife", margin, yPos);
+  yPos += 15;
+
+  const polvoBase64 = getBase64Image(mantecaImg);
+  doc.addImage(polvoBase64, 'JPEG', imgX, yPos, imgWidth, imgHeight);
+  yPos += imgHeight + 8;
+
+  doc.setTextColor(0, 0, 0);
+  doc.setFont("helvetica", "italic");
+  doc.setFontSize(9);
+  doc.text("Complemento ideal para masas de harina en su proceso de horneado", margin, yPos);
+  yPos += 7;
+
+  doc.setFont("helvetica", "normal");
+  doc.setFillColor(220, 20, 60);
+  doc.circle(margin + 2, yPos - 1.5, 1, 'F');
+  doc.text("Accion leudante confiable y consistente", margin + 5, yPos);
+  yPos += 5;
+  doc.circle(margin + 2, yPos - 1.5, 1, 'F');
+  doc.text("Formulado para produccion de alto volumen", margin + 5, yPos);
+  yPos += 5;
+  doc.circle(margin + 2, yPos - 1.5, 1, 'F');
+  doc.text("Complemento a la linea de grasas e insumos Bonlife", margin + 5, yPos);
+  yPos += 7;
+
+  doc.setFontSize(11);
+  doc.setFont("helvetica", "bold");
+  doc.setFillColor(100, 100, 100);
+  doc.rect(margin - 2, yPos - 5, 50, 8, 'F');
+  doc.setTextColor(255, 255, 255);
+  doc.text("Consultar cotizacion", margin, yPos);
+  yPos += 10;
+  doc.setTextColor(0, 0, 0);
+  doc.setFont("helvetica", "italic");
+  doc.setFontSize(9);
+  doc.text("Presentacion: saco industrial  |  Vida util: 18 meses (cerrado)", margin, yPos);
+  yPos += 12;
+
   // New page for comparison table
   doc.addPage();
   yPos = 20;
