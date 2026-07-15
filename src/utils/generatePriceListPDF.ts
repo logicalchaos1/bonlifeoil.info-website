@@ -48,6 +48,7 @@ export const generatePriceListPDF = async () => {
   const products = [
     { name: 'Aceite Bonlife RBD Palm Olein', presentation: '25 Litros', price: '$4,600' },
     { name: 'Aceite de Soya Bonlife', presentation: '25 Litros', price: '$4,000' },
+    { name: 'Aceite Bonlife Mezcla Premium (Soya-Oleína)', presentation: '25 Litros', price: '$4,300' },
     { name: 'Aceite de Girasol Bonlife', presentation: '25 Litros', price: '$4,000' },
     { name: 'Manteca Vegetal Bonlife', presentation: '25 Litros', price: '$3,570' },
     { name: 'Margarina Bonlife', presentation: '15 Kg', price: '$3,570' },
