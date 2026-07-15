@@ -196,25 +196,6 @@ const products: Product[] = [
     ],
   },
   {
-    id: "margarina-pro",
-    tabLabel: "Margarina Profesional",
-    name: "Margarina Bonlife Profesional para Panificación",
-    tagline: "Formulación especializada para pastelería, repostería y producción industrial",
-    description:
-      "Margarina de uso profesional formulada para panificación y repostería a gran escala, con excelente retención de aire, esponjosidad y vida de anaquel prolongada. Pensada para plantas de producción y panaderías de alto volumen, distinta de la margarina de mesa por su perfil funcional.",
-    image: margarineImage,
-    price: "Consultar cotización",
-    benefits: [
-      "Optimizada para volumen y esponjosidad en masas horneadas",
-      "Mayor vida de anaquel para producción industrial",
-      "Consistencia plástica de fácil incorporación y mezclado",
-    ],
-    notes: [
-      { label: "Presentación", value: "25kg" },
-      { label: "Vida útil", value: "2 años (cerrado)" },
-    ],
-  },
-  {
     id: "estearina",
     tabLabel: "Estearina a Granel",
     name: "Estearina de Palma Bonlife (Ingrediente Industrial)",

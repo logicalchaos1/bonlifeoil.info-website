@@ -52,7 +52,6 @@ export const generatePriceListPDF = async () => {
     { name: 'Aceite de Girasol Bonlife', presentation: '25 Litros', price: '$4,000' },
     { name: 'Manteca Vegetal Bonlife', presentation: '25 Litros', price: '$3,570' },
     { name: 'Margarina Bonlife', presentation: '15 Kg', price: '$3,570' },
-    { name: 'Margarina Bonlife Profesional para Panificación', presentation: '25 Kg', price: 'Consultar' },
     { name: 'Estearina de Palma Bonlife (a Granel)', presentation: 'Cisterna/Tonelada', price: 'Consultar' },
     { name: 'Polvo de Hornear Bonlife', presentation: 'Saco industrial', price: 'Consultar' },
   ];

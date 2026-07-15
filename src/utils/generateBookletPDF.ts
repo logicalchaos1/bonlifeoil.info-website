@@ -423,63 +423,6 @@ export const generateBookletPDF = async () => {
   pdf.setFontSize(8);
   pdf.text('Presentaciones: 15kg  |  Vida útil: 2 años (cerrado)', margin, yPos);
 
-  // Product 5b: Margarina Profesional para Panificación
-  pdf.addPage();
-  pdf.setFillColor(255, 255, 255);
-  pdf.rect(0, 0, pageWidth, pageHeight, 'F');
-
-  pdf.setFillColor(184, 134, 11);
-  pdf.rect(0, 0, pageWidth, 35, 'F');
-  pdf.setTextColor(255, 255, 255);
-  pdf.setFontSize(16);
-  pdf.setFont('helvetica', 'bold');
-  pdf.text('Margarina Bonlife Profesional para Panificación', pageWidth / 2, 22, { align: 'center' });
-
-  try {
-    const imageData = await loadImage(margarineProduct);
-    pdf.addImage(imageData, 'JPEG', margin + 30, 45, contentWidth - 60, 60);
-  } catch (error) {
-    console.error('Error loading product image:', error);
-  }
-
-  pdf.setTextColor(darkColor[0], darkColor[1], darkColor[2]);
-  pdf.setFontSize(10);
-  pdf.setFont('helvetica', 'italic');
-  pdf.text('Formulación especializada para pastelería, repostería y producción industrial', margin, 115);
-
-  pdf.setFontSize(14);
-  pdf.setFont('helvetica', 'bold');
-  pdf.setFillColor(100, 100, 100);
-  pdf.rect(margin, 125, 55, 12, 'F');
-  pdf.setTextColor(255, 255, 255);
-  pdf.text('Consultar cotización', margin + 5, 133);
-
-  pdf.setTextColor(darkColor[0], darkColor[1], darkColor[2]);
-  pdf.setFontSize(11);
-  pdf.setFont('helvetica', 'bold');
-  pdf.text('Características:', margin, 150);
-
-  pdf.setFontSize(9);
-  pdf.setFont('helvetica', 'normal');
-  yPos = 158;
-  const margarineProBenefits = [
-    'Optimizada para volumen y esponjosidad en masas horneadas',
-    'Mayor vida de anaquel para producción industrial',
-    'Consistencia plástica de fácil incorporación y mezclado'
-  ];
-  margarineProBenefits.forEach(benefit => {
-    pdf.setFillColor(184, 134, 11);
-    pdf.circle(margin + 2, yPos - 1.5, 1, 'F');
-    const lines = pdf.splitTextToSize(benefit, contentWidth - 8);
-    pdf.text(lines, margin + 5, yPos);
-    yPos += lines.length * 5;
-  });
-
-  yPos += 5;
-  pdf.setFont('helvetica', 'italic');
-  pdf.setFontSize(8);
-  pdf.text('Presentación: 25kg  |  Vida útil: 2 años (cerrado)', margin, yPos);
-
   // Product 5c: Estearina de Palma (Ingrediente Industrial)
   pdf.addPage();
   pdf.setFillColor(255, 255, 255);
