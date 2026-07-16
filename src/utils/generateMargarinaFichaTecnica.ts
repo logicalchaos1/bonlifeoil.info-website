@@ -150,7 +150,7 @@ export const generateMargarinaFichaTecnica = async () => {
   paragraph('República Dominicana.');
 
   section('EMPAQUE');
-  paragraph('Disponible en tarrinas de 28 lb.');
+  paragraph('Disponible en tarrinas de 30 lb (15 kg).');
 
   section('ALÉRGENOS');
   paragraph('Presencia (como componente añadido) de los siguientes alérgenos y productos de los mismos:');
