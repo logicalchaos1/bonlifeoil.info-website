@@ -209,53 +209,6 @@ export const generateCatalogPDF = async () => {
   doc.text("Presentaciones: 25L  |  Vida util: 2 años (cerrado)", margin, yPos);
   yPos += 12;
 
-  // Product 2b: Mezcla Premium (Soya-Oleina)
-  checkPageBreak(60);
-
-  doc.setFillColor(184, 134, 11);
-  doc.rect(margin - 5, yPos - 5, pageWidth - 2 * margin + 10, 10, 'F');
-  doc.setFontSize(15);
-  doc.setFont("helvetica", "bold");
-  doc.setTextColor(255, 255, 255);
-  doc.text("Aceite Bonlife Mezcla Premium (Soya-Oleina)", margin, yPos);
-  yPos += 15;
-
-  // Add product image centered
-  const mezclaBase64 = getBase64Image(soyaImg);
-  doc.addImage(mezclaBase64, 'JPEG', imgX, yPos, imgWidth, imgHeight);
-  yPos += imgHeight + 8;
-
-  doc.setTextColor(0, 0, 0);
-  doc.setFont("helvetica", "italic");
-  doc.setFontSize(9);
-  doc.text("Blend equilibrado de soya y oleina de palma para maximo rendimiento", margin, yPos);
-  yPos += 7;
-
-  doc.setFont("helvetica", "normal");
-  doc.setFillColor(184, 134, 11);
-  doc.circle(margin + 2, yPos - 1.5, 1, 'F');
-  doc.text("Balance entre estabilidad termica y perfil neutro de sabor", margin + 5, yPos);
-  yPos += 5;
-  doc.circle(margin + 2, yPos - 1.5, 1, 'F');
-  doc.text("Mayor rendimiento que aceites 100% soya convencionales", margin + 5, yPos);
-  yPos += 5;
-  doc.circle(margin + 2, yPos - 1.5, 1, 'F');
-  doc.text("Punto de humo: 225C  |  Indice de Yodo: 100-120", margin + 5, yPos);
-  yPos += 7;
-
-  doc.setFontSize(12);
-  doc.setFont("helvetica", "bold");
-  doc.setFillColor(34, 139, 34);
-  doc.rect(margin - 2, yPos - 5, 40, 8, 'F');
-  doc.setTextColor(255, 255, 255);
-  doc.text("$4,300 DOP", margin, yPos);
-  yPos += 10;
-  doc.setTextColor(0, 0, 0);
-  doc.setFont("helvetica", "italic");
-  doc.setFontSize(9);
-  doc.text("Presentaciones: 25L  |  Vida util: 2 años (cerrado)", margin, yPos);
-  yPos += 12;
-
   // Product 3: Aceite de Girasol
   checkPageBreak(60);
   

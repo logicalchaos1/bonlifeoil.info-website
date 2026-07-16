@@ -94,31 +94,6 @@ const products: Product[] = [
     ],
   },
   {
-    id: "mezcla",
-    tabLabel: "Mezcla Premium",
-    name: "Aceite Bonlife Mezcla Premium (Soya-Oleína)",
-    tagline: "Blend equilibrado de soya y oleína de palma para máximo rendimiento",
-    description:
-      "Aceite vegetal resultante de una mezcla selecta de soya y oleína de palma, refinado, blanqueado y desodorizado. Combina la estabilidad térmica de la oleína con el perfil neutro de la soya, ideal para operaciones que buscan equilibrio entre costo y rendimiento.",
-    image: soyaImage,
-    price: "$4,300 DOP",
-    benefits: [
-      "Balance entre estabilidad térmica y perfil neutro de sabor",
-      "Mayor rendimiento que aceites 100% soya convencionales",
-      "Opción versátil para freír, saltear y hornear",
-    ],
-    specs: [
-      { label: "Acidez", value: "0.08% max." },
-      { label: "Índice de Yodo", value: "100–120" },
-      { label: "Punto de Humo", value: "225 °C" },
-      { label: "Duración estimada", value: "40–48 horas" },
-    ],
-    notes: [
-      { label: "Presentaciones", value: "25L" },
-      { label: "Vida útil", value: "2 años (cerrado)" },
-    ],
-  },
-  {
     id: "girasol",
     tabLabel: "Girasol",
     name: "Aceite de Girasol Bonlife",

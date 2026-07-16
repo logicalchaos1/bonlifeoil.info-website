@@ -4,7 +4,6 @@ import soyaOilProduct from '@/assets/soya-oil-product.jpg';
 import sunflowerOilProduct from '@/assets/sunflower-oil-product.jpg';
 import mantecaProduct from '@/assets/manteca-product.jpg';
 import margarineProduct from '@/assets/margarine-product.jpg';
-import mezclaProduct from '@/assets/soya-oil-product.jpg';
 
 export const generateBookletPDF = async () => {
   const pdf = new jsPDF({
@@ -188,63 +187,6 @@ export const generateBookletPDF = async () => {
     yPos += lines.length * 5;
   });
   
-  yPos += 5;
-  pdf.setFont('helvetica', 'italic');
-  pdf.setFontSize(8);
-  pdf.text('Presentaciones: 25L  |  Vida útil: 2 años (cerrado)', margin, yPos);
-
-  // Product 2b: Aceite Bonlife Mezcla Premium (Soya-Oleína)
-  pdf.addPage();
-  pdf.setFillColor(255, 255, 255);
-  pdf.rect(0, 0, pageWidth, pageHeight, 'F');
-
-  pdf.setFillColor(184, 134, 11);
-  pdf.rect(0, 0, pageWidth, 35, 'F');
-  pdf.setTextColor(255, 255, 255);
-  pdf.setFontSize(16);
-  pdf.setFont('helvetica', 'bold');
-  pdf.text('Aceite Bonlife Mezcla Premium (Soya-Oleína)', pageWidth / 2, 22, { align: 'center' });
-
-  try {
-    const imageData = await loadImage(mezclaProduct);
-    pdf.addImage(imageData, 'JPEG', margin + 30, 45, contentWidth - 60, 60);
-  } catch (error) {
-    console.error('Error loading product image:', error);
-  }
-
-  pdf.setTextColor(darkColor[0], darkColor[1], darkColor[2]);
-  pdf.setFontSize(10);
-  pdf.setFont('helvetica', 'italic');
-  pdf.text('Blend equilibrado de soya y oleína de palma para máximo rendimiento', margin, 115);
-
-  pdf.setFontSize(16);
-  pdf.setFont('helvetica', 'bold');
-  pdf.setFillColor(34, 139, 34);
-  pdf.rect(margin, 125, 45, 12, 'F');
-  pdf.setTextColor(255, 255, 255);
-  pdf.text('$4,300 DOP', margin + 5, 133);
-
-  pdf.setTextColor(darkColor[0], darkColor[1], darkColor[2]);
-  pdf.setFontSize(11);
-  pdf.setFont('helvetica', 'bold');
-  pdf.text('Características:', margin, 150);
-
-  pdf.setFontSize(9);
-  pdf.setFont('helvetica', 'normal');
-  yPos = 158;
-  const mezclaBenefits = [
-    'Balance entre estabilidad térmica y perfil neutro de sabor',
-    'Mayor rendimiento que aceites 100% soya convencionales',
-    'Punto de humo: 225°C  |  Índice de Yodo: 100-120'
-  ];
-  mezclaBenefits.forEach(benefit => {
-    pdf.setFillColor(184, 134, 11);
-    pdf.circle(margin + 2, yPos - 1.5, 1, 'F');
-    const lines = pdf.splitTextToSize(benefit, contentWidth - 8);
-    pdf.text(lines, margin + 5, yPos);
-    yPos += lines.length * 5;
-  });
-
   yPos += 5;
   pdf.setFont('helvetica', 'italic');
   pdf.setFontSize(8);
