@@ -8,146 +8,198 @@ export const generateMargarinaFichaTecnica = async () => {
   });
 
   const pageWidth = pdf.internal.pageSize.getWidth();
+  const pageHeight = pdf.internal.pageSize.getHeight();
   const margin = 15;
   const contentWidth = pageWidth - margin * 2;
 
   const gold = [212, 175, 55];
   const dark = [26, 26, 26];
-  const gray = [120, 120, 120];
+  const gray = [110, 110, 110];
 
-  let y = 20;
+  let y = 0;
 
-  // Header banner
-  pdf.setFillColor(gold[0], gold[1], gold[2]);
-  pdf.rect(0, 0, pageWidth, 32, 'F');
-  pdf.setTextColor(255, 255, 255);
-  pdf.setFontSize(20);
-  pdf.setFont('helvetica', 'bold');
-  pdf.text('BONLIFE', margin, 15);
-  pdf.setFontSize(10);
-  pdf.setFont('helvetica', 'normal');
-  pdf.text('FICHA TÉCNICA', margin, 24);
+  const drawHeader = () => {
+    pdf.setFillColor(gold[0], gold[1], gold[2]);
+    pdf.rect(0, 0, pageWidth, 26, 'F');
+    pdf.setTextColor(255, 255, 255);
+    pdf.setFontSize(16);
+    pdf.setFont('helvetica', 'bold');
+    pdf.text('BONLIFE', margin, 12);
+    pdf.setFontSize(9);
+    pdf.setFont('helvetica', 'normal');
+    pdf.text('FICHA TÉCNICA DEL PRODUCTO', margin, 20);
+    y = 36;
+  };
 
-  y = 45;
+  drawHeader();
   pdf.setTextColor(dark[0], dark[1], dark[2]);
-  pdf.setFontSize(18);
+  pdf.setFontSize(16);
   pdf.setFont('helvetica', 'bold');
   pdf.text('MARGARINA BONLIFE', pageWidth / 2, y, { align: 'center' });
-  y += 12;
+  y += 10;
+
+  const checkPageBreak = (needed: number) => {
+    if (y + needed > pageHeight - 18) {
+      pdf.addPage();
+      y = 20;
+    }
+  };
 
   const section = (title: string) => {
-    pdf.setFontSize(11);
+    checkPageBreak(14);
+    pdf.setFontSize(10.5);
     pdf.setFont('helvetica', 'bold');
     pdf.setTextColor(dark[0], dark[1], dark[2]);
     pdf.text(title, margin, y);
-    y += 6;
+    y += 5.5;
     pdf.setFont('helvetica', 'normal');
     pdf.setFontSize(9);
   };
 
   const paragraph = (text: string) => {
     const lines = pdf.splitTextToSize(text, contentWidth);
+    checkPageBreak(lines.length * 5 + 6);
+    pdf.setTextColor(50, 50, 50);
     pdf.text(lines, margin, y);
-    y += lines.length * 5 + 6;
+    y += lines.length * 5 + 7;
   };
 
-  section('DESCRIPCIÓN GENERAL.');
+  section('DESCRIPCIÓN GENERAL');
   paragraph(
-    'Margarina de base vegetal, elaborada con aceites y grasas vegetales refinadas, blanqueadas y desodorizadas, con aditivos grado alimenticio (emulsificantes, conservantes, saborizantes) y enriquecida con vitaminas.'
+    'Margarina Bonlife es un producto elaborado con aceites y grasas vegetales de alta calidad, con aditivos grado alimenticio (emulsificantes, conservantes, saborizantes y colorantes), que aseguran las condiciones físico-químicas y bacteriológicas del producto.'
   );
 
-  section('CARACTERÍSTICAS.');
+  section('CARACTERÍSTICAS');
   paragraph(
-    'Producto de consistencia plástica, sólida a temperatura ambiente, de apariencia homogénea y fácil incorporación y mezclado con otros ingredientes. Aporta cremosidad, sabor natural y buen rendimiento en cocina y panificación.'
+    'Margarina Bonlife es sólida a temperatura ambiente, de apariencia homogénea, consistencia plástica, fácil aplicación, incorporación y mezclado con los demás alimentos. Confiere una corteza uniforme de buen color, olor y sabor característico, proporciona esponjosidad y uniformidad en la miga de panes y bizcochos, dando una mejor retención que alarga la vida de anaquel de los productos.'
   );
 
-  section('APLICACIONES.');
+  section('APLICACIONES');
   paragraph(
-    'Formulación de uso general (tipo "manicera"): ideal para untar, hornear, cocinar y como ingrediente en preparaciones de cocina profesional, panadería general y servicio de mesa. No es una margarina de laminado — no está formulada para hojaldre o croissant, que requieren un rango de plasticidad y punto de fusión distintos.'
+    'Gracias al balance homogéneo de sus ingredientes, Margarina Bonlife permite la combinación exitosa de los mismos, aportando las bondades requeridas para el éxito en productos de pastelería, repostería, cremas y rellenos, generando excelentes características de sabor, color, olor, volumen, consistencia, apariencia y miga fina uniforme en el producto final.'
   );
 
-  section('ESPECIFICACIONES TÉCNICAS.');
+  section('COMPOSICIÓN');
+  paragraph(
+    'Aceites vegetales refinados (palma, soya), agua, sal, sólidos lácteos no grasos. Emulsificantes: lecitina de soya y mono- y diglicéridos destilados, EDTA (estabilizante). Preservantes: benzoato de sodio y sorbato de potasio. Aromas y saborizantes artificiales de mantequilla y leche. Palmitato de vitamina A y betacaroteno (color). Antioxidantes: BHT y ácido cítrico.'
+  );
 
-  const specRows: Array<[string, string, boolean]> = [
-    ['% FFA (Ac. Oleico)', '0.20% max.', false],
-    ['% Humedad y Volátiles (M&I)', '0.16% max.', false],
-    ['Índice de Yodo (IV)', '40 – 44', false],
-    ['Mezcla grasa mínima', '80%', false],
-    ['Punto de fusión (°C)', '34 – 38 (típico)', true],
-    ['Punto de humo (°C)', '175 – 185 (típico)', true],
-    ['Índice de Peróxido', '2.0 meq O2/kg max. (típico)', true],
-    ['Color (Lovibond 5 1/4")', 'A confirmar con proveedor', true],
-    ['Olor/Sabor', 'A confirmar (panel sensorial)', true],
+  // Especificaciones Técnicas table
+  section('ESPECIFICACIONES TÉCNICAS');
+
+  const specRows: Array<[string, string]> = [
+    ['Acidez (FFA)', '0.3%'],
+    ['Sal', '0.25 – 0.35%'],
+    ['Índice de Peróxido', '1 meq O2/kg máx.'],
+    ['Índice de Yodo', '45 – 55'],
+    ['Punto de Fusión', '35 – 39 °C'],
+    ['Estabilidad Oxidativa (110 °C)', '20 horas mín.'],
+    ['Olor/Sabor', '5 / 5'],
   ];
 
-  const col1 = margin;
-  const col2 = margin + 90;
-  const rowHeight = 7;
-  const tableTop = y;
+  const drawTable = (headers: [string, string], rows: string[][], col2Offset: number) => {
+    const col1 = margin;
+    const col2 = margin + col2Offset;
+    const rowHeight = 7;
+    checkPageBreak(rowHeight * (rows.length + 1) + 4);
+    const tableTop = y;
 
-  pdf.setFillColor(dark[0], dark[1], dark[2]);
-  pdf.rect(margin, y, contentWidth, rowHeight, 'F');
-  pdf.setTextColor(255, 255, 255);
-  pdf.setFontSize(9);
-  pdf.setFont('helvetica', 'bold');
-  pdf.text('PARÁMETRO', col1 + 3, y + 5);
-  pdf.text('VALOR', col2 + 3, y + 5);
-  y += rowHeight;
-
-  specRows.forEach(([label, value, isEstimate], i) => {
-    const bg = i % 2 === 0 ? [250, 250, 250] : [255, 255, 255];
-    pdf.setFillColor(bg[0], bg[1], bg[2]);
+    pdf.setFillColor(dark[0], dark[1], dark[2]);
     pdf.rect(margin, y, contentWidth, rowHeight, 'F');
-    pdf.setTextColor(dark[0], dark[1], dark[2]);
-    pdf.setFont('helvetica', 'normal');
+    pdf.setTextColor(255, 255, 255);
     pdf.setFontSize(9);
-    pdf.text(label, col1 + 3, y + 5);
-    pdf.setFont('helvetica', isEstimate ? 'italic' : 'bold');
-    pdf.setTextColor(isEstimate ? gray[0] : dark[0], isEstimate ? gray[1] : dark[1], isEstimate ? gray[2] : dark[2]);
-    pdf.text(value + (isEstimate ? ' *' : ''), col2 + 3, y + 5);
+    pdf.setFont('helvetica', 'bold');
+    pdf.text(headers[0], col1 + 3, y + 5);
+    pdf.text(headers[1], col2 + 3, y + 5);
     y += rowHeight;
-  });
 
-  pdf.setDrawColor(200, 200, 200);
-  pdf.rect(margin, tableTop, contentWidth, rowHeight * (specRows.length + 1), 'S');
-  y += 10;
+    rows.forEach((row, i) => {
+      const bg = i % 2 === 0 ? [250, 250, 250] : [255, 255, 255];
+      pdf.setFillColor(bg[0], bg[1], bg[2]);
+      pdf.rect(margin, y, contentWidth, rowHeight, 'F');
+      pdf.setTextColor(dark[0], dark[1], dark[2]);
+      pdf.setFont('helvetica', 'normal');
+      pdf.setFontSize(9);
+      pdf.text(row[0], col1 + 3, y + 5);
+      pdf.setFont('helvetica', 'bold');
+      pdf.text(row[1], col2 + 3, y + 5);
+      y += rowHeight;
+    });
 
-  section('REGULACIONES LEGALES.');
+    pdf.setDrawColor(200, 200, 200);
+    pdf.rect(margin, tableTop, contentWidth, rowHeight * (rows.length + 1), 'S');
+    y += 10;
+  };
+
+  drawTable(['PARÁMETRO', 'VALOR'], specRows, 90);
+
+  section('REGULACIONES LEGALES');
   paragraph(
-    'Formulado para cumplir con las especificaciones legales de un producto graso comestible de acuerdo a normas internacionales de referencia del sector (AOCS/FDA/NORDOM). Confirmar cumplimiento específico con la documentación del proveedor y las autoridades sanitarias dominicanas antes de su comercialización.'
+    'Margarina Bonlife, en sus componentes grasos y aditivos, cumple con las normas internacionales y nacionales de referencia del sector: AOCS / FDA / NORDOM / ISO 9001-2008.'
   );
 
-  section('ALMACENAMIENTO.');
+  section('ALMACENAMIENTO');
   paragraph(
-    'Almacenar en un lugar fresco y seco (20–25 °C), protegido del sol y del calor directo, ya que las altas temperaturas disminuyen su estabilidad oxidativa y consistencia.'
+    'A pesar de ser un producto especial, está sujeto a las mismas consideraciones de almacenamiento y manejo de un producto graso; por lo tanto, es necesario almacenarlo en un lugar fresco y seco (temperatura ambiente), y no debe ser expuesto al sol o al calor, ya que las altas temperaturas disminuyen su consistencia y estabilidad oxidativa.'
   );
 
-  // Disclaimer
-  const footerY = pdf.internal.pageSize.getHeight() - 30;
+  section('VIDA ÚTIL');
+  paragraph('Mejor consumir antes de 6 meses desde la fecha de producción, almacenado en el envase sin abrir.');
+
+  section('PAÍS DE ORIGEN');
+  paragraph('República Dominicana.');
+
+  section('EMPAQUE');
+  paragraph('Disponible en tarrinas de 28 lb.');
+
+  section('ALÉRGENOS');
+  paragraph('Presencia (como componente añadido) de los siguientes alérgenos y productos de los mismos:');
+
+  const allergenRows: string[][] = [
+    ['Trigo (cereales con gluten)', 'No'],
+    ['Crustáceos', 'No'],
+    ['Huevos', 'No'],
+    ['Pescado', 'No'],
+    ['Maní/Cacahuates', 'No'],
+    ['Soya', 'Sí — lecitina de soya'],
+    ['Leche', 'Sí — leche en polvo, suero de leche'],
+    ['Frutos secos (nueces, almendras)', 'No'],
+  ];
+
+  drawTable(['ALÉRGENO', 'PRESENCIA'], allergenRows, 75);
+
   pdf.setFontSize(7.5);
   pdf.setFont('helvetica', 'italic');
   pdf.setTextColor(gray[0], gray[1], gray[2]);
-  const disclaimer = pdf.splitTextToSize(
-    '(*) Valor de referencia típico de la categoría, no un resultado de laboratorio certificado de este lote — confirmar con el certificado de análisis del proveedor antes de uso comercial, regulatorio o de auditoría. La demás información refleja el conocimiento actual de Bonlife sobre este producto.',
+  const allergenNote = pdf.splitTextToSize('* El aceite de soya no es considerado alérgeno.', contentWidth);
+  checkPageBreak(allergenNote.length * 4 + 6);
+  pdf.text(allergenNote, margin, y);
+  y += allergenNote.length * 4 + 8;
+
+  // Closing note
+  pdf.setFontSize(7.5);
+  pdf.setFont('helvetica', 'italic');
+  pdf.setTextColor(gray[0], gray[1], gray[2]);
+  const closingNote = pdf.splitTextToSize(
+    'La información contenida en esta ficha refleja las especificaciones estándar del producto y puede estar sujeta a variaciones menores de lote a lote. Solicite el certificado de análisis del lote correspondiente para uso regulatorio o de auditoría.',
     contentWidth
   );
-  const disclaimerHeight = disclaimer.length * 4;
-  if (y + disclaimerHeight > footerY - 4) {
-    y = footerY - 4 - disclaimerHeight;
-  }
-  pdf.text(disclaimer, margin, y);
+  checkPageBreak(closingNote.length * 4 + 30);
+  pdf.text(closingNote, margin, y);
+  y += closingNote.length * 4 + 10;
 
   // Footer contact
+  checkPageBreak(22);
   pdf.setFillColor(dark[0], dark[1], dark[2]);
-  pdf.rect(margin, footerY, contentWidth, 22, 'F');
+  pdf.rect(margin, y, contentWidth, 22, 'F');
   pdf.setTextColor(gold[0], gold[1], gold[2]);
   pdf.setFontSize(11);
   pdf.setFont('helvetica', 'bold');
-  pdf.text('Contacto', pageWidth / 2, footerY + 9, { align: 'center' });
+  pdf.text('Contacto', pageWidth / 2, y + 9, { align: 'center' });
   pdf.setTextColor(255, 255, 255);
   pdf.setFontSize(9);
   pdf.setFont('helvetica', 'normal');
-  pdf.text('+1 (829) 987-6764  |  ventas@bonlifeoil.com  |  bonlifeoil.com', pageWidth / 2, footerY + 17, { align: 'center' });
+  pdf.text('+1 (829) 987-6764  |  ventas@bonlifeoil.com  |  bonlifeoil.com', pageWidth / 2, y + 17, { align: 'center' });
 
   pdf.save('Ficha-Tecnica-Margarina-Bonlife.pdf');
 };
