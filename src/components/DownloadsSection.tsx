@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Download, FileText, BookOpen, DollarSign } from 'lucide-react';
+import { Download, FileText, BookOpen, DollarSign, ClipboardList } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const downloads = [
@@ -28,6 +28,15 @@ const downloads = [
     action: async () => {
       const { generatePriceListPDF } = await import('@/utils/generatePriceListPDF');
       await generatePriceListPDF();
+    },
+  },
+  {
+    title: 'Ficha Técnica — Margarina',
+    description: 'Especificaciones técnicas, aplicaciones y almacenamiento de la Margarina Bonlife.',
+    icon: ClipboardList,
+    action: async () => {
+      const { generateMargarinaFichaTecnica } = await import('@/utils/generateMargarinaFichaTecnica');
+      await generateMargarinaFichaTecnica();
     },
   },
 ];
