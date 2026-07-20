@@ -39,6 +39,15 @@ const downloads = [
       await generateMargarinaFichaTecnica();
     },
   },
+  {
+    title: 'Ficha Técnica — Mayonesa',
+    description: 'Especificaciones técnicas, composición, datos nutricionales y alérgenos de la Mayonesa Bonlife.',
+    icon: ClipboardList,
+    action: async () => {
+      const { generateMayonesaFichaTecnica } = await import('@/utils/generateMayonesaFichaTecnica');
+      await generateMayonesaFichaTecnica();
+    },
+  },
 ];
 
 const DownloadsSection = () => {
