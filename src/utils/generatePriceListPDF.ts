@@ -54,7 +54,7 @@ export const generatePriceListPDF = async () => {
     { name: 'Estearina de Palma Bonlife (a Granel)', presentation: 'Cisterna/Tonelada', price: 'Consultar' },
     { name: 'Polvo de Hornear Bonlife', presentation: 'Saco industrial', price: 'Consultar' },
     { name: 'Mayonesa Bonlife', presentation: 'Caja 4x1 Galón', price: '$4,000' },
-    { name: 'Mayonesa Bonlife en Sachets', presentation: 'Caja 144x12ml', price: '$456' },
+    { name: 'Mayonesa Bonlife en Sachets', presentation: 'Caja 144x12ml', price: '$2,500' },
   ];
 
   pdf.setFontSize(9);

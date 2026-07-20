@@ -570,7 +570,7 @@ export const generateBookletPDF = async () => {
   pdf.setFillColor(34, 139, 34);
   pdf.rect(margin, 125, 55, 12, 'F');
   pdf.setTextColor(255, 255, 255);
-  pdf.text('$456 DOP/Caja', margin + 5, 133);
+  pdf.text('$2,500 DOP/Caja', margin + 5, 133);
 
   pdf.setTextColor(darkColor[0], darkColor[1], darkColor[2]);
   pdf.setFontSize(11);

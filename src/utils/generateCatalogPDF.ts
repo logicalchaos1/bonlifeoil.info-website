@@ -540,7 +540,7 @@ export const generateCatalogPDF = async () => {
   doc.setFillColor(34, 139, 34);
   doc.rect(margin - 2, yPos - 5, 50, 8, 'F');
   doc.setTextColor(255, 255, 255);
-  doc.text("$456 DOP/Caja", margin, yPos);
+  doc.text("$2,500 DOP/Caja", margin, yPos);
   yPos += 10;
   doc.setTextColor(0, 0, 0);
   doc.setFont("helvetica", "italic");

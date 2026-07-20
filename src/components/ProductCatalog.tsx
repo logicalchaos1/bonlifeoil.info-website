@@ -237,7 +237,7 @@ const products: Product[] = [
     description:
       "La misma Mayonesa Bonlife elaborada con aceite vegetal de soya refinado, huevo y limón, en presentación de sachets individuales de 12 ml. Ideal para servicio a la mesa, delivery, combos y porciones controladas en restaurantes y hoteles.",
     image: mayonesaImage,
-    price: "$456 DOP/Caja (144 sachets x 12ml)",
+    price: "$2,500 DOP/Caja (144 sachets x 12ml)",
     benefits: [
       "Mismo sabor y calidad que la Mayonesa Bonlife de galón",
       "Porciones individuales higiénicas, listas para servir",
