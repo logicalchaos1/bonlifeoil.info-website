@@ -502,6 +502,52 @@ export const generateCatalogPDF = async () => {
   doc.text("Presentacion: caja de 4 x 1 galon (8 lb c/u)", margin, yPos);
   yPos += 12;
 
+  // Product 6b: Mayonesa Sachets
+  checkPageBreak(60);
+
+  doc.setFillColor(22, 162, 73);
+  doc.rect(margin - 5, yPos - 5, pageWidth - 2 * margin + 10, 10, 'F');
+  doc.setFontSize(15);
+  doc.setFont("helvetica", "bold");
+  doc.setTextColor(255, 255, 255);
+  doc.text("Mayonesa Bonlife en Sachets", margin, yPos);
+  yPos += 15;
+
+  const mayonesaSachetsBase64 = getBase64Image(mayonesaImg);
+  doc.addImage(mayonesaSachetsBase64, 'JPEG', imgX, yPos, imgWidth, imgHeight);
+  yPos += imgHeight + 8;
+
+  doc.setTextColor(0, 0, 0);
+  doc.setFont("helvetica", "italic");
+  doc.setFontSize(9);
+  doc.text("Porciones individuales de 12 ml, mismo producto que el galon", margin, yPos);
+  yPos += 7;
+
+  doc.setFont("helvetica", "normal");
+  doc.setFillColor(22, 162, 73);
+  doc.circle(margin + 2, yPos - 1.5, 1, 'F');
+  doc.text("Mismo sabor y calidad que la Mayonesa Bonlife de galon", margin + 5, yPos);
+  yPos += 5;
+  doc.circle(margin + 2, yPos - 1.5, 1, 'F');
+  doc.text("Porciones individuales higienicas, listas para servir", margin + 5, yPos);
+  yPos += 5;
+  doc.circle(margin + 2, yPos - 1.5, 1, 'F');
+  doc.text("Ideal para delivery, combos y servicio a la mesa", margin + 5, yPos);
+  yPos += 7;
+
+  doc.setFontSize(12);
+  doc.setFont("helvetica", "bold");
+  doc.setFillColor(34, 139, 34);
+  doc.rect(margin - 2, yPos - 5, 50, 8, 'F');
+  doc.setTextColor(255, 255, 255);
+  doc.text("$456 DOP/Caja", margin, yPos);
+  yPos += 10;
+  doc.setTextColor(0, 0, 0);
+  doc.setFont("helvetica", "italic");
+  doc.setFontSize(9);
+  doc.text("Presentacion: caja de 12 packs x 12 sachets (144 x 12 ml)", margin, yPos);
+  yPos += 12;
+
   // New page for comparison table
   doc.addPage();
   yPos = 20;

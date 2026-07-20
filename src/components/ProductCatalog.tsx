@@ -229,6 +229,25 @@ const products: Product[] = [
       { label: "Vida útil", value: "Ver fecha de vencimiento en el envase" },
     ],
   },
+  {
+    id: "mayonesa-sachets",
+    tabLabel: "Mayonesa Sachets",
+    name: "Mayonesa Bonlife en Sachets",
+    tagline: "Porciones individuales de 12 ml, mismo producto que el galón",
+    description:
+      "La misma Mayonesa Bonlife elaborada con aceite vegetal de soya refinado, huevo y limón, en presentación de sachets individuales de 12 ml. Ideal para servicio a la mesa, delivery, combos y porciones controladas en restaurantes y hoteles.",
+    image: mayonesaImage,
+    price: "$456 DOP/Caja (144 sachets x 12ml)",
+    benefits: [
+      "Mismo sabor y calidad que la Mayonesa Bonlife de galón",
+      "Porciones individuales higiénicas, listas para servir",
+      "Ideal para delivery, combos y servicio a la mesa",
+    ],
+    notes: [
+      { label: "Presentación", value: "Caja de 12 packs x 12 sachets (144 x 12 ml)" },
+      { label: "Vida útil", value: "Ver fecha de vencimiento en el envase" },
+    ],
+  },
 ];
 
 const ProductCatalog = () => {
