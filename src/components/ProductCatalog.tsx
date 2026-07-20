@@ -9,6 +9,7 @@ import sunflowerImage from "@/assets/sunflower-oil-product.jpg";
 import soyaImage from "@/assets/soya-oil-product.jpg";
 import mantecaImage from "@/assets/manteca-product.jpg";
 import margarineImage from "@/assets/margarine-product.jpg";
+import mayonesaImage from "@/assets/mayonesa-product.jpg";
 
 type ProductSpec = {
   label: string;
@@ -207,6 +208,25 @@ const products: Product[] = [
     notes: [
       { label: "Presentación", value: "Saco industrial" },
       { label: "Vida útil", value: "18 meses (cerrado)" },
+    ],
+  },
+  {
+    id: "mayonesa",
+    tabLabel: "Mayonesa",
+    name: "Mayonesa Bonlife",
+    tagline: "Elaborada con limón y huevo, cremosidad y sabor consistente",
+    description:
+      "Mayonesa elaborada con aceite vegetal de soya refinado, huevo y limón, formulada para uso en cocinas profesionales, sándwiches, ensaladas y salsas base. Textura cremosa y sabor equilibrado en presentación de alto rendimiento para servicio de volumen.",
+    image: mayonesaImage,
+    price: "$4,000 DOP/Caja (4x1 galón)",
+    benefits: [
+      "Elaborada con limón y huevo para sabor tradicional",
+      "Presentación de alto rendimiento para uso profesional",
+      "Ideal para sándwiches, ensaladas y salsas base",
+    ],
+    notes: [
+      { label: "Presentación", value: "Caja de 4 x 1 galón (8 lb c/u)" },
+      { label: "Vida útil", value: "Ver fecha de vencimiento en el envase" },
     ],
   },
 ];

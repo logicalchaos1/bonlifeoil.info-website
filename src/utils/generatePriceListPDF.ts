@@ -53,6 +53,7 @@ export const generatePriceListPDF = async () => {
     { name: 'Margarina Bonlife', presentation: '15 Kg', price: '$3,570' },
     { name: 'Estearina de Palma Bonlife (a Granel)', presentation: 'Cisterna/Tonelada', price: 'Consultar' },
     { name: 'Polvo de Hornear Bonlife', presentation: 'Saco industrial', price: 'Consultar' },
+    { name: 'Mayonesa Bonlife', presentation: 'Caja 4x1 Galón', price: '$4,000' },
   ];
 
   pdf.setFontSize(9);

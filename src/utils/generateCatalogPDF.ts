@@ -4,6 +4,7 @@ import sunflowerImage from "@/assets/sunflower-oil-product.jpg";
 import soyaImage from "@/assets/soya-oil-product.jpg";
 import mantecaImage from "@/assets/manteca-product.jpg";
 import margarineImage from "@/assets/margarine-product.jpg";
+import mayonesaImage from "@/assets/mayonesa-product.jpg";
 export const generateCatalogPDF = async () => {
   const doc = new jsPDF();
   const pageWidth = doc.internal.pageSize.getWidth();
@@ -64,6 +65,7 @@ export const generateCatalogPDF = async () => {
   const sunflowerImg = await loadImage(sunflowerImage);
   const mantecaImg = await loadImage(mantecaImage);
   const margarineImg = await loadImage(margarineImage);
+  const mayonesaImg = await loadImage(mayonesaImage);
 
   // Image dimensions for products
   const imgWidth = 35;
@@ -452,6 +454,52 @@ export const generateCatalogPDF = async () => {
   doc.setFont("helvetica", "italic");
   doc.setFontSize(9);
   doc.text("Presentacion: saco industrial  |  Vida util: 18 meses (cerrado)", margin, yPos);
+  yPos += 12;
+
+  // Product 6: Mayonesa
+  checkPageBreak(60);
+
+  doc.setFillColor(22, 162, 73);
+  doc.rect(margin - 5, yPos - 5, pageWidth - 2 * margin + 10, 10, 'F');
+  doc.setFontSize(15);
+  doc.setFont("helvetica", "bold");
+  doc.setTextColor(255, 255, 255);
+  doc.text("Mayonesa Bonlife", margin, yPos);
+  yPos += 15;
+
+  const mayonesaBase64 = getBase64Image(mayonesaImg);
+  doc.addImage(mayonesaBase64, 'JPEG', imgX, yPos, imgWidth, imgHeight);
+  yPos += imgHeight + 8;
+
+  doc.setTextColor(0, 0, 0);
+  doc.setFont("helvetica", "italic");
+  doc.setFontSize(9);
+  doc.text("Elaborada con limon y huevo, cremosidad y sabor consistente", margin, yPos);
+  yPos += 7;
+
+  doc.setFont("helvetica", "normal");
+  doc.setFillColor(22, 162, 73);
+  doc.circle(margin + 2, yPos - 1.5, 1, 'F');
+  doc.text("Elaborada con limon y huevo para sabor tradicional", margin + 5, yPos);
+  yPos += 5;
+  doc.circle(margin + 2, yPos - 1.5, 1, 'F');
+  doc.text("Presentacion de alto rendimiento para uso profesional", margin + 5, yPos);
+  yPos += 5;
+  doc.circle(margin + 2, yPos - 1.5, 1, 'F');
+  doc.text("Ideal para sandwiches, ensaladas y salsas base", margin + 5, yPos);
+  yPos += 7;
+
+  doc.setFontSize(12);
+  doc.setFont("helvetica", "bold");
+  doc.setFillColor(34, 139, 34);
+  doc.rect(margin - 2, yPos - 5, 50, 8, 'F');
+  doc.setTextColor(255, 255, 255);
+  doc.text("$4,000 DOP/Caja", margin, yPos);
+  yPos += 10;
+  doc.setTextColor(0, 0, 0);
+  doc.setFont("helvetica", "italic");
+  doc.setFontSize(9);
+  doc.text("Presentacion: caja de 4 x 1 galon (8 lb c/u)", margin, yPos);
   yPos += 12;
 
   // New page for comparison table

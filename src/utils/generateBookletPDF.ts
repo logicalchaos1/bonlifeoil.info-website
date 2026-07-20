@@ -4,6 +4,7 @@ import soyaOilProduct from '@/assets/soya-oil-product.jpg';
 import sunflowerOilProduct from '@/assets/sunflower-oil-product.jpg';
 import mantecaProduct from '@/assets/manteca-product.jpg';
 import margarineProduct from '@/assets/margarine-product.jpg';
+import mayonesaProduct from '@/assets/mayonesa-product.jpg';
 
 export const generateBookletPDF = async () => {
   const pdf = new jsPDF({
@@ -482,6 +483,63 @@ export const generateBookletPDF = async () => {
   pdf.setFont('helvetica', 'italic');
   pdf.setFontSize(8);
   pdf.text('Presentación: saco industrial  |  Vida útil: 18 meses (cerrado)', margin, yPos);
+
+  // Product 6: Mayonesa Bonlife
+  pdf.addPage();
+  pdf.setFillColor(255, 255, 255);
+  pdf.rect(0, 0, pageWidth, pageHeight, 'F');
+
+  pdf.setFillColor(22, 162, 73);
+  pdf.rect(0, 0, pageWidth, 35, 'F');
+  pdf.setTextColor(255, 255, 255);
+  pdf.setFontSize(18);
+  pdf.setFont('helvetica', 'bold');
+  pdf.text('Mayonesa Bonlife', pageWidth / 2, 22, { align: 'center' });
+
+  try {
+    const imageData = await loadImage(mayonesaProduct);
+    pdf.addImage(imageData, 'JPEG', margin + 30, 45, contentWidth - 60, 60);
+  } catch (error) {
+    console.error('Error loading product image:', error);
+  }
+
+  pdf.setTextColor(darkColor[0], darkColor[1], darkColor[2]);
+  pdf.setFontSize(10);
+  pdf.setFont('helvetica', 'italic');
+  pdf.text('Elaborada con limón y huevo, cremosidad y sabor consistente', margin, 115);
+
+  pdf.setFontSize(16);
+  pdf.setFont('helvetica', 'bold');
+  pdf.setFillColor(34, 139, 34);
+  pdf.rect(margin, 125, 55, 12, 'F');
+  pdf.setTextColor(255, 255, 255);
+  pdf.text('$4,000 DOP/Caja', margin + 5, 133);
+
+  pdf.setTextColor(darkColor[0], darkColor[1], darkColor[2]);
+  pdf.setFontSize(11);
+  pdf.setFont('helvetica', 'bold');
+  pdf.text('Características:', margin, 150);
+
+  pdf.setFontSize(9);
+  pdf.setFont('helvetica', 'normal');
+  yPos = 158;
+  const mayonesaBenefits = [
+    'Elaborada con limón y huevo para sabor tradicional',
+    'Presentación de alto rendimiento para uso profesional',
+    'Ideal para sándwiches, ensaladas y salsas base'
+  ];
+  mayonesaBenefits.forEach(benefit => {
+    pdf.setFillColor(22, 162, 73);
+    pdf.circle(margin + 2, yPos - 1.5, 1, 'F');
+    const lines = pdf.splitTextToSize(benefit, contentWidth - 8);
+    pdf.text(lines, margin + 5, yPos);
+    yPos += lines.length * 5;
+  });
+
+  yPos += 5;
+  pdf.setFont('helvetica', 'italic');
+  pdf.setFontSize(8);
+  pdf.text('Presentación: caja de 4 x 1 galón (8 lb c/u)', margin, yPos);
 
   // Final Page: Contact & Coverage
   pdf.addPage();
