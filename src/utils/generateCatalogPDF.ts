@@ -5,6 +5,7 @@ import soyaImage from "@/assets/soya-oil-product.jpg";
 import mantecaImage from "@/assets/manteca-product.jpg";
 import margarineImage from "@/assets/margarine-product.jpg";
 import mayonesaImage from "@/assets/mayonesa-product.jpg";
+import mayonesaSachetsImage from "@/assets/mayonesa-sachets-product.jpg";
 export const generateCatalogPDF = async () => {
   const doc = new jsPDF();
   const pageWidth = doc.internal.pageSize.getWidth();
@@ -66,6 +67,7 @@ export const generateCatalogPDF = async () => {
   const mantecaImg = await loadImage(mantecaImage);
   const margarineImg = await loadImage(margarineImage);
   const mayonesaImg = await loadImage(mayonesaImage);
+  const mayonesaSachetsImg = await loadImage(mayonesaSachetsImage);
 
   // Image dimensions for products
   const imgWidth = 35;
@@ -513,7 +515,7 @@ export const generateCatalogPDF = async () => {
   doc.text("Mayonesa Bonlife en Sachets", margin, yPos);
   yPos += 15;
 
-  const mayonesaSachetsBase64 = getBase64Image(mayonesaImg);
+  const mayonesaSachetsBase64 = getBase64Image(mayonesaSachetsImg);
   doc.addImage(mayonesaSachetsBase64, 'JPEG', imgX, yPos, imgWidth, imgHeight);
   yPos += imgHeight + 8;
 

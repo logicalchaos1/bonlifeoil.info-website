@@ -5,6 +5,7 @@ import sunflowerOilProduct from '@/assets/sunflower-oil-product.jpg';
 import mantecaProduct from '@/assets/manteca-product.jpg';
 import margarineProduct from '@/assets/margarine-product.jpg';
 import mayonesaProduct from '@/assets/mayonesa-product.jpg';
+import mayonesaSachetsProduct from '@/assets/mayonesa-sachets-product.jpg';
 
 export const generateBookletPDF = async () => {
   const pdf = new jsPDF({
@@ -554,7 +555,7 @@ export const generateBookletPDF = async () => {
   pdf.text('Mayonesa Bonlife en Sachets', pageWidth / 2, 22, { align: 'center' });
 
   try {
-    const imageData = await loadImage(mayonesaProduct);
+    const imageData = await loadImage(mayonesaSachetsProduct);
     pdf.addImage(imageData, 'JPEG', margin + 30, 45, contentWidth - 60, 60);
   } catch (error) {
     console.error('Error loading product image:', error);
