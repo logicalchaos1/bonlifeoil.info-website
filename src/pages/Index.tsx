@@ -67,6 +67,7 @@ const Index = () => {
                 <li><a href="/chef-partners" className="hover:text-gold transition-colors">Chef Partners</a></li>
                 <li><a href="/reporte-piloto" className="hover:text-gold transition-colors">Reporte Piloto</a></li>
                 <li><a href="/formulario-comprador" className="hover:text-gold transition-colors">Formulario de Compra</a></li>
+                <li><a href="/empleos" className="hover:text-gold transition-colors">Empleos</a></li>
               </ul>
             </div>
             <div>

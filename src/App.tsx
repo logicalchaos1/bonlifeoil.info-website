@@ -15,6 +15,7 @@ const BlogPost = lazy(() => import("./pages/BlogPost"));
 const SeoDashboard = lazy(() => import("./pages/SeoDashboard"));
 const ReferralProgram = lazy(() => import("./pages/ReferralProgram"));
 const ROICalculator = lazy(() => import("./pages/ROICalculator"));
+const Careers = lazy(() => import("./pages/Careers"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
@@ -48,6 +49,7 @@ const App = () => (
               <Route path="/seo" element={<SeoDashboard />} />
               <Route path="/referidos" element={<ReferralProgram />} />
               <Route path="/calculadora-ahorro" element={<ROICalculator />} />
+              <Route path="/empleos" element={<Careers />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
