@@ -1,4 +1,4 @@
-project_id = "wwhszmcsdrwifvyhpnjw"
+project_id = "romkbyfyyjkwexgwyhwq"
 
 [functions.generate-blog]
 verify_jwt = false
