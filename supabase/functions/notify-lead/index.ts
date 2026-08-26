@@ -1,6 +1,6 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 
-const NOTIFY_TO = "jeffrey@apidra-group.com";
+const NOTIFY_TO = "jeffrey@bonlifeoil.info";
 
 interface LeadRecord {
   name: string;
@@ -54,7 +54,7 @@ serve(async (req) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        from: "Bonlife Leads <onboarding@resend.dev>",
+        from: "Bonlife Leads <leads@bonlifeoil.info>",
         to: [NOTIFY_TO],
         subject: `Nueva solicitud de ${lead.name}${lead.company ? ` — ${lead.company}` : ""}`,
         html,
