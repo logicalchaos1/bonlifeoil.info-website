@@ -47,7 +47,7 @@ export const ExitIntentPopup = () => {
     if (dismissed) return;
 
     const handleMouseLeave = (e: MouseEvent) => {
-      if (e.clientY <= 0) {
+      if (e.clientY <= 0 && !safeSessionStorage.getItem("exit-popup-dismissed")) {
         setShow(true);
       }
     };
