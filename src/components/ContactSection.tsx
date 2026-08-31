@@ -111,7 +111,7 @@ export const ContactSection = () => {
 
                 <div className="mt-8 pt-8 border-t border-white/20">
                   <a
-                    href={`https://wa.me/18299876764?text=${encodeURIComponent("Hola Bonlife, necesito cotización para aceite a granel")}`}
+                    href={`https://wa.me/18299876764?text=${encodeURIComponent("Hola Bonlife, necesito cotización para aceite en garrafones")}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center justify-center gap-3 bg-gold hover:bg-gold-light text-white font-bold py-4 px-6 rounded-2xl transition-all duration-300 transform hover:scale-105"
