@@ -190,10 +190,10 @@ Devuelve EXACTAMENTE este formato JSON:
     headline: blogData.title,
     description: blogData.meta_description,
     inLanguage: "es",
-    author: { "@type": "Organization", name: "Bonlife Oil", url: "https://bonlifeoil.info" },
+    author: { "@type": "Organization", name: "Bonlife Oil", url: "https://www.bonlifeoil.info" },
     publisher: { "@type": "Organization", name: "Bonlife Oil" },
     datePublished: new Date().toISOString(),
-    mainEntityOfPage: `https://bonlifeoil.info/blog/${slug}`,
+    mainEntityOfPage: `https://www.bonlifeoil.info/blog/${slug}`,
     about: {
       "@type": "Product",
       name: "Aceite Vegetal Bonlife",
@@ -235,7 +235,7 @@ Devuelve EXACTAMENTE este formato JSON:
         secondary_keywords: blogData.secondary_keywords,
         status: "published",
         published_at: new Date().toISOString(),
-        schema_markup: { ...schemaMarkup, mainEntityOfPage: `https://bonlifeoil.info/blog/${newSlug}` },
+        schema_markup: { ...schemaMarkup, mainEntityOfPage: `https://www.bonlifeoil.info/blog/${newSlug}` },
         word_count: wordCount,
       }).select().single();
       if (retryError) throw retryError;

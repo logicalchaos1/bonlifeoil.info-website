@@ -7,8 +7,15 @@ import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
 import { RefreshCw, FileText, Globe, Key, TrendingUp, Loader2 } from "lucide-react";
 import { useState } from "react";
+import { useSeo } from "@/hooks/use-seo";
 
 const SeoDashboard = () => {
+  useSeo({
+    title: "SEO Dashboard | Bonlife Oil",
+    description: "Panel interno.",
+    path: "/seo-dashboard",
+    noindex: true,
+  });
   const queryClient = useQueryClient();
   const [generating, setGenerating] = useState(false);
 

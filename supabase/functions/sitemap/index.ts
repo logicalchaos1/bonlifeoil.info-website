@@ -14,7 +14,10 @@ serve(async (req) => {
     const supabaseKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
     const supabase = createClient(supabaseUrl, supabaseKey);
 
-    const SITE_URL = "https://bonlifeoil.info";
+    // Canonical host: the apex domain redirects to www.
+    const SITE_URL = "https://www.bonlifeoil.info";
+    // Slugs ending in a Date.now() base36 suffix are duplicate-title posts.
+    const isDuplicateSlug = (slug: string) => /-(?=[a-z]*\d)m[a-z0-9]{7}$/.test(slug);
 
     // Get all published blog posts
     const { data: posts } = await supabase
@@ -22,11 +25,6 @@ serve(async (req) => {
       .select("slug, updated_at, published_at")
       .eq("status", "published")
       .order("published_at", { ascending: false });
-
-    // Get all towns for location pages
-    const { data: towns } = await supabase
-      .from("dr_towns")
-      .select("slug");
 
     const now = new Date().toISOString();
 
@@ -37,6 +35,30 @@ serve(async (req) => {
     <lastmod>${now}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>${SITE_URL}/aceite-para-freir</loc>
+    <lastmod>${now}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>${SITE_URL}/calculadora-ahorro</loc>
+    <lastmod>${now}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>${SITE_URL}/referidos</loc>
+    <lastmod>${now}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>${SITE_URL}/empleos</loc>
+    <lastmod>${now}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   <url>
     <loc>${SITE_URL}/blog</loc>
@@ -60,6 +82,7 @@ serve(async (req) => {
     // Blog posts
     if (posts) {
       for (const post of posts) {
+        if (isDuplicateSlug(post.slug)) continue;
         xml += `
   <url>
     <loc>${SITE_URL}/blog/${post.slug}</loc>

@@ -7,6 +7,7 @@ import { ComparisonTable } from "@/components/ComparisonTable";
 import { SavingsCalculator } from "@/components/SavingsCalculator";
 import { BenefitsSection } from "@/components/BenefitsSection";
 import { MessageCircle } from "lucide-react";
+import { useSeo } from "@/hooks/use-seo";
 
 const ContactSection = lazy(() =>
   import("@/components/ContactSection").then((m) => ({ default: m.ContactSection }))
@@ -19,6 +20,13 @@ const ExitIntentPopup = lazy(() =>
 );
 
 const Index = () => {
+  useSeo({
+    title: "Bonlife Oil | Aceite para Freír y Aceite Vegetal al por Mayor en RD",
+    description:
+      "Distribuidor de aceite para freír y aceite vegetal para hoteles y restaurantes en República Dominicana. Palma, soya y girasol en garrafón de 25L. Entrega en Santo Domingo y Punta Cana.",
+    path: "/",
+  });
+
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
@@ -61,6 +69,7 @@ const Index = () => {
               <h4 className="font-bold mb-4 sm:mb-6 uppercase tracking-wider text-xs sm:text-sm text-white/40">Navegación</h4>
               <ul className="space-y-3 sm:space-y-4 text-white/80 text-sm">
                 <li><a href="/" className="hover:text-gold transition-colors">Inicio</a></li>
+                <li><a href="/aceite-para-freir" className="hover:text-gold transition-colors">Aceite para Freír</a></li>
                 <li><a href="/calculadora-ahorro" className="hover:text-gold transition-colors">Calculadora de Ahorro</a></li>
                 <li><a href="/blog" className="hover:text-gold transition-colors">Blog</a></li>
                 <li><a href="/referidos" className="hover:text-gold transition-colors">Programa de Referidos</a></li>

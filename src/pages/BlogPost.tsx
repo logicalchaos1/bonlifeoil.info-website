@@ -4,7 +4,9 @@ import { supabase } from "@/integrations/supabase/client";
 import Navbar from "@/components/Navbar";
 import { Calendar, MapPin, ArrowLeft, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useEffect } from "react";
+import { useSeo, SITE_URL } from "@/hooks/use-seo";
+
+const isDuplicateSlug = (slug = "") => /-(?=[a-z]*\d)m[a-z0-9]{7}$/.test(slug);
 
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -24,30 +26,17 @@ const BlogPost = () => {
     enabled: !!slug,
   });
 
-  // Update document head for SEO
-  useEffect(() => {
-    if (post) {
-      document.title = `${post.title} | Bonlife Oil Blog`;
-      const metaDesc = document.querySelector('meta[name="description"]');
-      if (metaDesc) metaDesc.setAttribute("content", post.meta_description || "");
-
-      // Add JSON-LD schema
-      const existingScript = document.getElementById("blog-schema");
-      if (existingScript) existingScript.remove();
-      if (post.schema_markup) {
-        const script = document.createElement("script");
-        script.id = "blog-schema";
-        script.type = "application/ld+json";
-        script.textContent = JSON.stringify(post.schema_markup);
-        document.head.appendChild(script);
-      }
-    }
-    return () => {
-      document.title = "Bonlife Oil - Aceite Vegetal Premium";
-      const script = document.getElementById("blog-schema");
-      if (script) script.remove();
-    };
-  }, [post]);
+  useSeo({
+    title: post ? `${post.title} | Bonlife Oil Blog` : "Blog | Bonlife Oil",
+    description: post?.meta_description || "",
+    path: `/blog/${slug}`,
+    // Posts whose slug ends in a timestamp suffix are title collisions from the
+    // generator, i.e. duplicates of an existing post. Keep them out of the index.
+    noindex: isDuplicateSlug(slug),
+    jsonLd: post?.schema_markup
+      ? { ...(post.schema_markup as object), mainEntityOfPage: `${SITE_URL}/blog/${slug}` }
+      : undefined,
+  });
 
   if (isLoading) {
     return (

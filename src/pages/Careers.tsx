@@ -4,8 +4,14 @@ import { ArrowLeft, ArrowRight, Briefcase, MapPin, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import BonlifeLogo from '@/components/BonlifeLogo';
 import { jobs } from '@/data/jobs';
+import { useSeo } from "@/hooks/use-seo";
 
 const Careers = () => {
+  useSeo({
+    title: "Empleos en Bonlife Oil | República Dominicana",
+    description: "Vacantes de empleo en Bonlife Oil, distribuidor de aceite vegetal en República Dominicana.",
+    path: "/empleos",
+  });
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
