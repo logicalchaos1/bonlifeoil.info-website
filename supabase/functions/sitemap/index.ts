@@ -16,8 +16,6 @@ serve(async (req) => {
 
     // Canonical host: the apex domain redirects to www.
     const SITE_URL = "https://www.bonlifeoil.info";
-    // Slugs ending in a Date.now() base36 suffix are duplicate-title posts.
-    const isDuplicateSlug = (slug: string) => /-(?=[a-z]*\d)m[a-z0-9]{7}$/.test(slug);
 
     // Get all published blog posts
     const { data: posts } = await supabase
@@ -82,7 +80,6 @@ serve(async (req) => {
     // Blog posts
     if (posts) {
       for (const post of posts) {
-        if (isDuplicateSlug(post.slug)) continue;
         xml += `
   <url>
     <loc>${SITE_URL}/blog/${post.slug}</loc>

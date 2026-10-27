@@ -1,12 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, Navigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import Navbar from "@/components/Navbar";
 import { Calendar, MapPin, ArrowLeft, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useSeo, SITE_URL } from "@/hooks/use-seo";
-
-const isDuplicateSlug = (slug = "") => /-(?=[a-z]*\d)m[a-z0-9]{7}$/.test(slug);
 
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -24,21 +22,35 @@ const BlogPost = () => {
       return data;
     },
     enabled: !!slug,
+    // "No rows" is a real miss (e.g. an archived post), not worth retrying.
+    retry: (count, err: { code?: string }) => err?.code !== "PGRST116" && count < 3,
+  });
+
+  // Pruned posts are archived with a pointer to the post kept for their town.
+  const { data: redirectSlug, isLoading: isRedirectLoading } = useQuery({
+    queryKey: ["blog-redirect", slug],
+    queryFn: async () => {
+      const { data } = await supabase.rpc("get_blog_redirect", { p_slug: slug! });
+      return data ?? null;
+    },
+    enabled: !!slug && !!error,
   });
 
   useSeo({
     title: post ? `${post.title} | Bonlife Oil Blog` : "Blog | Bonlife Oil",
     description: post?.meta_description || "",
     path: `/blog/${slug}`,
-    // Posts whose slug ends in a timestamp suffix are title collisions from the
-    // generator, i.e. duplicates of an existing post. Keep them out of the index.
-    noindex: isDuplicateSlug(slug),
+    noindex: !post,
     jsonLd: post?.schema_markup
       ? { ...(post.schema_markup as object), mainEntityOfPage: `${SITE_URL}/blog/${slug}` }
       : undefined,
   });
 
-  if (isLoading) {
+  if (redirectSlug) {
+    return <Navigate to={`/blog/${redirectSlug}`} replace />;
+  }
+
+  if (isLoading || isRedirectLoading) {
     return (
       <div className="min-h-screen bg-background">
         <Navbar />
