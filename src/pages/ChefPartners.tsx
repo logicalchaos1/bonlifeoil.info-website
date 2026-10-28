@@ -9,8 +9,14 @@ import {
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import BonlifeLogo from '@/components/BonlifeLogo';
+import { useSeo } from "@/hooks/use-seo";
 
 const ChefPartners = () => {
+  useSeo({
+    title: "Chef Partners | Bonlife Oil",
+    description: "Programa para chefs profesionales que usan aceite vegetal Bonlife en República Dominicana.",
+    path: "/chef-partners",
+  });
   const painPoints = [
     {
       icon: Thermometer,

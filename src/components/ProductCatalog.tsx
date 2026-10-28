@@ -265,7 +265,7 @@ const ProductCatalog = () => {
   };
 
   return (
-    <section className="bg-gradient-to-b from-background to-muted/20 px-4 py-12 sm:py-16 md:py-20">
+    <section id="productos" className="bg-gradient-to-b from-background to-muted/20 px-4 py-12 sm:py-16 md:py-20">
       <div className="container mx-auto max-w-7xl">
         <div className="mb-8 text-center sm:mb-12">
           <h2 className="mb-3 text-2xl font-bold sm:text-3xl md:text-4xl">Catálogo de Productos Bonlife</h2>

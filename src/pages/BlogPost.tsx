@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, Navigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import Navbar from "@/components/Navbar";
 import { Calendar, MapPin, ArrowLeft, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useEffect } from "react";
+import { useSeo, SITE_URL } from "@/hooks/use-seo";
 
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -22,34 +22,35 @@ const BlogPost = () => {
       return data;
     },
     enabled: !!slug,
+    // "No rows" is a real miss (e.g. an archived post), not worth retrying.
+    retry: (count, err: { code?: string }) => err?.code !== "PGRST116" && count < 3,
   });
 
-  // Update document head for SEO
-  useEffect(() => {
-    if (post) {
-      document.title = `${post.title} | Bonlife Oil Blog`;
-      const metaDesc = document.querySelector('meta[name="description"]');
-      if (metaDesc) metaDesc.setAttribute("content", post.meta_description || "");
+  // Pruned posts are archived with a pointer to the post kept for their town.
+  const { data: redirectSlug, isLoading: isRedirectLoading } = useQuery({
+    queryKey: ["blog-redirect", slug],
+    queryFn: async () => {
+      const { data } = await supabase.rpc("get_blog_redirect", { p_slug: slug! });
+      return data ?? null;
+    },
+    enabled: !!slug && !!error,
+  });
 
-      // Add JSON-LD schema
-      const existingScript = document.getElementById("blog-schema");
-      if (existingScript) existingScript.remove();
-      if (post.schema_markup) {
-        const script = document.createElement("script");
-        script.id = "blog-schema";
-        script.type = "application/ld+json";
-        script.textContent = JSON.stringify(post.schema_markup);
-        document.head.appendChild(script);
-      }
-    }
-    return () => {
-      document.title = "Bonlife Oil - Aceite Vegetal Premium";
-      const script = document.getElementById("blog-schema");
-      if (script) script.remove();
-    };
-  }, [post]);
+  useSeo({
+    title: post ? `${post.title} | Bonlife Oil Blog` : "Blog | Bonlife Oil",
+    description: post?.meta_description || "",
+    path: `/blog/${slug}`,
+    noindex: !post,
+    jsonLd: post?.schema_markup
+      ? { ...(post.schema_markup as object), mainEntityOfPage: `${SITE_URL}/blog/${slug}` }
+      : undefined,
+  });
 
-  if (isLoading) {
+  if (redirectSlug) {
+    return <Navigate to={`/blog/${redirectSlug}`} replace />;
+  }
+
+  if (isLoading || isRedirectLoading) {
     return (
       <div className="min-h-screen bg-background">
         <Navbar />

@@ -26,6 +26,7 @@ export type Database = {
           meta_description: string | null
           primary_keyword: string | null
           published_at: string | null
+          redirect_slug: string | null
           schema_markup: Json | null
           secondary_keywords: string[] | null
           slug: string
@@ -46,6 +47,7 @@ export type Database = {
           meta_description?: string | null
           primary_keyword?: string | null
           published_at?: string | null
+          redirect_slug?: string | null
           schema_markup?: Json | null
           secondary_keywords?: string[] | null
           slug: string
@@ -66,6 +68,7 @@ export type Database = {
           meta_description?: string | null
           primary_keyword?: string | null
           published_at?: string | null
+          redirect_slug?: string | null
           schema_markup?: Json | null
           secondary_keywords?: string[] | null
           slug?: string
@@ -347,7 +350,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      get_blog_redirect: {
+        Args: { p_slug: string }
+        Returns: string | null
+      }
     }
     Enums: {
       [_ in never]: never

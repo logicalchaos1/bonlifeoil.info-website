@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ArrowLeft, Download, Printer, CheckCircle, AlertTriangle, TrendingUp, Clock, DollarSign, Heart, Users, Calendar, Droplets } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import bonlifeLogo from "@/assets/bonlife-logo.png";
+import { useSeo } from "@/hooks/use-seo";
 
 // Trial photos served from public folder
 const trialPhoto1 = "/trial/royalton-day1-1.jpg";
@@ -12,6 +13,12 @@ const trialPhoto4 = "/trial/royalton-week1.jpg";
 const trialPhoto5 = "/trial/royalton-final.jpg";
 
 const TrialReport = () => {
+  useSeo({
+    title: "Reporte Piloto | Bonlife Oil",
+    description: "Reporte de prueba piloto de aceite Bonlife.",
+    path: "/reporte-piloto",
+    noindex: true,
+  });
   const navigate = useNavigate();
 
   const handlePrint = () => {

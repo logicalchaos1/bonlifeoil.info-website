@@ -27,6 +27,7 @@ import { toast } from "sonner";
 import { ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import bonlifeLogo from "@/assets/bonlife-logo.png";
+import { useSeo } from "@/hooks/use-seo";
 
 const printStyles = `
   @media print {
@@ -79,6 +80,11 @@ const formSchema = z.object({
 type FormValues = z.infer<typeof formSchema>;
 
 const BuyersForm = () => {
+  useSeo({
+    title: "Formulario de Compra | Bonlife Oil",
+    description: "Solicite una cotización de aceite para freír y aceite vegetal Bonlife para su negocio.",
+    path: "/formulario-comprador",
+  });
   const navigate = useNavigate();
   const [paymentTerms, setPaymentTerms] = useState<string>("");
 

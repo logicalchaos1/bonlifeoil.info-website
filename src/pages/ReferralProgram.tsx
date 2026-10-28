@@ -7,8 +7,14 @@ import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { Gift, Users, DollarSign, Share2, Copy, Check, Star } from "lucide-react";
 import { motion } from "framer-motion";
+import { useSeo } from "@/hooks/use-seo";
 
 const ReferralProgram = () => {
+  useSeo({
+    title: "Programa de Referidos | Bonlife Oil",
+    description: "Refiera hoteles y restaurantes a Bonlife Oil y gane 5% de descuento por cada uno que compre.",
+    path: "/referidos",
+  });
   const [searchParams] = useSearchParams();
   const refCode = searchParams.get("ref");
 

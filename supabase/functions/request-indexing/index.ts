@@ -121,7 +121,7 @@ serve(async (req) => {
     }
 
     const results = [];
-    const siteUrl = "https://bonlifeoil.info";
+    const siteUrl = "https://www.bonlifeoil.info";
 
     for (const post of posts) {
       const url = `${siteUrl}/blog/${post.slug}`;

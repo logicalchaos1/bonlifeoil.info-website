@@ -16,6 +16,15 @@ serve(async (req) => {
     const supabase = createClient(supabaseUrl, supabaseKey);
 
     const body = req.method === "POST" ? await req.json().catch(() => ({})) : {};
+    // Mass auto-generated city posts (600+ duplicate titles) and pushing blog
+    // URLs through the Indexing API (which Google only supports for JobPosting
+    // and livestream pages) both risk a spam demotion. Both stay off unless
+    // SEO_AUTOGEN_ENABLED=true is set on the function.
+    if (Deno.env.get("SEO_AUTOGEN_ENABLED") !== "true") {
+      return new Response(JSON.stringify({ success: true, skipped: "SEO_AUTOGEN_ENABLED is not true" }), {
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
     const action = body.action || "generate_and_index";
     const batch_size = body.batch_size || 2; // Generate 2 per cycle (5 cycles/day = ~10 attempts, 3-5 successes)
 

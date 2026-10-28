@@ -3,8 +3,14 @@ import { supabase } from "@/integrations/supabase/client";
 import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import { Calendar, MapPin, ArrowRight } from "lucide-react";
+import { useSeo } from "@/hooks/use-seo";
 
 const Blog = () => {
+  useSeo({
+    title: "Blog de Aceite Vegetal y Fritura para Hoteles y Restaurantes | Bonlife Oil",
+    description: "Guías sobre aceite para freír, aceite vegetal y ahorro en cocinas de hoteles y restaurantes en República Dominicana.",
+    path: "/blog",
+  });
   const { data: posts, isLoading } = useQuery({
     queryKey: ["blog-posts"],
     queryFn: async () => {

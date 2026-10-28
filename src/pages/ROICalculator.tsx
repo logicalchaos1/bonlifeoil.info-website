@@ -6,8 +6,14 @@ import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { Calculator, TrendingDown, DollarSign, Droplets, Clock, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
+import { useSeo } from "@/hooks/use-seo";
 
 const ROICalculator = () => {
+  useSeo({
+    title: "Calculadora de Ahorro en Aceite de Freír | Bonlife Oil",
+    description: "Calcule cuánto ahorra su hotel o restaurante al cambiar a aceite para freír Bonlife en República Dominicana.",
+    path: "/calculadora-ahorro",
+  });
   const [monthlySpend, setMonthlySpend] = useState("");
   const [litersPerMonth, setLitersPerMonth] = useState("");
   const [oilChangesPerWeek, setOilChangesPerWeek] = useState("");
