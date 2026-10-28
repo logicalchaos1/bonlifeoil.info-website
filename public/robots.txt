@@ -4,3 +4,4 @@ Disallow: /seo
 Disallow: /seo-dashboard
 
 Sitemap: https://www.bonlifeoil.info/sitemap.xml
+Sitemap: https://www.bonlifeoil.info/sitemap-productos.xml
