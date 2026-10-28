@@ -70,6 +70,7 @@ const Index = () => {
               <ul className="space-y-3 sm:space-y-4 text-white/80 text-sm">
                 <li><a href="/" className="hover:text-gold transition-colors">Inicio</a></li>
                 <li><a href="/aceite-para-freir" className="hover:text-gold transition-colors">Aceite para Freír</a></li>
+                <li><a href="/aceite-de-palma" className="hover:text-gold transition-colors">Aceite de Palma</a></li>
                 <li><a href="/calculadora-ahorro" className="hover:text-gold transition-colors">Calculadora de Ahorro</a></li>
                 <li><a href="/blog" className="hover:text-gold transition-colors">Blog</a></li>
                 <li><a href="/referidos" className="hover:text-gold transition-colors">Programa de Referidos</a></li>

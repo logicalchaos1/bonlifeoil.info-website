@@ -14,6 +14,7 @@ const WHATSAPP_URL =
 const oils = [
   {
     name: "Aceite de Palma (RBD Palm Olein) para freír",
+    href: "/aceite-de-palma",
     image: palmImage,
     price: "$4,600 DOP · garrafón 25L",
     smokePoint: "230 °C",
@@ -166,7 +167,13 @@ const AceiteParaFreir = () => {
                   loading="lazy"
                 />
                 <div className="p-5 space-y-2">
-                  <h3 className="font-bold text-foreground">{oil.name}</h3>
+                  <h3 className="font-bold text-foreground">
+                    {oil.href ? (
+                      <Link to={oil.href} className="hover:text-primary">{oil.name}</Link>
+                    ) : (
+                      oil.name
+                    )}
+                  </h3>
                   <p className="text-sm font-semibold text-primary">{oil.price}</p>
                   <p className="text-xs text-muted-foreground">Punto de humo: {oil.smokePoint}</p>
                   <p className="text-sm text-muted-foreground">{oil.text}</p>

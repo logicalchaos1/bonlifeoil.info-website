@@ -17,6 +17,7 @@ const ReferralProgram = lazy(() => import("./pages/ReferralProgram"));
 const ROICalculator = lazy(() => import("./pages/ROICalculator"));
 const Careers = lazy(() => import("./pages/Careers"));
 const JobDetail = lazy(() => import("./pages/JobDetail"));
+const AceiteDePalma = lazy(() => import("./pages/AceiteDePalma"));
 const AceiteParaFreir = lazy(() => import("./pages/AceiteParaFreir"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
@@ -43,6 +44,7 @@ const App = () => (
               <Route path="/" element={<Index />} />
               <Route path="/index" element={<Index />} />
               <Route path="/aceite-para-freir" element={<AceiteParaFreir />} />
+              <Route path="/aceite-de-palma" element={<AceiteDePalma />} />
               <Route path="/formulario-comprador" element={<BuyersForm />} />
               <Route path="/reporte-piloto" element={<TrialReport />} />
               <Route path="/chef-partners" element={<ChefPartners />} />
