@@ -2,8 +2,12 @@
 import { createClient } from '@supabase/supabase-js';
 import type { Database } from './types';
 
-const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
-const SUPABASE_PUBLISHABLE_KEY = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
+// Pinned to the "Bonlife Website and ERP Apidra" project. The Vercel env vars
+// still point at a paused project, so they are deliberately not read here.
+// The anon key is public by design; access is enforced by RLS.
+const SUPABASE_URL = "https://zabbeoqmhoomxgtagvaz.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InphYmJlb3FtaG9vbXhndGFndmF6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc1MzQ5MTYsImV4cCI6MjEwMzExMDkxNn0.Qd1gOSpk9qMW5qr71FHceO0exOO-qct9dQuuX8BJG2A";
 
 // Import the supabase client like this:
 // import { supabase } from "@/integrations/supabase/client";
