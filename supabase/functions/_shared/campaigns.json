@@ -1,0 +1,200 @@
+{
+  "_comment": "Single source of truth for Facebook lead ads, the optimizer, and the SMS/voice qualifier. Money is in USD; the importer converts to the ad account currency.",
+  "business": {
+    "name": "Bonlife Oil",
+    "phone": "+18299876764",
+    "whatsapp": "https://wa.me/18299876764",
+    "site": "https://www.bonlifeoil.info",
+    "privacy_url": "https://www.bonlifeoil.info/privacidad",
+    "country": "DO",
+    "timezone": "America/Santo_Domingo",
+    "business_hours": { "start": 9, "end": 18, "days": [1, 2, 3, 4, 5, 6] }
+  },
+  "budget": {
+    "max_total_daily_usd": 10,
+    "start_adset_daily_usd": 2,
+    "min_adset_daily_usd": 1,
+    "max_adset_daily_usd": 4,
+    "scale_step": 0.3,
+    "learning_hours": 48,
+    "lookback_days": 3
+  },
+  "goals": {
+    "sample_delivery": {
+      "label": "Entrega de muestra gratis",
+      "handoff": "Coordinar y entregar la muestra gratuita en la dirección y el día confirmados."
+    },
+    "quote_call": {
+      "label": "Llamada de cotización",
+      "handoff": "Llamar al cliente en el horario confirmado y enviar cotización por volumen."
+    },
+    "site_visit": {
+      "label": "Visita técnica / prueba piloto",
+      "handoff": "Visitar la cocina en la fecha confirmada para presentar la prueba piloto de 15 días."
+    }
+  },
+  "questions": {
+    "business_type": {
+      "label": "¿Qué tipo de negocio tiene?",
+      "options": ["Restaurante", "Hotel o resort", "Cafetería / food truck / friturera", "Panadería / repostería", "Otro"]
+    },
+    "monthly_volume": {
+      "label": "¿Cuántos garrafones de 25L usa al mes?",
+      "options": ["1-2", "3-5", "6-10", "Más de 10"]
+    },
+    "fryers": {
+      "label": "¿Cuántas freidoras tiene su cocina?",
+      "options": ["1", "2-3", "4-6", "Más de 6"]
+    },
+    "zone": {
+      "label": "¿En qué ciudad o sector está su negocio?",
+      "free_text": true
+    },
+    "address": {
+      "label": "¿A qué dirección le llevamos la muestra?",
+      "free_text": true
+    },
+    "slot": {
+      "label": "¿Cuándo le queda mejor?",
+      "options": ["Hoy en la tarde", "Mañana en la mañana", "Mañana en la tarde", "Otro día (le escribimos)"]
+    }
+  },
+  "campaigns": [
+    {
+      "key": "muestra-freir",
+      "name": "Bonlife | Muestra gratis aceite para freír",
+      "goal": "sample_delivery",
+      "product": "aceite para freír",
+      "target_cpl_usd": 3,
+      "landing_url": "https://www.bonlifeoil.info/aceite-para-freir",
+      "form_questions": ["business_type", "monthly_volume"],
+      "sms_questions": ["zone", "address", "slot"],
+      "targeting": { "age_min": 23, "interests_hint": "restaurantes, comida rápida, cocina" },
+      "form": {
+        "headline": "Pida su muestra gratis de aceite para freír",
+        "description": "Aceite Bonlife 99.9% pureza para restaurantes y fritureras en RD. Le llevamos una muestra para que lo pruebe en su freidora.",
+        "thank_you": "¡Listo! Le escribimos por SMS para coordinar la entrega de su muestra."
+      },
+      "ads": [
+        {
+          "key": "a",
+          "creative": "muestra-freir-a.png",
+          "headline": "Muestra gratis para su freidora",
+          "primary_text": "¿Su aceite se quema rápido? Pruebe el aceite para freír Bonlife en su propia cocina. Dura más en la freidora y no pasa sabores. Pida su muestra gratis 👇",
+          "description": "Para restaurantes y fritureras en RD",
+          "cta": "GET_OFFER"
+        },
+        {
+          "key": "b",
+          "creative": "muestra-freir-b.png",
+          "headline": "Gaste menos en aceite",
+          "primary_text": "Restaurantes en RD: el aceite Bonlife aguanta 45–56 horas en la freidora con filtrado regular. Le llevamos una muestra gratis para que lo compare.",
+          "description": "Entrega en Santo Domingo y Punta Cana",
+          "cta": "GET_OFFER"
+        }
+      ]
+    },
+    {
+      "key": "palma-25l",
+      "name": "Bonlife | Aceite de palma 25L cotización",
+      "goal": "quote_call",
+      "product": "aceite de palma 25L",
+      "target_cpl_usd": 3,
+      "landing_url": "https://www.bonlifeoil.info/aceite-de-palma",
+      "form_questions": ["business_type", "monthly_volume"],
+      "sms_questions": ["zone", "slot"],
+      "targeting": { "age_min": 23, "interests_hint": "restaurantes, mayoristas, colmados" },
+      "form": {
+        "headline": "Cotice aceite de palma 25L",
+        "description": "Aceite de palma RBD Palm Olein, garrafón de 25L a $4,600 DOP. Precio por volumen para negocios.",
+        "thank_you": "¡Gracias! Le escribimos por SMS para preparar su cotización."
+      },
+      "ads": [
+        {
+          "key": "a",
+          "creative": "palma-25l-a.png",
+          "headline": "Aceite de palma 25L · RD$4,600",
+          "primary_text": "Aceite de palma Bonlife para freír: punto de humo 230 °C, libre de grasas trans, garrafón de 25 litros. Pida su cotización por volumen 👇",
+          "description": "Entrega en Santo Domingo y Punta Cana",
+          "cta": "GET_QUOTE"
+        },
+        {
+          "key": "b",
+          "creative": "palma-25l-b.png",
+          "headline": "Precio por volumen para su negocio",
+          "primary_text": "¿Compra aceite cada semana? Con el aceite de palma Bonlife de 25L su freidora rinde más. Déjenos sus datos y le enviamos precio por volumen.",
+          "description": "Para restaurantes, hoteles y cafeterías",
+          "cta": "GET_QUOTE"
+        }
+      ]
+    },
+    {
+      "key": "piloto-hoteles",
+      "name": "Bonlife | Prueba piloto hoteles",
+      "goal": "site_visit",
+      "product": "prueba piloto de 15 días",
+      "target_cpl_usd": 5,
+      "landing_url": "https://www.bonlifeoil.info/reporte-piloto",
+      "form_questions": ["business_type", "fryers"],
+      "sms_questions": ["zone", "slot"],
+      "targeting": { "age_min": 25, "interests_hint": "hotelería, alimentos y bebidas, chef" },
+      "form": {
+        "headline": "Prueba piloto de 15 días para su hotel",
+        "description": "Medimos el rendimiento del aceite Bonlife en su cocina y le entregamos un reporte de ahorro comparativo.",
+        "thank_you": "¡Gracias! Le escribimos por SMS para agendar la visita técnica."
+      },
+      "ads": [
+        {
+          "key": "a",
+          "creative": "piloto-hoteles-a.png",
+          "headline": "Prueba piloto de 15 días",
+          "primary_text": "Chefs y gerentes de A&B: probamos el aceite Bonlife en su cocina durante 15 días y le entregamos un reporte de ahorro comparativo. Agende la visita técnica 👇",
+          "description": "Para hoteles y resorts en RD",
+          "cta": "SIGN_UP"
+        },
+        {
+          "key": "b",
+          "creative": "piloto-hoteles-b.png",
+          "headline": "Reporte de ahorro para su cocina",
+          "primary_text": "Su buffet fríe todo el día. Le mostramos con datos de su propia cocina cuánto puede ahorrar en aceite. Asesoría técnica sin costo.",
+          "description": "Visita técnica en su hotel",
+          "cta": "LEARN_MORE"
+        }
+      ]
+    },
+    {
+      "key": "panaderias",
+      "name": "Bonlife | Manteca y margarina panaderías",
+      "goal": "quote_call",
+      "product": "manteca y margarina para panadería",
+      "target_cpl_usd": 3,
+      "landing_url": "https://www.bonlifeoil.info/#productos",
+      "form_questions": ["business_type", "monthly_volume"],
+      "sms_questions": ["zone", "slot"],
+      "targeting": { "age_min": 23, "interests_hint": "panadería, repostería" },
+      "form": {
+        "headline": "Cotice manteca y margarina para su panadería",
+        "description": "Manteca vegetal Bonlife libre de grasas trans para textura y volumen en sus productos horneados.",
+        "thank_you": "¡Gracias! Le escribimos por SMS para preparar su cotización."
+      },
+      "ads": [
+        {
+          "key": "a",
+          "creative": "panaderias-a.png",
+          "headline": "Manteca vegetal para panaderías",
+          "primary_text": "Panaderías y reposterías en RD: manteca vegetal Bonlife, libre de grasas trans, para masas con mejor textura y volumen. Pida su cotización 👇",
+          "description": "Entrega en Santo Domingo y Punta Cana",
+          "cta": "GET_QUOTE"
+        },
+        {
+          "key": "b",
+          "creative": "panaderias-b.png",
+          "headline": "Más volumen en su pan",
+          "primary_text": "¿Hace pan y repostería todos los días? La manteca Bonlife mejora el volumen y la apariencia de sus horneados. Le enviamos precio por volumen.",
+          "description": "Manteca y margarina Bonlife",
+          "cta": "GET_QUOTE"
+        }
+      ]
+    }
+  ]
+}

@@ -14,3 +14,18 @@ verify_jwt = false
 
 [functions.notify-lead]
 verify_jwt = true
+
+[functions.fb-lead-intake]
+verify_jwt = false
+
+[functions.sms-qualifier]
+verify_jwt = false
+
+[functions.voice-qualifier-result]
+verify_jwt = false
+
+[functions.qualifier-followup]
+verify_jwt = false
+
+[functions.fb-optimizer]
+verify_jwt = false
