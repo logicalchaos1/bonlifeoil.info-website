@@ -84,7 +84,7 @@ const Index = () => {
               <h4 className="font-bold mb-4 sm:mb-6 uppercase tracking-wider text-xs sm:text-sm text-white/40">Legal</h4>
               <ul className="space-y-3 sm:space-y-4 text-white/80 text-sm">
                 <li><a href="#" className="hover:text-gold transition-colors">Términos de Uso</a></li>
-                <li><a href="#" className="hover:text-gold transition-colors">Privacidad</a></li>
+                <li><a href="/privacidad" className="hover:text-gold transition-colors">Privacidad</a></li>
                 <li><a href="#" className="hover:text-gold transition-colors">Certificaciones</a></li>
               </ul>
             </div>
