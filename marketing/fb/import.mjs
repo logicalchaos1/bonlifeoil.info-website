@@ -5,7 +5,7 @@
 //   node marketing/fb/import.mjs                       # plan only, no API calls
 //   node marketing/fb/import.mjs --create              # create everything paused
 //   node marketing/fb/import.mjs --create --activate   # create and turn on
-//   node marketing/fb/import.mjs --subscribe-webhook   # send new leads to fb-lead-intake
+//   node marketing/fb/import.mjs --subscribe-webhook   # send new leads to bonlife-automation/fb-lead
 //
 // Env: META_ACCESS_TOKEN, META_AD_ACCOUNT_ID, META_PAGE_ID, optional META_API_VERSION,
 // META_CURRENCY_PER_USD (required when the ad account is not in USD).

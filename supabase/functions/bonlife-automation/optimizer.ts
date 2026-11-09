@@ -43,8 +43,9 @@ const insights = async (level: "adset" | "ad", range: Record<string, string>) =>
   ]));
 };
 
-Deno.serve(async (req) => {
-  if (!verifyCron(req)) return json({ error: "unauthorized" }, 401);
+export default async function handle(req: Request): Promise<Response> {
+  if (!(await verifyCron(req))) return json({ error: "unauthorized" }, 401);
+  if (!env("META_ACCESS_TOKEN") || !env("META_AD_ACCOUNT_ID")) return json({ skipped: "Meta credentials not set" });
   const apply = env("FB_OPTIMIZER_APPLY") === "true";
 
   const account = await get(ACCOUNT, { fields: "currency" });
@@ -98,4 +99,4 @@ Deno.serve(async (req) => {
   }
   await db().from("fb_optimizer_log").insert({ applied: apply, actions, errors, adsets: inputs.length });
   return json({ applied: apply, adsets: inputs.length, actions, errors });
-});
+}

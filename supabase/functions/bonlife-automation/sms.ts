@@ -1,6 +1,7 @@
 // Twilio inbound SMS webhook: advances the qualification and replies with TwiML.
 import { fromRow, reply, toRow } from "../_shared/qualifier.ts";
-import { db, logMessages, normalizePhone, notifyHuman, verifyTwilio } from "../_shared/channels.ts";
+import { db, logMessages, normalizePhone, verifyTwilio } from "../_shared/channels.ts";
+import { notifyHuman } from "../_shared/handoff.ts";
 
 const xml = (s: string) => s.replace(/[<>&]/g, (c) => ({ "<": "&lt;", ">": "&gt;", "&": "&amp;" }[c]!));
 const twiml = (messages: string[]) =>
@@ -9,7 +10,7 @@ const twiml = (messages: string[]) =>
     { headers: { "Content-Type": "text/xml" } },
   );
 
-Deno.serve(async (req) => {
+export default async function handle(req: Request): Promise<Response> {
   const params = new URLSearchParams(await req.text());
   if (!(await verifyTwilio(params, req.headers.get("x-twilio-signature")))) {
     return new Response("bad signature", { status: 401 });
@@ -43,4 +44,4 @@ Deno.serve(async (req) => {
   if (handedOff) await notifyHuman(state, phone);
 
   return twiml(messages);
-});
+}

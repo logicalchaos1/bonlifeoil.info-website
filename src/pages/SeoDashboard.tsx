@@ -1,12 +1,9 @@
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import Navbar from "@/components/Navbar";
-import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { toast } from "sonner";
-import { RefreshCw, FileText, Globe, Key, TrendingUp, Loader2 } from "lucide-react";
-import { useState } from "react";
+import { FileText, Globe, Key, TrendingUp } from "lucide-react";
 import { useSeo } from "@/hooks/use-seo";
 
 const SeoDashboard = () => {
@@ -16,8 +13,6 @@ const SeoDashboard = () => {
     path: "/seo-dashboard",
     noindex: true,
   });
-  const queryClient = useQueryClient();
-  const [generating, setGenerating] = useState(false);
 
   const { data: posts } = useQuery({
     queryKey: ["admin-posts"],
@@ -61,56 +56,6 @@ const SeoDashboard = () => {
     },
   });
 
-  const generateBlog = async (count = 1) => {
-    setGenerating(true);
-    try {
-      const { data, error } = await supabase.functions.invoke("generate-blog", {
-        body: { batch_count: count },
-      });
-      if (error) throw error;
-      if (data?.success) {
-        const successes = data.generated?.filter((r: any) => r.success)?.length || 0;
-        toast.success(`${successes} blog(s) creados en español`);
-        queryClient.invalidateQueries({ queryKey: ["admin-posts"] });
-        queryClient.invalidateQueries({ queryKey: ["admin-keywords"] });
-      } else {
-        toast.error(data?.error || "Error generando blog");
-      }
-    } catch (e: any) {
-      toast.error(e.message || "Error generando blog");
-    } finally {
-      setGenerating(false);
-    }
-  };
-
-  const requestIndexing = async () => {
-    try {
-      const { data, error } = await supabase.functions.invoke("request-indexing");
-      if (error) throw error;
-      toast.success(`${data?.indexed?.length || 0} URLs enviadas para indexación`);
-      queryClient.invalidateQueries({ queryKey: ["admin-index-logs"] });
-      queryClient.invalidateQueries({ queryKey: ["admin-posts"] });
-    } catch (e: any) {
-      toast.error(e.message);
-    }
-  };
-
-  const runFullCron = async () => {
-    setGenerating(true);
-    try {
-      const { data, error } = await supabase.functions.invoke("seo-cron", {
-        body: { action: "generate_and_index" },
-      });
-      if (error) throw error;
-      toast.success("Ciclo SEO completo ejecutado");
-      queryClient.invalidateQueries();
-    } catch (e: any) {
-      toast.error(e.message);
-    } finally {
-      setGenerating(false);
-    }
-  };
-
   const totalPosts = posts?.length || 0;
   const indexedPosts = posts?.filter((p: any) => p.is_indexed)?.length || 0;
   const unusedKeywords = keywords?.filter((k: any) => !k.is_used)?.length || 0;
@@ -124,24 +69,6 @@ const SeoDashboard = () => {
           <h1 className="text-2xl md:text-3xl font-bold text-foreground">
             SEO Dashboard
           </h1>
-          <div className="flex flex-wrap gap-2">
-            <Button onClick={() => generateBlog(1)} disabled={generating} size="sm">
-              {generating ? <Loader2 className="w-4 h-4 mr-1 animate-spin" /> : <FileText className="w-4 h-4 mr-1" />}
-              Generar 1
-            </Button>
-            <Button onClick={() => generateBlog(5)} disabled={generating} size="sm" variant="default">
-              {generating ? <Loader2 className="w-4 h-4 mr-1 animate-spin" /> : <FileText className="w-4 h-4 mr-1" />}
-              Generar 5
-            </Button>
-            <Button onClick={requestIndexing} variant="outline" size="sm">
-              <Globe className="w-4 h-4 mr-1" />
-              Indexar
-            </Button>
-            <Button onClick={runFullCron} variant="secondary" disabled={generating} size="sm">
-              <RefreshCw className="w-4 h-4 mr-1" />
-              Ciclo Completo
-            </Button>
-          </div>
         </div>
 
         {/* Stats */}

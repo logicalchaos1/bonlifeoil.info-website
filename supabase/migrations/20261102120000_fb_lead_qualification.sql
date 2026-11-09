@@ -1,8 +1,7 @@
 -- Facebook lead ads: SMS/voice qualification state, message log, optimizer log,
 -- and the schedules that drive follow-ups and budget optimization.
--- Before the schedules can run, store the shared cron secret in Vault:
---   select vault.create_secret('<random string>', 'bonlife_cron_secret');
--- and set the same value as the CRON_SECRET function secret.
+-- The schedules authenticate with the Vault secret bonlife_cron_secret
+-- (created and read as described in 20261109120000_seo_weekly_report.sql).
 
 CREATE TABLE IF NOT EXISTS public.lead_qualifications (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),

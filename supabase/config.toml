@@ -1,31 +1,7 @@
 project_id = "zabbeoqmhoomxgtagvaz"
 
-[functions.generate-blog]
-verify_jwt = false
-
-[functions.request-indexing]
-verify_jwt = false
-
-[functions.seo-cron]
-verify_jwt = false
-
-[functions.sitemap]
-verify_jwt = false
-
 [functions.notify-lead]
 verify_jwt = true
 
-[functions.fb-lead-intake]
-verify_jwt = false
-
-[functions.sms-qualifier]
-verify_jwt = false
-
-[functions.voice-qualifier-result]
-verify_jwt = false
-
-[functions.qualifier-followup]
-verify_jwt = false
-
-[functions.fb-optimizer]
+[functions.bonlife-automation]
 verify_jwt = false

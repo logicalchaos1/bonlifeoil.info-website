@@ -85,7 +85,7 @@ async function handleLead(leadgenId: string) {
   }
 }
 
-Deno.serve(async (req) => {
+export default async function handle(req: Request): Promise<Response> {
   const url = new URL(req.url);
   if (req.method === "GET") {
     const ok = url.searchParams.get("hub.mode") === "subscribe" &&
@@ -105,4 +105,4 @@ Deno.serve(async (req) => {
   const results = await Promise.allSettled(ids.map(handleLead));
   results.forEach((r, i) => r.status === "rejected" && console.error("lead", ids[i], r.reason));
   return json({ received: ids.length });
-});
+}

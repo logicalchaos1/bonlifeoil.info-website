@@ -1,8 +1,9 @@
 // ElevenLabs post-call webhook: stores what the voice agent collected.
 import { fromRow, fromVoice, toRow } from "../_shared/qualifier.ts";
-import { db, json, logMessages, notifyHuman, verifyElevenLabs } from "../_shared/channels.ts";
+import { db, json, logMessages, verifyElevenLabs } from "../_shared/channels.ts";
+import { notifyHuman } from "../_shared/handoff.ts";
 
-Deno.serve(async (req) => {
+export default async function handle(req: Request): Promise<Response> {
   const raw = await req.text();
   if (!(await verifyElevenLabs(raw, req.headers.get("elevenlabs-signature")))) return json({ error: "bad signature" }, 401);
 
@@ -36,4 +37,4 @@ Deno.serve(async (req) => {
   if (handedOff) await notifyHuman(state, row.phone);
 
   return json({ ok: true, status: state.status });
-});
+}

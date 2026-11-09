@@ -32,7 +32,7 @@ const YES = /^(s|si|sí|yes|claro|ok|okay|dale|1)\b/;
 const NO = /^(no|n|2)\b/;
 
 const norm = (t: string) =>
-  t.trim().toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[!¡.?¿,]/g, "");
+  t.trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[!¡.?¿,]/g, "");
 
 export const campaignFor = (key: string): Campaign => {
   const c = config.campaigns.find((x) => x.key === key);
