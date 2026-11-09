@@ -2,7 +2,8 @@
 // and hands stalled conversations to a person.
 import config from "../_shared/campaigns.json" with { type: "json" };
 import { campaignFor, fromRow, goalFor } from "../_shared/qualifier.ts";
-import { db, env, json, notifyHuman, verifyCron } from "../_shared/channels.ts";
+import { db, env, json, verifyCron } from "../_shared/channels.ts";
+import { notifyHuman } from "../_shared/handoff.ts";
 
 const CALL_AFTER_MIN = 60;
 const HANDOFF_AFTER_HOURS = 20;
@@ -37,8 +38,8 @@ const placeCall = async (row: Record<string, any>) => {
   if (!res.ok) throw new Error(`ElevenLabs ${res.status}: ${await res.text()}`);
 };
 
-Deno.serve(async (req) => {
-  if (!verifyCron(req)) return json({ error: "unauthorized" }, 401);
+export default async function handle(req: Request): Promise<Response> {
+  if (!(await verifyCron(req))) return json({ error: "unauthorized" }, 401);
   const supabase = db();
   const now = new Date();
   const { data: rows } = await supabase.from("lead_qualifications").select("*").eq("status", "texting");
@@ -68,4 +69,4 @@ Deno.serve(async (req) => {
     }
   }
   return json({ checked: rows?.length ?? 0, called, handedOff });
-});
+}

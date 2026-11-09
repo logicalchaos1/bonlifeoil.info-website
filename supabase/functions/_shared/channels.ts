@@ -1,6 +1,5 @@
 // Outbound channels and webhook signature checks shared by the lead functions.
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
-import { handoffSummary, type QualState } from "./qualifier.ts";
 
 export const env = (name: string) => Deno.env.get(name) ?? "";
 
@@ -44,8 +43,20 @@ export const verifyElevenLabs = async (raw: string, header: string | null) => {
   return safeEqual(parts.v0, hex(await hmac("SHA-256", env("ELEVENLABS_WEBHOOK_SECRET"), `${parts.t}.${raw}`)));
 };
 
-export const verifyCron = (req: Request) =>
-  !!env("CRON_SECRET") && safeEqual(req.headers.get("x-cron-secret") ?? "", env("CRON_SECRET"));
+// Secrets kept in Supabase Vault, readable only with the service role
+// (see public.get_bonlife_secret). Function env vars take precedence.
+export const secret = async (name: string, envName?: string) => {
+  if (envName && env(envName)) return env(envName);
+  const { data, error } = await db().rpc("get_bonlife_secret", { p_name: name });
+  if (error) throw new Error(`Vault secret ${name}: ${error.message}`);
+  return (data as string | null) ?? "";
+};
+
+// Scheduled jobs send the Vault secret bonlife_cron_secret as x-cron-secret.
+export const verifyCron = async (req: Request) => {
+  const expected = await secret("bonlife_cron_secret", "CRON_SECRET");
+  return !!expected && safeEqual(req.headers.get("x-cron-secret") ?? "", expected);
+};
 
 // DR numbers come in as 809/829/849 + 7 digits, with or without +1.
 export const normalizePhone = (raw: string): string | null => {
@@ -80,31 +91,4 @@ export const logMessages = async (
   await supabase
     .from("qualification_messages")
     .insert(bodies.map((body) => ({ qualification_id, direction, channel, body })));
-};
-
-const escapeHtml = (value: string) =>
-  value.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]!));
-
-// Email the team once a lead is qualified or needs a person.
-export const notifyHuman = async (state: QualState, phone: string) => {
-  const key = env("RESEND_API_KEY");
-  if (!key) return;
-  const summary = handoffSummary(state, phone);
-  const wa = `https://wa.me/${phone.replace(/\D/g, "")}`;
-  const subject =
-    state.status === "ready"
-      ? `✅ Lead listo: ${state.name || phone}`
-      : `👤 Lead necesita atención: ${state.name || phone}`;
-  const res = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
-    body: JSON.stringify({
-      from: "Bonlife Leads <leads@bonlifeoil.info>",
-      to: [env("NOTIFY_TO") || "jeffrey@bonlifeoil.info"],
-      subject,
-      html: `<div style="font-family:Arial,sans-serif;max-width:520px;white-space:pre-line">${escapeHtml(summary)}
-<p><a href="${wa}">Abrir WhatsApp</a> · <a href="tel:${phone}">Llamar</a></p></div>`,
-    }),
-  });
-  if (!res.ok) console.error("Resend error", res.status, await res.text());
 };

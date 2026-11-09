@@ -5,13 +5,13 @@ qualified automatically by SMS, or by an ElevenLabs voice call if they don't
 reply, then handed to a person with a clear next step.
 
 ```
-FB/IG ad ─▶ instant form ─▶ fb-lead-intake ─▶ leads + lead_qualifications ─▶ SMS #1
+FB/IG ad ─▶ instant form ─▶ /fb-lead ─▶ leads + lead_qualifications ─▶ SMS #1
                                                             │
-             reply by SMS ─▶ sms-qualifier ─────────────────┤
-     no reply in 1h ─▶ qualifier-followup ─▶ ElevenLabs call ─▶ voice-qualifier-result
+             reply by SMS ─▶ /sms ──────────────────────────┤
+     no reply in 1h ─▶ /followup ─▶ ElevenLabs call ─▶ /voice
                                                             │
                          ready / needs_human ─▶ email to the team with WhatsApp + call links
-daily ─▶ fb-optimizer: pause losers, scale winners, total ≤ $10/day
+daily ─▶ /optimizer: pause losers, scale winners, total ≤ $10/day
 ```
 
 Everything is configured in `supabase/functions/_shared/campaigns.json`:
@@ -29,7 +29,7 @@ campaigns, ad copy, form questions, SMS questions, goals and budget rules.
 Each campaign has one ad set for the Dominican Republic at $2/day and two ads
 (A/B images in `marketing/fb/creatives/`). That's $8/day to start.
 
-## Budget rules (`fb-optimizer`, daily 06:20 Santo Domingo)
+## Budget rules (`/optimizer`, daily 06:20 Santo Domingo)
 
 - Nothing is touched in its first 48 hours (Meta's learning phase).
 - An ad or ad set is paused after spending 2× its target cost per lead with no
@@ -65,28 +65,32 @@ It runs as a **dry run** until `FB_OPTIMIZER_APPLY=true`. Each run is saved to
 
 ### 2. Supabase (project `zabbeoqmhoomxgtagvaz`)
 
-1. Apply `supabase/migrations/20261102120000_fb_lead_qualification.sql`.
-2. In the SQL editor: `select vault.create_secret('<random string>', 'bonlife_cron_secret');`
-3. Set these function secrets:
+Already done: the tables, the schedules, the `bonlife-automation` function
+(routes `/fb-lead`, `/sms`, `/voice`, `/followup`, `/optimizer`, `/seo-report`)
+and the Vault secrets `bonlife_cron_secret` and `bonlife_gsc_service_account`.
+What's left is adding these function secrets as each service is connected:
 
-   | Secret | Value |
-   |---|---|
-   | `CRON_SECRET` | same random string as step 2 |
-   | `META_APP_SECRET` | Meta app secret |
-   | `META_VERIFY_TOKEN` | any random string (reused in step 5) |
-   | `META_PAGE_TOKEN` | Page token with `leads_retrieval` |
-   | `META_ACCESS_TOKEN` | system user token (optimizer) |
-   | `META_AD_ACCOUNT_ID` | ad account id |
-   | `META_CURRENCY_PER_USD` | e.g. `61` if the ad account is in DOP; skip for USD |
-   | `TWILIO_ACCOUNT_SID`, `TWILIO_AUTH_TOKEN`, `TWILIO_FROM_NUMBER` | Twilio |
-   | `SMS_WEBHOOK_URL` | `https://zabbeoqmhoomxgtagvaz.supabase.co/functions/v1/sms-qualifier` |
-   | `ELEVENLABS_API_KEY`, `ELEVENLABS_AGENT_ID`, `ELEVENLABS_PHONE_NUMBER_ID`, `ELEVENLABS_WEBHOOK_SECRET` | ElevenLabs |
-   | `NOTIFY_TO` | optional, defaults to jeffrey@bonlifeoil.info |
-   | `FB_OPTIMIZER_APPLY` | leave unset for the first week, then `true` |
+| Secret | Value |
+|---|---|
+| `META_APP_SECRET` | Meta app secret |
+| `META_VERIFY_TOKEN` | any random string (reused in step 5) |
+| `META_PAGE_TOKEN` | Page token with `leads_retrieval` |
+| `META_ACCESS_TOKEN` | system user token (optimizer) |
+| `META_AD_ACCOUNT_ID` | ad account id |
+| `META_CURRENCY_PER_USD` | e.g. `61` if the ad account is in DOP; skip for USD |
+| `TWILIO_ACCOUNT_SID`, `TWILIO_AUTH_TOKEN`, `TWILIO_FROM_NUMBER` | Twilio |
+| `SMS_WEBHOOK_URL` | `https://zabbeoqmhoomxgtagvaz.supabase.co/functions/v1/bonlife-automation/sms` |
+| `ELEVENLABS_API_KEY`, `ELEVENLABS_AGENT_ID`, `ELEVENLABS_PHONE_NUMBER_ID`, `ELEVENLABS_WEBHOOK_SECRET` | ElevenLabs |
+| `NOTIFY_TO` | optional, defaults to jeffrey@bonlifeoil.info |
+| `FB_OPTIMIZER_APPLY` | leave unset for the first week, then `true` |
 
-4. Deploy `fb-lead-intake`, `sms-qualifier`, `qualifier-followup`,
-   `voice-qualifier-result` and `fb-optimizer` (all with JWT verification off;
-   each checks its own signature or secret).
+Until the Meta keys are set, `/optimizer` reports "Meta credentials not set" and does nothing.
+
+## Weekly SEO report
+
+`/seo-report` emails a Search Console summary every Monday at 08:43 Santo Domingo
+time: clicks and impressions against the previous week, non-brand searches, top
+pages, whether the key pages are indexed, sitemap status and site leads.
 
 ### 3. Twilio
 
@@ -99,7 +103,7 @@ ELEVENLABS_API_KEY=... ELEVENLABS_VOICE_ID=<Spanish voice> node marketing/voice/
 ```
 
 Put the printed agent id in `ELEVENLABS_AGENT_ID`. Under *Settings → Webhooks*, add a
-post-call webhook to `.../functions/v1/voice-qualifier-result` and copy its secret
+post-call webhook to `.../functions/v1/bonlife-automation/voice` and copy its secret
 into `ELEVENLABS_WEBHOOK_SECRET`. Calls only go out Monday–Saturday, 9:00–18:00.
 
 ### 5. Facebook
@@ -112,7 +116,7 @@ node marketing/fb/import.mjs --create            # build everything paused
 node marketing/fb/import.mjs --create --activate
 
 META_APP_ID=... META_APP_SECRET=... META_VERIFY_TOKEN=... \
-LEAD_WEBHOOK_URL=https://zabbeoqmhoomxgtagvaz.supabase.co/functions/v1/fb-lead-intake \
+LEAD_WEBHOOK_URL=https://zabbeoqmhoomxgtagvaz.supabase.co/functions/v1/bonlife-automation/fb-lead \
 node marketing/fb/import.mjs --subscribe-webhook
 ```
 
