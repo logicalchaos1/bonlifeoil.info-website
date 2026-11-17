@@ -1,0 +1,1001 @@
+{
+ "pricesUpdated": "noviembre de 2026",
+ "delivery": {
+  "headline": "Entregamos en todo el país",
+  "zones": [
+   {
+    "zone": "Gran Santo Domingo",
+    "time": "24 a 48 horas"
+   },
+   {
+    "zone": "Santiago, Punta Cana, Bávaro, La Romana y Puerto Plata",
+    "time": "2 a 3 días hábiles"
+   },
+   {
+    "zone": "Resto del país",
+    "time": "3 a 5 días hábiles"
+   }
+  ],
+  "freeFrom": 5000,
+  "note": "Envío incluido a todo el país en pedidos desde RD$5,000. En pedidos menores, el envío se cotiza según la zona.",
+  "cities": [
+   "Santo Domingo",
+   "Santiago",
+   "Punta Cana",
+   "Bávaro",
+   "La Romana",
+   "Puerto Plata",
+   "Samaná",
+   "Las Terrenas",
+   "Sosúa",
+   "Cabarete",
+   "Bayahíbe",
+   "San Pedro de Macorís",
+   "La Vega",
+   "Higüey"
+  ]
+ },
+ "categories": [
+  {
+   "slug": "papel-e-higiene",
+   "name": "Papel e higiene",
+   "title": "Papel higiénico jumbo y papel toalla institucional al por mayor",
+   "description": "Papel higiénico jumbo, papel toalla institucional 6/1 y servilletas 500/1 al por mayor en Santo Domingo, con precios publicados y entrega a todo el país.",
+   "intro": "Papel para baños de alto tráfico, cocinas y áreas de servicio. Presentaciones institucionales que rinden más y se reponen menos.",
+   "guide": [
+    "Para baños con mucho uso, el papel higiénico jumbo en dispensador cerrado reduce el desperdicio y los cambios de rollo frente al rollo doméstico.",
+    "Elija el papel toalla según su dispensador: el rollo precortado de 300 pies sirve para dispensadores de baño estándar; el rollo de 600 pies rinde el doble en cocinas y áreas de lavado.",
+    "Si compra cada mes, pida una cotización por volumen: armamos un pedido fijo y se lo enviamos en la misma entrega que su aceite."
+   ]
+  },
+  {
+   "slug": "limpieza",
+   "name": "Limpieza",
+   "title": "Productos de limpieza al por mayor en Santo Domingo: galones y fundas",
+   "description": "Desengrasante, desinfectante, cloro, lavaplatos y jabón de manos por galón, más fundas negras de 55 y 30 galones 100/1. Precios publicados y entrega a todo el país.",
+   "intro": "Químicos por galón para cocina, housekeeping y áreas comunes, más fundas de basura y guantes para el día a día.",
+   "guide": [
+    "En cocina comercial, el desengrasante y el lavaplatos son los que más se gastan: comprarlos por galón sale más barato que en presentaciones pequeñas.",
+    "Para pisos y baños, combine desinfectante aromatizado para el día a día con cloro diluido para la limpieza profunda. Nunca mezcle cloro con otros químicos.",
+    "Las fundas de 55 galones son para tanques de cocina y exteriores; las de 30 galones, para zafacones de habitaciones y oficinas."
+   ]
+  },
+  {
+   "slug": "desechables",
+   "name": "Desechables",
+   "title": "Desechables para restaurantes al por mayor: envases foam, vasos y aluminio",
+   "description": "Bandejas foam, vasos foam de 12 oz, envases deli, envases de aluminio con tapa, cubiertos y sorbetes por caja. Desechables al por mayor en Santo Domingo con entrega a todo RD.",
+   "intro": "Todo lo que su negocio necesita para despachar comida para llevar y delivery, en cajas por volumen.",
+   "guide": [
+    "Para comida del día, la bandeja foam con división mantiene separados el arroz, la carne y la ensalada y conserva el calor.",
+    "Para sopas, sancocho y salsas use envases deli con tapa hermética; para lasaña, pastelón y catering, envases de aluminio con tapa que van directo al horno.",
+    "Comprar por caja reduce el costo por unidad. Si su consumo es estable, le preparamos un pedido fijo semanal o mensual."
+   ]
+  },
+  {
+   "slug": "amenidades-hoteleras",
+   "name": "Amenidades hoteleras",
+   "title": "Amenidades y jabones para hoteles en República Dominicana",
+   "description": "Jabones de tocador de 12 g y 21 g, shampoo, acondicionador y kits de amenidades para hoteles, villas y Airbnb en República Dominicana, también con el logo de su hotel.",
+   "intro": "Jabones y amenidades para habitaciones, por caja. También preparamos kits con la marca de su hotel.",
+   "guide": [
+    "El jabón de 12 g es el estándar para hoteles económicos y Airbnb; el de 21 g se usa en hoteles de categoría media y resorts.",
+    "Los kits con el logo de su hotel o villa mejoran la experiencia del huésped. El pedido mínimo depende de la presentación.",
+    "Las amenidades se venden por cotización según volumen, presentación y personalización."
+   ]
+  }
+ ],
+ "products": [
+  {
+   "slug": "papel-higienico-jumbo-12",
+   "category": "papel-e-higiene",
+   "name": "Papel higiénico jumbo institucional",
+   "unit": "Fardo de 12 rollos de 350 pies",
+   "price": 1390,
+   "image": "papel-higienico.jpg",
+   "description": "Rollos jumbo para dispensador en baños de alto tráfico.",
+   "seoTitle": "Papel higiénico jumbo institucional 12 rollos: precio en RD",
+   "seoDescription": "Papel higiénico jumbo institucional, fardo de 12 rollos de 350 pies, a RD$1,390 con ITBIS. Para hoteles, restaurantes y oficinas. Entrega a todo el país.",
+   "intro": "El papel higiénico jumbo es el estándar en baños de restaurantes, hoteles, plazas y oficinas. Cada rollo de 350 pies dura mucho más que un rollo doméstico, así que el personal repone menos y el baño no se queda sin papel en horas pico.",
+   "specs": [
+    {
+     "label": "Presentación",
+     "value": "Fardo de 12 rollos"
+    },
+    {
+     "label": "Largo por rollo",
+     "value": "350 pies (aprox. 107 m)"
+    },
+    {
+     "label": "Uso",
+     "value": "Dispensador jumbo"
+    },
+    {
+     "label": "Color",
+     "value": "Blanco"
+    }
+   ],
+   "uses": [
+    "Baños de restaurantes y cafeterías",
+    "Áreas comunes de hoteles y villas",
+    "Oficinas, plazas y colegios"
+   ],
+   "faqs": [
+    {
+     "q": "¿Cabe en cualquier dispensador?",
+     "a": "Sirve en dispensadores para papel jumbo estándar. Si tiene dudas, envíenos una foto de su dispensador por WhatsApp y le confirmamos."
+    },
+    {
+     "q": "¿Cuánto dura un fardo?",
+     "a": "Depende del tráfico del baño. Como referencia, un rollo de 350 pies equivale a varios rollos domésticos."
+    }
+   ]
+  },
+  {
+   "slug": "papel-higienico-jumbo-6-400m",
+   "category": "papel-e-higiene",
+   "name": "Papel higiénico jumbo de alto rendimiento",
+   "unit": "Fardo de 6 rollos de 400 metros",
+   "price": 3990,
+   "image": "papel-higienico.jpg",
+   "description": "Rollos de 400 m para hoteles, plazas y oficinas grandes. Menos cambios de rollo.",
+   "seoTitle": "Papel higiénico jumbo 400 metros, fardo 6/1: precio por mayor",
+   "seoDescription": "Papel higiénico jumbo de 400 metros por rollo, fardo de 6, a RD$3,990 con ITBIS. Para baños de alto tráfico en hoteles y plazas. Entrega a todo RD.",
+   "intro": "Para baños con mucho tráfico, el rollo jumbo de 400 metros es el que menos mantenimiento pide: casi cuatro veces el largo de un jumbo de 350 pies. Ideal para hoteles, plazas comerciales, gimnasios y oficinas grandes.",
+   "specs": [
+    {
+     "label": "Presentación",
+     "value": "Fardo de 6 rollos"
+    },
+    {
+     "label": "Largo por rollo",
+     "value": "400 metros"
+    },
+    {
+     "label": "Uso",
+     "value": "Dispensador jumbo de gran capacidad"
+    }
+   ],
+   "uses": [
+    "Hoteles y resorts",
+    "Plazas comerciales",
+    "Gimnasios y oficinas grandes"
+   ],
+   "faqs": [
+    {
+     "q": "¿Necesito un dispensador especial?",
+     "a": "Sí, un dispensador para rollo jumbo de gran capacidad. Escríbanos y le orientamos según el modelo que tenga."
+    }
+   ]
+  },
+  {
+   "slug": "papel-toalla-institucional-6",
+   "category": "papel-e-higiene",
+   "name": "Papel toalla institucional precortado",
+   "unit": "Paquete de 6 rollos de 300 pies",
+   "price": 1790,
+   "image": "papel-toalla.jpg",
+   "description": "Para dispensadores de baño y cocina.",
+   "seoTitle": "Papel toalla institucional 6/1 (300 pies): precio en Santo Domingo",
+   "seoDescription": "Papel toalla institucional precortado, paquete 6/1 de rollos de 300 pies, a RD$1,790 con ITBIS. Para dispensadores de baño y cocina. Entrega a todo el país.",
+   "intro": "Papel toalla en rollo para dispensadores de manos en baños y cocinas comerciales. El rollo institucional de 300 pies rinde mucho más que el papel toalla de cocina doméstico y mantiene el área de lavado ordenada.",
+   "specs": [
+    {
+     "label": "Presentación",
+     "value": "Paquete 6/1"
+    },
+    {
+     "label": "Largo por rollo",
+     "value": "300 pies"
+    },
+    {
+     "label": "Tipo",
+     "value": "Precortado"
+    },
+    {
+     "label": "Uso",
+     "value": "Dispensador de rollo"
+    }
+   ],
+   "uses": [
+    "Baños de restaurantes y hoteles",
+    "Estaciones de lavado de manos en cocina",
+    "Clínicas y oficinas"
+   ],
+   "faqs": [
+    {
+     "q": "¿Qué significa 6/1?",
+     "a": "Que el paquete trae 6 rollos."
+    },
+    {
+     "q": "¿Lo tienen en color kraft?",
+     "a": "Sí, tenemos papel toalla kraft de 600 pies en la misma categoría."
+    }
+   ]
+  },
+  {
+   "slug": "papel-toalla-kraft-6",
+   "category": "papel-e-higiene",
+   "name": "Papel toalla industrial kraft",
+   "unit": "Paquete de 6 rollos de 600 pies",
+   "price": 4660,
+   "image": "papel-toalla.jpg",
+   "description": "Rollo kraft reciclado de alto rendimiento para cocinas y talleres.",
+   "seoTitle": "Papel toalla kraft 600 pies 6/1: papel toalla industrial por mayor",
+   "seoDescription": "Papel toalla industrial kraft, 6 rollos de 600 pies, a RD$4,660 con ITBIS. Alto rendimiento para cocinas, talleres y baños. Entrega a todo RD.",
+   "intro": "El papel toalla kraft es resistente y absorbente, pensado para cocinas comerciales, talleres y baños de alto tráfico. Con 600 pies por rollo, se cambia la mitad de veces que un rollo estándar.",
+   "specs": [
+    {
+     "label": "Presentación",
+     "value": "Paquete de 6 rollos"
+    },
+    {
+     "label": "Largo por rollo",
+     "value": "600 pies"
+    },
+    {
+     "label": "Color",
+     "value": "Kraft (natural)"
+    }
+   ],
+   "uses": [
+    "Cocinas comerciales",
+    "Talleres y áreas de mantenimiento",
+    "Baños de alto tráfico"
+   ],
+   "faqs": [
+    {
+     "q": "¿El kraft absorbe igual que el blanco?",
+     "a": "Sí. El kraft es papel sin blanquear; absorbe bien y es más económico por metro."
+    }
+   ]
+  },
+  {
+   "slug": "servilletas-500",
+   "category": "papel-e-higiene",
+   "name": "Servilletas blancas",
+   "unit": "Paquete de 500 unidades",
+   "price": 215,
+   "image": "servilletas.jpg",
+   "description": "Servilletas de una hoja para mesas, buffet y despacho.",
+   "seoTitle": "Servilletas 500/1 al por mayor: precio en RD",
+   "seoDescription": "Servilletas blancas, paquete 500/1, a RD$215 con ITBIS. Para mesas, buffet, cafeterías y delivery. Entrega a todo el país.",
+   "intro": "Servilletas blancas de una hoja en paquete de 500, la presentación más práctica para mesas, servilleteros, buffet y despacho de comida para llevar.",
+   "specs": [
+    {
+     "label": "Presentación",
+     "value": "Paquete 500/1"
+    },
+    {
+     "label": "Tipo",
+     "value": "Una hoja"
+    },
+    {
+     "label": "Color",
+     "value": "Blanco"
+    }
+   ],
+   "uses": [
+    "Restaurantes y cafeterías",
+    "Buffet de hoteles",
+    "Delivery y comida para llevar"
+   ],
+   "faqs": [
+    {
+     "q": "¿Venden por fardo?",
+     "a": "Sí. Si necesita varios paquetes al mes, pida la cotización por volumen."
+    }
+   ]
+  },
+  {
+   "slug": "desengrasante-galon",
+   "category": "limpieza",
+   "name": "Desengrasante",
+   "unit": "Galón",
+   "price": 490,
+   "image": "galon-desengrasante.jpg",
+   "description": "Para campanas, freidoras, planchas y pisos de cocina.",
+   "seoTitle": "Desengrasante por galón para cocinas: precio en Santo Domingo",
+   "seoDescription": "Desengrasante concentrado por galón a RD$490 con ITBIS. Para campanas, freidoras, planchas y pisos de cocina comercial. Entrega a todo RD.",
+   "intro": "En una cocina que fríe todos los días, la grasa se acumula en campanas, paredes, planchas y pisos. Un buen desengrasante por galón es lo que mantiene la cocina segura y limpia sin tallar de más.",
+   "specs": [
+    {
+     "label": "Presentación",
+     "value": "1 galón (3.78 L)"
+    },
+    {
+     "label": "Uso",
+     "value": "Superficies de cocina, campanas, pisos"
+    },
+    {
+     "label": "Aplicación",
+     "value": "Directo o diluido según la suciedad"
+    }
+   ],
+   "uses": [
+    "Campanas extractoras y filtros",
+    "Freidoras y planchas (en frío)",
+    "Pisos y paredes de cocina"
+   ],
+   "faqs": [
+    {
+     "q": "¿Se puede usar en la freidora?",
+     "a": "Sí, con la freidora apagada, fría y vacía. Enjuague bien antes de volver a llenar con aceite."
+    },
+    {
+     "q": "¿Combina con su aceite?",
+     "a": "Sí. Puede pedir el desengrasante junto con su aceite para freír y lo recibe en la misma entrega."
+    }
+   ]
+  },
+  {
+   "slug": "lavaplatos-galon",
+   "category": "limpieza",
+   "name": "Lavaplatos líquido limón",
+   "unit": "Galón",
+   "price": 335,
+   "image": "galon-lavaplatos.jpg",
+   "description": "Lavaplatos concentrado para fregaderos de cocina comercial.",
+   "seoTitle": "Lavaplatos líquido por galón: precio para restaurantes",
+   "seoDescription": "Lavaplatos líquido aroma limón por galón a RD$335 con ITBIS. Para fregaderos de restaurantes, cafeterías y hoteles. Entrega a todo el país.",
+   "intro": "Lavaplatos líquido concentrado con aroma a limón para el fregadero de una cocina comercial. Comprarlo por galón cuesta mucho menos por lavado que las presentaciones pequeñas de supermercado.",
+   "specs": [
+    {
+     "label": "Presentación",
+     "value": "1 galón (3.78 L)"
+    },
+    {
+     "label": "Aroma",
+     "value": "Limón"
+    },
+    {
+     "label": "Uso",
+     "value": "Lavado manual de vajilla, ollas y utensilios"
+    }
+   ],
+   "uses": [
+    "Restaurantes y cafeterías",
+    "Cocinas de hoteles",
+    "Comedores y colegios"
+   ],
+   "faqs": [
+    {
+     "q": "¿Sirve para lavavajillas automático?",
+     "a": "No. Es para lavado manual; las máquinas usan detergente específico de baja espuma."
+    }
+   ]
+  },
+  {
+   "slug": "jabon-manos-galon",
+   "category": "limpieza",
+   "name": "Jabón líquido de manos",
+   "unit": "Galón",
+   "price": 385,
+   "image": "galon-jabon.jpg",
+   "description": "Para rellenar dispensadores de baños y cocina. Varios aromas.",
+   "seoTitle": "Jabón líquido para manos por galón: precio en RD",
+   "seoDescription": "Jabón líquido para manos por galón a RD$385 con ITBIS, para rellenar dispensadores en baños y cocinas. Varios aromas. Entrega a todo RD.",
+   "intro": "Rellene los dispensadores de baños y estaciones de lavado con jabón líquido por galón. Un galón llena muchas veces un dispensador estándar y reduce el costo por lavado de manos.",
+   "specs": [
+    {
+     "label": "Presentación",
+     "value": "1 galón (3.78 L)"
+    },
+    {
+     "label": "Aromas",
+     "value": "Neutro, manzana verde, almendra, mandarina o vainilla, según disponibilidad"
+    },
+    {
+     "label": "Uso",
+     "value": "Dispensadores de pared o de mesa"
+    }
+   ],
+   "uses": [
+    "Baños de restaurantes y hoteles",
+    "Estaciones de lavado en cocina",
+    "Oficinas y clínicas"
+   ],
+   "faqs": [
+    {
+     "q": "¿Puedo elegir el aroma?",
+     "a": "Sí, indíquelo en su pedido por WhatsApp y le confirmamos disponibilidad."
+    }
+   ]
+  },
+  {
+   "slug": "desinfectante-galon",
+   "category": "limpieza",
+   "name": "Desinfectante aromatizado",
+   "unit": "Galón",
+   "price": 260,
+   "image": "galon-desinfectante.jpg",
+   "description": "Para pisos y superficies. Lavanda, floral, manzana o brisa marina.",
+   "seoTitle": "Desinfectante por galón para pisos: precio por mayor",
+   "seoDescription": "Desinfectante aromatizado por galón a RD$260 con ITBIS, para pisos y superficies de hoteles, restaurantes y oficinas. Entrega a todo el país.",
+   "intro": "Desinfectante aromatizado para el mapeo diario de pisos, baños y áreas comunes. Deja un olor agradable que los huéspedes y clientes notan al entrar.",
+   "specs": [
+    {
+     "label": "Presentación",
+     "value": "1 galón (3.78 L)"
+    },
+    {
+     "label": "Aromas",
+     "value": "Lavanda, floral, manzana verde o brisa marina, según disponibilidad"
+    },
+    {
+     "label": "Uso",
+     "value": "Pisos, baños y superficies lavables"
+    }
+   ],
+   "uses": [
+    "Lobbies y pasillos de hoteles",
+    "Salones de restaurantes",
+    "Baños y áreas comunes"
+   ],
+   "faqs": [
+    {
+     "q": "¿Se diluye?",
+     "a": "Para el mapeo diario se usa diluido en agua; siga las indicaciones de la etiqueta del producto que reciba."
+    }
+   ]
+  },
+  {
+   "slug": "cloro-galon",
+   "category": "limpieza",
+   "name": "Cloro",
+   "unit": "Galón",
+   "price": 155,
+   "image": "galon-cloro.jpg",
+   "description": "Blanqueador y desinfectante para lencería, baños y pisos.",
+   "seoTitle": "Cloro por galón: precio para hoteles y restaurantes",
+   "seoDescription": "Cloro por galón a RD$155 con ITBIS, para lencería, baños, pisos y desinfección. Para hoteles, restaurantes y empresas. Entrega a todo RD.",
+   "intro": "El cloro es el desinfectante básico de cualquier operación: blanquea la lencería, desinfecta baños y pisos y se usa diluido en la limpieza profunda.",
+   "specs": [
+    {
+     "label": "Presentación",
+     "value": "1 galón (3.78 L)"
+    },
+    {
+     "label": "Uso",
+     "value": "Blanqueador y desinfectante"
+    }
+   ],
+   "uses": [
+    "Lavandería de hoteles",
+    "Desinfección de baños y pisos",
+    "Limpieza profunda de cocinas"
+   ],
+   "faqs": [
+    {
+     "q": "¿Se puede mezclar con otros productos?",
+     "a": "No. Nunca mezcle cloro con amoníaco, ácidos ni otros limpiadores: produce gases tóxicos."
+    }
+   ]
+  },
+  {
+   "slug": "detergente-neutro-galon",
+   "category": "limpieza",
+   "name": "Detergente líquido neutro",
+   "unit": "Galón",
+   "price": 325,
+   "image": "galon-detergente.jpg",
+   "description": "Limpieza general de superficies delicadas sin dañar acabados.",
+   "seoTitle": "Detergente líquido neutro por galón: precio en RD",
+   "seoDescription": "Detergente líquido neutro por galón a RD$325 con ITBIS, para limpieza general sin dañar acabados. Entrega a todo el país.",
+   "intro": "El detergente neutro limpia sin atacar superficies delicadas como mármol, madera sellada o acero inoxidable. Es el limpiador de uso general para housekeeping y áreas comunes.",
+   "specs": [
+    {
+     "label": "Presentación",
+     "value": "1 galón (3.78 L)"
+    },
+    {
+     "label": "pH",
+     "value": "Neutro"
+    },
+    {
+     "label": "Uso",
+     "value": "Superficies delicadas y limpieza general"
+    }
+   ],
+   "uses": [
+    "Housekeeping de hoteles",
+    "Mostradores y superficies",
+    "Pisos delicados"
+   ],
+   "faqs": [
+    {
+     "q": "¿Es para ropa?",
+     "a": "Se usa principalmente para superficies. Para lavandería, consúltenos por la opción adecuada."
+    }
+   ]
+  },
+  {
+   "slug": "limpiacristales-galon",
+   "category": "limpieza",
+   "name": "Limpiacristales",
+   "unit": "Galón",
+   "price": 560,
+   "image": "galon-cristales.jpg",
+   "description": "Para vidrios, espejos y puertas de cristal sin dejar marcas.",
+   "seoTitle": "Limpiacristales por galón: limpiador de vidrios por mayor",
+   "seoDescription": "Limpiacristales por galón a RD$560 con ITBIS, para vidrios, espejos y puertas de cristal sin marcas. Entrega a todo RD.",
+   "intro": "Limpiador para vidrios, espejos, vitrinas y puertas de cristal. Comprado por galón, rellena los atomizadores del personal de limpieza a una fracción del costo del envase pequeño.",
+   "specs": [
+    {
+     "label": "Presentación",
+     "value": "1 galón (3.78 L)"
+    },
+    {
+     "label": "Uso",
+     "value": "Vidrios, espejos, vitrinas"
+    }
+   ],
+   "uses": [
+    "Lobbies y puertas de vidrio",
+    "Espejos de baños y habitaciones",
+    "Vitrinas de tiendas y restaurantes"
+   ],
+   "faqs": [
+    {
+     "q": "¿Cómo se aplica?",
+     "a": "Rellene un atomizador, aplique y seque con paño de microfibra para evitar marcas."
+    }
+   ]
+  },
+  {
+   "slug": "fundas-55-galones-100",
+   "category": "limpieza",
+   "name": "Fundas negras de 55 galones",
+   "unit": "Paquete de 100, calibre 100",
+   "price": 1535,
+   "image": "fundas-basura.jpg",
+   "description": "Fundas resistentes para tanques de basura de cocina y exteriores.",
+   "seoTitle": "Fundas negras 55 galones 100/1: precio por mayor en RD",
+   "seoDescription": "Fundas negras de 55 galones, paquete 100/1, calibre 100, a RD$1,535 con ITBIS. Para tanques de cocina y exteriores. Entrega a todo el país.",
+   "intro": "Fundas negras de 55 galones para tanques grandes de cocina, áreas de servicio y exteriores. El calibre 100 aguanta el peso de los desperdicios de cocina sin romperse al sacarla.",
+   "specs": [
+    {
+     "label": "Presentación",
+     "value": "Paquete 100/1"
+    },
+    {
+     "label": "Capacidad",
+     "value": "55 galones"
+    },
+    {
+     "label": "Calibre",
+     "value": "100"
+    },
+    {
+     "label": "Color",
+     "value": "Negro"
+    }
+   ],
+   "uses": [
+    "Tanques de cocina",
+    "Áreas de servicio y exteriores",
+    "Limpieza de eventos"
+   ],
+   "faqs": [
+    {
+     "q": "¿Tienen calibre más grueso?",
+     "a": "Sí, también conseguimos calibre 120 y 150 para uso pesado. Pídalo por WhatsApp."
+    },
+    {
+     "q": "¿Qué significa 100/1?",
+     "a": "Que el paquete trae 100 fundas."
+    }
+   ]
+  },
+  {
+   "slug": "fundas-30-galones-100",
+   "category": "limpieza",
+   "name": "Fundas negras de 30 galones",
+   "unit": "Paquete de 100",
+   "price": 940,
+   "image": "fundas-basura.jpg",
+   "description": "Para zafacones de habitaciones, oficinas y áreas comunes.",
+   "seoTitle": "Fundas negras 30 galones 100/1: precio en Santo Domingo",
+   "seoDescription": "Fundas negras de 30 galones, paquete 100/1, a RD$940 con ITBIS. Para zafacones de habitaciones, oficinas y áreas comunes. Entrega a todo RD.",
+   "intro": "Tamaño ideal para los zafacones de habitaciones de hotel, oficinas, baños y áreas comunes. Vienen en paquete de 100 para reponer durante semanas.",
+   "specs": [
+    {
+     "label": "Presentación",
+     "value": "Paquete 100/1"
+    },
+    {
+     "label": "Capacidad",
+     "value": "30 galones"
+    },
+    {
+     "label": "Color",
+     "value": "Negro"
+    }
+   ],
+   "uses": [
+    "Habitaciones de hotel",
+    "Oficinas y baños",
+    "Áreas comunes"
+   ],
+   "faqs": [
+    {
+     "q": "¿Las tienen en otros colores?",
+     "a": "Sí, hay blancas, rojas, verdes y transparentes para reciclaje y separación. Pregúntenos por disponibilidad."
+    }
+   ]
+  },
+  {
+   "slug": "guantes-vinil-500",
+   "category": "limpieza",
+   "name": "Guantes de vinil desechables",
+   "unit": "Caja de 500, talla única",
+   "price": 575,
+   "image": "guantes.jpg",
+   "description": "Para manipulación de alimentos y limpieza.",
+   "seoTitle": "Guantes desechables de vinil, caja de 500: precio en RD",
+   "seoDescription": "Guantes desechables de vinil, caja de 500, a RD$575 con ITBIS. Para manipulación de alimentos y limpieza. Entrega a todo el país.",
+   "intro": "Guantes de vinil transparentes y desechables para manipular alimentos, servir en buffet y tareas de limpieza ligera. La caja de 500 dura semanas en una cocina activa.",
+   "specs": [
+    {
+     "label": "Presentación",
+     "value": "Caja de 500"
+    },
+    {
+     "label": "Material",
+     "value": "Vinil"
+    },
+    {
+     "label": "Talla",
+     "value": "Única"
+    }
+   ],
+   "uses": [
+    "Preparación y servicio de alimentos",
+    "Buffet",
+    "Limpieza ligera"
+   ],
+   "faqs": [
+    {
+     "q": "¿Tienen guantes de nitrilo?",
+     "a": "Sí, también conseguimos nitrilo. Pídalo por WhatsApp con la talla que necesita."
+    }
+   ]
+  },
+  {
+   "slug": "vasos-foam-12oz-1000",
+   "category": "desechables",
+   "name": "Vasos de foam 12 oz",
+   "unit": "Caja de 1,000 (40 paquetes de 25)",
+   "price": 6935,
+   "image": "vasos.jpg",
+   "description": "Para café, jugos y bebidas frías o calientes.",
+   "seoTitle": "Vasos foam 12 oz, caja de 1,000: precio por mayor",
+   "seoDescription": "Vasos foam de 12 oz, caja de 1,000 (40×25), a RD$6,935 con ITBIS. Para café, jugos y bebidas. Desechables al por mayor con entrega a todo RD.",
+   "intro": "El vaso de foam de 12 onzas mantiene las bebidas calientes y frías por más tiempo y no quema la mano. Es el tamaño más vendido para café, jugos y refrescos en cafeterías y comedores.",
+   "specs": [
+    {
+     "label": "Presentación",
+     "value": "Caja de 1,000 (40 paquetes de 25)"
+    },
+    {
+     "label": "Capacidad",
+     "value": "12 oz"
+    },
+    {
+     "label": "Material",
+     "value": "Foam"
+    }
+   ],
+   "uses": [
+    "Cafeterías y colmados",
+    "Eventos y comedores",
+    "Despacho de jugos y café"
+   ],
+   "faqs": [
+    {
+     "q": "¿Tienen tapas?",
+     "a": "Sí, conseguimos tapas para vaso foam. Pídalas junto a su pedido."
+    },
+    {
+     "q": "¿Venden por paquete suelto?",
+     "a": "Se venden por caja. Para cantidades menores, consúltenos."
+    }
+   ]
+  },
+  {
+   "slug": "bandeja-foam-7x8-200",
+   "category": "desechables",
+   "name": "Bandeja foam 7×8 con división",
+   "unit": "Caja de 200",
+   "price": 3155,
+   "image": "bandeja-foam.jpg",
+   "description": "El envase clásico de comida para llevar.",
+   "seoTitle": "Bandejas foam 7x8 con división, caja de 200: precio en Santo Domingo",
+   "seoDescription": "Bandejas foam 7×8 con división, caja de 200, a RD$3,155 con ITBIS. El envase para comida del día y delivery. Entrega a todo el país.",
+   "intro": "La bandeja foam con división es el envase clásico de la comida del día: separa el arroz, la carne y la ensalada y conserva el calor hasta que llega al cliente.",
+   "specs": [
+    {
+     "label": "Presentación",
+     "value": "Caja de 200"
+    },
+    {
+     "label": "Medida",
+     "value": "7×8 pulgadas"
+    },
+    {
+     "label": "Divisiones",
+     "value": "Sí"
+    }
+   ],
+   "uses": [
+    "Comida del día y almuerzos",
+    "Delivery",
+    "Comedores y cafeterías"
+   ],
+   "faqs": [
+    {
+     "q": "¿Tienen sin división?",
+     "a": "Sí, la misma medida sin división también está disponible."
+    }
+   ]
+  },
+  {
+   "slug": "envase-deli-16oz-50",
+   "category": "desechables",
+   "name": "Envase deli transparente 16 oz con tapa",
+   "unit": "50 envases + 50 tapas",
+   "price": 990,
+   "image": "envase-deli.jpg",
+   "description": "Para sopas, ensaladas, salsas y meal prep.",
+   "seoTitle": "Envases deli 16 oz con tapa: envases para sopa y sancocho",
+   "seoDescription": "Envases deli transparentes de 16 oz con tapa, 50 unidades, a RD$990 con ITBIS. Para sopas, sancocho, ensaladas y salsas. Entrega a todo RD.",
+   "intro": "Envase redondo transparente con tapa hermética, ideal para sopas, sancocho, habichuelas, ensaladas y salsas. Se ve el contenido y no se derrama en el delivery.",
+   "specs": [
+    {
+     "label": "Presentación",
+     "value": "50 envases + 50 tapas"
+    },
+    {
+     "label": "Capacidad",
+     "value": "16 oz"
+    },
+    {
+     "label": "Material",
+     "value": "Plástico transparente"
+    }
+   ],
+   "uses": [
+    "Sopas y sancocho para llevar",
+    "Ensaladas y salsas",
+    "Meal prep"
+   ],
+   "faqs": [
+    {
+     "q": "¿Tienen otros tamaños?",
+     "a": "Sí, hay de 8, 12, 24 y 32 oz. Pídalos por WhatsApp."
+    }
+   ]
+  },
+  {
+   "slug": "envase-aluminio-1-5lb-125",
+   "category": "desechables",
+   "name": "Envase de aluminio 1.5 lb con tapa",
+   "unit": "Caja de 125",
+   "price": 3470,
+   "image": "envase-aluminio.jpg",
+   "description": "Para hornear, catering y comida caliente para llevar.",
+   "seoTitle": "Envases de aluminio con tapa en Santo Domingo: caja de 125",
+   "seoDescription": "Envases de aluminio de 1.5 lb con tapa, caja de 125, a RD$3,470 con ITBIS. Para hornear, lasaña, pastelón y catering. Entrega a todo el país.",
+   "intro": "El envase de aluminio con tapa va directo del horno al cliente: perfecto para lasaña, pastelón, pasticho, postres y catering. La tapa de cartón permite escribir el pedido.",
+   "specs": [
+    {
+     "label": "Presentación",
+     "value": "Caja de 125 con tapa"
+    },
+    {
+     "label": "Capacidad",
+     "value": "1.5 lb"
+    },
+    {
+     "label": "Material",
+     "value": "Aluminio"
+    }
+   ],
+   "uses": [
+    "Lasaña, pastelón y pasticho",
+    "Catering y eventos",
+    "Postres horneados"
+   ],
+   "faqs": [
+    {
+     "q": "¿Va al horno?",
+     "a": "Sí, el envase de aluminio va al horno. Retire la tapa de cartón antes de hornear."
+    }
+   ]
+  },
+  {
+   "slug": "cubiertos-plasticos-500",
+   "category": "desechables",
+   "name": "Cubiertos plásticos blancos",
+   "unit": "500 unidades (tenedores o cucharas)",
+   "price": 1390,
+   "image": "cubiertos.jpg",
+   "description": "Tenedores o cucharas desechables para delivery y eventos.",
+   "seoTitle": "Cubiertos desechables por mayor: tenedores y cucharas, 500 unidades",
+   "seoDescription": "Cubiertos plásticos desechables, 500 tenedores o cucharas, a RD$1,390 con ITBIS. Para delivery, comedores y eventos. Entrega a todo RD.",
+   "intro": "Tenedores o cucharas plásticos blancos para acompañar cada pedido de delivery, comedores y eventos. Indique en su pedido cuántos quiere de cada tipo.",
+   "specs": [
+    {
+     "label": "Presentación",
+     "value": "500 unidades"
+    },
+    {
+     "label": "Tipo",
+     "value": "Tenedores o cucharas"
+    },
+    {
+     "label": "Color",
+     "value": "Blanco"
+    }
+   ],
+   "uses": [
+    "Delivery y comida para llevar",
+    "Comedores",
+    "Eventos y catering"
+   ],
+   "faqs": [
+    {
+     "q": "¿Puedo combinar tenedores y cucharas?",
+     "a": "Sí, indíquelo en el pedido y lo armamos por cientos."
+    }
+   ]
+  },
+  {
+   "slug": "sorbetes-envueltos-500",
+   "category": "desechables",
+   "name": "Sorbetes envueltos",
+   "unit": "Caja de 500",
+   "price": 350,
+   "image": "sorbetes.jpg",
+   "description": "Sorbetes plásticos envueltos individualmente.",
+   "seoTitle": "Sorbetes envueltos, caja de 500: precio por mayor",
+   "seoDescription": "Sorbetes envueltos individualmente, caja de 500, a RD$350 con ITBIS. Para restaurantes, cafeterías y bares. Entrega a todo el país.",
+   "intro": "Sorbetes envueltos uno a uno, más higiénicos para servir en mesa, barra y delivery.",
+   "specs": [
+    {
+     "label": "Presentación",
+     "value": "Caja de 500"
+    },
+    {
+     "label": "Empaque",
+     "value": "Envuelto individual"
+    }
+   ],
+   "uses": [
+    "Restaurantes y bares",
+    "Cafeterías",
+    "Delivery de bebidas"
+   ],
+   "faqs": [
+    {
+     "q": "¿Tienen sorbetes de papel?",
+     "a": "Sí, conseguimos sorbetes de papel biodegradables. Pídalos por WhatsApp."
+    }
+   ]
+  },
+  {
+   "slug": "jabon-tocador-12g-850",
+   "category": "amenidades-hoteleras",
+   "name": "Jabón de tocador 12 g",
+   "unit": "Caja de 850 unidades",
+   "price": null,
+   "image": "jabon-tocador.jpg",
+   "description": "Jabón individual envuelto para habitaciones.",
+   "seoTitle": "Jabones para hoteles de 12 g, caja de 850: precio en RD",
+   "seoDescription": "Jabón de tocador de 12 g para hoteles, villas y Airbnb, caja de 850. Cotice por volumen con entrega a todo República Dominicana.",
+   "intro": "El jabón de 12 g envuelto individualmente es el estándar para hoteles económicos, villas y Airbnb: suficiente para una estadía y fácil de reponer en cada limpieza.",
+   "specs": [
+    {
+     "label": "Presentación",
+     "value": "Caja de 850"
+    },
+    {
+     "label": "Peso",
+     "value": "12 g"
+    },
+    {
+     "label": "Empaque",
+     "value": "Envuelto individual"
+    }
+   ],
+   "uses": [
+    "Hoteles y villas",
+    "Airbnb y apartamentos turísticos",
+    "Baños de visitas"
+   ],
+   "faqs": [
+    {
+     "q": "¿Pueden llevar mi logo?",
+     "a": "Sí, con pedido mínimo según presentación. Escríbanos para cotizar."
+    }
+   ]
+  },
+  {
+   "slug": "jabon-tocador-21g-600",
+   "category": "amenidades-hoteleras",
+   "name": "Jabón de tocador 21 g",
+   "unit": "Caja de 600 unidades",
+   "price": null,
+   "image": "jabon-tocador.jpg",
+   "description": "Tamaño estándar para hoteles y resorts.",
+   "seoTitle": "Jabones para hoteles de 21 g, caja de 600: cotización en RD",
+   "seoDescription": "Jabón de tocador de 21 g para hoteles y resorts, caja de 600. Cotice por volumen con entrega a todo República Dominicana.",
+   "intro": "El jabón de 21 g es el tamaño habitual en hoteles de categoría media y resorts: más presencia en el baño y suficiente para estadías de varios días.",
+   "specs": [
+    {
+     "label": "Presentación",
+     "value": "Caja de 600"
+    },
+    {
+     "label": "Peso",
+     "value": "21 g"
+    },
+    {
+     "label": "Empaque",
+     "value": "Envuelto individual"
+    }
+   ],
+   "uses": [
+    "Hoteles y resorts",
+    "Villas de alquiler"
+   ],
+   "faqs": [
+    {
+     "q": "¿Hacen pedidos recurrentes?",
+     "a": "Sí, podemos programar entregas mensuales según su ocupación."
+    }
+   ]
+  },
+  {
+   "slug": "kit-amenidades-personalizado",
+   "category": "amenidades-hoteleras",
+   "name": "Kit de amenidades con su logo",
+   "unit": "Shampoo, acondicionador, gel y kit dental",
+   "price": null,
+   "image": "amenidades.jpg",
+   "description": "Amenidades con la marca de su hotel o villa. Pedido mínimo según presentación.",
+   "seoTitle": "Amenidades para hoteles en República Dominicana con su logo",
+   "seoDescription": "Kits de amenidades para hoteles, villas y Airbnb en República Dominicana: shampoo, acondicionador, gel y kit dental con el logo de su hotel. Cotice por volumen.",
+   "intro": "Las amenidades con el logo de su hotel o villa hacen que la habitación se sienta cuidada y refuerzan su marca en cada estadía. Armamos el kit según su categoría y presupuesto.",
+   "specs": [
+    {
+     "label": "Contenido",
+     "value": "Shampoo, acondicionador, gel de baño y kit dental (a elegir)"
+    },
+    {
+     "label": "Personalización",
+     "value": "Logo y colores de su hotel"
+    },
+    {
+     "label": "Pedido mínimo",
+     "value": "Según presentación"
+    }
+   ],
+   "uses": [
+    "Hoteles boutique y resorts",
+    "Villas de alquiler",
+    "Airbnb y apartamentos turísticos"
+   ],
+   "faqs": [
+    {
+     "q": "¿Cuánto tarda un pedido personalizado?",
+     "a": "Depende de la presentación y la cantidad; se lo confirmamos al cotizar."
+    },
+    {
+     "q": "¿Puedo pedir solo algunos productos del kit?",
+     "a": "Sí, armamos el kit con lo que necesite."
+    }
+   ]
+  }
+ ]
+}

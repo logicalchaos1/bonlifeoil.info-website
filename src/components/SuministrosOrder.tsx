@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { MessageCircle, Minus, Plus, Truck } from "lucide-react";
-import { DELIVERY, formatPrice, products, type Product } from "@/data/suministros";
+import { DELIVERY, formatPrice, productPath, products, type Product } from "@/data/suministros";
 
 const STORAGE_KEY = "bonlife-suministros-pedido";
 const WHATSAPP = "18299876764";
@@ -73,16 +73,20 @@ export const ProductCard = ({
   onQty: (qty: number) => void;
 }) => (
   <article className="rounded-2xl border border-border bg-card overflow-hidden flex flex-col">
-    <img
-      src={`/suministros/${product.image}`}
-      alt={`${product.name}, ${product.unit.toLowerCase()} (imagen ilustrativa)`}
-      width={800}
-      height={800}
-      loading="lazy"
-      className="w-full aspect-square object-cover"
-    />
+    <Link to={productPath(product)}>
+      <img
+        src={`/suministros/${product.image}`}
+        alt={`${product.name}, ${product.unit.toLowerCase()} (imagen ilustrativa)`}
+        width={1000}
+        height={1000}
+        loading="lazy"
+        className="w-full aspect-square object-cover"
+      />
+    </Link>
     <div className="p-4 flex flex-col gap-2 flex-1">
-      <h3 className="font-bold text-foreground leading-snug">{product.name}</h3>
+      <h3 className="font-bold text-foreground leading-snug">
+        <Link to={productPath(product)} className="hover:text-primary">{product.name}</Link>
+      </h3>
       <p className="text-xs text-muted-foreground">{product.unit}</p>
       <p className="text-sm text-muted-foreground flex-1">{product.description}</p>
       <p className="text-lg font-bold text-primary">
