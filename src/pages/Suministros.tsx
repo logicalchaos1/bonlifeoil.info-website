@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
-import { MessageCircle, Phone } from "lucide-react";
+import { Download, MessageCircle, Phone } from "lucide-react";
 import { useSeo } from "@/hooks/use-seo";
 import { CategoryNav, DeliveryInfo, OrderBar, ProductCard, useOrder } from "@/components/SuministrosOrder";
 import { categories, offerSchema, PRICES_UPDATED, products, productsIn } from "@/data/suministros";
@@ -62,6 +62,12 @@ const Suministros = () => {
               <a href="#catalogo">
                 <Button size="lg" className="bg-gold hover:bg-gold/90 text-[#0a1a0f] rounded-full w-full sm:w-auto font-bold">
                   Ver catálogo y precios
+                </Button>
+              </a>
+              <a href="/catalogo-bonlife.pdf" download>
+                <Button size="lg" variant="outline" className="rounded-full w-full sm:w-auto text-foreground">
+                  <Download className="w-5 h-5 mr-2" />
+                  Descargar catálogo (PDF)
                 </Button>
               </a>
               <a href="tel:+18299876764">
