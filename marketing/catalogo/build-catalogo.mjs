@@ -21,16 +21,11 @@ const svg = (name) => `data:image/svg+xml;base64,${readFileSync(path.join(here, 
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const money = (n) => `RD$${n.toLocaleString("en-US")}`;
 
-// Oils and foods: same names, prices and benefits as src/components/ProductCatalog.tsx.
+// Oil and foods. Prices and benefits as in src/components/ProductCatalog.tsx; the oil is
+// listed only as "Aceite vegetal" without naming the oil type.
 const foods = [
-  { name: "Aceite de Palma RBD Palm Olein", unit: "Garrafón 25 L", price: "RD$4,600", image: "src/assets/palm-oil-product.jpg",
+  { name: "Aceite vegetal", unit: "Garrafón 25 L", price: "RD$4,600", image: "marketing/catalogo/aceite-vegetal.jpg",
     points: ["Dura hasta 300% más que los aceites tradicionales", "No transfiere sabores ni olores entre frituras", "Punto de humo 230 °C · libre de grasas trans"] },
-  { name: "Aceite de Soya", unit: "Garrafón 25 L", price: "RD$4,000", image: "src/assets/soya-oil-product.jpg",
-    points: ["Refinado, estable y versátil", "Ideal para cocciones rápidas, salsas y aderezos", "Punto de humo 220 °C"] },
-  { name: "Aceite de Girasol alto oleico", unit: "Garrafón 25 L", price: "RD$4,000", image: "src/assets/sunflower-oil-product.jpg",
-    points: ["Fuente natural de vitamina E", "Cocina saludable, repostería y ensaladas", "Punto de humo 232 °C"] },
-  { name: "Manteca Vegetal", unit: "25 L", price: "RD$3,570", image: "src/assets/manteca-product.jpg",
-    points: ["Textura suave y crujiente en masas", "Más volumen y mejor apariencia en horneados", "Libre de grasas trans"] },
   { name: "Margarina", unit: "15 kg", price: "RD$3,570", image: "src/assets/margarine-product.jpg",
     points: ["Bajo contenido de grasas trans", "Cremosidad y sabor natural", "Para untar, hornear y cocinar"] },
   { name: "Mayonesa", unit: "Caja de 4 × 1 galón (8 lb c/u)", price: "RD$4,000", image: "src/assets/mayonesa-product.jpg",
@@ -82,13 +77,12 @@ const pages = [];
 
 // 1. Cover
 pages.push(`<div class="page" style="background:${GREEN};color:#fff;padding:0">
-  <img src="${img("src/assets/palm-oil-product.jpg")}" style="position:absolute;inset:0;width:100%;height:62%;object-fit:cover;opacity:.7">
-  <div style="position:absolute;inset:0;height:62%;background:linear-gradient(180deg,rgba(10,26,15,.2),${GREEN})"></div>
-  <div style="position:absolute;left:0.7in;right:0.7in;top:0.7in"><div class="brand" style="font-size:40pt;color:#fff">Bon<b>life</b></div></div>
-  <div style="position:absolute;left:0.7in;right:0.7in;top:5.6in">
+  <img src="${img("marketing/catalogo/portada.jpg")}" style="position:absolute;left:0;top:0;width:100%;height:5.35in;object-fit:cover">
+  <div style="position:absolute;left:0.7in;right:0.7in;top:0.55in"><div class="brand" style="font-size:40pt;color:${GREEN}">Bon<b>life</b></div></div>
+  <div style="position:absolute;left:0.7in;right:0.7in;top:5.75in">
     <div class="tag">CATÁLOGO ${esc(sup.pricesUpdated.toUpperCase())}</div>
-    <div style="font-size:30pt;font-weight:800;line-height:1.08">Aceites, alimentos y suministros para hoteles, restaurantes y empresas</div>
-    <div style="font-size:12.5pt;color:rgba(255,255,255,.8);margin-top:12pt;max-width:5.8in">Aceite para freír, grasas para panadería, mayonesa, papel institucional, limpieza, desechables y amenidades hoteleras. Un solo suplidor, una sola entrega.</div>
+    <div style="font-size:30pt;font-weight:800;line-height:1.08">Aceite, alimentos y suministros para hoteles, restaurantes y empresas</div>
+    <div style="font-size:12.5pt;color:rgba(255,255,255,.8);margin-top:12pt;max-width:5.8in">Aceite vegetal para freír, margarina, mayonesa, papel institucional, limpieza, desechables y amenidades hoteleras. Un solo suplidor, una sola entrega.</div>
   </div>
   <div style="position:absolute;left:0.7in;right:0.7in;bottom:0.7in;display:flex;justify-content:space-between;align-items:flex-end">
     <div style="font-size:11pt;line-height:1.7">
@@ -125,20 +119,14 @@ pages.push(`<div class="page">
   ${footer(n)}
 </div>`);
 
-// 3. Oils and foods (two pages)
+// 3. Oil and foods (one page)
 const foodRow = (f) => `<div class="food"><img src="${img(f.image)}" alt="">
   <div><h3 style="font-size:12pt;font-weight:800">${esc(f.name)}</h3><div class="unit">${esc(f.unit)}</div><ul>${f.points.map((p) => `<li>${esc(p)}</li>`).join("")}</ul></div>
   <div class="price">${esc(f.price)}</div></div>`;
 n++;
-pages.push(`<div class="page"><div class="tag">ACEITES Y GRASAS</div><h2>Aceite para freír y grasas para panadería</h2>
-  <p class="lead">Aceites y grasas para cocinas profesionales, freidoras industriales y panaderías.</p>
-  ${foods.slice(0, 5).map(foodRow).join("")}${footer(n)}</div>`);
-n++;
-pages.push(`<div class="page"><div class="tag">ALIMENTOS E INSUMOS</div><h2>Mayonesa e insumos industriales</h2>
-  <p class="lead">Mayonesa para cocinas y delivery, e ingredientes a granel para fabricantes.</p>
-  ${foods.slice(5).map(foodRow).join("")}
-  <div class="food" style="grid-template-columns:1fr auto"><div><h3 style="font-size:12pt;font-weight:800">Estearina de palma (a granel)</h3><div class="unit">Cisterna, por tonelada · para fabricantes de margarinas, shortenings y panificación</div></div><div class="quote">Cotizar</div></div>
-  <div class="food" style="grid-template-columns:1fr auto"><div><h3 style="font-size:12pt;font-weight:800">Polvo de hornear</h3><div class="unit">Saco industrial · para panadería y repostería de alto volumen</div></div><div class="quote">Cotizar</div></div>
+pages.push(`<div class="page"><div class="tag">ACEITE Y ALIMENTOS</div><h2>Aceite vegetal, margarina y mayonesa</h2>
+  <p class="lead">Aceite para freidoras de cocinas profesionales, margarina para panadería y mayonesa para cocina y delivery.</p>
+  ${foods.map(foodRow).join("")}
   ${footer(n)}</div>`);
 
 // 4. Supplies: up to 8 cards (4 × 2) per page
