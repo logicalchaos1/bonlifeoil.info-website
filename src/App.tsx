@@ -19,6 +19,8 @@ const Careers = lazy(() => import("./pages/Careers"));
 const JobDetail = lazy(() => import("./pages/JobDetail"));
 const AceiteDePalma = lazy(() => import("./pages/AceiteDePalma"));
 const AceiteParaFreir = lazy(() => import("./pages/AceiteParaFreir"));
+const Suministros = lazy(() => import("./pages/Suministros"));
+const SuministrosCategoria = lazy(() => import("./pages/SuministrosCategoria"));
 const Privacidad = lazy(() => import("./pages/Privacidad"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
@@ -46,6 +48,8 @@ const App = () => (
               <Route path="/index" element={<Index />} />
               <Route path="/aceite-para-freir" element={<AceiteParaFreir />} />
               <Route path="/aceite-de-palma" element={<AceiteDePalma />} />
+              <Route path="/suministros" element={<Suministros />} />
+              <Route path="/suministros/:categoria" element={<SuministrosCategoria />} />
               <Route path="/privacidad" element={<Privacidad />} />
               <Route path="/formulario-comprador" element={<BuyersForm />} />
               <Route path="/reporte-piloto" element={<TrialReport />} />

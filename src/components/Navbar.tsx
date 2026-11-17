@@ -29,6 +29,7 @@ const Navbar = () => {
     { name: 'Inicio', href: '/' },
     { name: 'Productos', href: '#productos' },
     { name: 'Aceite para Freír', href: '/aceite-para-freir' },
+    { name: 'Suministros', href: '/suministros' },
     { name: 'Calculadora de Ahorro', href: '/calculadora-ahorro' },
     { name: 'Blog', href: '/blog' },
     { name: 'Referidos', href: '/referidos' },
