@@ -1,0 +1,358 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<style>html,body{margin:0;background:#f4efe3}canvas{display:block}</style>
+<script type="importmap">
+{ "imports": {
+  "three": "/node_modules/three/build/three.module.js",
+  "three/addons/": "/node_modules/three/examples/jsm/"
+} }
+</script>
+</head>
+<body>
+<script type="module">
+// Studio renders of the /suministros products. Original geometry and labels only.
+// Opened by render-mockups.mjs as mockups.html#<key>; sets window.done when the frame is ready.
+import * as THREE from "three";
+import { RoundedBoxGeometry } from "three/addons/geometries/RoundedBoxGeometry.js";
+import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
+
+const SIZE = 1000;
+const GREEN = "#0a1a0f", GOLD = "#c9a227";
+
+const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
+renderer.setPixelRatio(1);
+renderer.setSize(SIZE, SIZE);
+renderer.toneMapping = THREE.NeutralToneMapping;
+renderer.toneMappingExposure = 1.0;
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+document.body.appendChild(renderer.domElement);
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color("#f4efe3");
+scene.environment = new THREE.PMREMGenerator(renderer).fromScene(new RoomEnvironment(), 0.04).texture;
+
+const camera = new THREE.PerspectiveCamera(30, 1, 0.1, 100);
+camera.position.set(4.2, 3.2, 6.4);
+camera.lookAt(0, 0.9, 0);
+
+const key = new THREE.DirectionalLight("#ffffff", 2.2);
+key.position.set(4, 7, 5);
+key.castShadow = true;
+key.shadow.mapSize.set(2048, 2048);
+key.shadow.camera.left = key.shadow.camera.bottom = -5;
+key.shadow.camera.right = key.shadow.camera.top = 5;
+key.shadow.radius = 6;
+key.shadow.bias = -0.0005;
+scene.add(key);
+scene.add(new THREE.HemisphereLight("#ffffff", "#e9dfc6", 0.6));
+
+const ground = new THREE.Mesh(new THREE.PlaneGeometry(40, 40), new THREE.ShadowMaterial({ opacity: 0.22 }));
+ground.rotation.x = -Math.PI / 2;
+ground.receiveShadow = true;
+scene.add(ground);
+
+// ---------- helpers ----------
+const shadowed = (m) => { m.traverse((o) => { if (o.isMesh) { o.castShadow = true; o.receiveShadow = true; } }); return m; };
+const mat = (o) => new THREE.MeshPhysicalMaterial(o);
+
+// Printed label drawn on a canvas. lines: [{text, size, color, weight}]
+function labelTexture({ w = 1024, h = 1024, bg = "#ffffff", band = GREEN, lines = [], brand = true, footer = "" }) {
+  const c = document.createElement("canvas"); c.width = w; c.height = h;
+  const g = c.getContext("2d");
+  g.fillStyle = bg; g.fillRect(0, 0, w, h);
+  if (band) { g.fillStyle = band; g.fillRect(0, 0, w, h * 0.22); }
+  if (brand) {
+    g.font = `italic 800 ${h * 0.12}px Helvetica, Arial, sans-serif`;
+    g.textAlign = "center"; g.textBaseline = "middle";
+    const y = h * 0.11;
+    const bon = g.measureText("Bon").width, life = g.measureText("life").width;
+    const x0 = w / 2 - (bon + life) / 2;
+    g.textAlign = "left";
+    g.fillStyle = band ? "#ffffff" : GREEN; g.fillText("Bon", x0, y);
+    g.fillStyle = GOLD; g.fillText("life", x0 + bon, y);
+  }
+  g.textAlign = "center"; g.textBaseline = "alphabetic";
+  let y = h * 0.36;
+  for (const l of lines) {
+    let px = l.size * h;
+    g.font = `${l.weight ?? 800} ${px}px Helvetica, Arial, sans-serif`;
+    while (g.measureText(l.text).width > w * 0.86 && px > 10) {
+      px *= 0.94;
+      g.font = `${l.weight ?? 800} ${px}px Helvetica, Arial, sans-serif`;
+    }
+    g.fillStyle = l.color ?? GREEN;
+    y += px * (l.gap ?? 1.15);
+    g.fillText(l.text, w / 2, y);
+  }
+  if (footer) {
+    g.fillStyle = GOLD; g.fillRect(0, h * 0.86, w, h * 0.14);
+    g.font = `700 ${h * 0.06}px Helvetica, Arial, sans-serif`; g.fillStyle = GREEN;
+    g.fillText(footer, w / 2, h * 0.95);
+  }
+  const t = new THREE.CanvasTexture(c);
+  t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8;
+  return t;
+}
+
+// Subtle paper grain for rolls and wrappers.
+function grain(base = 245, amount = 10) {
+  const c = document.createElement("canvas"); c.width = c.height = 256;
+  const g = c.getContext("2d"); const img = g.createImageData(256, 256);
+  for (let i = 0; i < img.data.length; i += 4) {
+    const v = base - Math.random() * amount;
+    img.data[i] = img.data[i + 1] = img.data[i + 2] = v; img.data[i + 3] = 255;
+  }
+  g.putImageData(img, 0, 0);
+  const t = new THREE.CanvasTexture(c); t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(4, 4);
+  return t;
+}
+
+const lathe = (pts, seg = 96) => new THREE.LatheGeometry(pts.map(([x, y]) => new THREE.Vector2(x, y)), seg);
+
+// ---------- products ----------
+function jug(color, title, sub) {
+  const g = new THREE.Group();
+  const plastic = mat({ color, roughness: 0.32, clearcoat: 0.6, clearcoatRoughness: 0.25, sheen: 0.2 });
+  const body = new THREE.Mesh(new RoundedBoxGeometry(1.5, 2.3, 1.05, 8, 0.2), plastic);
+  body.position.y = 1.15; g.add(body);
+  const shoulder = new THREE.Mesh(new RoundedBoxGeometry(1.5, 0.35, 1.05, 6, 0.17), plastic);
+  shoulder.position.y = 2.32; shoulder.scale.set(0.85, 1, 0.85); g.add(shoulder);
+  const neck = new THREE.Mesh(new THREE.CylinderGeometry(0.2, 0.24, 0.3, 48), plastic);
+  neck.position.set(-0.35, 2.6, 0); g.add(neck);
+  const capMat = mat({ color: "#f2f2f2", roughness: 0.45 });
+  const cap = new THREE.Mesh(new THREE.CylinderGeometry(0.27, 0.27, 0.26, 48), capMat);
+  cap.position.set(-0.35, 2.85, 0); g.add(cap);
+  for (let i = 0; i < 36; i++) { // cap ribs
+    const r = new THREE.Mesh(new THREE.BoxGeometry(0.02, 0.24, 0.03), capMat);
+    const a = (i / 36) * Math.PI * 2; r.position.set(-0.35 + Math.cos(a) * 0.27, 2.85, Math.sin(a) * 0.27); r.rotation.y = -a; g.add(r);
+  }
+  const handle = new THREE.Mesh(new THREE.TorusGeometry(0.34, 0.1, 24, 48, Math.PI), plastic);
+  handle.position.set(0.38, 2.05, 0); handle.rotation.z = -Math.PI / 2; handle.rotation.y = 0; g.add(handle);
+  const label = new THREE.Mesh(new THREE.PlaneGeometry(1.22, 1.25),
+    mat({ map: labelTexture({ lines: [{ text: title, size: title.length > 13 ? 0.105 : 0.13 }, { text: sub, size: 0.075, weight: 500, color: "#444", gap: 1.6 }], footer: "1 GALÓN · 3.78 L" }), roughness: 0.5 }));
+  label.position.set(0, 1.1, 0.527); g.add(label);
+  return g;
+}
+
+function paperRoll(R, r, h, color = "#fbfbf8") {
+  const g = new THREE.Group();
+  const paper = mat({ color, roughness: 0.92, map: grain(250, 14) });
+  const tube = new THREE.Mesh(lathe([[r, 0], [R - 0.02, 0], [R, 0.02], [R, h - 0.02], [R - 0.02, h], [r, h], [r, 0]]), paper);
+  g.add(tube);
+  const core = new THREE.Mesh(new THREE.CylinderGeometry(r, r, h, 48, 1, true), mat({ color: "#b98f5e", roughness: 0.85, side: THREE.DoubleSide }));
+  core.position.y = h / 2; g.add(core);
+  // spiral lines on the faces
+  const ringMat = new THREE.MeshBasicMaterial({ color: "#e4e1d8" });
+  for (let k = 1; k < 7; k++) {
+    const rr = r + ((R - r) * k) / 7;
+    const ring = new THREE.Mesh(new THREE.RingGeometry(rr, rr + 0.004, 96), ringMat);
+    ring.rotation.x = -Math.PI / 2; ring.position.y = h + 0.001; g.add(ring);
+  }
+  return g;
+}
+
+// Face order: +x, -x, +y (top), -y, +z (front), -z. labelFace picks where the print goes.
+function wrapperPack(w, h, d, tex, color = "#ffffff", labelFace = 4) {
+  const faces = Array.from({ length: 6 }, (_, i) => (i === labelFace ? mat({ map: tex, roughness: 0.55 }) : mat({ color, roughness: 0.6 })));
+  return new THREE.Mesh(new RoundedBoxGeometry(w, h, d, 6, 0.08), faces);
+}
+
+function printedBox(w, h, d, tex, color = "#ffffff") {
+  const side = mat({ color, roughness: 0.7 });
+  return new THREE.Mesh(new RoundedBoxGeometry(w, h, d, 3, 0.03), [side, side, side, side, mat({ map: tex, roughness: 0.6 }), side]);
+}
+
+function cup(x, z, scale = 1, color = "#fbfbf9") {
+  const m = new THREE.Mesh(lathe([[0, 0], [0.33, 0], [0.34, 0.02], [0.46, 1.1], [0.49, 1.12], [0.48, 1.16], [0.44, 1.12], [0.31, 0.06], [0, 0.06]]),
+    mat({ color, roughness: 0.95, side: THREE.DoubleSide }));
+  m.position.set(x, 0, z); m.scale.setScalar(scale); return m;
+}
+
+const S = {
+  "galon-desengrasante": () => jug("#e8862a", "DESENGRASANTE", "Cocinas y freidoras"),
+  "galon-lavaplatos": () => jug("#a9cc32", "LAVAPLATOS", "Aroma limón"),
+  "galon-jabon": () => jug("#f0a2c0", "JABÓN DE MANOS", "Para dispensadores"),
+  "galon-desinfectante": () => jug("#9a7cd0", "DESINFECTANTE", "Pisos y superficies"),
+  "galon-cloro": () => jug("#eef3f6", "CLORO", "Blanqueador"),
+  "galon-detergente": () => jug("#3c8bd0", "DETERGENTE", "Neutro multiuso"),
+  "galon-cristales": () => jug("#7fd0e6", "LIMPIACRISTALES", "Vidrios y espejos"),
+
+  "papel-higienico": () => {
+    const g = new THREE.Group();
+    const spots = [[-0.95, 0, 0], [0.95, 0, 0], [0, 0, -0.95], [0, 0.82, -0.2]];
+    for (const [x, y, z] of spots) { const r = paperRoll(0.9, 0.22, 0.8); r.position.set(x, y, z); g.add(r); }
+    return g;
+  },
+  "papel-toalla": () => {
+    const g = new THREE.Group();
+    [[-0.85, "#fbfbf8"], [0, "#c79a68"], [0.85, "#fbfbf8"]].forEach(([x, c], i) => {
+      const r = paperRoll(0.42, 0.13, 2.1, c); r.position.set(x, 0, i === 1 ? -0.5 : 0.15); g.add(r);
+    });
+    return g;
+  },
+  servilletas: () => {
+    const g = new THREE.Group();
+    const tex = labelTexture({ w: 1024, h: 512, lines: [{ text: "SERVILLETAS", size: 0.16 }, { text: "500 unidades", size: 0.1, weight: 500, color: "#444" }] });
+    const pack = wrapperPack(2.2, 1.0, 1.6, tex); pack.position.y = 0.5; g.add(pack);
+    for (let i = 0; i < 6; i++) {
+      const s = new THREE.Mesh(new THREE.BoxGeometry(1.0, 0.012, 1.0), mat({ color: "#ffffff", roughness: 0.95 }));
+      s.position.set(1.85 + i * 0.004, 0.01 + i * 0.014, 0.6); s.rotation.y = 0.3 + i * 0.03; g.add(s);
+    }
+    return g;
+  },
+  "fundas-basura": () => {
+    const g = new THREE.Group();
+    const geo = new THREE.SphereGeometry(1, 96, 64);
+    const p = geo.attributes.position;
+    for (let i = 0; i < p.count; i++) { // lumpy filled bag
+      const x = p.getX(i), y = p.getY(i), z = p.getZ(i);
+      const n = 1 + 0.035 * Math.sin(x * 5 + y * 2) + 0.025 * Math.sin(z * 6 - y * 4) + 0.015 * Math.sin((x + z) * 11);
+      const taper = y > 0.55 ? 1 - (y - 0.55) * 0.9 : 1; // gathers toward the knot
+      p.setXYZ(i, x * n * taper, y * n * 1.1, z * n * 0.92 * taper);
+    }
+    geo.computeVertexNormals();
+    const black = mat({ color: "#121212", roughness: 0.28, clearcoat: 0.8, clearcoatRoughness: 0.3 });
+    const bag = new THREE.Mesh(geo, black); bag.position.y = 1.1; g.add(bag);
+    const knot = new THREE.Mesh(new THREE.TorusKnotGeometry(0.16, 0.07, 64, 12), black); knot.position.y = 2.42; g.add(knot);
+    const neck = new THREE.Mesh(new THREE.ConeGeometry(0.35, 0.5, 32), black); neck.position.y = 2.2; neck.rotation.x = Math.PI; g.add(neck);
+    const tex = labelTexture({ w: 1024, h: 512, lines: [{ text: "FUNDAS 55 GAL", size: 0.15 }, { text: "Paquete 100/1", size: 0.1, weight: 500, color: "#444" }] });
+    const pack = wrapperPack(1.6, 0.4, 1.1, tex, "#1d1d1d", 2); pack.position.set(1.7, 0.2, 0.9); pack.rotation.y = -0.3; g.add(pack);
+    return g;
+  },
+  guantes: () => {
+    const g = new THREE.Group();
+    const tex = labelTexture({ w: 1024, h: 768, lines: [{ text: "GUANTES DE VINIL", size: 0.11 }, { text: "500 unidades · talla única", size: 0.07, weight: 500, color: "#444" }] });
+    const box = printedBox(2.4, 1.3, 1.2, tex); box.position.y = 0.65; g.add(box);
+    const glove = new THREE.Mesh(new THREE.SphereGeometry(0.4, 48, 32), mat({ color: "#e6eef5", roughness: 0.35, transmission: 0.3, thickness: 0.2 }));
+    glove.scale.set(1.1, 0.35, 0.6); glove.position.set(0, 1.33, 0); g.add(glove);
+    return g;
+  },
+  vasos: () => {
+    const g = new THREE.Group();
+    for (let i = 0; i < 6; i++) { const c = cup(-0.7, 0, 1); c.position.y = i * 0.12; g.add(c); } // nested stack
+    g.add(cup(0.6, 0.3, 1)); g.add(cup(0.25, -0.8, 1));
+    return g;
+  },
+  "bandeja-foam": () => {
+    const g = new THREE.Group();
+    const foam = mat({ color: "#fdfdfb", roughness: 1, map: grain(252, 8) });
+    const base = new THREE.Mesh(new RoundedBoxGeometry(2.2, 0.55, 1.9, 6, 0.12), foam); base.position.y = 0.28; g.add(base);
+    const lid = new THREE.Mesh(new RoundedBoxGeometry(2.2, 0.5, 1.9, 6, 0.14), foam);
+    lid.geometry.translate(0, 0.25, 0.95); lid.position.set(0, 0.55, -0.95); lid.rotation.x = -1.0; g.add(lid);
+    const b2 = new THREE.Mesh(new RoundedBoxGeometry(2.2, 1.05, 1.9, 6, 0.14), foam); b2.position.set(2.0, 0.52, 1.0); b2.rotation.y = -0.5; g.add(b2);
+    return g;
+  },
+  "envase-deli": () => {
+    const g = new THREE.Group();
+    const clear = mat({ color: "#ffffff", roughness: 0.04, transmission: 1, thickness: 0.02, ior: 1.4, transparent: true, opacity: 0.55 });
+    const make = (x, z, fill) => {
+      const c = new THREE.Mesh(lathe([[0, 0], [0.62, 0], [0.75, 0.95], [0.78, 0.97], [0, 0.97]]), clear); c.position.set(x, 0, z); g.add(c);
+      const f = new THREE.Mesh(lathe([[0, 0.02], [0.6, 0.02], [0.7, 0.6], [0, 0.6]]), mat({ color: fill, roughness: 0.7 })); f.position.set(x, 0, z); g.add(f);
+      const lid = new THREE.Mesh(new THREE.CylinderGeometry(0.82, 0.82, 0.08, 64), clear); lid.position.set(x, 1.0, z); g.add(lid);
+    };
+    make(-0.6, 0, "#e7b24a"); make(0.85, 0.5, "#8fbf4d");
+    return g;
+  },
+  "envase-aluminio": () => {
+    const g = new THREE.Group();
+    const foil = mat({ color: "#d9dde1", metalness: 1, roughness: 0.32 });
+    const tray = new THREE.Mesh(new RoundedBoxGeometry(2.4, 0.7, 1.7, 6, 0.08), foil);
+    tray.geometry.attributes.position.array.forEach((_, i, a) => { if (i % 3 === 0) { const y = a[i + 1]; if (y < 0) { a[i] *= 0.88; a[i + 2] *= 0.86; } } });
+    tray.geometry.computeVertexNormals(); tray.position.y = 0.35; g.add(tray);
+    const tex = labelTexture({ w: 1024, h: 720, bg: "#f7f7f5", lines: [{ text: "ENVASE DE ALUMINIO", size: 0.1 }, { text: "1.5 lb · con tapa", size: 0.08, weight: 500, color: "#444" }] });
+    const lid = new THREE.Mesh(new THREE.BoxGeometry(2.5, 0.03, 1.8), [mat({ color: "#eee" }), mat({ color: "#eee" }), mat({ map: tex, roughness: 0.6 }), mat({ color: "#eee" }), mat({ color: "#eee" }), mat({ color: "#eee" })]);
+    lid.position.set(0.5, 0.02, 1.4); lid.rotation.y = -0.35; g.add(lid);
+    return g;
+  },
+  cubiertos: () => {
+    const g = new THREE.Group();
+    [["TENEDORES", -0.75, 0.15], ["CUCHARAS", 0.75, -0.25]].forEach(([t, x, r]) => {
+      const tex = labelTexture({ w: 1024, h: 768, lines: [{ text: t, size: 0.13 }, { text: "Plásticos · 500 unidades", size: 0.075, weight: 500, color: "#444" }] });
+      const box = printedBox(1.4, 1.1, 0.9, tex); box.position.set(x, 0.55, x > 0 ? -0.2 : 0.3); box.rotation.y = r; g.add(box);
+    });
+    return g;
+  },
+  sorbetes: () => {
+    const g = new THREE.Group();
+    const tex = labelTexture({ w: 1024, h: 768, lines: [{ text: "SORBETES", size: 0.13 }, { text: "Envueltos · 500 unidades", size: 0.075, weight: 500, color: "#444" }] });
+    const box = printedBox(1.4, 1.2, 1.0, tex); box.position.y = 0.6; g.add(box);
+    const paper = mat({ color: "#f6f1e4", roughness: 0.8 });
+    for (let i = 0; i < 9; i++) {
+      const s = new THREE.Mesh(new THREE.CylinderGeometry(0.035, 0.035, 2.0, 16), paper);
+      s.position.set(-0.4 + (i % 5) * 0.18, 1.6, -0.15 + Math.floor(i / 5) * 0.18); s.rotation.z = -0.15 + (i % 3) * 0.08; g.add(s);
+    }
+    return g;
+  },
+  "jabon-tocador": () => {
+    const g = new THREE.Group();
+    const tex = labelTexture({ w: 1024, h: 600, bg: "#fffdf7", lines: [{ text: "JABÓN DE TOCADOR", size: 0.11 }, { text: "Uso hotelero", size: 0.08, weight: 500, color: "#555" }] });
+    [[-0.9, 0, 0.3, 0.2], [0.5, 0, 0.6, -0.3], [-0.2, 0.42, 0.35, 0.05]].forEach(([x, y, z, r]) => {
+      const bar = wrapperPack(1.3, 0.4, 0.85, tex, "#fffdf7", 2); bar.rotation.y = r;
+      bar.position.set(x, y + 0.2, z); g.add(bar);
+    });
+    return g;
+  },
+  amenidades: () => {
+    const g = new THREE.Group();
+    const items = [["SHAMPOO", "#ffffff"], ["ACONDICIONADOR", "#f2ead6"], ["GEL DE BAÑO", "#e5efe8"]];
+    items.forEach(([t, c], i) => {
+      const b = new THREE.Mesh(lathe([[0, 0], [0.32, 0], [0.34, 0.04], [0.34, 1.35], [0.28, 1.5], [0.12, 1.58], [0, 1.58]]), mat({ color: c, roughness: 0.3, clearcoat: 0.6 }));
+      b.position.set(-1.0 + i * 0.95, 0, i === 1 ? -0.3 : 0.2); g.add(b);
+      const cap = new THREE.Mesh(new THREE.CylinderGeometry(0.13, 0.13, 0.22, 32), mat({ color: GOLD, metalness: 0.8, roughness: 0.3 }));
+      cap.position.set(b.position.x, 1.68, b.position.z); g.add(cap);
+      const lab = new THREE.Mesh(new THREE.CylinderGeometry(0.345, 0.345, 0.75, 64, 1, true, -Math.PI / 2.2, Math.PI / 1.1),
+        mat({ map: labelTexture({ w: 1024, h: 1024, band: null, bg: c, lines: [{ text: t, size: t.length > 10 ? 0.075 : 0.1 }, { text: "30 ml", size: 0.07, weight: 500, color: "#555" }] }), roughness: 0.4 }));
+      lab.position.set(b.position.x, 0.62, b.position.z); g.add(lab);
+    });
+    const tex = labelTexture({ w: 1024, h: 600, lines: [{ text: "KIT DENTAL", size: 0.13 }] });
+    const box = printedBox(0.9, 0.3, 0.55, tex); box.rotation.x = -Math.PI / 2; box.position.set(1.4, 0.15, 0.9); box.rotation.z = 0.4; g.add(box);
+    return g;
+  },
+};
+
+const name = decodeURIComponent(location.hash.slice(1));
+const product = shadowed(S[name]());
+// Frame: center the product and fit the camera to its size.
+const bbox = new THREE.Box3().setFromObject(product);
+const center = bbox.getCenter(new THREE.Vector3()), size = bbox.getSize(new THREE.Vector3());
+product.position.x -= center.x; product.position.z -= center.z;
+scene.add(product);
+const radius = size.length() / 2;
+const dist = radius / Math.sin(THREE.MathUtils.degToRad(camera.fov / 2)) * 1.12;
+const dir = new THREE.Vector3(0.55, 0.42, 0.85).normalize();
+const target = new THREE.Vector3(0, size.y / 2, 0);
+camera.position.copy(target).addScaledVector(dir, dist);
+camera.lookAt(target);
+// Tighten or loosen so the product's on-screen extent fills ~80% of the frame.
+const box = new THREE.Box3().setFromObject(product);
+for (let i = 0; i < 4; i++) {
+  camera.updateMatrixWorld();
+  let ext = 0;
+  for (const x of [box.min.x, box.max.x]) for (const y of [box.min.y, box.max.y]) for (const z of [box.min.z, box.max.z]) {
+    const v = new THREE.Vector3(x, y, z).project(camera);
+    ext = Math.max(ext, Math.abs(v.x), Math.abs(v.y));
+  }
+  const d = camera.position.distanceTo(target) * (ext / 0.8);
+  camera.position.copy(target).addScaledVector(dir, d);
+  camera.lookAt(target);
+}
+renderer.render(scene, camera);
+
+// Brand mark and "illustrative" note composited over the render.
+const out = document.createElement("canvas"); out.width = out.height = SIZE;
+const g = out.getContext("2d");
+g.drawImage(renderer.domElement, 0, 0);
+g.font = "italic 800 44px Helvetica, Arial, sans-serif";
+g.fillStyle = GREEN; g.fillText("Bon", 40, 70);
+g.fillStyle = GOLD; g.fillText("life", 40 + g.measureText("Bon").width, 70);
+g.font = "400 18px Helvetica, Arial, sans-serif"; g.fillStyle = "rgba(10,26,15,.45)";
+g.textAlign = "right"; g.fillText("Imagen ilustrativa", SIZE - 28, SIZE - 24);
+window.output = out.toDataURL("image/jpeg", 0.86);
+window.done = true;
+</script>
+</body>
+</html>

@@ -31,6 +31,10 @@ const client = readFileSync(path.join(root, "src/integrations/supabase/client.ts
 const supabaseUrl = client.match(/SUPABASE_URL = "([^"]+)"/)?.[1];
 const anonKey = client.match(/SUPABASE_PUBLISHABLE_KEY =\s*"([^"]+)"/)?.[1];
 
+// Supplies product pages come from the catalog JSON.
+const catalog = JSON.parse(readFileSync(path.join(root, "src/data/suministros-catalog.json"), "utf8"));
+for (const p of catalog.products) pages.push([`/suministros/${p.category}/${p.slug}`, "0.7"]);
+
 let posts = [];
 try {
   const res = await fetch(

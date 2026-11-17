@@ -70,6 +70,15 @@ const SuministrosCategoria = () => {
           </div>
         </section>
 
+        <section className="container mx-auto px-4 pb-12 max-w-3xl">
+          <h2 className="text-2xl font-bold text-foreground mb-4">Cómo elegir</h2>
+          <div className="space-y-3">
+            {category.guide.map((g) => (
+              <p key={g} className="text-muted-foreground leading-relaxed">{g}</p>
+            ))}
+          </div>
+        </section>
+
         <DeliveryInfo />
 
         <section className="container mx-auto px-4 py-10 max-w-5xl">
