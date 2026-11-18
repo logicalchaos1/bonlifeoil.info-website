@@ -53,7 +53,7 @@ ${page.sections.map(section).join("\n")}
     .replace(/(<meta property="og:url" content=")[^"]*/, `$1${url}`)
     .replace(/(<meta property="og:image" content=")[^"]*/, `$1${SITE}/aceite-vegetal-bonlife.jpg`)
     .replace("</head>", `  <script type="application/ld+json">${JSON.stringify(jsonLd).replace(/</g, "\\u003c")}</script>\n  </head>`)
-    .replace(/<div id="root">[\s\S]*?<\/div>\s*(<script|<\/body>)/, `<div id="root"><main style="max-width:860px;margin:0 auto;padding:96px 16px 48px;font-family:system-ui,sans-serif;line-height:1.6">${body}</main></div>\n    $1`);
+    .replace(/<div id="root">[\s\S]*?<\/div>\s*(<script|<\/body>)/, `<div id="root"><main class="seo-fallback"><div class="fb-brand">Bon<span>life</span></div>${body}</main></div>\n    $1`);
 
   const out = path.join(dist, page.path, "index.html");
   mkdirSync(path.dirname(out), { recursive: true });

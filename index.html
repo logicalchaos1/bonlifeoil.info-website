@@ -68,12 +68,32 @@
         ]
       }
     </script>
+    <script>
+      // Older iOS Safari (< 15.4) lacks these; the animation library calls Object.hasOwn on load.
+      if (!Object.hasOwn) Object.hasOwn = function (o, k) { return Object.prototype.hasOwnProperty.call(o, k); };
+      if (![].at) Object.defineProperty(Array.prototype, "at", { value: function (i) { i = Math.trunc(i) || 0; if (i < 0) i += this.length; return this[i]; }, configurable: true, writable: true });
+    </script>
+    <style>
+      /* Shown before the app loads (and to crawlers): match the site's dark hero so it never looks broken. */
+      .seo-fallback { min-height: 100vh; background: #0a1a0f; color: rgba(255,255,255,.86); font-family: Inter, system-ui, -apple-system, sans-serif; line-height: 1.6; padding: 22px 20px 56px; }
+      .seo-fallback > * { max-width: 860px; margin-left: auto; margin-right: auto; }
+      .seo-fallback .fb-brand { font-size: 30px; font-weight: 800; font-style: italic; color: #fff; letter-spacing: -.02em; margin-bottom: 48px; }
+      .seo-fallback .fb-brand span { color: #d4af37; }
+      .seo-fallback h1 { color: #fff; font-size: clamp(28px, 6vw, 46px); line-height: 1.12; font-weight: 800; margin: 0 auto 16px; }
+      .seo-fallback h2 { color: #d4af37; font-size: 15px; letter-spacing: .06em; text-transform: uppercase; margin: 28px auto 8px; }
+      .seo-fallback h3 { color: #fff; font-size: 16px; margin: 16px auto 4px; }
+      .seo-fallback p, .seo-fallback li { font-size: 16px; }
+      .seo-fallback ul { padding-left: 20px; }
+      .seo-fallback a { color: #d4af37; }
+      .seo-fallback img { max-width: 100%; height: auto; border-radius: 12px; }
+    </style>
   </head>
 
   <body>
     <div id="root">
       <!-- Crawlable fallback: shown until React mounts, then replaced by the app. -->
-      <main style="max-width:860px;margin:0 auto;padding:96px 16px 48px;font-family:system-ui,sans-serif;line-height:1.6">
+      <main class="seo-fallback">
+        <div class="fb-brand">Bon<span>life</span></div>
         <h1>Aceite para freír y aceite vegetal al por mayor en República Dominicana</h1>
         <p>Bonlife Oil distribuye aceite vegetal para freír en garrafones de 25 litros, margarina, mayonesa y suministros para hoteles, restaurantes, cafeterías y freidoras industriales. Entregamos en todo el país.</p>
         <h2>Productos</h2>

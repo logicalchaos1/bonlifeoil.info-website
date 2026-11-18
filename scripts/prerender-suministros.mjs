@@ -68,7 +68,7 @@ function page({ url, title, description, image, jsonLd, body }) {
       .replace(/(<meta name="twitter:image" content=")[^"]*/, `$1${SITE}/suministros/${image}`);
   }
   html = html.replace("</head>", `  <script type="application/ld+json">${JSON.stringify({ "@context": "https://schema.org", "@graph": jsonLd }).replace(/</g, "\\u003c")}</script>\n  </head>`);
-  html = html.replace(/<div id="root">[\s\S]*?<\/div>\s*(<script|<\/body>)/, `<div id="root"><main style="max-width:860px;margin:0 auto;padding:96px 16px 48px;font-family:system-ui,sans-serif;line-height:1.6">${body}${contact}</main></div>\n    $1`);
+  html = html.replace(/<div id="root">[\s\S]*?<\/div>\s*(<script|<\/body>)/, `<div id="root"><main class="seo-fallback"><div class="fb-brand">Bon<span>life</span></div>${body}${contact}</main></div>\n    $1`);
   const file = path.join(dist, url, "index.html");
   mkdirSync(path.dirname(file), { recursive: true });
   writeFileSync(file, html);
