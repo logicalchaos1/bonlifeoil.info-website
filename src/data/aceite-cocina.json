@@ -1,0 +1,52 @@
+{
+  "path": "/aceite-de-cocina",
+  "title": "Aceite de Cocina al por Mayor en RD: Precio por Galón y Garrafón 25L | Bonlife",
+  "description": "Aceite de cocina al por mayor en República Dominicana: garrafón de 25 litros a RD$4,600 (RD$184 por litro, aprox. RD$696 por galón). Aceite vegetal neutro para restaurantes y hoteles. Entrega a todo el país.",
+  "h1": "Aceite de cocina al por mayor en República Dominicana",
+  "lead": "Aceite vegetal de cocina en garrafones de 25 litros para restaurantes, hoteles, cafeterías, comedores y panaderías. Sabor neutro, alto punto de humo y entrega a todo el país.",
+  "price": 4600,
+  "unitPrices": [
+    { "label": "Garrafón de 25 litros", "value": "RD$4,600" },
+    { "label": "Por litro", "value": "RD$184" },
+    { "label": "Por galón (3.785 L)", "value": "aprox. RD$696" },
+    { "label": "Galones por garrafón", "value": "aprox. 6.6 galones" }
+  ],
+  "uses": [
+    { "title": "Freír", "text": "Punto de humo de 230 °C para fritura profunda y continua: pollo, papas, tostones, empanadas y frituras de buffet." },
+    { "title": "Saltear y sofreír", "text": "Sabor neutro que no tapa el sazón: sofritos, arroces, guisos, carnes y vegetales salteados." },
+    { "title": "Plancha y parrilla", "text": "Para engrasar planchas, sartenes y parrillas sin que se queme ni deje olor." },
+    { "title": "Hornear y engrasar moldes", "text": "Para engrasar bandejas y moldes en panadería y repostería." }
+  ],
+  "choose": [
+    "Punto de humo alto: para freír y cocinar a altas temperaturas necesita un aceite que no humee ni se degrade a 170–180 °C. El aceite Bonlife llega a 230 °C.",
+    "Sabor neutro: en cocina comercial el aceite no debe pasar sabores entre platos ni frituras.",
+    "Estabilidad: un aceite estable dura más en la freidora y en la sartén, así que compra menos a lo largo del mes.",
+    "Presentación: comprar en garrafón de 25 litros sale más económico por litro que comprar galones o botellas sueltas."
+  ],
+  "storage": [
+    "Guarde el garrafón cerrado, en un lugar fresco, seco y lejos de la luz directa y de la estufa.",
+    "Cierre bien la tapa después de cada uso para que no entre humedad ni polvo.",
+    "Cerrado, el aceite Bonlife tiene una vida útil de 2 años."
+  ],
+  "used": [
+    "No lo bote por el fregadero ni por el desagüe: se solidifica en las tuberías y contamina el agua.",
+    "Déjelo enfriar, cuélelo y guárdelo en un envase cerrado (puede usar el mismo garrafón).",
+    "Entréguelo a un gestor o reciclador autorizado de aceite usado de su zona."
+  ],
+  "faqs": [
+    { "q": "¿Cuánto cuesta el aceite de cocina al por mayor en República Dominicana?",
+      "a": "El garrafón de 25 litros de aceite vegetal Bonlife cuesta RD$4,600, que equivale a RD$184 por litro o aproximadamente RD$696 por galón. Para pedidos recurrentes de hoteles y restaurantes preparamos cotizaciones por volumen." },
+    { "q": "¿Cuántos galones trae un garrafón de 25 litros?",
+      "a": "Aproximadamente 6.6 galones. Un galón equivale a 3.785 litros." },
+    { "q": "¿Cuál es el mejor aceite de cocina para freír?",
+      "a": "Para freír conviene un aceite vegetal refinado, de sabor neutro y punto de humo alto, que aguante muchas horas en la freidora. El aceite Bonlife tiene punto de humo de 230 °C y rinde un estimado de 45 a 56 horas con filtrado regular. Vea más en nuestra página de aceite para freír." },
+    { "q": "¿Qué aceite de cocina sirve para cocinar a altas temperaturas?",
+      "a": "Uno con punto de humo alto. Por debajo de su punto de humo el aceite cocina bien; por encima empieza a humear y a degradarse. A 230 °C, el aceite Bonlife tiene margen de sobra para freír a 170–180 °C." },
+    { "q": "¿El aceite de cocina Bonlife es económico?",
+      "a": "Por litro, comprar el garrafón de 25 litros sale más barato que comprar galones o botellas sueltas, y como dura más en la freidora, se compra menos durante el mes. Puede calcular su ahorro con nuestra calculadora." },
+    { "q": "¿Qué hago con el aceite de cocina usado?",
+      "a": "Déjelo enfriar, cuélelo y guárdelo en un envase cerrado. No lo bote por el fregadero. Entréguelo a un gestor o reciclador autorizado de aceite usado de su zona." },
+    { "q": "¿Hacen entregas de aceite de cocina fuera de Santo Domingo?",
+      "a": "Sí. Entregamos en todo el país: Santo Domingo, Santiago, Punta Cana, Bávaro, La Romana, Puerto Plata y el resto de las provincias. El envío está incluido en pedidos desde RD$5,000." }
+  ]
+}

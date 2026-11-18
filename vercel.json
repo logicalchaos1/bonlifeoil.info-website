@@ -1,6 +1,10 @@
 {
   "rewrites": [
     {
+      "source": "/aceite-de-cocina",
+      "destination": "/aceite-de-cocina/index.html"
+    },
+    {
       "source": "/suministros",
       "destination": "/suministros/index.html"
     },
