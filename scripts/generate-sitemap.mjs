@@ -12,6 +12,7 @@ const pages = [
   ["/", "1.0"],
   ["/aceite-para-freir", "1.0"],
   ["/aceite-de-cocina", "0.9"],
+  ["/aceite-vegetal", "0.9"],
   ["/suministros", "0.9"],
   ["/suministros/papel-e-higiene", "0.8"],
   ["/suministros/limpieza", "0.8"],

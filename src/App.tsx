@@ -21,6 +21,7 @@ const AceiteParaFreir = lazy(() => import("./pages/AceiteParaFreir"));
 const Suministros = lazy(() => import("./pages/Suministros"));
 const SuministroProducto = lazy(() => import("./pages/SuministroProducto"));
 const SuministrosCategoria = lazy(() => import("./pages/SuministrosCategoria"));
+const AceiteVegetal = lazy(() => import("./pages/AceiteVegetal"));
 const AceiteDeCocina = lazy(() => import("./pages/AceiteDeCocina"));
 const Privacidad = lazy(() => import("./pages/Privacidad"));
 const NotFound = lazy(() => import("./pages/NotFound"));
@@ -49,6 +50,7 @@ const App = () => (
               <Route path="/index" element={<Index />} />
               <Route path="/aceite-para-freir" element={<AceiteParaFreir />} />
               <Route path="/aceite-de-cocina" element={<AceiteDeCocina />} />
+              <Route path="/aceite-vegetal" element={<AceiteVegetal />} />
               <Route path="/suministros" element={<Suministros />} />
               <Route path="/suministros/:categoria" element={<SuministrosCategoria />} />
               <Route path="/suministros/:categoria/:producto" element={<SuministroProducto />} />
