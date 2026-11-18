@@ -233,6 +233,10 @@ const AceiteParaFreir = () => {
               ¿Quiere saber cuánto ahorraría al cambiar de aceite? Use nuestra{" "}
               <Link to="/calculadora-ahorro" className="text-primary underline">
                 calculadora de ahorro
+              </Link>
+              , vea los precios por litro y por galón de nuestro{" "}
+              <Link to="/aceite-de-cocina" className="text-primary underline">
+                aceite de cocina
               </Link>{" "}
               o vea el{" "}
               <Link to="/#productos" className="text-primary underline">
