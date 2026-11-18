@@ -5,7 +5,7 @@ import { googleAccessToken } from "../_shared/google.ts";
 
 const SITE = "sc-domain:bonlifeoil.info";
 const ORIGIN = "https://www.bonlifeoil.info";
-const KEY_PAGES = ["/", "/aceite-para-freir", "/aceite-de-palma", "/blog", "/calculadora-ahorro"];
+const KEY_PAGES = ["/", "/aceite-para-freir", "/suministros", "/blog", "/calculadora-ahorro"];
 const BRAND = /bon\s?lif|bonlife/i;
 
 type Row = { keys?: string[]; clicks: number; impressions: number; position: number };

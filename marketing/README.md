@@ -22,9 +22,9 @@ campaigns, ad copy, form questions, SMS questions, goals and budget rules.
 | Key | Offer | Goal handed to a person |
 |---|---|---|
 | `muestra-freir` | Free sample of frying oil (restaurants, fritureras) | Deliver sample at confirmed address and time |
-| `palma-25l` | Palm oil 25L, RD$4,600, volume pricing | Quote call at confirmed time |
+| `aceite-25l` | Vegetable frying oil 25L, RD$4,600, volume pricing | Quote call at confirmed time |
 | `piloto-hoteles` | 15-day pilot with savings report (hotels) | Technical visit at confirmed time |
-| `panaderias` | Shortening and margarine (bakeries) | Quote call at confirmed time |
+| `panaderias` | Margarine (bakeries) | Quote call at confirmed time |
 
 Each campaign has one ad set for the Dominican Republic at $2/day and two ads
 (A/B images in `marketing/fb/creatives/`). That's $8/day to start.

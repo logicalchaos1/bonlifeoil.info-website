@@ -12,14 +12,14 @@ const asset = (f) => `data:image/jpeg;base64,${readFileSync(path.join(root, "src
 
 // Visual content per creative. Copy stays short: Meta favors images with little text.
 const designs = {
-  "muestra-freir-a": { kind: "photo", img: "palm-oil-product.jpg", kicker: "Restaurantes y fritureras", title: "Muestra gratis de aceite para freír", badge: "GRATIS", foot: "Le llevamos la muestra a su negocio" },
+  "muestra-freir-a": { kind: "photo", img: "aceite-vegetal-bonlife.jpg", kicker: "Restaurantes y fritureras", title: "Muestra gratis de aceite para freír", badge: "GRATIS", foot: "Le llevamos la muestra a su negocio" },
   "muestra-freir-b": { kind: "type", kicker: "Aceite para freír Bonlife", title: "45–56 horas en la freidora", sub: "con filtrado regular", badge: "Muestra gratis", foot: "Santo Domingo · Punta Cana" },
-  "palma-25l-a": { kind: "photo", img: "palm-oil-product.jpg", kicker: "Aceite de palma RBD", title: "Garrafón 25L", price: "RD$4,600", foot: "Punto de humo 230 °C · Sin grasas trans" },
-  "palma-25l-b": { kind: "type", kicker: "Para restaurantes, hoteles y cafeterías", title: "Precio por volumen en aceite de palma", sub: "Garrafón de 25 litros", badge: "Cotice hoy", foot: "Entrega en Santo Domingo y Punta Cana" },
+  "aceite-25l-a": { kind: "photo", img: "aceite-vegetal-bonlife.jpg", kicker: "Aceite vegetal para freír", title: "Garrafón 25L", price: "RD$4,600", foot: "Punto de humo 230 °C · Sin grasas trans" },
+  "aceite-25l-b": { kind: "type", kicker: "Para restaurantes, hoteles y cafeterías", title: "Precio por volumen en aceite para freír", sub: "Garrafón de 25 litros", badge: "Cotice hoy", foot: "Entrega a todo el país" },
   "piloto-hoteles-a": { kind: "photo", img: "testimonial-chef.jpg", kicker: "Hoteles y resorts", title: "Prueba piloto de 15 días en su cocina", badge: "Asesoría sin costo", foot: "Con reporte de ahorro comparativo" },
   "piloto-hoteles-b": { kind: "type", kicker: "Chefs y gerentes de A&B", title: "¿Cuánto gasta su buffet en aceite?", sub: "Se lo medimos en su propia cocina", badge: "Visita técnica", foot: "Prueba piloto de 15 días" },
-  "panaderias-a": { kind: "photo", img: "manteca-product.jpg", kicker: "Panaderías y reposterías", title: "Manteca vegetal Bonlife", badge: "Sin grasas trans", foot: "Mejor textura y volumen" },
-  "panaderias-b": { kind: "type", kicker: "Manteca y margarina Bonlife", title: "Más volumen en su pan", sub: "Para producción diaria de panadería", badge: "Cotice hoy", foot: "Entrega en Santo Domingo y Punta Cana" },
+  "panaderias-a": { kind: "photo", img: "margarine-product.jpg", kicker: "Panaderías y reposterías", title: "Margarina Bonlife", badge: "Baja en grasas trans", foot: "Para untar, hornear y cocinar" },
+  "panaderias-b": { kind: "type", kicker: "Margarina Bonlife 15 kg", title: "Margarina por volumen para su panadería", sub: "Para producción diaria", badge: "Cotice hoy", foot: "Entrega a todo el país" },
 };
 
 const css = `

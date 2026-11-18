@@ -135,8 +135,7 @@ const Suministros = () => {
           </div>
           <p className="text-muted-foreground mt-8">
             ¿Busca aceite para su freidora? Vea nuestro{" "}
-            <Link to="/aceite-para-freir" className="text-primary underline">aceite para freír</Link> y el{" "}
-            <Link to="/aceite-de-palma" className="text-primary underline">aceite de palma de 25 litros</Link>.
+            <Link to="/aceite-para-freir" className="text-primary underline">aceite vegetal para freír de 25 litros</Link>.
           </p>
         </section>
 

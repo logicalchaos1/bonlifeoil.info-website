@@ -10,7 +10,7 @@ export const ComparisonTable = () => {
   const competitors = [
     {
       name: "Bonlife Premium",
-      type: "RBD Palma (99.9%)",
+      type: "Aceite vegetal (99.9%)",
       volume: "25 L",
       costPerHour: 82,
       duration: 56,

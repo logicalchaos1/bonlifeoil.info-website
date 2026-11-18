@@ -138,7 +138,7 @@ export const SavingsCalculator = () => {
 
               {/* Monthly Usage */}
               <div className="space-y-4 sm:space-y-6">
-                <h3 className="text-xl sm:text-2xl font-bold text-center mb-4 sm:mb-6 text-premium">Bonlife RBD Palma</h3>
+                <h3 className="text-xl sm:text-2xl font-bold text-center mb-4 sm:mb-6 text-premium">Aceite Vegetal Bonlife</h3>
                 
                 <div>
                   <Label htmlFor="monthlyHours" className="text-base font-semibold mb-2 block">

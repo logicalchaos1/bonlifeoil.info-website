@@ -22,7 +22,7 @@ test("full SMS flow for the free sample campaign ends ready for a human", () => 
 });
 
 test("asks the form questions the lead form did not answer", () => {
-  let r = start("palma-25l", "Luis", {});
+  let r = start("aceite-25l", "Luis", {});
   r = reply(r.state, "si");
   assert.equal(r.state.step, "business_type");
   r = reply(r.state, "hotel");
@@ -30,8 +30,8 @@ test("asks the form questions the lead form did not answer", () => {
 });
 
 test("NO ends as not interested and STOP opts out", () => {
-  assert.equal(reply(start("palma-25l", "", form).state, "no gracias").state.status, "not_interested");
-  assert.equal(reply(start("palma-25l", "", form).state, "STOP").state.status, "opted_out");
+  assert.equal(reply(start("aceite-25l", "", form).state, "no gracias").state.status, "not_interested");
+  assert.equal(reply(start("aceite-25l", "", form).state, "STOP").state.status, "opted_out");
 });
 
 test("unclear answers retry twice, then hand off to a human", () => {
@@ -50,7 +50,7 @@ test("empty or one-letter replies never match an option", () => {
 });
 
 test("voice results merge in and mark the lead ready", () => {
-  const s = start("palma-25l", "", form).state;
+  const s = start("aceite-25l", "", form).state;
   assert.equal(fromVoice(s, { interested: "si", zone: "Bávaro", slot: "Hoy en la tarde" }).state.status, "ready");
   assert.equal(fromVoice(s, { interested: "no" }).state.status, "not_interested");
   assert.equal(fromVoice(s, { interested: "si" }).state.status, "needs_human");

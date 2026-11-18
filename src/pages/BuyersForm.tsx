@@ -285,7 +285,7 @@ const BuyersForm = () => {
                         <FormItem>
                           <FormLabel>Producto *</FormLabel>
                           <FormControl>
-                            <Input placeholder="Ej: Aceite de Girasol, Aceite de Soya, Manteca, Margarina" {...field} />
+                            <Input placeholder="Ej: Aceite vegetal, Margarina, Mayonesa" {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>

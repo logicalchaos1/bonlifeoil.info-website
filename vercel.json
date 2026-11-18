@@ -1,8 +1,27 @@
 {
   "rewrites": [
-    { "source": "/suministros", "destination": "/suministros/index.html" },
-    { "source": "/suministros/:categoria", "destination": "/suministros/:categoria/index.html" },
-    { "source": "/suministros/:categoria/:producto", "destination": "/suministros/:categoria/:producto/index.html" },
-    { "source": "/((?!api/).*)", "destination": "/index.html" }
+    {
+      "source": "/suministros",
+      "destination": "/suministros/index.html"
+    },
+    {
+      "source": "/suministros/:categoria",
+      "destination": "/suministros/:categoria/index.html"
+    },
+    {
+      "source": "/suministros/:categoria/:producto",
+      "destination": "/suministros/:categoria/:producto/index.html"
+    },
+    {
+      "source": "/((?!api/).*)",
+      "destination": "/index.html"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/aceite-de-palma",
+      "destination": "/aceite-para-freir",
+      "permanent": true
+    }
   ]
 }

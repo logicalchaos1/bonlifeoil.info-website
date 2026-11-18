@@ -1,24 +1,18 @@
 import React, { useState } from 'react';
-import { Download, FileText, BookOpen, DollarSign, ClipboardList } from 'lucide-react';
+import { Download, FileText, DollarSign, ClipboardList } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const downloads = [
   {
     title: 'Catálogo Completo',
-    description: 'Ficha técnica de todos los productos con especificaciones, beneficios e imágenes.',
+    description: 'Aceite, alimentos y suministros con precios, entrega a todo el país y pedidos por WhatsApp.',
     icon: FileText,
+    // Static client catalog built by marketing/catalogo/build-catalogo.mjs.
     action: async () => {
-      const { generateCatalogPDF } = await import('@/utils/generateCatalogPDF');
-      await generateCatalogPDF();
-    },
-  },
-  {
-    title: 'Booklet Comercial',
-    description: 'Presentación compacta ideal para compartir con clientes y socios.',
-    icon: BookOpen,
-    action: async () => {
-      const { generateBookletPDF } = await import('@/utils/generateBookletPDF');
-      await generateBookletPDF();
+      const a = document.createElement('a');
+      a.href = '/catalogo-bonlife.pdf';
+      a.download = 'catalogo-bonlife.pdf';
+      a.click();
     },
   },
   {
