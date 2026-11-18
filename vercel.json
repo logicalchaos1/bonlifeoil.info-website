@@ -5,6 +5,10 @@
       "destination": "/aceite-de-cocina/index.html"
     },
     {
+      "source": "/aceite-vegetal",
+      "destination": "/aceite-vegetal/index.html"
+    },
+    {
       "source": "/suministros",
       "destination": "/suministros/index.html"
     },

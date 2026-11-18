@@ -1,0 +1,84 @@
+{
+ "path": "/aceite-vegetal",
+ "title": "Aceite Vegetal en RD: Precio, Calidad y Garrafón de 25 Litros | Bonlife",
+ "description": "Aceite vegetal refinado Bonlife: neutro, libre de grasas trans y con punto de humo de 230 °C. Garrafón de 25 L a RD$4,600 para restaurantes y hoteles. Entrega a todo RD.",
+ "h1": "Aceite vegetal para restaurantes, hoteles y negocios en RD",
+ "lead": "Aceite vegetal refinado, neutro y libre de grasas trans, en garrafones de 25 litros. Le explicamos qué es, cómo se refina y cómo reconocer un aceite vegetal de calidad.",
+ "breadcrumb": "Aceite vegetal",
+ "whatsappText": "Hola, quiero cotizar aceite vegetal Bonlife (garrafones de 25L).",
+ "product": {
+  "name": "Aceite vegetal Bonlife 25L",
+  "description": "Aceite vegetal refinado, blanqueado y desodorizado, neutro y libre de grasas trans, en garrafón de 25 litros.",
+  "price": 4600
+ },
+ "priceHeading": "Precio del aceite vegetal Bonlife",
+ "unitPrices": [
+  { "label": "Garrafón de 25 litros", "value": "RD$4,600" },
+  { "label": "Por litro", "value": "RD$184" },
+  { "label": "Por galón (3.785 L)", "value": "aprox. RD$696" },
+  { "label": "Vida útil (cerrado)", "value": "2 años" }
+ ],
+ "sections": [
+  {
+   "heading": "¿Qué es el aceite vegetal?",
+   "kind": "paragraphs",
+   "items": [
+    "El aceite vegetal es el aceite que se extrae de semillas, granos o frutos de plantas. Para usarlo en cocina se refina: se limpia, se blanquea y se desodoriza para quitarle impurezas, color, olor y sabor.",
+    "El resultado es un aceite claro, neutro y estable, que no pasa sabores a la comida y aguanta altas temperaturas. Es el tipo de aceite que se usa en la mayoría de las cocinas profesionales."
+   ]
+  },
+  {
+   "heading": "Cómo se refina el aceite vegetal Bonlife",
+   "kind": "cards",
+   "items": [
+    { "title": "Refinado", "text": "Se eliminan impurezas y ácidos grasos libres, lo que hace que el aceite dure más y no se degrade tan rápido con el calor." },
+    { "title": "Blanqueado", "text": "Se retiran pigmentos para lograr un color dorado claro y parejo." },
+    { "title": "Desodorizado", "text": "Se eliminan olores y sabores para obtener un aceite neutro que respeta el sabor de cada plato." }
+   ]
+  },
+  {
+   "heading": "Cómo reconocer un aceite vegetal de calidad",
+   "kind": "list",
+   "items": [
+    "Acidez baja: mide los ácidos grasos libres. El aceite Bonlife tiene 0.045% máximo, señal de un aceite bien refinado que se degrada más lento.",
+    "Índice de peróxido bajo: mide la oxidación del aceite. Mientras más bajo, más fresco. El aceite Bonlife registra 1.70 meq/kg.",
+    "Punto de humo alto: indica hasta qué temperatura aguanta sin humear. El aceite Bonlife llega a 230 °C, con margen de sobra para freír a 170–180 °C.",
+    "Sin grasas trans ni colesterol, y con un color dorado estable incluso después de varios usos."
+   ]
+  },
+  {
+   "heading": "Dónde se usa un aceite vegetal neutro",
+   "kind": "cards",
+   "items": [
+    { "title": "Freidoras", "text": "Fritura profunda y continua en restaurantes, hoteles, cafeterías y food trucks." },
+    { "title": "Cocina diaria", "text": "Sofritos, arroces, guisos y salteados sin cambiar el sazón." },
+    { "title": "Plancha y parrilla", "text": "Para engrasar planchas y sartenes sin que se queme." },
+    { "title": "Panadería", "text": "Para engrasar moldes y bandejas de horneado." }
+   ]
+  }
+ ],
+ "faqsHeading": "Preguntas frecuentes sobre el aceite vegetal",
+ "faqs": [
+  { "q": "¿Qué es el aceite vegetal?",
+    "a": "Es el aceite que se obtiene de semillas, granos o frutos de plantas y que, para uso en cocina, se refina, se blanquea y se desodoriza. Así queda neutro, claro y estable a altas temperaturas." },
+  { "q": "¿Cuánto cuesta el aceite vegetal en República Dominicana?",
+    "a": "El garrafón de 25 litros de aceite vegetal Bonlife cuesta RD$4,600: RD$184 por litro o aproximadamente RD$696 por galón. Para pedidos recurrentes preparamos cotizaciones por volumen." },
+  { "q": "¿El aceite vegetal es malo para la salud?",
+    "a": "Los aceites vegetales no contienen colesterol, y el aceite Bonlife es libre de grasas trans. Lo que conviene evitar es cocinar con aceite quemado o reutilizado de más: cámbielo cuando se oscurezca, haga espuma o humee a temperatura normal. Como cualquier grasa, úselo con moderación." },
+  { "q": "¿El aceite vegetal Bonlife es hidrogenado?",
+    "a": "No. Es un aceite refinado, no hidrogenado, y libre de grasas trans." },
+  { "q": "¿Qué significa que un aceite vegetal sea neutro?",
+    "a": "Que no tiene olor ni sabor propio, así que no cambia el sabor de la comida ni pasa sabores de una fritura a otra." },
+  { "q": "¿Sirve el aceite vegetal para freír?",
+    "a": "Sí. Con punto de humo de 230 °C, el aceite vegetal Bonlife está hecho para fritura profunda y rinde un estimado de 45 a 56 horas en la freidora con filtrado regular." },
+  { "q": "¿Entregan aceite vegetal fuera de Santo Domingo?",
+    "a": "Sí. Entregamos en todo el país: Santo Domingo, Santiago, Punta Cana, Bávaro, La Romana, Puerto Plata y el resto de las provincias. El envío está incluido en pedidos desde RD$5,000." }
+ ],
+ "ctaHeading": "Pida su aceite vegetal hoy",
+ "related": [
+  { "href": "/aceite-para-freir", "label": "aceite para freír" },
+  { "href": "/aceite-de-cocina", "label": "precios del aceite de cocina" },
+  { "href": "/calculadora-ahorro", "label": "calculadora de ahorro" },
+  { "href": "/suministros", "label": "suministros para hoteles y restaurantes" }
+ ]
+}
