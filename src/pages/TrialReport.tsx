@@ -41,7 +41,7 @@ const TrialReport = () => {
     {
       date: "22 de Enero, 2025",
       title: "Inicio del Programa Piloto",
-      description: "Instalación inicial de aceite Bonlife RBD Palma 99.9% puro en freidoras principales.",
+      description: "Instalación inicial de aceite vegetal Bonlife 99.9% puro en freidoras principales.",
       photos: [trialPhoto1, trialPhoto2, trialPhoto3],
       observations: "Reemplazo completo del aceite La Joya por Bonlife. Capacitación inicial al personal de cocina."
     },
@@ -57,7 +57,7 @@ const TrialReport = () => {
       title: "Evaluación de Medio Término",
       description: "Inspección del estado del aceite y rendimiento de freidoras.",
       photos: [],
-      observations: "Coloración natural del aceite de palma visible. Personal informado sobre diferencias visuales vs. aceite quemado."
+      observations: "Coloración natural del aceite Bonlife visible. Personal informado sobre diferencias visuales vs. aceite quemado."
     },
     {
       date: "1 de Febrero, 2025",
@@ -104,7 +104,7 @@ const TrialReport = () => {
 
   const costComparison = {
     bonlife: {
-      name: "Bonlife RBD Palma",
+      name: "Aceite Vegetal Bonlife",
       pricePerUnit: 4800,
       unitsNeeded: 1,
       totalCost: 4800,
@@ -262,7 +262,7 @@ const TrialReport = () => {
                 <div className="flex items-center gap-3 mb-4">
                   <CheckCircle className="w-8 h-8 text-primary" />
                   <div>
-                    <h3 className="text-xl font-bold text-primary">Bonlife RBD Palma</h3>
+                    <h3 className="text-xl font-bold text-primary">Aceite Vegetal Bonlife</h3>
                     <p className="text-sm text-muted-foreground">99.9% Puro - Recomendado</p>
                   </div>
                 </div>
@@ -438,7 +438,7 @@ const TrialReport = () => {
               <div>
                 <h4 className="font-bold text-lg text-green-700 mb-3 flex items-center gap-2">
                   <CheckCircle className="w-5 h-5" />
-                  Ventajas del Aceite Bonlife RBD Palma
+                  Ventajas del Aceite Vegetal Bonlife
                 </h4>
                 <ul className="space-y-2 text-muted-foreground">
                   <li className="flex items-start gap-2">
@@ -510,13 +510,13 @@ const TrialReport = () => {
                 <h4 className="font-bold text-lg text-foreground mb-2">1. Capacitación del Personal de Cocina</h4>
                 <p className="text-muted-foreground mb-3">
                   Durante el piloto, observamos que el aceite se cambió con más frecuencia de la necesaria debido a desconocimiento 
-                  sobre las características visuales del aceite de palma. Recomendamos una sesión de entrenamiento que cubra:
+                  sobre las características visuales del aceite Bonlife. Recomendamos una sesión de entrenamiento que cubra:
                 </p>
                 <ul className="list-disc list-inside text-muted-foreground space-y-1 ml-4">
                   <li>Diferencia entre coloración natural vs. aceite quemado</li>
                   <li>Indicadores correctos para determinar cuándo cambiar el aceite</li>
                   <li>Protocolo de filtrado óptimo (2 veces por semana)</li>
-                  <li>Beneficios del aceite de palma RBD vs. aceite de soya</li>
+                  <li>Beneficios del aceite vegetal Bonlife vs. aceite de soya</li>
                 </ul>
               </div>
 
@@ -553,7 +553,7 @@ const TrialReport = () => {
             <h2 className="text-3xl font-bold mb-4">Conclusión</h2>
             <p className="text-lg mb-6 max-w-3xl mx-auto opacity-90">
               El programa piloto de 15 días en Hotel Royalton Punta Cana ha demostrado de manera concluyente que 
-              el aceite Bonlife RBD Palma 99.9% puro ofrece una <span className="text-gold font-bold">eficiencia de costo 3.5-4x superior</span>, 
+              el aceite vegetal Bonlife 99.9% puro ofrece una <span className="text-gold font-bold">eficiencia de costo 3.5-4x superior</span>, 
               mejor rendimiento operativo, y beneficios significativos para la salud de los clientes en comparación 
               con el aceite de soya utilizado anteriormente.
             </p>

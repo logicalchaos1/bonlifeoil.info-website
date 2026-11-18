@@ -5,7 +5,6 @@ import { useRef } from 'react';
 import testimonialChef from '@/assets/testimonial-chef.jpg';
 import testimonialManager from '@/assets/testimonial-manager.jpg';
 import testimonialDirector from '@/assets/testimonial-director.jpg';
-import testimonialPastry from '@/assets/testimonial-pastry.jpg';
 
 const testimonials = [
   {
@@ -30,14 +29,6 @@ const testimonials = [
     company: 'Resort All-Inclusive, Punta Cana',
     image: testimonialDirector,
     quote: 'Con 12 estaciones de fritura operando 16 horas al día, necesitábamos un aceite que rindiera. Bonlife nos redujo los cambios de aceite de 3 a 1 por día.',
-    stars: 5,
-  },
-  {
-    name: 'Ana Lucía Pimentel',
-    role: 'Chef Pastelera',
-    company: 'Panadería Artesanal La Dorada',
-    image: testimonialPastry,
-    quote: 'La manteca vegetal Bonlife le da a mis hojaldres una textura increíble. Mis clientes notan la diferencia y yo noto el ahorro a fin de mes.',
     stars: 5,
   },
 ];
