@@ -1,12 +1,48 @@
 {
   "rewrites": [
     {
+      "source": "/aceite-para-freir",
+      "destination": "/aceite-para-freir/index.html"
+    },
+    {
       "source": "/aceite-de-cocina",
       "destination": "/aceite-de-cocina/index.html"
     },
     {
       "source": "/aceite-vegetal",
       "destination": "/aceite-vegetal/index.html"
+    },
+    {
+      "source": "/calculadora-ahorro",
+      "destination": "/calculadora-ahorro/index.html"
+    },
+    {
+      "source": "/blog",
+      "destination": "/blog/index.html"
+    },
+    {
+      "source": "/referidos",
+      "destination": "/referidos/index.html"
+    },
+    {
+      "source": "/chef-partners",
+      "destination": "/chef-partners/index.html"
+    },
+    {
+      "source": "/formulario-comprador",
+      "destination": "/formulario-comprador/index.html"
+    },
+    {
+      "source": "/empleos",
+      "destination": "/empleos/index.html"
+    },
+    {
+      "source": "/privacidad",
+      "destination": "/privacidad/index.html"
+    },
+    {
+      "source": "/reporte-piloto",
+      "destination": "/reporte-piloto/index.html"
     },
     {
       "source": "/suministros",
@@ -21,8 +57,12 @@
       "destination": "/suministros/:categoria/:producto/index.html"
     },
     {
+      "source": "/empleos/:slug",
+      "destination": "/empleos/:slug/index.html"
+    },
+    {
       "source": "/((?!api/).*)",
-      "destination": "/index.html"
+      "destination": "/shell.html"
     }
   ],
   "redirects": [

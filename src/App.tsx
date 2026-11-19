@@ -1,4 +1,4 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, type ReactNode } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -37,13 +37,16 @@ const RouteLoader = () => (
   </div>
 );
 
-const App = () => (
+type RouterShell = (props: { children: ReactNode }) => JSX.Element;
+const BrowserShell: RouterShell = ({ children }) => <BrowserRouter>{children}</BrowserRouter>;
+
+export const AppTree = ({ Router }: { Router: RouterShell }) => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
       <Sonner />
       <AppErrorBoundary>
-        <BrowserRouter>
+        <Router>
           <Suspense fallback={<RouteLoader />}>
             <Routes>
               <Route path="/" element={<Index />} />
@@ -70,10 +73,12 @@ const App = () => (
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>
-        </BrowserRouter>
+        </Router>
       </AppErrorBoundary>
     </TooltipProvider>
   </QueryClientProvider>
 );
+
+const App = () => <AppTree Router={BrowserShell} />;
 
 export default App;

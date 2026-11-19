@@ -4,7 +4,7 @@ import { useEffect } from "react";
 // og:url and sitemap entry must use www or Google only sees redirects.
 export const SITE_URL = "https://www.bonlifeoil.info";
 
-type SeoOptions = {
+export type SeoOptions = {
   title: string;
   description: string;
   path: string;
@@ -32,7 +32,12 @@ const setCanonical = (href: string) => {
   el.href = href;
 };
 
+// Filled while pages are rendered at build time (scripts/prerender.mjs), so each page's
+// HTML ships with its own title, description, canonical and JSON-LD.
+export const ssrSeo: { current: SeoOptions | null } = { current: null };
+
 export const useSeo = ({ title, description, path, noindex, jsonLd }: SeoOptions) => {
+  if (typeof window === "undefined") ssrSeo.current = { title, description, path, noindex, jsonLd };
   const jsonLdString = jsonLd ? JSON.stringify(jsonLd) : "";
 
   useEffect(() => {
