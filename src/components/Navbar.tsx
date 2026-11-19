@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Phone, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import BonlifeLogo from '@/components/BonlifeLogo';
@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const { pathname } = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -48,7 +49,7 @@ const Navbar = () => {
       return <Link to={link.href} className={className_}>{link.name}</Link>;
     }
     // For hash links, navigate to homepage + hash if not already there
-    const hashHref = window.location.pathname === '/' ? link.href : `/${link.href}`;
+    const hashHref = pathname === '/' ? link.href : `/${link.href}`;
     return <a href={hashHref} className={className_}>{link.name}</a>;
   };
 
@@ -61,7 +62,7 @@ const Navbar = () => {
     if (isRoute) {
       return <Link to={link.href} {...props}>{link.name}</Link>;
     }
-    const hashHref = window.location.pathname === '/' ? link.href : `/${link.href}`;
+    const hashHref = pathname === '/' ? link.href : `/${link.href}`;
     return <a href={hashHref} {...props}>{link.name}</a>;
   };
 

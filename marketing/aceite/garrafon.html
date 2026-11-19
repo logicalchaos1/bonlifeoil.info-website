@@ -1,0 +1,161 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<style>html,body{margin:0;background:#f4efe3}canvas{display:block}</style>
+<script type="importmap">
+{ "imports": {
+  "three": "/node_modules/three/build/three.module.js",
+  "three/addons/": "/node_modules/three/examples/jsm/"
+} }
+</script>
+</head>
+<body>
+<script type="module">
+// Studio render of the Bonlife 25 L garrafón of aceite vegetal (original geometry and label).
+// Opened by render-garrafon.mjs; sets window.done / window.output when the frame is ready.
+import * as THREE from "three";
+import { RoundedBoxGeometry } from "three/addons/geometries/RoundedBoxGeometry.js";
+import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
+
+const W = 1200, H = 900;
+const GREEN = "#0a1a0f", GOLD = "#d4af37";
+const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
+renderer.setPixelRatio(1);
+renderer.setSize(W, H);
+renderer.toneMapping = THREE.NeutralToneMapping;
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+document.body.appendChild(renderer.domElement);
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color("#f4efe3");
+scene.environment = new THREE.PMREMGenerator(renderer).fromScene(new RoomEnvironment(), 0.04).texture;
+
+const key = new THREE.DirectionalLight("#ffffff", 2.0);
+key.position.set(5, 9, 6);
+key.castShadow = true;
+key.shadow.mapSize.set(2048, 2048);
+Object.assign(key.shadow.camera, { left: -6, right: 6, top: 6, bottom: -6 });
+key.shadow.radius = 8;
+key.shadow.bias = -0.0005;
+scene.add(key);
+scene.add(new THREE.HemisphereLight("#ffffff", "#e9dfc6", 0.7));
+const ground = new THREE.Mesh(new THREE.PlaneGeometry(60, 60), new THREE.ShadowMaterial({ opacity: 0.2 }));
+ground.rotation.x = -Math.PI / 2;
+ground.receiveShadow = true;
+scene.add(ground);
+
+// Garrafón proportions (about 29 × 24 × 40 cm), 1 unit = 10 cm.
+const BW = 2.9, BH = 3.6, BD = 2.35;
+const jug = new THREE.Group();
+
+// Oil inside: drawn first, seen through the translucent plastic.
+const oil = new THREE.Mesh(
+  new RoundedBoxGeometry(BW - 0.1, BH * 0.86, BD - 0.1, 6, 0.24),
+  new THREE.MeshPhysicalMaterial({ color: "#d48c06", roughness: 0.1, emissive: "#7a4a00", emissiveIntensity: 0.25, clearcoat: 1 }),
+);
+oil.position.y = (BH * 0.86) / 2 + 0.05;
+jug.add(oil);
+
+// Natural HDPE shell
+const plastic = new THREE.MeshPhysicalMaterial({
+  color: "#fbf3da", roughness: 0.38, transparent: true, opacity: 0.26, clearcoat: 0.6, clearcoatRoughness: 0.3, depthWrite: false,
+});
+const shell = new THREE.Mesh(new RoundedBoxGeometry(BW, BH, BD, 8, 0.3), plastic);
+shell.position.y = BH / 2;
+shell.renderOrder = 2;
+jug.add(shell);
+const solidPlastic = new THREE.MeshPhysicalMaterial({ color: "#f3ead0", roughness: 0.4, clearcoat: 0.5 });
+
+// Molded carry handle across the top, toward the back
+const path = new THREE.CatmullRomCurve3([
+  new THREE.Vector3(-1.05, BH - 0.12, -0.25),
+  new THREE.Vector3(-0.95, BH + 0.48, -0.25),
+  new THREE.Vector3(-0.55, BH + 0.66, -0.25),
+  new THREE.Vector3(0.15, BH + 0.66, -0.25),
+  new THREE.Vector3(0.5, BH + 0.48, -0.25),
+  new THREE.Vector3(0.6, BH - 0.12, -0.25),
+]);
+const handle = new THREE.Mesh(new THREE.TubeGeometry(path, 64, 0.17, 20, false), solidPlastic);
+jug.add(handle);
+
+// Spout and cap at the front corner
+const neck = new THREE.Mesh(new THREE.CylinderGeometry(0.33, 0.38, 0.32, 40), solidPlastic);
+neck.position.set(0.95, BH + 0.12, 0.6);
+jug.add(neck);
+const capMat = new THREE.MeshPhysicalMaterial({ color: "#14401f", roughness: 0.45, clearcoat: 0.4 });
+const cap = new THREE.Mesh(new THREE.CylinderGeometry(0.43, 0.43, 0.4, 48), capMat);
+cap.position.set(0.95, BH + 0.46, 0.6);
+jug.add(cap);
+for (let i = 0; i < 36; i++) { // grip ribs
+  const a = (i / 36) * Math.PI * 2;
+  const rib = new THREE.Mesh(new THREE.BoxGeometry(0.04, 0.34, 0.05), capMat);
+  rib.position.set(0.95 + Math.cos(a) * 0.43, BH + 0.46, 0.6 + Math.sin(a) * 0.43);
+  rib.rotation.y = -a;
+  jug.add(rib);
+}
+const seal = new THREE.Mesh(new THREE.CylinderGeometry(0.45, 0.45, 0.06, 48), new THREE.MeshStandardMaterial({ color: GOLD, metalness: 0.4, roughness: 0.35 }));
+seal.position.set(0.95, BH + 0.27, 0.6);
+jug.add(seal);
+
+// Front label
+function labelTexture() {
+  const c = document.createElement("canvas");
+  c.width = 1200; c.height = 1050;
+  const g = c.getContext("2d");
+  g.fillStyle = GREEN; g.fillRect(0, 0, c.width, c.height);
+  g.strokeStyle = GOLD; g.lineWidth = 14; g.strokeRect(26, 26, c.width - 52, c.height - 52);
+  g.textAlign = "center";
+  g.font = "italic 800 210px Helvetica, Arial, sans-serif";
+  const bon = g.measureText("Bon").width, life = g.measureText("life").width;
+  const x0 = (c.width - bon - life) / 2;
+  g.textAlign = "left";
+  g.fillStyle = "#ffffff"; g.fillText("Bon", x0, 270);
+  g.fillStyle = GOLD; g.fillText("life", x0 + bon, 270);
+  g.textAlign = "center";
+  g.fillStyle = "#ffffff"; g.font = "800 112px Helvetica, Arial, sans-serif";
+  g.fillText("ACEITE VEGETAL", 600, 455);
+  g.fillStyle = GOLD; g.font = "700 54px Helvetica, Arial, sans-serif";
+  g.fillText("PARA FREÍR · USO PROFESIONAL", 600, 545);
+  g.fillStyle = "rgba(255,255,255,.75)"; g.font = "500 44px Helvetica, Arial, sans-serif";
+  g.fillText("Hoteles · Restaurantes · Freidoras industriales", 600, 625);
+  g.fillStyle = GOLD; g.fillRect(26, 705, c.width - 52, 319);
+  g.fillStyle = GREEN; g.font = "900 250px Helvetica, Arial, sans-serif";
+  g.fillText("25 L", 600, 935);
+  const t = new THREE.CanvasTexture(c);
+  t.colorSpace = THREE.SRGBColorSpace;
+  t.anisotropy = 8;
+  return t;
+}
+const label = new THREE.Mesh(
+  new THREE.PlaneGeometry(BW - 0.5, (BW - 0.5) * 1050 / 1200),
+  new THREE.MeshPhysicalMaterial({ map: labelTexture(), roughness: 0.55, clearcoat: 0.3 }),
+);
+label.position.set(0, BH * 0.47, BD / 2 + 0.006);
+label.renderOrder = 3;
+jug.add(label);
+
+jug.traverse((o) => { if (o.isMesh) o.castShadow = true; });
+shell.castShadow = true;
+jug.rotation.y = -0.42;
+scene.add(jug);
+
+const camera = new THREE.PerspectiveCamera(26, W / H, 0.1, 100);
+camera.position.set(2.9, 4.8, 12.2);
+camera.lookAt(0.15, 2.05, 0);
+renderer.render(scene, camera);
+
+// Small "imagen ilustrativa" note, like the supplies mockups.
+const out = document.createElement("canvas");
+out.width = W; out.height = H;
+const g = out.getContext("2d");
+g.drawImage(renderer.domElement, 0, 0);
+g.fillStyle = "rgba(0,0,0,.4)"; g.font = "500 20px Helvetica, Arial, sans-serif"; g.textAlign = "right";
+g.fillText("Imagen ilustrativa", W - 26, H - 24);
+window.output = out.toDataURL("image/jpeg", 0.9);
+window.done = true;
+</script>
+</body>
+</html>
