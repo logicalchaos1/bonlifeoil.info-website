@@ -86,6 +86,27 @@
       .seo-fallback ul { padding-left: 20px; }
       .seo-fallback a { color: #d4af37; }
       .seo-fallback img { max-width: 100%; height: auto; border-radius: 12px; }
+      /* Static copy of the homepage hero, so the first paint matches the app. */
+      .fb-nav { display: flex; align-items: center; justify-content: space-between; max-width: 1100px; margin: 0 auto; }
+      .fb-nav .fb-brand { margin: 0; }
+      .fb-nav a.fb-call { color: #fff; font-weight: 700; font-size: 15px; text-decoration: none; }
+      .fb-hero { text-align: center; max-width: 900px; margin: 0 auto; padding: 56px 0 24px; }
+      .fb-badge { display: inline-flex; align-items: center; gap: 8px; border: 1px solid rgba(255,255,255,.2); background: rgba(255,255,255,.08); color: #fff; border-radius: 999px; padding: 6px 14px; font-size: 14px; font-weight: 500; }
+      .fb-badge i { width: 8px; height: 8px; border-radius: 50%; background: #d4af37; display: inline-block; }
+      .fb-hero h1 { margin: 26px auto 20px; font-size: clamp(34px, 8vw, 72px); line-height: 1.08; letter-spacing: -.02em; }
+      .fb-hero h1 span { display: block; background: linear-gradient(90deg, #d4af37, #f0d67a, #d4af37); -webkit-background-clip: text; background-clip: text; color: transparent; }
+      .fb-hero .fb-lead { font-size: clamp(16px, 2.4vw, 20px); color: rgba(255,255,255,.8); max-width: 640px; margin: 0 auto 28px; }
+      .fb-ctas { display: flex; flex-direction: column; gap: 12px; max-width: 520px; margin: 0 auto; }
+      .fb-ctas a { display: block; border-radius: 999px; padding: 17px 24px; font-size: 18px; font-weight: 600; text-decoration: none; }
+      .fb-ctas .fb-primary { background: #d4af37; color: #fff; }
+      .fb-ctas .fb-secondary { border: 1px solid rgba(255,255,255,.22); background: rgba(255,255,255,.05); color: #fff; }
+      .fb-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin: 44px auto 0; max-width: 900px; }
+      .fb-stat { background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); border-radius: 16px; padding: 18px 10px; text-align: center; }
+      .fb-stat b { display: block; color: #fff; font-size: 24px; }
+      .fb-stat small { color: rgba(255,255,255,.6); text-transform: uppercase; letter-spacing: .08em; font-size: 12px; font-weight: 500; }
+      .fb-stat svg { width: 22px; height: 22px; stroke: #d4af37; fill: none; stroke-width: 2; display: block; margin: 0 auto 6px; }
+      .fb-info { max-width: 860px; margin: 56px auto 0; border-top: 1px solid rgba(255,255,255,.12); padding-top: 8px; }
+      @media (min-width: 768px) { .fb-ctas { flex-direction: row; justify-content: center; } .fb-ctas a { padding: 18px 40px; } .fb-stats { grid-template-columns: repeat(4, 1fr); } }
     </style>
   </head>
 
@@ -93,8 +114,24 @@
     <div id="root">
       <!-- Crawlable fallback: shown until React mounts, then replaced by the app. -->
       <main class="seo-fallback">
-        <div class="fb-brand">Bon<span>life</span></div>
-        <h1>Aceite para freír y aceite vegetal al por mayor en República Dominicana</h1>
+        <div class="fb-nav"><div class="fb-brand">Bon<span>life</span></div><a class="fb-call" href="tel:+18299876764">(829) 987-6764</a></div>
+        <section class="fb-hero">
+          <div class="fb-badge"><i></i>Líder en Rendimiento para HORECA</div>
+          <h1>El Estándar de Oro en <span>Aceites Vegetales</span></h1>
+          <p class="fb-lead">99.9% de pureza certificada para cocinas que no comprometen la calidad. Ahorre hasta un 20% en su presupuesto operativo anual.</p>
+          <div class="fb-ctas">
+            <a class="fb-primary" href="https://wa.me/18299876764?text=Hola%20Bonlife%2C%20quiero%20una%20cotizaci%C3%B3n.">Solicitar Cotización</a>
+            <a class="fb-secondary" href="/aceite-para-freir">Ver Productos</a>
+          </div>
+          <div class="fb-stats">
+            <div class="fb-stat"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8M15 7h6v6"/></svg><b>20%</b><small>Ahorro Real</small></div>
+            <div class="fb-stat"><svg viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/></svg><b>99.9%</b><small>Pureza</small></div>
+            <div class="fb-stat"><svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="6"/><path d="M9 14l-2 7 5-3 5 3-2-7"/></svg><b>24h</b><small>Entrega</small></div>
+            <div class="fb-stat"><svg viewBox="0 0 24 24"><path d="M12 3l2 6 6 2-6 2-2 6-2-6-6-2 6-2z"/></svg><b>Premium</b><small>Calidad</small></div>
+          </div>
+        </section>
+        <div class="fb-info">
+        <h2>Aceite para freír y aceite vegetal al por mayor en República Dominicana</h2>
         <p>Bonlife Oil distribuye aceite vegetal para freír en garrafones de 25 litros, margarina, mayonesa y suministros para hoteles, restaurantes, cafeterías y freidoras industriales. Entregamos en todo el país.</p>
         <h2>Productos</h2>
         <ul>
@@ -106,8 +143,25 @@
         <h2>Contacto</h2>
         <p>Santo Domingo, República Dominicana · Tel/WhatsApp: <a href="tel:+18299876764">+1 (829) 987-6764</a> · <a href="https://wa.me/18299876764">Cotizar por WhatsApp</a></p>
         <p><a href="/aceite-para-freir">Aceite para freír</a> · <a href="/calculadora-ahorro">Calculadora de ahorro</a> · <a href="/blog">Blog</a> · <a href="/formulario-comprador">Formulario de compra</a></p>
+        </div>
       </main>
     </div>
+    <script>
+      // If the page finished loading but the app never started (the fallback is still there),
+      // reload once with a fresh copy. sessionStorage stops a reload loop.
+      window.addEventListener("load", function () {
+        setTimeout(function () {
+          if (!document.querySelector("#root > .seo-fallback")) return;
+          try {
+            if (sessionStorage.getItem("bonlife-boot-retry")) return;
+            sessionStorage.setItem("bonlife-boot-retry", "1");
+          } catch (e) { return; }
+          var u = new URL(window.location.href);
+          u.searchParams.set("r", Date.now().toString(36));
+          window.location.replace(u.toString());
+        }, 4000);
+      });
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
