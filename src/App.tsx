@@ -26,7 +26,7 @@ const AceiteDeCocina = lazy(() => import("./pages/AceiteDeCocina"));
 const Privacidad = lazy(() => import("./pages/Privacidad"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
-const queryClient = new QueryClient();
+export const queryClient = new QueryClient();
 
 const RouteLoader = () => (
   <div className="flex min-h-screen items-center justify-center bg-background px-6 text-center text-foreground">
