@@ -4,10 +4,17 @@ import { ArrowLeft, MessageCircle, MapPin, Clock, CheckCircle2, Briefcase } from
 import { Button } from '@/components/ui/button';
 import BonlifeLogo from '@/components/BonlifeLogo';
 import { getJobBySlug } from '@/data/jobs';
+import { useSeo } from '@/hooks/use-seo';
 
 const JobDetail = () => {
   const { slug } = useParams<{ slug: string }>();
   const job = getJobBySlug(slug);
+  useSeo({
+    title: job ? `Empleo: ${job.title} en ${job.location.split(",")[0]} | Bonlife Oil` : 'Empleos | Bonlife Oil',
+    description: job ? job.summary : 'Vacantes de empleo en Bonlife Oil.',
+    path: `/empleos/${slug}`,
+    noindex: !job,
+  });
 
   if (!job) {
     return <Navigate to="/empleos" replace />;
