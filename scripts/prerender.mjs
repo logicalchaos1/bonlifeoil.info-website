@@ -1,5 +1,5 @@
 // Runs after the browser build and the server build (see "build" in package.json).
-// Renders every public page to finished HTML in dist/<path>/index.html, with that page's
+// Renders every public page to finished HTML in dist/<path>.html, with that page's
 // own <title>, description, canonical and JSON-LD. Visitors and Google get the complete
 // page in the first response; the JavaScript then attaches to it (hydration) for the
 // interactive parts. dist/index.html becomes the homepage, and dist/shell.html is the
@@ -15,6 +15,31 @@ const catalog = JSON.parse(readFileSync(path.join(root, "src/data/suministros-ca
 const jobsSrc = readFileSync(path.join(root, "src/data/jobs.ts"), "utf8");
 const jobSlugs = [...jobsSrc.matchAll(/slug: '([^']+)'/g)].map((m) => m[1]);
 
+// Blog posts live in Supabase: read them with the public anon key (same as the sitemap).
+const client = readFileSync(path.join(root, "src/integrations/supabase/client.ts"), "utf8");
+const supabaseUrl = client.match(/SUPABASE_URL = "([^"]+)"/)[1];
+const anonKey = client.match(/SUPABASE_PUBLISHABLE_KEY =\s*"([^"]+)"/)[1];
+const rest = async (query) => {
+  const res = await fetch(`${supabaseUrl}/rest/v1/${query}`, {
+    headers: { apikey: anonKey, Authorization: `Bearer ${anonKey}` },
+    signal: AbortSignal.timeout(30000),
+  });
+  if (!res.ok) throw new Error(`Supabase ${res.status}: ${await res.text()}`);
+  return res.json();
+};
+// Same selects as src/pages/Blog.tsx and BlogPost.tsx, so the data has the same shape.
+let blogList = null, blogPosts = [];
+try {
+  blogList = await rest("blog_posts?select=id,title,slug,excerpt,meta_description,published_at,primary_keyword,town_id,dr_towns(name,slug)&status=eq.published&order=published_at.desc");
+  blogPosts = await rest("blog_posts?select=*,dr_towns(name,slug,province)&status=eq.published");
+} catch (e) {
+  // Don't fail the deploy over the blog: those pages then load in the browser as before.
+  console.warn(`prerender: blog posts not loaded (${e.message}); /blog/* stays browser-rendered`);
+}
+const seeds = new Map();
+if (blogList) seeds.set("/blog", [[["blog-posts"], blogList]]);
+for (const post of blogPosts) seeds.set(`/blog/${post.slug}`, [[["blog-post", post.slug], post]]);
+
 const routes = [
   "/", "/aceite-para-freir", "/aceite-de-cocina", "/aceite-vegetal",
   "/suministros",
@@ -22,6 +47,7 @@ const routes = [
   ...catalog.products.map((p) => `/suministros/${p.category}/${p.slug}`),
   "/calculadora-ahorro", "/blog", "/referidos", "/chef-partners", "/formulario-comprador",
   "/empleos", ...jobSlugs.map((s) => `/empleos/${s}`), "/privacidad", "/reporte-piloto",
+  ...blogPosts.map((p) => `/blog/${p.slug}`),
 ];
 
 const template = readFileSync(path.join(dist, "index.html"), "utf8");
@@ -29,8 +55,9 @@ const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&l
 const ROOT_RE = /<div id="root">[\s\S]*?<!-- \/root -->/;
 if (!ROOT_RE.test(template)) throw new Error("index.html: #root marker not found");
 
-function page(html, seo) {
-  let out = template.replace(ROOT_RE, () => `<div id="root" data-ssr="1">${html}</div><!-- /root -->`);
+function page(html, seo, seed) {
+  const data = seed ? `<script>window.__BONLIFE_DATA__=${JSON.stringify(seed).replace(/</g, "\\u003c")}</script>` : "";
+  let out = template.replace(ROOT_RE, () => `<div id="root" data-ssr="1">${html}</div><!-- /root -->${data}`);
   if (!seo) return out;
   const url = `${SITE_URL}${seo.path}`;
   out = out
@@ -50,11 +77,15 @@ function page(html, seo) {
 
 writeFileSync(path.join(dist, "shell.html"), template.replace(ROOT_RE, '<div id="root"></div><!-- /root -->'));
 for (const route of routes) {
-  const { html, seo } = await render(route);
+  const seed = seeds.get(route);
+  const { html, seo } = await render(route, seed);
   if (html.length < 1500 || html.includes("Loading the page")) throw new Error(`${route}: rendered no page content`);
-  const file = route === "/" ? path.join(dist, "index.html") : path.join(dist, route, "index.html");
+  if (seed && route.startsWith("/blog/") && !html.includes("<article")) throw new Error(`${route}: post did not render`);
+  // <path>.html: with cleanUrls, Vercel serves it at /<path> before any rewrite, so a page
+  // that was not built (e.g. a post published after this deploy) falls through to the shell.
+  const file = route === "/" ? path.join(dist, "index.html") : path.join(dist, `${route}.html`);
   mkdirSync(path.dirname(file), { recursive: true });
-  writeFileSync(file, page(html, seo));
+  writeFileSync(file, page(html, seo, seed));
 }
 rmSync(path.join(root, "dist-ssr"), { recursive: true, force: true });
 console.log(`prerender: ${routes.length} pages`);
